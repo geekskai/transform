@@ -5,12 +5,12 @@
   "author": "ritz078 <rkritesh078@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev:inspect": "NODE_OPTIONS=\"--inspect\" next dev",
-    "dev": "next dev",
-    "start": "next start",
+    "dev:inspect": "NODE_OPTIONS=\"--inspect --openssl-legacy-provider\" next dev",
+    "dev": "NODE_OPTIONS=\"--openssl-legacy-provider\" next dev",
+    "start": "NODE_OPTIONS=\"--openssl-legacy-provider\" next start",
     "format": "prettier --write '**/*.ts' '**/*.tsx'",
-    "build": "next build",
-    "now-build": "next build",
+    "build": "NODE_OPTIONS=\"--openssl-legacy-provider\" next build",
+    "now-build": "NODE_OPTIONS=\"--openssl-legacy-provider\" next build",
     "postinstall": "patch-package",
     "build:analyze": "ANALYZE=true yarn build"
   },
@@ -125,5 +125,6 @@
     "./assets/*/*.svg": [
       "imagemin-lint-staged"
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
