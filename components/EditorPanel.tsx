@@ -241,7 +241,7 @@ export default function EditorPanel({
           </Tooltip>
         )}
 
-        {packageDetails && (
+        {/* {packageDetails && (
           <a
             href={packageDetails.url}
             style={{
@@ -253,7 +253,7 @@ export default function EditorPanel({
               <Npm />
             </Tooltip>
           </a>
-        )}
+        )} */}
 
         {hasCopy && (
           <Button

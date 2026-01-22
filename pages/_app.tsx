@@ -104,7 +104,7 @@ export default function App(props) {
             />
           </Tooltip>
         </Pane>
-        <Pane display="flex" alignItems={"center"}>
+        {/* <Pane display="flex" alignItems={"center"}>
           <a
             style={{
               display: "inline-block",
@@ -129,7 +129,7 @@ export default function App(props) {
               GitHub
             </Button>
           </a>
-        </Pane>
+        </Pane> */}
       </Pane>
 
       <Pane

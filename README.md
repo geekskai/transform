@@ -20,6 +20,13 @@
 
 The logo has been designed by [mikicon](https://thenounproject.com/mikicon/).
 
+## Disclaimer
+
+This project is a fork and derivative of
+[ritz078/transform](https://github.com/ritz078/transform) and is distributed
+under the MIT License. The original author is not affiliated with or endorsing
+this project. All trademarks and names belong to their respective owners.
+
 ## License
 
 MIT @ Ritesh Kumar

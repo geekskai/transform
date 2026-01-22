@@ -2,7 +2,7 @@
   "name": "transform",
   "version": "2.0.2",
   "repository": "https://github.com/ritz078/transform",
-  "author": "ritz078 <rkritesh078@gmail.com>",
+  "author": "geekskai",
   "license": "MIT",
   "scripts": {
     "dev:inspect": "NODE_OPTIONS=\"--inspect --openssl-legacy-provider\" next dev",
