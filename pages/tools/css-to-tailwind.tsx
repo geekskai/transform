@@ -19,7 +19,7 @@ import { TailwindConverter, TailwindConverterConfig } from "css-to-tailwindcss";
 import ConversionPanel, { Transformer } from "@components/ConversionPanel";
 import { useSettings } from "@hooks/useSettings";
 
-const Monaco = dynamic(() => import("../components/Monaco"), {
+const Monaco = dynamic(() => import("../../components/Monaco"), {
   ssr: false
 });
 

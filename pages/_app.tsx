@@ -1,12 +1,11 @@
-import React, { useEffect } from "react";
-import { Button, IconButton, Pane, Tooltip } from "evergreen-ui";
+import { useEffect } from "react";
+import { IconButton, Pane, Tooltip } from "evergreen-ui";
 import Navigator from "@components/Navigator";
 import "@styles/main.css";
 
 import NProgress from "nprogress";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { activeRouteData } from "@utils/routes";
-import Head from "next/head";
 import { Meta } from "@components/Meta";
 import { useDarkMode } from "@hooks/useDarkMode";
 
