@@ -10,10 +10,9 @@ import {
   toaster,
   Tooltip
 } from "evergreen-ui";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import copy from "clipboard-copy";
-import Npm from "@assets/svgs/Npm";
 import { useDropzone } from "react-dropzone";
 
 export interface EditorPanelProps {
@@ -58,7 +57,7 @@ export default function EditorPanel({
   defaultValue,
   onChange,
   id,
-  packageDetails
+  // packageDetails
 }: EditorPanelProps) {
   const [showSettingsDialogue, setSettingsDialog] = useState(false);
   const [value, setValue] = useState(defaultValue);
