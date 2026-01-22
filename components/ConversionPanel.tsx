@@ -178,7 +178,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
               <Spinner
                 css={{
                   "& circle": {
-                    stroke: "#0e7ccf"
+                    stroke: "#16F2B3"
                   }
                 }}
                 size={32}

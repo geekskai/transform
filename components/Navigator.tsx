@@ -55,7 +55,7 @@ export default function Navigator() {
                           backgroundColor={isActive ? "#f3f3f3" : undefined}
                           borderLeft={
                             isActive
-                              ? "3px solid #009688"
+                              ? "3px solid #16F2B3"
                               : "3px solid transparent"
                           }
                           css={{
