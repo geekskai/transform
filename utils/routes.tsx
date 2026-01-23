@@ -168,20 +168,20 @@ export const categorizedRoutes = [
       },
       {
         label: "to OpenAPI Schema",
-        path: "tools/json-schema-to-openapi-schema",
+        path: "/tools/json-schema-to-openapi-schema",
         packageName: "json-schema-to-openapi-schema",
         packageUrl:
           "https://github.com/openapi-contrib/json-schema-to-openapi-schema"
       },
       {
         label: "to Protobuf",
-        path: "tools/json-schema-to-protobuf",
+        path: "/tools/json-schema-to-protobuf",
         packageName: "jsonschema-protobuf",
         packageUrl: "https://github.com/okdistribute/jsonschema-protobuf"
       },
       {
         label: "to Zod Schema",
-        path: "tools/json-schema-to-zod",
+        path: "/tools/json-schema-to-zod",
         packageName: "json-schema-to-zod",
         packageUrl: "https://www.npmjs.com/package/json-schema-to-zod"
       }
@@ -298,7 +298,7 @@ export const categorizedRoutes = [
       },
       {
         label: "to Normalized",
-        path: "tools/jsonld-to-normalized"
+        path: "/tools/jsonld-to-normalized"
       }
     ].map(x => ({
       ...x,
