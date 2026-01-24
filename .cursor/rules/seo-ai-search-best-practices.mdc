@@ -1,0 +1,109 @@
+---
+description: SEO best practices for AI search era - content optimization, structured data, and brand building
+alwaysApply: true
+---
+
+# SEO Best Practices for AI Search Era
+
+## Core Principles
+
+1. **Brand is the competitive advantage** - In the LLM search era, brand matters more than content, links, or technical SEO
+2. **Information Retrieval Score** - If AI can't extract your content chunks and facts, you won't appear in LLM search results
+3. **Content freshness is the strongest AI ranking signal** - Content updated within 30-90 days performs best
+4. **Topical authority = Knowledge Graph + Information Graph** - Build complete topic coverage
+5. **Site Focus** - Google evaluates your vector center point; scattered topics = weaker AI visibility
+
+## Content Chunking for AI
+
+```tsx
+// ✅ GOOD: Clear content block structure
+<article>
+  <section className="fact-chunk">
+    <h2>Core Features</h2>
+    <ul>
+      <li><strong>Feature Name</strong>: Description</li>
+      <li><strong>Pricing</strong>: Free to use</li>
+      <li><strong>Target Users</strong>: Students, developers, designers</li>
+    </ul>
+  </section>
+</article>
+```
+
+## Use `<strong>` Tags for Key Facts
+
+```tsx
+// ✅ Highlight key information with <strong> tags
+<p>
+  Our tool provides <strong>free</strong> online conversion,
+  supports <strong>PDF, DOCX, TXT</strong> formats,
+  with processing speed <strong>under 5 seconds</strong>.
+</p>
+```
+
+## Content Freshness
+
+- Update content within 30-90 days
+- Add `last-modified` metadata
+- Display freshness badges on content
+- Auto-detect stale content (>90 days)
+
+## Structured Data (Schema.org)
+
+```typescript
+// WebApplication Schema
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: tool.name,
+  description: tool.description,
+  applicationCategory: "UtilityApplication",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  provider: { "@type": "Organization", name: "GeeksKai" }
+}
+```
+
+**Required schemas:**
+- WebApplication for tools
+- Organization for brand identity
+- FAQ for common questions
+- Breadcrumb for navigation
+
+## Technical SEO Checklist
+
+- [ ] TTFB < 200ms
+- [ ] LCP < 2.5s, FID < 100ms, CLS < 0.1
+- [ ] Images optimized (WebP/AVIF)
+- [ ] CDN and caching enabled
+- [ ] Preload critical resources
+
+## Brand Building
+
+1. **Entity signals** - Real founder info, contact details, media mentions
+2. **Core facts must be extractable** - Pricing, features, positioning, target users
+3. **Organization schema** - Legal name, founding date, contact points
+
+## Page Structure
+
+```tsx
+// ✅ Correct heading hierarchy
+<article>
+  <h1>Main Title - Include Core Keywords</h1>
+  <section>
+    <h2>Main Section</h2>
+    <h3>Subsection</h3>
+    <h4>Detailed Topic</h4>
+  </section>
+</article>
+```
+
+## Key Metrics
+
+| Metric | Target |
+|--------|--------|
+| Content freshness | < 90 days |
+| TTFB | < 200ms |
+| LCP | < 2.5s |
+| Information retrieval | Core facts extractable |
+| Topic coverage | Complete coverage |
+
+**Remember**: SEO is a tool. The real goal is revenue, not traffic. Always focus on conversion and user value.
