@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Heading, Pane, Text } from "evergreen-ui";
 import { categorizedRoutes, Route } from "@utils/routes";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,34 +8,26 @@ export default function Navigator() {
   const router = useRouter();
 
   return (
-    <Pane
-      width={240}
-      height={"calc(100vh - 40px)"}
-      borderRight
-      display="flex"
-      flexDirection="column"
-      paddingTop={20}
-      backgroundColor="#FFFFFF"
-    >
-      <Pane paddingX={15}>
+    <>
+      <div className="app-search-wrap">
         <SearchBox />
-      </Pane>
+      </div>
 
-      <Pane
-        display="flex"
-        flex={1}
-        overflowY="scroll"
-        flexDirection="column"
-        paddingBottom={10}
+      <nav
+        className="app-nav-list"
+        aria-label="Tools"
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          display: "flex",
+          flexDirection: "column",
+          paddingBottom: 12
+        }}
       >
         {categorizedRoutes.map(route => {
           return (
             <Fragment key={route.category}>
-              <Pane paddingX={10} marginTop={15} marginBottom={2}>
-                <Heading marginLeft={5} size={400}>
-                  {route.category}
-                </Heading>
-              </Pane>
+              <div className="app-nav-category">{route.category}</div>
 
               {(route.content as Route[])
                 .sort((a, b) => a.label.localeCompare(b.label))
@@ -45,27 +36,12 @@ export default function Navigator() {
                   return (
                     <Link key={a.label} href={a.path} prefetch={false}>
                       <a
-                        style={{
-                          textDecoration: "none"
-                        }}
+                        className={`app-nav-item ${
+                          isActive ? "app-nav-item--active" : ""
+                        }`}
+                        aria-current={isActive ? "page" : undefined}
                       >
-                        <Pane
-                          paddingLeft={16}
-                          paddingY={3}
-                          backgroundColor={isActive ? "#f3f3f3" : undefined}
-                          borderLeft={
-                            isActive
-                              ? "3px solid #16F2B3"
-                              : "3px solid transparent"
-                          }
-                          css={{
-                            "&:hover": {
-                              backgroundColor: "#f5f5f5"
-                            }
-                          }}
-                        >
-                          <Text fontSize={13}>{a.label}</Text>
-                        </Pane>
+                        {a.label}
                       </a>
                     </Link>
                   );
@@ -73,9 +49,7 @@ export default function Navigator() {
             </Fragment>
           );
         })}
-      </Pane>
-
-      <Pane borderTop paddingX={12} paddingY={10} />
-    </Pane>
+      </nav>
+    </>
   );
 }
