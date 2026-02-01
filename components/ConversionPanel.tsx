@@ -123,7 +123,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
         flexDirection="row"
         overflow="hidden"
         flex={1}
-        height={"calc(100vh - 40px)"}
+        minHeight={0}
       >
         <Pane
           display="flex"
@@ -203,8 +203,8 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
         <Alert
           paddingY={15}
           paddingX={20}
-          left={240}
-          right={0}
+          left={20}
+          right={20}
           position="absolute"
           intent="danger"
           bottom={0}

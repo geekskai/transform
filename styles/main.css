@@ -56,48 +56,20 @@ html {
   display: flex;
   align-items: center;
   flex-direction: row;
-  height: 56px;
   min-height: 56px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 20px;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
   box-shadow: 0 1px 3px rgba(22, 242, 179, 0.06);
   flex-shrink: 0;
 }
 
-.app-header-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-}
-
-.app-header-title {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
-}
-
 .app-main {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex: 1;
   min-height: calc(100vh - 56px);
   overflow: hidden;
-}
-
-.app-sidebar {
-  width: 260px;
-  min-width: 260px;
-  height: calc(100vh - 56px);
-  display: flex;
-  flex-direction: column;
-  padding-top: 16px;
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  flex-shrink: 0;
 }
 
 .app-content {
@@ -105,8 +77,132 @@ html {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  min-height: 0;
   background: var(--page-bg);
   overflow: auto;
+}
+
+/* === Header nav (top layout, Tools dropdown) === */
+.header-nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 56px;
+  gap: 0;
+  min-width: 0;
+}
+
+.header-nav-home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
+}
+
+.header-nav-home:hover {
+  color: var(--brand-700);
+}
+
+.header-nav-brand {
+  display: inline-block;
+}
+
+/* Search: standalone in header (one of the top-level blocks) */
+.header-nav-search-wrap {
+  flex: 1;
+  max-width: 280px;
+  margin: 0 20px;
+}
+
+.header-nav-search-wrap input,
+.header-nav-search-wrap [data-evergreen-layer] input {
+  border-radius: 10px !important;
+  border: 1px solid var(--border-brand) !important;
+  background: var(--brand-50) !important;
+  font-size: 14px !important;
+  width: 100% !important;
+}
+
+/* Category dropdowns row: SVG, HTML, JSON, … */
+.header-nav-categories {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.header-nav-cat-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: border-color 0.3s ease, background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.header-nav-cat-btn:hover {
+  border-color: var(--brand-300);
+  background: var(--brand-50);
+  color: var(--brand-800);
+}
+
+.header-nav-chevron {
+  font-size: 9px;
+  opacity: 0.8;
+}
+
+/* Portal dropdown (rendered to document.body — never clipped) */
+.header-nav-portal-pane {
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.header-nav-cat-list {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.header-nav-cat-link {
+  display: block;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-nav-cat-link:hover {
+  background: var(--brand-50);
+  color: var(--brand-800);
+}
+
+.header-nav-cat-link--active {
+  background: var(--brand-50);
+  color: var(--brand-800);
+  font-weight: 600;
 }
 
 /* Sidebar nav item */
@@ -171,6 +267,95 @@ html {
   outline: none !important;
   border-color: var(--brand-400) !important;
   box-shadow: 0 0 0 4px rgba(22, 242, 179, 0.2) !important;
+}
+
+/* === Tool page SEO layout (GEO §8, SEO-METADATA-DESIGN §4.6) === */
+.tool-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  flex: 1;
+}
+
+.tool-page__seo {
+  flex-shrink: 0;
+  padding: 16px 20px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.tool-page__breadcrumb {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.tool-page__breadcrumb-link {
+  color: var(--brand-700);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.tool-page__breadcrumb-link:hover {
+  color: var(--brand-800);
+  text-decoration: underline;
+}
+
+.tool-page__breadcrumb-sep {
+  margin: 0 6px;
+  color: var(--text-muted);
+}
+
+.tool-page__breadcrumb-current {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.tool-page__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+.tool-page__intro {
+  margin: 0;
+}
+
+.tool-page__intro-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin: 0 0 6px;
+}
+
+.tool-page__intro-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.tool-page__intro-desc strong {
+  color: var(--brand-800);
+}
+
+.tool-page__intro-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 8px 0 0;
+}
+
+.tool-page__main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .monaco-editor {

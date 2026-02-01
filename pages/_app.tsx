@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import Navigator from "@components/Navigator";
+import HeaderNav from "@components/HeaderNav";
+import ToolPageLayout from "@components/ToolPageLayout";
 import "@styles/main.css";
 
 import NProgress from "nprogress";
@@ -65,24 +66,18 @@ export default function App(props) {
       <JsonLd pathname={router.pathname || "/"} />
       <div className="app-root light">
         <header className="app-header" role="banner">
-          <div className="app-header-logo">
-            <img
-              src="/static/favicon.svg"
-              alt=""
-              width={28}
-              height={28}
-              aria-hidden
-            />
-            <span className="app-header-title">{SITE_CONFIG.name}</span>
-          </div>
+          <HeaderNav />
         </header>
 
         <main className="app-main" role="main">
-          <aside className="app-sidebar" aria-label="Tools navigation">
-            <Navigator />
-          </aside>
           <div className="app-content">
-            <Component {...pageProps} />
+            {router.pathname.startsWith("/tools/") ? (
+              <ToolPageLayout>
+                <Component {...pageProps} />
+              </ToolPageLayout>
+            ) : (
+              <Component {...pageProps} />
+            )}
           </div>
         </main>
       </div>
