@@ -1,7 +1,7 @@
 {
-  "name": "transform",
+  "name": "folioify",
   "version": "2.0.2",
-  "repository": "https://github.com/ritz078/transform",
+  "repository": "https://github.com/geekskai/transform",
   "author": "geekskai",
   "license": "MIT",
   "scripts": {

@@ -497,7 +497,7 @@ completed = false
 
 [company]
 id = 12
-name = "Transform Inc"`;
+name = "folioify Inc"`;
 
 export const cadence = `// Do not remove top level contract
 // Just paste your structs in this contract

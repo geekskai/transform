@@ -5,8 +5,9 @@ import "@styles/main.css";
 
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
-import { activeRouteData } from "@utils/routes";
+import { getToolMeta, SITE_CONFIG } from "../lib/seo";
 import { Meta } from "@components/Meta";
+import { JsonLd } from "@components/JsonLd";
 import { useDarkMode } from "@hooks/useDarkMode";
 
 // import logo from "../public/static/logo.svg";
@@ -64,25 +65,30 @@ export default function App(props) {
 
   const { Component, pageProps } = props;
 
-  const activeRoute = activeRouteData(router.pathname);
+  const toolMeta = getToolMeta(router.pathname || "/");
 
   return (
     <>
-      {router.pathname === "/" || !router.pathname ? (
+      {toolMeta ? (
         <Meta
-          title={"Transform"}
-          url={`https://transform.tools${router.pathname}`}
-          description={
-            "A polyglot web converter that's going to save you a lot of time."
-          }
+          title={toolMeta.title}
+          description={toolMeta.description}
+          canonical={toolMeta.canonical}
+          keywords={toolMeta.keywords}
+          ogImage={toolMeta.ogImage}
+          ogType={toolMeta.ogType}
+          noindex={toolMeta.noindex}
+          lastModified={toolMeta.lastModified}
+          datePublished={toolMeta.datePublished}
         />
       ) : (
         <Meta
-          title={activeRoute?.searchTerm}
-          url={`https://transform.tools${router.pathname}`}
-          description={activeRoute?.desc}
+          title={SITE_CONFIG.name}
+          description="A polyglot web converter that's going to save you a lot of time."
+          canonical={`${SITE_CONFIG.baseUrl.replace(/\/$/, "")}/`}
         />
       )}
+      <JsonLd pathname={router.pathname || "/"} />
       <Pane
         display="flex"
         alignItems="center"

@@ -1,6 +1,13 @@
 const webpack = require("webpack");
 
 const config = {
+  async rewrites() {
+    return [
+      { source: "/robots.txt", destination: "/api/robots" },
+      { source: "/sitemap.xml", destination: "/api/sitemap" },
+      { source: "/llms.txt", destination: "/api/llms" }
+    ];
+  },
   webpack(config, options) {
     config.node = {
       fs: "empty",
