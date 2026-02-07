@@ -97,7 +97,7 @@ function MegaMenuPane({
     <div
       id="header-mega-menu"
       role="menu"
-      className="rounded-b-3xl border-x border-b border-gray-200 bg-white shadow-xl shadow-[#16F2B3]/10 transition-all duration-300"
+      className="rounded-b-2xl border-x border-b border-gray-200 bg-white shadow-xl shadow-brand-500/10 transition-all duration-300 md:rounded-b-3xl"
       style={{
         position: "fixed",
         top: position.top,
@@ -107,13 +107,16 @@ function MegaMenuPane({
         zIndex: DROPDOWN_Z_INDEX
       }}
     >
-      <div className="mega-menu-grid">
+      <div className="mega-menu-grid px-4 py-6 sm:px-6 md:px-8 md:py-8 lg:px-10">
         {categorizedRoutes.map(categoryGroup => (
-          <div key={categoryGroup.category} className="mega-menu-column">
-            <h3 className="mega-menu-category-title text-sm font-bold text-[var(--brand-700)]">
+          <div
+            key={categoryGroup.category}
+            className="mega-menu-column mb-6 md:mb-8"
+          >
+            <h3 className="mega-menu-category-title mb-2 text-xs font-bold uppercase tracking-wider text-brand-700 md:mb-3 md:text-sm">
               {categoryGroup.category}
             </h3>
-            <ul className="mega-menu-list">
+            <ul className="mega-menu-list gap-1 md:gap-2">
               {categoryGroup.content.map(route => (
                 <li key={route.path}>
                   <Link
@@ -121,7 +124,7 @@ function MegaMenuPane({
                     prefetch={false}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mega-menu-link block rounded-xl px-2 py-1.5 text-sm text-gray-600 transition-all duration-300 hover:bg-[var(--brand-50)] hover:text-gray-900 hover:shadow-[var(--brand-500)]/5"
+                    className="mega-menu-link block rounded-lg px-2 py-1.5 text-xs text-gray-600 transition-all duration-300 hover:bg-brand-50 hover:text-gray-900 md:rounded-xl md:px-3 md:py-2 md:text-sm"
                     onClick={onLinkClick}
                   >
                     {route.label}
@@ -132,12 +135,12 @@ function MegaMenuPane({
           </div>
         ))}
       </div>
-      <div className="border-t border-[var(--brand-200)] bg-[var(--brand-50)] px-6 py-5 md:px-8">
+      <div className="border-t border-brand-200 bg-brand-50 px-4 py-4 sm:px-6 md:px-8 md:py-6 lg:px-10">
         <div className="mega-menu-footer-content">
-          <strong className="block text-base font-semibold text-[var(--brand-900)]">
+          <strong className="block text-sm font-semibold text-brand-900 md:text-base">
             Ready to convert?
           </strong>
-          <p className="mt-1 text-sm leading-relaxed text-gray-600">
+          <p className="mt-1 text-xs leading-relaxed text-gray-600 md:mt-2 md:text-sm">
             Select a tool above to get started immediately. No signup required.
           </p>
         </div>
@@ -161,65 +164,31 @@ export default function HeaderNav() {
   }, [router.events, closeMenu]);
 
   return (
-    <nav className="header-nav bg-white" aria-label="Main">
+    <nav
+      className="header-nav flex h-14 items-center gap-4 bg-white px-4 sm:px-6 md:h-16 md:gap-6 lg:px-8"
+      aria-label="Main"
+    >
+      {/* Logo - Left */}
       <Link
         href="/"
-        className="header-nav-home rounded-2xl px-3 py-2 text-gray-900 transition-all duration-300 hover:bg-[var(--brand-50)] hover:text-[var(--brand-800)]"
+        className="header-nav-home flex items-center gap-2 rounded-xl px-2 py-1.5 text-gray-900 transition-all duration-300 hover:bg-brand-50 hover:text-brand-800 md:gap-2.5 md:rounded-2xl md:px-3 md:py-2"
       >
         <img
           src="/static/favicon.svg"
           alt=""
-          width={28}
-          height={28}
+          width={24}
+          height={24}
+          className="h-6 w-6 md:h-7 md:w-7"
           aria-hidden
         />
-        <span className="header-nav-brand font-semibold">
+        <span className="header-nav-brand text-sm font-semibold md:text-base">
           {SITE_CONFIG.name}
         </span>
       </Link>
 
-      <div className="header-nav-center">
-        <button
-          ref={triggerRef}
-          type="button"
-          className={`header-nav-btn group relative overflow-hidden rounded-2xl border px-4 py-2.5 font-semibold transition-all duration-300 ${
-            isMenuOpen
-              ? "border-[var(--brand-400)] bg-[var(--brand-50)] text-[var(--brand-800)] shadow-lg shadow-[#16F2B3]/20"
-              : "border-[var(--brand-300)] bg-gradient-to-br from-[var(--brand-50)] to-[var(--brand-100)]/50 text-[var(--brand-800)] hover:border-[var(--brand-400)] hover:shadow-lg hover:shadow-[#16F2B3]/20"
-          }`}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-expanded={isMenuOpen}
-          aria-haspopup="true"
-          aria-controls="header-mega-menu"
-        >
-          <span className="absolute inset-0 bg-gradient-to-br from-[var(--brand-200)]/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-          <span className="relative flex items-center gap-2">
-            Tools
-            <svg
-              className={`h-4 w-4 transition-transform duration-300 ${
-                isMenuOpen ? "rotate-180" : ""
-              }`}
-              width="10"
-              height="6"
-              viewBox="0 0 10 6"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 1L5 5L9 1"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-        </button>
-      </div>
-
-      <div className="header-nav-right">
-        <SearchBox />
-      </div>
+      {/* Spacer - Center */}
+      <div className="flex-1" />
+      <SearchBox />
 
       <MegaMenuPane
         isOpen={isMenuOpen}
@@ -227,6 +196,42 @@ export default function HeaderNav() {
         onClose={closeMenu}
         onLinkClick={closeMenu}
       />
+      <button
+        ref={triggerRef}
+        type="button"
+        className={`header-nav-btn group relative overflow-hidden rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-300 md:rounded-2xl md:px-4 md:py-2.5 md:text-base ${
+          isMenuOpen
+            ? "border-brand-400 bg-brand-50 text-brand-800 shadow-lg shadow-brand-500/20"
+            : "border-brand-300 bg-gradient-to-br from-brand-50 to-brand-100/50 text-brand-800 hover:border-brand-400 hover:shadow-lg hover:shadow-brand-500/20"
+        }`}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-expanded={isMenuOpen}
+        aria-haspopup="true"
+        aria-controls="header-mega-menu"
+      >
+        <span className="absolute inset-0 bg-gradient-to-br from-brand-200/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+        <span className="relative flex items-center gap-1.5 md:gap-2">
+          Tools
+          <svg
+            className={`h-3.5 w-3.5 transition-transform duration-300 md:h-4 md:w-4 ${
+              isMenuOpen ? "rotate-180" : ""
+            }`}
+            width="10"
+            height="6"
+            viewBox="0 0 10 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 1L5 5L9 1"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </button>
     </nav>
   );
 }

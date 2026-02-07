@@ -50,6 +50,20 @@ module.exports = {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))"
+        },
+        // Brand color palette (#16F2B3)
+        brand: {
+          DEFAULT: "#16f2b3",
+          50: "#e8fdf7",
+          100: "#b8fae8",
+          200: "#7af5d3",
+          300: "#3cefbe",
+          400: "#1ae8b0",
+          500: "#16f2b3",
+          600: "#12c992",
+          700: "#0e9f72",
+          800: "#0a7552",
+          900: "#064a33"
         }
       },
       borderRadius: {
