@@ -6,7 +6,7 @@ import { BabelTransforms } from "@constants/babelTransforms";
 import { EditorPanelProps } from "@components/EditorPanel";
 import Form, { InputType } from "@components/Form";
 import { useSettings } from "@hooks/useSettings";
-import { Alert } from "evergreen-ui";
+import { Alert, AlertTitle } from "@/components/ui/alert";
 
 interface Settings {
   css: boolean;
@@ -26,7 +26,7 @@ const formFields = [
   }
 ];
 
-let babelWorker;
+let babelWorker: any;
 export default function ObjectStylesToTemplateLiteral() {
   const name = "object-styles-to-template-literal";
   const [settings, setSettings] = useSettings(name, {
@@ -72,13 +72,13 @@ export default function ObjectStylesToTemplateLiteral() {
       resultEditorProps={{
         topNotifications: () =>
           (!settings.css || !settings.styled) && (
-            <Alert
-              intent="warning"
-              backgroundColor="#FEF8E7"
-              title={`You have turned off ${settings.css ? "" : "css"}${
-                settings.styled ? "" : ",styled"
-              } tags transpilation. Change it in settings.`}
-            />
+            <Alert className="bg-yellow-50 border-yellow-200">
+              <AlertTitle>
+                {`You have turned off ${settings.css ? "" : "css"}${
+                  settings.styled ? "" : ",styled"
+                } tags transpilation. Change it in settings.`}
+              </AlertTitle>
+            </Alert>
           )
       }}
       settings={settings}

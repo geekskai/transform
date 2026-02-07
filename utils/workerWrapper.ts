@@ -1,5 +1,3 @@
-import { Module } from "webpack";
-
 const resolves = {};
 const rejects = {};
 let globalMsgId = 0;
@@ -58,6 +56,8 @@ export class Wrapper {
   }
 }
 
-export function getWorker(Worker) {
-  return new Wrapper(new Worker());
+export function getWorker(worker: Worker | (new () => Worker)) {
+  const instance =
+    typeof worker === "function" ? new (worker as new () => Worker)() : worker;
+  return new Wrapper(instance);
 }

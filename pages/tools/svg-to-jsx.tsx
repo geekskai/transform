@@ -9,7 +9,9 @@ import { getWorker } from "@utils/workerWrapper";
 import SvgrWorker from "@workers/svgr.worker";
 import SvgoWorker from "@workers/svgo.worker";
 
-let prettier, svgo, svgr;
+let svgo: ReturnType<typeof getWorker> | undefined;
+let svgr: ReturnType<typeof getWorker> | undefined;
+
 export default function SvgToJsx() {
   const name = "SVG to JSX";
   const [settings, setSettings] = useState(defaultSettings);

@@ -3,21 +3,28 @@ import { promises as fs } from "fs";
 import path from "path";
 import dynamic from "next/dynamic";
 
-import {
-  Dialog,
-  Pane,
-  Icon,
-  Tooltip,
-  toaster,
-  TextInput,
-  Heading,
-  Text,
-  Switch
-} from "evergreen-ui";
 import { TailwindConverter, TailwindConverterConfig } from "css-to-tailwindcss";
 
 import ConversionPanel, { Transformer } from "@components/ConversionPanel";
 import { useSettings } from "@hooks/useSettings";
+import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
+import { CircleHelp } from "lucide-react";
 
 const Monaco = dynamic(() => import("../../components/Monaco"), {
   ssr: false
@@ -65,97 +72,132 @@ function CssToTailwindSettings({
     setArbitraryPropertiesIsEnabled
   ] = useState(settings.arbitraryPropertiesIsEnabled || false);
 
+  const handleConfirm = async () => {
+    const isSuccess = await onConfirm({
+      tailwindConfig: tailwindConfig || "",
+      remInPx: remInPx || "",
+      arbitraryPropertiesIsEnabled
+    });
+    if (isSuccess) {
+      toggle();
+    }
+  };
+
+  const handleCancel = () => {
+    setTailwindConfig(settings.tailwindConfig);
+    setRemInPx(settings.remInPx);
+    toggle();
+  };
+
   return (
-    <Dialog
-      title="Converter Configuration"
-      isShown={open}
-      onCloseComplete={toggle}
-      onConfirm={async close => {
-        const isSuccess = await onConfirm({
-          tailwindConfig,
-          remInPx,
-          arbitraryPropertiesIsEnabled
-        });
-        if (isSuccess) {
-          close();
-        }
-      }}
-      onCancel={close => {
-        setTailwindConfig(settings.tailwindConfig);
-        setRemInPx(settings.remInPx);
-        close();
-      }}
-    >
-      <>
-        <Heading>Root font size in pixels</Heading>
-        <Text>Used to convert rem CSS values to their px equivalents</Text>
-        <TextInput
-          borderBottomRightRadius={0}
-          borderTopRightRadius={0}
-          placeholder="Enter URL"
-          onChange={e => setRemInPx(e.target.value)}
-          value={remInPx || ""}
-          marginTop="4px"
-        />
+    <Dialog open={open} onOpenChange={toggle}>
+      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Converter Configuration</DialogTitle>
+        </DialogHeader>
 
-        <Heading marginTop={24}>
-          Enable arbitrary properties
-          <a
-            href="https://tailwindcss.com/docs/adding-custom-styles#arbitrary-properties"
-            target="_blank"
-            style={{ verticalAlign: "middle" }}
-          >
-            <Tooltip content="Open the TailwindCSS docs...">
-              <Icon icon="help" color="info" marginLeft={8} size={16} />
-            </Tooltip>
-          </a>
-        </Heading>
-        <Switch
-          checked={arbitraryPropertiesIsEnabled}
-          onChange={e =>
-            setArbitraryPropertiesIsEnabled((e.target as any).checked)
-          }
-          marginTop="4px"
-        />
+        <div className="space-y-6">
+          <div className="space-y-2">
+            <h4 className="text-sm font-medium leading-none">
+              Root font size in pixels
+            </h4>
+            <p className="text-sm text-muted-foreground">
+              Used to convert rem CSS values to their px equivalents
+            </p>
+            <Input
+              placeholder="Enter URL"
+              onChange={e => setRemInPx(e.target.value)}
+              value={remInPx || ""}
+            />
+          </div>
 
-        <Heading marginTop={24}>
-          Tailwind configuration
-          <a
-            href="https://tailwindcss.com/docs/configuration"
-            target="_blank"
-            style={{ verticalAlign: "middle" }}
-          >
-            <Tooltip content="Open the TailwindCSS docs...">
-              <Icon icon="help" color="info" marginLeft={8} size={16} />
-            </Tooltip>
-          </a>
-        </Heading>
-        <Pane height={300}>
-          <Monaco
-            language="javascript"
-            value={tailwindConfig}
-            onChange={setTailwindConfig}
-            options={{
-              fontSize: 14,
-              readOnly: false,
-              codeLens: false,
-              fontFamily: "Menlo, Consolas, monospace, sans-serif",
-              minimap: {
-                enabled: false
-              },
-              quickSuggestions: false,
-              lineNumbers: "on",
-              renderValidationDecorations: "off"
-            }}
-            height={300}
-          />
-        </Pane>
-      </>
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2">
+              <h4 className="text-sm font-medium leading-none">
+                Enable arbitrary properties
+              </h4>
+              <a
+                href="https://tailwindcss.com/docs/adding-custom-styles#arbitrary-properties"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center"
+              >
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <CircleHelp className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Open the TailwindCSS docs...</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </a>
+            </div>
+            <Switch
+              checked={arbitraryPropertiesIsEnabled}
+              onCheckedChange={setArbitraryPropertiesIsEnabled}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2">
+              <h4 className="text-sm font-medium leading-none">
+                Tailwind configuration
+              </h4>
+              <a
+                href="https://tailwindcss.com/docs/configuration"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center"
+              >
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <CircleHelp className="h-4 w-4 text-muted-foreground" />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Open the TailwindCSS docs...</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </a>
+            </div>
+            <div className="h-[300px] border rounded-md overflow-hidden">
+              <Monaco
+                language="javascript"
+                value={tailwindConfig}
+                onChange={setTailwindConfig}
+                options={{
+                  fontSize: 14,
+                  readOnly: false,
+                  codeLens: false,
+                  fontFamily: "Menlo, Consolas, monospace, sans-serif",
+                  minimap: {
+                    enabled: false
+                  },
+                  quickSuggestions: false,
+                  lineNumbers: "on",
+                  renderValidationDecorations: "off"
+                }}
+                height="300px"
+              />
+            </div>
+          </div>
+        </div>
+
+        <DialogFooter>
+          <Button variant="outline" onClick={handleCancel}>
+            Cancel
+          </Button>
+          <Button onClick={handleConfirm}>Confirm</Button>
+        </DialogFooter>
+      </DialogContent>
     </Dialog>
   );
 }
 
-export default function CssToTailwind3({ defaultSettings }) {
+function CssToTailwind3({ defaultSettings }: { defaultSettings: RawSettings }) {
   const [rawSettings, setRawSettings] = useSettings(
     "css-to-tailwind",
     defaultSettings
@@ -167,8 +209,8 @@ export default function CssToTailwind3({ defaultSettings }) {
       arbitraryPropertiesIsEnabled: !!rawSettings.arbitraryPropertiesIsEnabled
     };
 
-    if (isNaN(config["remInPx"])) {
-      toaster.danger(
+    if (isNaN(config["remInPx"] as number)) {
+      toast.error(
         "Invalid `REM in PIXELS` value (only `number` or `null` allowed). Fallback to `null` value"
       );
 
@@ -176,9 +218,9 @@ export default function CssToTailwind3({ defaultSettings }) {
     }
 
     try {
-      config["tailwindConfig"] = evalConfig(rawSettings.tailwindConfig);
+      config["tailwindConfig"] = evalConfig(rawSettings.tailwindConfig || "");
     } catch (e) {
-      toaster.danger(
+      toast.error(
         "Something went wrong trying to resolve TailwindCSS config. Fallback to default tailwind config",
         {
           description: e.message
@@ -196,7 +238,7 @@ export default function CssToTailwind3({ defaultSettings }) {
         ...converterConfig
       });
     } catch (e) {
-      toaster.danger(
+      toast.error(
         "Unable to create TailwindConverter. Invalid configuration passed",
         {
           description: e.message
@@ -214,7 +256,7 @@ export default function CssToTailwind3({ defaultSettings }) {
           (await tailwindConverter.convertCSS(value)).convertedRoot.toString()
         );
       } catch (e) {
-        toaster.danger("Unable to convert CSS", {
+        toast.error("Unable to convert CSS", {
           description: e.message
         });
 
@@ -254,13 +296,34 @@ export default function CssToTailwind3({ defaultSettings }) {
   );
 }
 
+export default CssToTailwind3;
+
+const DEFAULT_TAILWIND_CONFIG = `module.exports = {
+  content: [],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+`;
+
 export async function getStaticProps() {
-  const rawTailwindConfig = await fs.readFile(
-    path.resolve(
-      "./node_modules/css-to-tailwindcss/node_modules/tailwindcss/stubs/simpleConfig.stub.js"
-    ),
-    "utf-8"
-  );
+  const stubPaths = [
+    path.join(process.cwd(), "node_modules/tailwindcss/stubs/config.simple.js"),
+    path.join(
+      process.cwd(),
+      "node_modules/css-to-tailwindcss/node_modules/tailwindcss/stubs/simpleConfig.stub.js"
+    )
+  ];
+  let rawTailwindConfig = DEFAULT_TAILWIND_CONFIG;
+  for (const stubPath of stubPaths) {
+    try {
+      rawTailwindConfig = await fs.readFile(stubPath, "utf-8");
+      break;
+    } catch {
+      // try next path
+    }
+  }
 
   return {
     props: {

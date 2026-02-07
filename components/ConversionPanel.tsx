@@ -1,17 +1,17 @@
-import { Pane, Alert, Spinner } from "evergreen-ui";
 import EditorPanel, { EditorPanelProps } from "@components/EditorPanel";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { Language, useData } from "@hooks/useData";
 import { useRouter } from "next/router";
 import { activeRouteData } from "@utils/routes";
-import PrettierWorker from "@workers/prettier.worker";
 import { getWorker } from "@utils/workerWrapper";
+import PrettierWorker from "@workers/prettier.worker";
+import { Loader2, TriangleAlert } from "lucide-react";
 
-let prettierWorker;
+let prettierWorker: ReturnType<typeof getWorker> | undefined;
 
 function getEditorLanguage(lang: Language) {
-  const mapping = {
+  const mapping: Record<string, string> = {
     flow: "typescript"
   };
 
@@ -65,7 +65,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
   );
   const [result, setResult] = useState("");
   const [message, setMessage] = useState("");
-  const [showUpdateSpinner, toggleUpdateSpinner] = useState(false);
+  const [showUpdateSpinner, setShowUpdateSpinner] = useState(false);
 
   const router = useRouter();
   const route = activeRouteData(router.pathname);
@@ -85,53 +85,82 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
   }
 
   useEffect(() => {
-    async function transform() {
+    let cancelled = false;
+    const TIMEOUT_MS = 25_000;
+
+    async function runTransform() {
+      setShowUpdateSpinner(true);
+      setMessage("");
       try {
-        toggleUpdateSpinner(true);
         prettierWorker = prettierWorker || getWorker(PrettierWorker);
 
-        const result = await transformer({
-          value,
-          splitEditorValue: splitTitle ? splitValue : undefined
-        });
+        const rawResult = await Promise.race([
+          transformer({
+            value,
+            splitEditorValue: splitTitle ? splitValue : undefined
+          }),
+          new Promise<never>((_, reject) =>
+            setTimeout(
+              () =>
+                reject(
+                  new Error(
+                    "Conversion timed out. Try a smaller input or check the browser console."
+                  )
+                ),
+              TIMEOUT_MS
+            )
+          )
+        ]);
 
-        let prettyResult = await prettierWorker.send({
-          value: result,
-          language: resultLanguage
-        });
+        if (cancelled) return;
 
-        // Fix for #319
+        const prettyResultRaw = await Promise.race([
+          prettierWorker.send({
+            value:
+              typeof rawResult === "string"
+                ? rawResult
+                : String(rawResult ?? ""),
+            language: resultLanguage
+          }),
+          new Promise<never>((_, reject) =>
+            setTimeout(
+              () => reject(new Error("Formatting timed out.")),
+              TIMEOUT_MS
+            )
+          )
+        ]);
+
+        if (cancelled) return;
+
+        let prettyResult =
+          typeof prettyResultRaw === "string"
+            ? prettyResultRaw
+            : String(prettyResultRaw ?? "");
         if (prettyResult.startsWith(";<")) {
           prettyResult = prettyResult.slice(1);
         }
         setResult(prettyResult);
         setMessage("");
       } catch (e) {
-        console.error(e);
-        setMessage(e.message);
+        if (!cancelled) {
+          console.error(e);
+          setMessage(e?.message ?? String(e));
+        }
+      } finally {
+        if (!cancelled) setShowUpdateSpinner(false);
       }
-      toggleUpdateSpinner(false);
     }
 
-    transform();
+    runTransform();
+    return () => {
+      cancelled = true;
+    };
   }, [splitValue, value, splitTitle, settings]);
 
   return (
     <>
-      <Pane
-        display="flex"
-        flexDirection="row"
-        overflow="hidden"
-        flex={1}
-        minHeight={0}
-      >
-        <Pane
-          display="flex"
-          flex={1}
-          borderRight
-          flexDirection="column"
-          overflow="hidden"
-        >
+      <div className="flex flex-1 flex-row overflow-hidden min-h-0">
+        <div className="flex flex-1 flex-col overflow-hidden border-r">
           <EditorPanel
             language={getEditorLanguage(editorLanguage)}
             onChange={setValue}
@@ -145,8 +174,8 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
             {...editorProps}
           />
 
-          {splitTitle && (
-            <Pane display="flex" flex={1} borderTop>
+          {splitTitle && splitLanguage && (
+            <div className="flex flex-1 border-t">
               <EditorPanel
                 title={splitTitle}
                 defaultValue={splitValue}
@@ -158,33 +187,14 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
                 hasClear
                 {...splitEditorProps}
               />
-            </Pane>
+            </div>
           )}
-        </Pane>
-        <Pane display="flex" flex={1} position="relative">
+        </div>
+        <div className="relative flex flex-1">
           {showUpdateSpinner && (
-            <Pane
-              display="inline-flex"
-              position="absolute"
-              background="linear-gradient(to bottom right, #FFFFFF, #E8FDF7)"
-              zIndex={9}
-              borderRadius={16}
-              paddingX={10}
-              paddingY={10}
-              elevation={2}
-              top={50}
-              right={30}
-              border="1px solid #7AF5D3"
-            >
-              <Spinner
-                css={{
-                  "& circle": {
-                    stroke: "#16F2B3"
-                  }
-                }}
-                size={32}
-              />
-            </Pane>
+            <div className="absolute top-[50px] right-[30px] z-[9] inline-flex rounded-2xl border border-[#7AF5D3] bg-gradient-to-br from-[#FFFFFF] to-[#E8FDF7] p-2.5 shadow-md">
+              <Loader2 className="h-8 w-8 animate-spin text-[#16F2B3]" />
+            </div>
           )}
           <EditorPanel
             title={resultTitle}
@@ -197,23 +207,14 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
             packageDetails={packageDetails}
             {...resultEditorProps}
           />
-        </Pane>
-      </Pane>
+        </div>
+      </div>
 
       {message && (
-        <Alert
-          paddingY={16}
-          paddingX={24}
-          left={20}
-          right={20}
-          position="absolute"
-          intent="danger"
-          bottom={16}
-          title={message}
-          backgroundColor="#FEE2E2"
-          borderRadius={12}
-          zIndex={3}
-        />
+        <div className="absolute bottom-4 left-5 right-5 z-[3] rounded-xl bg-red-100 px-6 py-4 text-red-900 flex items-center gap-2">
+          <TriangleAlert className="h-5 w-5 text-red-900" />
+          <span className="font-medium">{message}</span>
+        </div>
       )}
     </>
   );

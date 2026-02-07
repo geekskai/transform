@@ -16,11 +16,28 @@ import * as flowResolvers from "@graphql-codegen/flow-resolvers";
 import * as javaResolvers from "@graphql-codegen/java-resolvers";
 import * as tsMongoDB from "@graphql-codegen/typescript-mongodb";
 import * as urql from "@graphql-codegen/typescript-urql";
-import { GraphqlTransforms } from "@constants/graphqlTransforms";
 
 const _self: any = self;
 
-function getPlugins(type: GraphqlTransforms) {
+// Inlined so worker bundle does not depend on constants path (worker-loader may not resolve it)
+const GraphqlTransforms = {
+  TO_TYPESCRIPT: 1,
+  TO_FLOW: 2,
+  TO_INTROSPECTION_JSON: 3,
+  TO_FRAGMENT_MATCHER: 4,
+  TO_SCHEMA_AST: 5,
+  TO_JAVA: 6,
+  TO_REACT_APOLLO: 7,
+  TO_APOLLO_ANGULAR: 8,
+  TO_STENCIL_APOLLO: 9,
+  TO_JAVA_RESOLVERS_SIGNATURE: 10,
+  TO_TYPESCRIPT_RESOLVERS_SIGNATURE: 11,
+  TO_FLOW_RESOLVERS_SIGNATURE: 12,
+  TO_URQL: 13,
+  TO_TYPESCRIPT_MONGODB: 14
+} as const;
+
+function getPlugins(type: number) {
   switch (type) {
     case GraphqlTransforms.TO_TYPESCRIPT:
       return [typescriptPlugin, typescriptOperation];
@@ -53,11 +70,17 @@ function getPlugins(type: GraphqlTransforms) {
   }
 }
 
-_self.onmessage = async ({ data: { id, payload } }) => {
-  const { value, document = "", type, extension = "tsx" } = payload;
+_self.onmessage = async (event: MessageEvent) => {
+  const { id, payload: rawPayload } = event.data || {};
+  const payload = rawPayload || {};
+  const { value = "", document = "", type, extension = "tsx" } = payload;
 
   try {
     const plugins = getPlugins(type);
+    if (!plugins || !plugins.length) {
+      _self.postMessage({ id, err: "Unknown or unsupported transform type" });
+      return;
+    }
 
     const pluginMap = {};
 

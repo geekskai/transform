@@ -1,6 +1,6 @@
 /**
- * Top header: Search (standalone) + Mega Menu for Tools.
- * Dropdowns render via React Portal to document.body.
+ * Top header: brand logo, Tools mega menu, Search.
+ * DESIGN-SPEC §3.6 Secondary button (Tools), §3.2 Card (mega pane), §1 theme.
  */
 import React, {
   useEffect,
@@ -19,6 +19,9 @@ import { SITE_CONFIG } from "../lib/seo";
 const DROPDOWN_Z_INDEX = 9999;
 const GAP = 12;
 
+const useSafeLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 function useTriggerPosition(
   triggerRef: React.RefObject<HTMLButtonElement>,
   isOpen: boolean
@@ -33,13 +36,10 @@ function useTriggerPosition(
     const el = triggerRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    // Center the menu relative to the viewport or trigger, depending on design.
-    // For Mega Menu, we want it to be fullish width or centered.
-    // Let's position it relative to the trigger but simpler.
     setRect({ top: r.bottom + GAP, left: r.left, width: r.width });
   }, [triggerRef]);
 
-  useLayoutEffect(() => {
+  useSafeLayoutEffect(() => {
     if (!isOpen) {
       setRect(null);
       return;
@@ -66,7 +66,7 @@ function MegaMenuPane({
   triggerRef: React.RefObject<HTMLButtonElement>;
   onClose: () => void;
   onLinkClick: () => void;
-}) {
+}): React.ReactNode {
   const position = useTriggerPosition(triggerRef, isOpen);
 
   useEffect(() => {
@@ -96,8 +96,8 @@ function MegaMenuPane({
   const dropdown = (
     <div
       id="header-mega-menu"
-      className="mega-menu-pane"
       role="menu"
+      className="rounded-b-3xl border-x border-b border-gray-200 bg-white shadow-xl shadow-[#16F2B3]/10 transition-all duration-300"
       style={{
         position: "fixed",
         top: position.top,
@@ -110,16 +110,21 @@ function MegaMenuPane({
       <div className="mega-menu-grid">
         {categorizedRoutes.map(categoryGroup => (
           <div key={categoryGroup.category} className="mega-menu-column">
-            <h3 className="mega-menu-category-title">
+            <h3 className="mega-menu-category-title text-sm font-bold text-[var(--brand-700)]">
               {categoryGroup.category}
             </h3>
             <ul className="mega-menu-list">
               {categoryGroup.content.map(route => (
                 <li key={route.path}>
-                  <Link href={route.path} prefetch={false}>
-                    <a className="mega-menu-link" onClick={onLinkClick}>
-                      {route.label}
-                    </a>
+                  <Link
+                    href={route.path}
+                    prefetch={false}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mega-menu-link block rounded-xl px-2 py-1.5 text-sm text-gray-600 transition-all duration-300 hover:bg-[var(--brand-50)] hover:text-gray-900 hover:shadow-[var(--brand-500)]/5"
+                    onClick={onLinkClick}
+                  >
+                    {route.label}
                   </Link>
                 </li>
               ))}
@@ -127,10 +132,12 @@ function MegaMenuPane({
           </div>
         ))}
       </div>
-      <div className="mega-menu-footer">
+      <div className="border-t border-[var(--brand-200)] bg-[var(--brand-50)] px-6 py-5 md:px-8">
         <div className="mega-menu-footer-content">
-          <strong>Ready to convert?</strong>
-          <p>
+          <strong className="block text-base font-semibold text-[var(--brand-900)]">
+            Ready to convert?
+          </strong>
+          <p className="mt-1 text-sm leading-relaxed text-gray-600">
             Select a tool above to get started immediately. No signup required.
           </p>
         </div>
@@ -138,7 +145,7 @@ function MegaMenuPane({
     </div>
   );
 
-  return ReactDOM.createPortal(dropdown, document.body);
+  return ReactDOM.createPortal(dropdown, document.body) as React.ReactNode;
 }
 
 export default function HeaderNav() {
@@ -154,55 +161,60 @@ export default function HeaderNav() {
   }, [router.events, closeMenu]);
 
   return (
-    <nav className="header-nav" aria-label="Main">
-      <Link href="/">
-        <a className="header-nav-home">
-          <img
-            src="/static/favicon.svg"
-            alt=""
-            width={28}
-            height={28}
-            aria-hidden
-          />
-          <span className="header-nav-brand">{SITE_CONFIG.name}</span>
-        </a>
+    <nav className="header-nav bg-white" aria-label="Main">
+      <Link
+        href="/"
+        className="header-nav-home rounded-2xl px-3 py-2 text-gray-900 transition-all duration-300 hover:bg-[var(--brand-50)] hover:text-[var(--brand-800)]"
+      >
+        <img
+          src="/static/favicon.svg"
+          alt=""
+          width={28}
+          height={28}
+          aria-hidden
+        />
+        <span className="header-nav-brand font-semibold">
+          {SITE_CONFIG.name}
+        </span>
       </Link>
 
       <div className="header-nav-center">
-        {/* Mega Menu Trigger */}
         <button
           ref={triggerRef}
           type="button"
-          className={`header-nav-btn ${
-            isMenuOpen ? "header-nav-btn--active" : ""
+          className={`header-nav-btn group relative overflow-hidden rounded-2xl border px-4 py-2.5 font-semibold transition-all duration-300 ${
+            isMenuOpen
+              ? "border-[var(--brand-400)] bg-[var(--brand-50)] text-[var(--brand-800)] shadow-lg shadow-[#16F2B3]/20"
+              : "border-[var(--brand-300)] bg-gradient-to-br from-[var(--brand-50)] to-[var(--brand-100)]/50 text-[var(--brand-800)] hover:border-[var(--brand-400)] hover:shadow-lg hover:shadow-[#16F2B3]/20"
           }`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
           aria-haspopup="true"
           aria-controls="header-mega-menu"
         >
-          Tools
-          <svg
-            className={`header-nav-chevron ${isMenuOpen ? "rotate-180" : ""}`}
-            width="10"
-            height="6"
-            viewBox="0 0 10 6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 1L5 5L9 1"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <span className="absolute inset-0 bg-gradient-to-br from-[var(--brand-200)]/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="relative flex items-center gap-2">
+            Tools
+            <svg
+              className={`h-4 w-4 transition-transform duration-300 ${
+                isMenuOpen ? "rotate-180" : ""
+              }`}
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L5 5L9 1"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
         </button>
-
-        <Link href="/blog">
-          <a className="header-nav-link">Blog</a>
-        </Link>
       </div>
 
       <div className="header-nav-right">

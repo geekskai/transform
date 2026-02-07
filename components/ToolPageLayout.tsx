@@ -54,10 +54,8 @@ export default function ToolPageLayout({
     <article className="tool-page" role="main">
       {/* Breadcrumb Navigation */}
       <nav className="breadcrumb" aria-label="Breadcrumb">
-        <Link href="/">
-          <a className="breadcrumb__link">
-            <span aria-hidden="true">🏠</span> Home
-          </a>
+        <Link href="/" className="breadcrumb__link">
+          <span aria-hidden="true">🏠</span> Home
         </Link>
         <span className="breadcrumb__separator" aria-hidden="true">
           &gt;

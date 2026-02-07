@@ -421,48 +421,48 @@ export default function HomePage() {
         <section className="features-section" style={{ paddingTop: 0 }}>
           <div className="grid-responsive">
             {filteredRoutes.map(route => (
-              <Link key={route.path} href={route.path}>
-                <a
-                  className="feature-card"
-                  style={{ display: "block", textDecoration: "none" }}
+              <Link
+                key={route.path}
+                href={route.path}
+                className="feature-card"
+                style={{ display: "block", textDecoration: "none" }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    marginBottom: "12px"
+                  }}
                 >
-                  <div
+                  <ToolCategoryIcon category={route.category} />
+                  <span
                     style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      marginBottom: "12px"
-                    }}
-                  >
-                    <ToolCategoryIcon category={route.category} />
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        fontWeight: 600,
-                        color: "var(--brand-600)",
-                        textTransform: "uppercase"
-                      }}
-                    >
-                      {route.category}
-                    </span>
-                  </div>
-                  <h3 className="feature-card__title">{route.searchTerm}</h3>
-                  <p
-                    className="feature-card__desc"
-                    style={{ marginBottom: "16px" }}
-                  >
-                    {route.desc}
-                  </p>
-                  <div
-                    style={{
-                      fontSize: "14px",
+                      fontSize: "12px",
                       fontWeight: 600,
-                      color: "var(--brand-600)"
+                      color: "var(--brand-600)",
+                      textTransform: "uppercase"
                     }}
                   >
-                    Launch Tool →
-                  </div>
-                </a>
+                    {route.category}
+                  </span>
+                </div>
+                <h3 className="feature-card__title">{route.searchTerm}</h3>
+                <p
+                  className="feature-card__desc"
+                  style={{ marginBottom: "16px" }}
+                >
+                  {route.desc}
+                </p>
+                <div
+                  style={{
+                    fontSize: "14px",
+                    fontWeight: 600,
+                    color: "var(--brand-600)"
+                  }}
+                >
+                  Launch Tool →
+                </div>
               </Link>
             ))}
           </div>

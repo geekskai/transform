@@ -21,6 +21,31 @@ export const SITE_CONFIG = {
   themeColor: "#16F2B3"
 } as const;
 
+export const SEO = {
+  title: SITE_CONFIG.name,
+  description:
+    "A polyglot web converter that's going to save you a lot of time.",
+  openGraph: {
+    type: "website",
+    locale: "en_IE",
+    url: SITE_CONFIG.baseUrl,
+    site_name: SITE_CONFIG.name,
+    images: [
+      {
+        url: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultOgImage}`,
+        width: 1200,
+        height: 630,
+        alt: SITE_CONFIG.name
+      }
+    ]
+  },
+  twitter: {
+    handle: SITE_CONFIG.twitterHandle,
+    site: SITE_CONFIG.twitterHandle,
+    cardType: "summary_large_image"
+  }
+};
+
 const MAX_DESCRIPTION_LENGTH = 155;
 
 /** 工具页 / 首页 Meta 输出（与 MetaProps 对齐，供 Meta 与 JsonLd 使用） */

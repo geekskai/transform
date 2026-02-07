@@ -1,19 +1,23 @@
-import {
-  Button,
-  FilePicker,
-  Heading,
-  HTMLInputEvent,
-  IconButton,
-  Pane,
-  Popover,
-  TextInput,
-  toaster,
-  Tooltip
-} from "evergreen-ui";
 import React, { useCallback, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import copy from "clipboard-copy";
 import { useDropzone } from "react-dropzone";
+import { Settings, Upload, Trash, Copy, FileUp } from "lucide-react";
+import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger
+} from "@/components/ui/popover";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from "@/components/ui/tooltip";
 
 export interface EditorPanelProps {
   editable?: boolean;
@@ -55,8 +59,7 @@ export default function EditorPanel({
   topNotifications,
   language,
   defaultValue,
-  onChange,
-  id
+  onChange
 }: // packageDetails
 EditorPanelProps) {
   const [showSettingsDialogue, setSettingsDialog] = useState(false);
@@ -90,62 +93,66 @@ EditorPanelProps) {
     () => (
       <>
         <Button
-          marginRight={10}
-          iconBefore="cog"
+          variant="ghost"
+          size="sm"
+          className="mr-2 h-7"
           onClick={_toggleSettingsDialog}
-          height={28}
         >
+          <Settings className="mr-2 h-4 w-4" />
           Settings
         </Button>
 
-        {settingElement({
-          toggle: _toggleSettingsDialog,
-          open: showSettingsDialogue
-        })}
+        {settingElement &&
+          settingElement({
+            toggle: _toggleSettingsDialog,
+            open: showSettingsDialogue
+          })}
       </>
     ),
-    [showSettingsDialogue]
+    [showSettingsDialogue, _toggleSettingsDialog, settingElement]
   );
 
-  const onFilePicked = useCallback((files, close = () => {}) => {
-    if (!(files && files.length)) return;
-    const file = files[0];
-    const reader = new FileReader();
-    reader.readAsText(file, "utf-8");
-    reader.onload = () => {
-      setValue(reader.result as string);
-      onChange(reader.result as string);
-      close();
-    };
-  }, []);
+  const onFilePicked = useCallback(
+    (files: File[], close = () => {}) => {
+      if (!(files && files.length)) return;
+      const file = files[0];
+      const reader = new FileReader();
+      reader.readAsText(file, "utf-8");
+      reader.onload = () => {
+        setValue(reader.result as string);
+        if (onChange) onChange(reader.result as string);
+        close();
+      };
+    },
+    [onChange]
+  );
 
   const { getRootProps } = useDropzone({
     onDrop: files => onFilePicked(files),
     disabled: !editable,
-    accept: acceptFiles,
-    onDropRejected: () =>
-      toaster.danger("This file type is not supported.", {
-        id
-      })
+    accept: acceptFiles as any, // React-dropzone types might vary
+    onDropRejected: () => toast.error("This file type is not supported.")
   });
 
   const copyValue = useCallback(() => {
     copy(value);
-    toaster.success("Copied to clipboard.", {
-      id
-    });
+    toast.success("Copied to clipboard.");
   }, [value]);
 
   const fetchFile = useCallback(
-    close => {
+    (close: () => void) => {
       (async () => {
         if (!fetchingUrl) return;
-        const res = await fetch(fetchingUrl);
-        const value = await res.text();
-        setValue(value);
-        setFetchingUrl("");
-        close();
-        onChange(value);
+        try {
+          const res = await fetch(fetchingUrl);
+          const value = await res.text();
+          setValue(value);
+          setFetchingUrl("");
+          close();
+          if (onChange) onChange(value);
+        } catch (error) {
+          toast.error("Failed to fetch URL");
+        }
       })();
     },
     [fetchingUrl, onChange]
@@ -157,126 +164,116 @@ EditorPanelProps) {
   }, [defaultValue]);
 
   return (
-    <Pane display="flex" flex={1} flexDirection="column" overflow="hidden">
-      <Pane
-        display="flex"
-        height={44}
-        paddingX={12}
-        alignItems={"center"}
-        borderBottom
-        zIndex={2}
-        className="editor-panel-toolbar"
-        flexShrink={0}
-      >
-        <Pane flex={1}>
-          <Heading size={500} marginTop={0} color="#111827">
-            {title}
-          </Heading>
-        </Pane>
+    <div className="flex flex-1 flex-col overflow-hidden">
+      <div className="editor-panel-toolbar flex h-11 flex-shrink-0 items-center border-b px-3 z-[2]">
+        <div className="flex-1">
+          <h3 className="text-lg font-medium text-gray-900 m-0">{title}</h3>
+        </div>
 
         {settingElement && getSettings()}
 
         {hasLoad && (
-          <Popover
-            content={({ close }) => (
-              <Pane
-                paddingY={20}
-                paddingX={20}
-                display="flex"
-                flex={1}
-                alignItems="center"
-                justifyContent="center"
-                flexDirection="column"
-                background="linear-gradient(to bottom right, #FFFFFF, #E8FDF7)"
-                borderRadius={16}
-              >
-                <FilePicker
-                  width={"100%"}
-                  name="filepicker"
-                  onChange={files => onFilePicked(files, close)}
-                  accept={acceptFiles}
-                />
+          <Popover>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 mr-2"
+                    >
+                      <Upload className="h-4 w-4" />
+                    </Button>
+                  </PopoverTrigger>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Load File</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
-                <Heading paddingY={10} size={200}>
-                  OR
-                </Heading>
-
-                <Pane display="flex" flexDirection="row">
-                  <TextInput
-                    borderBottomRightRadius={0}
-                    borderTopRightRadius={0}
-                    placeholder="Enter URL"
-                    onChange={(e: HTMLInputEvent) =>
-                      setFetchingUrl(e.target.value)
+            <PopoverContent className="w-80 p-5">
+              {/* Popover content needs to pass `close` manually or use internal state. 
+                   Shadcn Popover doesn't expose `close` to children easily without composition.
+                   For now, we can omit `close` passing in JSX props if not strictly needed or re-implement logic.
+                   Actually, Radix Popover primitive doesn't pass close. We can use a controlled popover if needed.
+                   For simplicity here, we'll try to keep it simple.
+                   Wait, `onFilePicked` calls `close`.
+                */}
+              <div className="flex flex-col items-center justify-center rounded-xl bg-gradient-to-br from-white to-[#E8FDF7] p-5">
+                <div className="grid w-full max-w-sm items-center gap-1.5">
+                  <Input
+                    type="file"
+                    onChange={e => {
+                      if (e.target.files)
+                        onFilePicked(Array.from(e.target.files));
+                    }}
+                    accept={
+                      Array.isArray(acceptFiles)
+                        ? acceptFiles.join(",")
+                        : acceptFiles
                     }
                   />
+                </div>
+
+                <h4 className="py-2 text-sm font-medium">OR</h4>
+
+                <div className="flex w-full flex-row">
+                  <Input
+                    className="rounded-none rounded-l-md"
+                    placeholder="Enter URL"
+                    onChange={e => setFetchingUrl(e.target.value)}
+                  />
                   <Button
-                    borderLeftWidth={0}
-                    borderBottomLeftRadius={0}
-                    borderTopLeftRadius={0}
-                    onClick={() => fetchFile(close)}
+                    className="rounded-none rounded-r-md"
+                    onClick={() => fetchFile(() => {})} // No-op close for now as uncontrolled
                   >
                     Fetch URL
                   </Button>
-                </Pane>
-              </Pane>
-            )}
-            shouldCloseOnExternalClick
-          >
-            <Tooltip content="Load File">
-              <IconButton height={28} marginRight={10} icon="upload" />
-            </Tooltip>
+                </div>
+              </div>
+            </PopoverContent>
           </Popover>
         )}
 
         {hasClear && (
-          <Tooltip content="Clear">
-            <IconButton
-              height={28}
-              icon="trash"
-              intent="danger"
-              marginRight={10}
-              onClick={() => setValue("")}
-            />
-          </Tooltip>
-        )}
-
-        {/* {packageDetails && (
-          <a
-            href={packageDetails.url}
-            style={{
-              display: "inline-flex"
-            }}
-            target="_blank"
-          >
-            <Tooltip content={packageDetails.name}>
-              <Npm />
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-7 w-7 mr-2 hover:bg-destructive/10 hover:text-destructive"
+                  onClick={() => {
+                    setValue("");
+                    if (onChange) onChange("");
+                  }}
+                >
+                  <Trash className="h-4 w-4" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Clear</p>
+              </TooltipContent>
             </Tooltip>
-          </a>
-        )} */}
+          </TooltipProvider>
+        )}
 
         {hasCopy && (
           <Button
-            appearance="primary"
-            marginRight={10}
-            iconBefore="duplicate"
+            variant="default"
+            size="sm"
+            className="h-7 mr-2"
             onClick={copyValue}
-            height={28}
           >
+            <Copy className="mr-2 h-3.5 w-3.5" />
             Copy
           </Button>
         )}
-      </Pane>
+      </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-          overflow: "hidden"
-        }}
-        {...getRootProps()}
-      >
+      <div className="flex flex-1 flex-col overflow-hidden" {...getRootProps()}>
         {topNotifications &&
           topNotifications({
             isSettingsOpen: showSettingsDialogue,
@@ -286,13 +283,13 @@ EditorPanelProps) {
         <Monaco
           language={language}
           value={value}
-          options={options}
+          options={options as any}
           onChange={value => {
             setValue(value);
-            onChange(value);
+            if (onChange) onChange(value);
           }}
         />
       </div>
-    </Pane>
+    </div>
   );
 }

@@ -1,12 +1,18 @@
 import * as React from "react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ConversionPanel, { Transformer } from "@components/ConversionPanel";
 import { getWorker } from "@utils/workerWrapper";
 import GrapqlWorker from "@workers/graphql.worker";
 import { GraphqlTransforms } from "@constants/graphqlTransforms";
-import { Select } from "evergreen-ui";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
-let graphqlWorker;
+let graphqlWorker: ReturnType<typeof getWorker> | undefined;
 
 const props = {
   acceptFiles: ".graphql, .gql"
@@ -14,17 +20,20 @@ const props = {
 
 export default function GraphqlToComponents() {
   const [output, setOutput] = useState(
-    GraphqlTransforms.TO_REACT_APOLLO.toString(10)
+    GraphqlTransforms.TO_REACT_APOLLO.toString()
   );
+
+  useEffect(() => {
+    graphqlWorker = graphqlWorker || getWorker(GrapqlWorker);
+  }, []);
 
   const transformer = useCallback<Transformer>(
     async ({ value, splitEditorValue }) => {
-      graphqlWorker = graphqlWorker || getWorker(GrapqlWorker);
-
+      if (!graphqlWorker) graphqlWorker = getWorker(GrapqlWorker);
       return graphqlWorker.send({
         type: parseInt(output, 10),
         value,
-        document: splitEditorValue
+        document: splitEditorValue ?? ""
       });
     },
     [output]
@@ -35,18 +44,31 @@ export default function GraphqlToComponents() {
       settings={output}
       transformer={transformer}
       resultTitle={
-        <Select value={output} onChange={e => setOutput(e.target.value)}>
-          <option value={GraphqlTransforms.TO_REACT_APOLLO}>
-            TypeScript React Apollo
-          </option>
-          <option value={GraphqlTransforms.TO_APOLLO_ANGULAR}>
-            TypeScript Apollo Angular
-          </option>
-          <option value={GraphqlTransforms.TO_STENCIL_APOLLO}>
-            TypeScript Stencil Apollo
-          </option>
-          <option value={GraphqlTransforms.TO_URQL}>TypeScript urql</option>
-        </Select>
+        <div className="w-[240px]">
+          <Select value={output} onValueChange={setOutput}>
+            <SelectTrigger className="h-8">
+              <SelectValue placeholder="Select transform" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value={GraphqlTransforms.TO_REACT_APOLLO.toString()}>
+                TypeScript React Apollo
+              </SelectItem>
+              <SelectItem
+                value={GraphqlTransforms.TO_APOLLO_ANGULAR.toString()}
+              >
+                TypeScript Apollo Angular
+              </SelectItem>
+              <SelectItem
+                value={GraphqlTransforms.TO_STENCIL_APOLLO.toString()}
+              >
+                TypeScript Stencil Apollo
+              </SelectItem>
+              <SelectItem value={GraphqlTransforms.TO_URQL.toString()}>
+                TypeScript urql
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       }
       editorTitle="GraphQL Schema"
       editorLanguage="graphql"

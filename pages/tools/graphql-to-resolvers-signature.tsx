@@ -4,15 +4,21 @@ import ConversionPanel, { Transformer } from "@components/ConversionPanel";
 import { getWorker } from "@utils/workerWrapper";
 import GrapqlWorker from "@workers/graphql.worker";
 import { GraphqlTransforms } from "@constants/graphqlTransforms";
-import { Select } from "evergreen-ui";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
 
-let graphqlWorker;
+let graphqlWorker: any;
 
 const props = {
   acceptFiles: ".graphql, .gql"
 };
 
-const langMap = {
+const langMap: Record<string, string> = {
   [GraphqlTransforms.TO_FLOW_RESOLVERS_SIGNATURE]: "flow",
   [GraphqlTransforms.TO_TYPESCRIPT_RESOLVERS_SIGNATURE]: "typescript",
   [GraphqlTransforms.TO_JAVA_RESOLVERS_SIGNATURE]: "java"
@@ -45,17 +51,30 @@ export default function GraphqlToResolversSignature() {
       settings={output}
       transformer={transformer}
       resultTitle={
-        <Select value={output} onChange={e => setOutput(e.target.value)}>
-          <option value={GraphqlTransforms.TO_TYPESCRIPT_RESOLVERS_SIGNATURE}>
-            TypeScript Resolvers Signature
-          </option>
-          <option value={GraphqlTransforms.TO_FLOW_RESOLVERS_SIGNATURE}>
-            Flow Resolvers Signature
-          </option>
-          <option value={GraphqlTransforms.TO_JAVA_RESOLVERS_SIGNATURE}>
-            JAVA Resolvers Signature
-          </option>
-        </Select>
+        <div className="w-[240px]">
+          <Select value={output} onValueChange={setOutput}>
+            <SelectTrigger className="h-8">
+              <SelectValue placeholder="Select transform" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem
+                value={GraphqlTransforms.TO_TYPESCRIPT_RESOLVERS_SIGNATURE.toString()}
+              >
+                TypeScript Resolvers Signature
+              </SelectItem>
+              <SelectItem
+                value={GraphqlTransforms.TO_FLOW_RESOLVERS_SIGNATURE.toString()}
+              >
+                Flow Resolvers Signature
+              </SelectItem>
+              <SelectItem
+                value={GraphqlTransforms.TO_JAVA_RESOLVERS_SIGNATURE.toString()}
+              >
+                JAVA Resolvers Signature
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       }
       editorTitle="GraphQL Schema"
       editorLanguage="graphql"

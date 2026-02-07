@@ -1,12 +1,13 @@
-import React from "react";
-import Editor from "@monaco-editor/react";
-import { Pane, Spinner } from "evergreen-ui";
+import * as React from "react";
+import Editor, { EditorProps } from "@monaco-editor/react";
+import { Loader2 } from "lucide-react";
+import * as monacoEditor from "monaco-editor";
 
 export function processSize(size) {
   return !/^\d+$/.test(size) ? size : `${size}px`;
 }
 
-interface MonacoProps {
+interface MonacoProps extends EditorProps {
   theme?: string;
   language?: string;
   value?: string;
@@ -14,7 +15,14 @@ interface MonacoProps {
   height?: number | string;
   options?: any;
   defaultValue?: string;
-  onChange: (value: string) => void;
+  onChange?: (
+    value: string | undefined,
+    ev: monacoEditor.editor.IModelContentChangedEvent
+  ) => void;
+  onMount?: (
+    editor: monacoEditor.editor.IStandaloneCodeEditor,
+    monaco: typeof monacoEditor
+  ) => void;
 }
 
 export const Monaco: React.FC<MonacoProps> = ({
@@ -24,29 +32,29 @@ export const Monaco: React.FC<MonacoProps> = ({
   height,
   width,
   options,
-  onChange
+  onChange,
+  onMount,
+  ...props
 }) => {
   return (
-    <Editor
-      defaultLanguage={language}
-      defaultValue={defaultValue}
-      value={value}
-      height={height}
-      width={width}
-      options={options}
-      onChange={onChange}
-      loading={
-        <Pane
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          height={400}
-          flex={1}
-        >
-          <Spinner />
-        </Pane>
-      }
-    />
+    <div className="h-full relative flex-1">
+      <Editor
+        defaultLanguage={language}
+        defaultValue={defaultValue}
+        value={value}
+        height={height}
+        width={width}
+        options={options}
+        onChange={onChange}
+        onMount={onMount}
+        loading={
+          <div className="flex h-full items-center justify-center">
+            <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
+          </div>
+        }
+        {...props}
+      />
+    </div>
   );
 };
 

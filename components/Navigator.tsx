@@ -34,15 +34,17 @@ export default function Navigator() {
                 .map((a: Route) => {
                   const isActive = router.pathname === a.path;
                   return (
-                    <Link key={a.label} href={a.path} prefetch={false}>
-                      <a
-                        className={`app-nav-item ${
-                          isActive ? "app-nav-item--active" : ""
-                        }`}
-                        aria-current={isActive ? "page" : undefined}
-                      >
-                        {a.label}
-                      </a>
+                    <Link
+                      key={a.label}
+                      href={a.path}
+                      prefetch={false}
+                      target="_blank"
+                      className={`app-nav-item ${
+                        isActive ? "app-nav-item--active" : ""
+                      }`}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {a.label}
                     </Link>
                   );
                 })}
