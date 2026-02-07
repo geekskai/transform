@@ -32,16 +32,16 @@ export const categorizedRoutes = [
     content: [
       {
         label: "to JSX",
-        path: "/",
+        path: "/tools/svg-to-jsx",
         packageName: "@svgr/core",
         packageUrl: "https://github.com/smooth-code/svgr",
-        title: "Folioify | A polyglot web converter.",
+        title: "SVG to JSX Converter | Free Online Tool | Folioify",
         desc:
-          "Free polyglot web converter. Convert SVG, JSON, TypeScript, GraphQL, HTML and more. No signup. By Folioify.",
+          "Convert SVG to React JSX components. Free, no signup, runs in browser. By Folioify.",
         keywords: [
-          "web converter",
-          "polyglot",
           "SVG to JSX",
+          "SVG to React",
+          "JSX converter",
           "online converter",
           "free tool",
           "folioify"

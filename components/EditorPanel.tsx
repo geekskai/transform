@@ -56,9 +56,9 @@ export default function EditorPanel({
   language,
   defaultValue,
   onChange,
-  id,
-  // packageDetails
-}: EditorPanelProps) {
+  id
+}: // packageDetails
+EditorPanelProps) {
   const [showSettingsDialogue, setSettingsDialog] = useState(false);
   const [value, setValue] = useState(defaultValue);
   const [fetchingUrl, setFetchingUrl] = useState("");
@@ -160,16 +160,16 @@ export default function EditorPanel({
     <Pane display="flex" flex={1} flexDirection="column" overflow="hidden">
       <Pane
         display="flex"
-        height={40}
-        paddingX={10}
+        height={44}
+        paddingX={12}
         alignItems={"center"}
         borderBottom
         zIndex={2}
-        backgroundColor="#FFFFFF"
+        className="editor-panel-toolbar"
         flexShrink={0}
       >
         <Pane flex={1}>
-          <Heading size={500} marginTop={0}>
+          <Heading size={500} marginTop={0} color="#111827">
             {title}
           </Heading>
         </Pane>
@@ -187,7 +187,8 @@ export default function EditorPanel({
                 alignItems="center"
                 justifyContent="center"
                 flexDirection="column"
-                backgroundColor="#FFFFFF"
+                background="linear-gradient(to bottom right, #FFFFFF, #E8FDF7)"
+                borderRadius={16}
               >
                 <FilePicker
                   width={"100%"}

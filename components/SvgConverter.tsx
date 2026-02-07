@@ -56,7 +56,9 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
           settings.optimizeSvg && (
             <Alert
               intent="warning"
-              backgroundColor="#FEF8E7"
+              backgroundColor="#E8FDF7"
+              borderRadius={0}
+              borderBottom="1px solid #7AF5D3"
               title={
                 <>
                   SVGO optimization is turned on. You can turn it off or
@@ -64,8 +66,9 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
                   <Heading
                     size={400}
                     is="a"
-                    color={"blue"}
+                    color={"#0A7552"}
                     onClick={toggleSettings}
+                    cursor="pointer"
                   >
                     settings
                   </Heading>
@@ -80,7 +83,9 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
                 style={{
                   flex: 1,
                   width: "100%",
-                  borderRight: "1px solid #eee"
+                  borderRight: "2px solid #7AF5D3",
+                  background:
+                    "linear-gradient(to bottom right, #F8FAFA, #E8FDF7)"
                 }}
                 src={svgToDataUrl(value)}
                 alt="original"
@@ -88,10 +93,11 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
 
               <Badge
                 position="absolute"
-                bottom={10}
-                right={10}
-                color="green"
+                bottom={12}
+                right={12}
+                color="teal"
                 isSolid
+                borderRadius={8}
               >
                 Original
               </Badge>
@@ -101,7 +107,9 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
                 <img
                   style={{
                     flex: 1,
-                    width: "100%"
+                    width: "100%",
+                    background:
+                      "linear-gradient(to bottom right, #F8FAFA, #E8FDF7)"
                   }}
                   src={svgToDataUrl(optimizedValue)}
                   alt="optimized"
@@ -110,10 +118,11 @@ export const SvgConverter: React.FunctionComponent<SvgConverterProps> = ({
 
               <Badge
                 position="absolute"
-                bottom={10}
-                right={10}
-                color="green"
+                bottom={12}
+                right={12}
+                color="teal"
                 isSolid
+                borderRadius={8}
               >
                 Result
               </Badge>

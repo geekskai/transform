@@ -166,14 +166,15 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
             <Pane
               display="inline-flex"
               position="absolute"
-              backgroundColor="#fff"
+              background="linear-gradient(to bottom right, #FFFFFF, #E8FDF7)"
               zIndex={9}
-              borderRadius={"50%"}
-              paddingX={8}
-              paddingY={8}
-              elevation={1}
+              borderRadius={16}
+              paddingX={10}
+              paddingY={10}
+              elevation={2}
               top={50}
               right={30}
+              border="1px solid #7AF5D3"
             >
               <Spinner
                 css={{
@@ -201,15 +202,16 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
 
       {message && (
         <Alert
-          paddingY={15}
-          paddingX={20}
+          paddingY={16}
+          paddingX={24}
           left={20}
           right={20}
           position="absolute"
           intent="danger"
-          bottom={0}
+          bottom={16}
           title={message}
-          backgroundColor="#FAE2E2"
+          backgroundColor="#FEE2E2"
+          borderRadius={12}
           zIndex={3}
         />
       )}

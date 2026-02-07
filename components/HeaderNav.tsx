@@ -1,6 +1,6 @@
 /**
- * Top header: Search (standalone) + one dropdown per category.
- * Dropdowns render via React Portal to document.body so they are never clipped by header/body overflow.
+ * Top header: Search (standalone) + Mega Menu for Tools.
+ * Dropdowns render via React Portal to document.body.
  */
 import React, {
   useEffect,
@@ -17,11 +17,10 @@ import SearchBox from "@components/Searchbox";
 import { SITE_CONFIG } from "../lib/seo";
 
 const DROPDOWN_Z_INDEX = 9999;
-const GAP = 6;
+const GAP = 12;
 
 function useTriggerPosition(
-  triggerRefs: React.MutableRefObject<Record<string, HTMLButtonElement | null>>,
-  category: string,
+  triggerRef: React.RefObject<HTMLButtonElement>,
   isOpen: boolean
 ) {
   const [rect, setRect] = useState<{
@@ -31,11 +30,14 @@ function useTriggerPosition(
   } | null>(null);
 
   const update = useCallback(() => {
-    const el = triggerRefs.current[category];
+    const el = triggerRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
+    // Center the menu relative to the viewport or trigger, depending on design.
+    // For Mega Menu, we want it to be fullish width or centered.
+    // Let's position it relative to the trigger but simpler.
     setRect({ top: r.bottom + GAP, left: r.left, width: r.width });
-  }, [triggerRefs, category]);
+  }, [triggerRef]);
 
   useLayoutEffect(() => {
     if (!isOpen) {
@@ -54,24 +56,18 @@ function useTriggerPosition(
   return rect;
 }
 
-function CategoryDropdown({
-  category,
-  content,
-  currentPath,
+function MegaMenuPane({
   isOpen,
-  triggerRefs,
+  triggerRef,
   onClose,
   onLinkClick
 }: {
-  category: string;
-  content: Route[];
-  currentPath: string;
   isOpen: boolean;
-  triggerRefs: React.MutableRefObject<Record<string, HTMLButtonElement | null>>;
+  triggerRef: React.RefObject<HTMLButtonElement>;
   onClose: () => void;
   onLinkClick: () => void;
 }) {
-  const position = useTriggerPosition(triggerRefs, category, isOpen);
+  const position = useTriggerPosition(triggerRef, isOpen);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -86,63 +82,59 @@ function CategoryDropdown({
     if (!isOpen) return;
     const handleClickOutside = (e: MouseEvent) => {
       const target = e.target as Node;
-      const trigger = triggerRefs.current[category];
-      if (trigger?.contains(target)) return;
-      const pane = document.getElementById(`header-nav-pane-${category}`);
+      if (triggerRef.current?.contains(target)) return;
+      const pane = document.getElementById("header-mega-menu");
       if (pane?.contains(target)) return;
       onClose();
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen, category, onClose, triggerRefs]);
+  }, [isOpen, onClose, triggerRef]);
 
   if (!isOpen || !position || typeof document === "undefined") return null;
 
-  const sortedContent = [...content].sort((a, b) =>
-    a.label.localeCompare(b.label)
-  );
-
   const dropdown = (
     <div
-      id={`header-nav-pane-${category}`}
-      className="header-nav-portal-pane"
+      id="header-mega-menu"
+      className="mega-menu-pane"
       role="menu"
-      aria-label={category}
       style={{
         position: "fixed",
         top: position.top,
-        left: position.left,
-        minWidth: 180,
-        maxWidth: 320,
-        maxHeight: "min(70vh, 400px)",
+        left: 0,
+        width: "100%",
+        maxHeight: "calc(100vh - 80px)",
         zIndex: DROPDOWN_Z_INDEX
       }}
     >
-      <ul className="header-nav-cat-list">
-        {sortedContent.map((a: Route) => {
-          const isActive = currentPath === a.path;
-          const displayName =
-            category.toLowerCase() !== "others"
-              ? `${category} ${a.label}`
-              : a.label;
-          return (
-            <li key={a.path} role="none">
-              <Link href={a.path} prefetch={false}>
-                <a
-                  className={`header-nav-cat-link ${
-                    isActive ? "header-nav-cat-link--active" : ""
-                  }`}
-                  role="menuitem"
-                  aria-current={isActive ? "page" : undefined}
-                  onClick={onLinkClick}
-                >
-                  {displayName}
-                </a>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="mega-menu-grid">
+        {categorizedRoutes.map(categoryGroup => (
+          <div key={categoryGroup.category} className="mega-menu-column">
+            <h3 className="mega-menu-category-title">
+              {categoryGroup.category}
+            </h3>
+            <ul className="mega-menu-list">
+              {categoryGroup.content.map(route => (
+                <li key={route.path}>
+                  <Link href={route.path} prefetch={false}>
+                    <a className="mega-menu-link" onClick={onLinkClick}>
+                      {route.label}
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div className="mega-menu-footer">
+        <div className="mega-menu-footer-content">
+          <strong>Ready to convert?</strong>
+          <p>
+            Select a tool above to get started immediately. No signup required.
+          </p>
+        </div>
+      </div>
     </div>
   );
 
@@ -151,21 +143,15 @@ function CategoryDropdown({
 
 export default function HeaderNav() {
   const router = useRouter();
-  const [openCategory, setOpenCategory] = useState<string | null>(null);
-  const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
-  const closeAll = useCallback(() => setOpenCategory(null), []);
+  const closeMenu = useCallback(() => setIsMenuOpen(false), []);
 
   useEffect(() => {
-    router.events.on("routeChangeComplete", closeAll);
-    return () => router.events.off("routeChangeComplete", closeAll);
-  }, [router.events, closeAll]);
-
-  const currentPath = router.pathname || "";
-
-  const toggleCategory = (category: string) => {
-    setOpenCategory(prev => (prev === category ? null : category));
-  };
+    router.events.on("routeChangeComplete", closeMenu);
+    return () => router.events.off("routeChangeComplete", closeMenu);
+  }, [router.events, closeMenu]);
 
   return (
     <nav className="header-nav" aria-label="Main">
@@ -182,44 +168,53 @@ export default function HeaderNav() {
         </a>
       </Link>
 
-      <div className="header-nav-search-wrap">
+      <div className="header-nav-center">
+        {/* Mega Menu Trigger */}
+        <button
+          ref={triggerRef}
+          type="button"
+          className={`header-nav-btn ${
+            isMenuOpen ? "header-nav-btn--active" : ""
+          }`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-haspopup="true"
+          aria-controls="header-mega-menu"
+        >
+          Tools
+          <svg
+            className={`header-nav-chevron ${isMenuOpen ? "rotate-180" : ""}`}
+            width="10"
+            height="6"
+            viewBox="0 0 10 6"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1 1L5 5L9 1"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        <Link href="/blog">
+          <a className="header-nav-link">Blog</a>
+        </Link>
+      </div>
+
+      <div className="header-nav-right">
         <SearchBox />
       </div>
 
-      <div className="header-nav-categories">
-        {categorizedRoutes.map(({ category, content }) => {
-          const isOpen = openCategory === category;
-          return (
-            <React.Fragment key={category}>
-              <button
-                ref={el => {
-                  triggerRefs.current[category] = el;
-                }}
-                type="button"
-                className="header-nav-cat-btn"
-                onClick={() => toggleCategory(category)}
-                aria-expanded={isOpen}
-                aria-haspopup="true"
-                aria-controls={`menu-${category}`}
-              >
-                {category}
-                <span className="header-nav-chevron" aria-hidden="true">
-                  ▼
-                </span>
-              </button>
-              <CategoryDropdown
-                category={category}
-                content={content as Route[]}
-                currentPath={currentPath}
-                isOpen={isOpen}
-                triggerRefs={triggerRefs}
-                onClose={closeAll}
-                onLinkClick={closeAll}
-              />
-            </React.Fragment>
-          );
-        })}
-      </div>
+      <MegaMenuPane
+        isOpen={isMenuOpen}
+        triggerRef={triggerRef}
+        onClose={closeMenu}
+        onLinkClick={closeMenu}
+      />
     </nav>
   );
 }
