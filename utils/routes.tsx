@@ -26,6 +26,18 @@ export interface RouteSEO {
   datePublished?: string;
 }
 
+const DEFAULT_LAST_MODIFIED = "2026-02-07";
+const buildDefaultTitle = (label: string) =>
+  `${label} Converter | Free Online Tool | Folioify`;
+const buildDefaultDesc = (label: string) =>
+  `Free online tool to convert ${label}. No signup, runs in browser. By Folioify.`;
+const buildDefaultKeywords = (label: string) => [
+  label,
+  "online converter",
+  "free tool",
+  "folioify"
+];
+
 export const categorizedRoutes = [
   {
     category: "SVG",
@@ -1170,7 +1182,10 @@ export const routes = flatten(
           ...x,
           category: a.category,
           searchTerm: _label,
-          desc: x.desc || `An online playground to convert ${_label}`
+          title: x.title || buildDefaultTitle(_label),
+          desc: x.desc || buildDefaultDesc(_label),
+          keywords: x.keywords || buildDefaultKeywords(_label),
+          lastModified: x.lastModified || DEFAULT_LAST_MODIFIED
         };
       }
     )
