@@ -115,6 +115,7 @@ const ToolCategoryIcon = ({ category }: { category: string }) => {
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const lastUpdated = "2026-02-07";
 
   // Get all categories
   const categories = useMemo(() => {
@@ -200,6 +201,8 @@ export default function HomePage() {
           name="keywords"
           content="developer tools, online converter, SVG to JSX, JSON to TypeScript, code converter, free tools, Folioify, secure conversions"
         />
+        <link rel="canonical" href={SITE_CONFIG.baseUrl} />
+        <meta name="last-modified" content={lastUpdated} />
         <meta
           property="og:title"
           content="Free Online Developer Tools (2026) | Folioify"
@@ -209,9 +212,59 @@ export default function HomePage() {
           content="Secure, fast, and free developer tools running entirely in your browser."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content={SITE_CONFIG.baseUrl} />
+        <meta property="og:site_name" content={SITE_CONFIG.name} />
+        <meta
+          property="og:image"
+          content={`${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultOgImage}`}
+        />
+        <meta property="og:locale" content={SITE_CONFIG.locale} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content={SITE_CONFIG.twitterHandle} />
+        <meta name="twitter:creator" content={SITE_CONFIG.twitterHandle} />
+        <meta
+          name="twitter:title"
+          content="Free Online Developer Tools (2026) | Folioify"
+        />
+        <meta
+          name="twitter:description"
+          content="Secure, fast, and free developer tools running entirely in your browser."
+        />
+        <meta
+          name="twitter:image"
+          content={`${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultOgImage}`}
+        />
       </Head>
 
-      <div className="home-page">
+      <article className="home-page">
+        {/* GEO: Core Facts Chunk for AI Extraction */}
+        <section className="fact-chunk sr-only" aria-hidden="false">
+          <h2>Core Facts About Folioify</h2>
+          <ul>
+            <li>
+              <strong>Pricing</strong>: 100% Free, no hidden fees
+            </li>
+            <li>
+              <strong>Data Handling</strong>: Client-side only, no server
+              uploads
+            </li>
+            <li>
+              <strong>Sign Up</strong>: No registration required
+            </li>
+            <li>
+              <strong>Coverage</strong>: {routes.length}+ developer tools across{" "}
+              {categorizedRoutes.length} categories
+            </li>
+            <li>
+              <strong>Target Users</strong>: Frontend developers, full-stack
+              engineers, designers
+            </li>
+            <li>
+              <strong>Technology</strong>: WebAssembly-powered transformations
+            </li>
+          </ul>
+        </section>
+
         {/* GEO Header Section */}
         <header className="tool-hero">
           <span className="tool-hero__badge">
@@ -300,6 +353,81 @@ export default function HomePage() {
               <p className="feature-card__description">
                 Prettify and clean up messy code snippets automatically using
                 industry-standard formatters.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Common Use Cases Section - GEO §5 */}
+        <section className="features-section">
+          <h2 className="features-section__title">Common Use Cases</h2>
+          <p className="features-section__subtitle">
+            Discover how developers use Folioify to streamline their workflows.
+          </p>
+          <div className="features-grid">
+            <div className="feature-card">
+              <div className="feature-card__icon">
+                <FreeIcon />
+              </div>
+              <h3 className="feature-card__title">Frontend Components</h3>
+              <p className="feature-card__description">
+                Convert <strong>SVG icons to React/JSX</strong> components for
+                seamless integration into your UI library.
+              </p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-card__icon">
+                <SpeedIcon />
+              </div>
+              <h3 className="feature-card__title">Schema & Types</h3>
+              <p className="feature-card__description">
+                Generate <strong>TypeScript interfaces from JSON</strong>{" "}
+                responses to ensure type safety in your codebase.
+              </p>
+            </div>
+            <div className="feature-card">
+              <div className="feature-card__icon">
+                <PrivacyIcon />
+              </div>
+              <h3 className="feature-card__title">Markup & Styles</h3>
+              <p className="feature-card__description">
+                Transform <strong>HTML to Pug/Jade</strong> or convert CSS to
+                Tailwind utility classes.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Boundaries Section - GEO §5: What It Cannot Do */}
+        <section
+          className="features-section"
+          style={{ background: "var(--gray-50)" }}
+        >
+          <h2 className="features-section__title">What Folioify Does Not Do</h2>
+          <p className="features-section__subtitle">
+            Understanding our scope helps you choose the right tool for your
+            needs.
+          </p>
+          <div className="features-grid">
+            <div className="feature-card">
+              <h3 className="feature-card__title">No Server Processing</h3>
+              <p className="feature-card__description">
+                We do <strong>not</strong> upload, store, or process your code
+                on remote servers. Everything runs locally.
+              </p>
+            </div>
+            <div className="feature-card">
+              <h3 className="feature-card__title">No Accounts or Storage</h3>
+              <p className="feature-card__description">
+                We do <strong>not</strong> offer user accounts, cloud storage,
+                or history sync. Your data stays on your device.
+              </p>
+            </div>
+            <div className="feature-card">
+              <h3 className="feature-card__title">No Proprietary Lock-in</h3>
+              <p className="feature-card__description">
+                We use <strong>open-source libraries</strong> (SVGR, Prettier,
+                json-to-ts). No vendor lock-in or proprietary formats.
               </p>
             </div>
           </div>
@@ -556,8 +684,8 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Last Updated */}
-        <div
+        {/* Last Updated - GEO Freshness Signal */}
+        <footer
           style={{
             textAlign: "center",
             padding: "24px",
@@ -566,9 +694,9 @@ export default function HomePage() {
             borderTop: "1px solid var(--border)"
           }}
         >
-          Last Updated: February 2026
-        </div>
-      </div>
+          Last Updated: <time dateTime={lastUpdated}>{lastUpdated}</time>
+        </footer>
+      </article>
     </>
   );
 }
