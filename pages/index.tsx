@@ -45,8 +45,120 @@ const SpeedIcon = () => (
   </svg>
 );
 
-// Tool category icon
+// Category gradient and color configuration
+const categoryStyles: Record<
+  string,
+  {
+    gradient: string;
+    bgGradient: string;
+    border: string;
+    hoverBorder: string;
+    shadow: string;
+    text: string;
+    badge: string;
+    iconBg: string;
+  }
+> = {
+  SVG: {
+    gradient: "from-pink-500 to-rose-500",
+    bgGradient: "from-pink-500/10 to-rose-500/5",
+    border: "border-pink-200",
+    hoverBorder: "hover:border-pink-400",
+    shadow: "hover:shadow-pink-500/20",
+    text: "text-pink-600",
+    badge: "bg-pink-500",
+    iconBg: "from-pink-100 to-pink-50"
+  },
+  HTML: {
+    gradient: "from-orange-500 to-amber-500",
+    bgGradient: "from-orange-500/10 to-amber-500/5",
+    border: "border-orange-200",
+    hoverBorder: "hover:border-orange-400",
+    shadow: "hover:shadow-orange-500/20",
+    text: "text-orange-600",
+    badge: "bg-orange-500",
+    iconBg: "from-orange-100 to-orange-50"
+  },
+  JSON: {
+    gradient: "from-emerald-500 to-teal-500",
+    bgGradient: "from-emerald-500/10 to-teal-500/5",
+    border: "border-emerald-200",
+    hoverBorder: "hover:border-emerald-400",
+    shadow: "hover:shadow-emerald-500/20",
+    text: "text-emerald-600",
+    badge: "bg-emerald-500",
+    iconBg: "from-emerald-100 to-emerald-50"
+  },
+  CSS: {
+    gradient: "from-blue-500 to-cyan-500",
+    bgGradient: "from-blue-500/10 to-cyan-500/5",
+    border: "border-blue-200",
+    hoverBorder: "hover:border-blue-400",
+    shadow: "hover:shadow-blue-500/20",
+    text: "text-blue-600",
+    badge: "bg-blue-500",
+    iconBg: "from-blue-100 to-blue-50"
+  },
+  GraphQL: {
+    gradient: "from-purple-500 to-violet-500",
+    bgGradient: "from-purple-500/10 to-violet-500/5",
+    border: "border-purple-200",
+    hoverBorder: "hover:border-purple-400",
+    shadow: "hover:shadow-purple-500/20",
+    text: "text-purple-600",
+    badge: "bg-purple-500",
+    iconBg: "from-purple-100 to-purple-50"
+  },
+  TypeScript: {
+    gradient: "from-blue-600 to-indigo-500",
+    bgGradient: "from-blue-600/10 to-indigo-500/5",
+    border: "border-blue-200",
+    hoverBorder: "hover:border-blue-400",
+    shadow: "hover:shadow-blue-500/20",
+    text: "text-blue-600",
+    badge: "bg-blue-600",
+    iconBg: "from-blue-100 to-blue-50"
+  },
+  JavaScript: {
+    gradient: "from-yellow-500 to-amber-500",
+    bgGradient: "from-yellow-500/10 to-amber-500/5",
+    border: "border-yellow-200",
+    hoverBorder: "hover:border-yellow-400",
+    shadow: "hover:shadow-yellow-500/20",
+    text: "text-yellow-600",
+    badge: "bg-yellow-500",
+    iconBg: "from-yellow-100 to-yellow-50"
+  },
+  Others: {
+    gradient: "from-slate-500 to-gray-500",
+    bgGradient: "from-slate-500/10 to-gray-500/5",
+    border: "border-slate-200",
+    hoverBorder: "hover:border-slate-400",
+    shadow: "hover:shadow-slate-500/20",
+    text: "text-slate-600",
+    badge: "bg-slate-500",
+    iconBg: "from-slate-100 to-slate-50"
+  }
+};
+
+const getCategoryStyle = (category: string) => {
+  return (
+    categoryStyles[category] || {
+      gradient: "from-brand-500 to-brand-400",
+      bgGradient: "from-brand-500/10 to-brand-400/5",
+      border: "border-brand-200",
+      hoverBorder: "hover:border-brand-400",
+      shadow: "hover:shadow-brand-500/20",
+      text: "text-brand-600",
+      badge: "bg-brand-500",
+      iconBg: "from-brand-100 to-brand-50"
+    }
+  );
+};
+
+// Tool category icon with dynamic color
 const ToolCategoryIcon = ({ category }: { category: string }) => {
+  const style = getCategoryStyle(category);
   const icons: Record<string, React.ReactNode> = {
     SVG: (
       <svg
@@ -54,7 +166,6 @@ const ToolCategoryIcon = ({ category }: { category: string }) => {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
-        className="h-4 w-4"
       >
         <rect x="3" y="3" width="18" height="18" rx="2" />
         <circle cx="8.5" cy="8.5" r="1.5" />
@@ -67,7 +178,6 @@ const ToolCategoryIcon = ({ category }: { category: string }) => {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
-        className="h-4 w-4"
       >
         <polyline points="16 18 22 12 16 6" />
         <polyline points="8 6 2 12 8 18" />
@@ -79,7 +189,6 @@ const ToolCategoryIcon = ({ category }: { category: string }) => {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
-        className="h-4 w-4"
       >
         <path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1" />
         <path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1" />
@@ -91,7 +200,6 @@ const ToolCategoryIcon = ({ category }: { category: string }) => {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
-        className="h-4 w-4"
       >
         <path d="M4 2l1.5 18L12 22l6.5-2L20 2z" />
       </svg>
@@ -102,17 +210,42 @@ const ToolCategoryIcon = ({ category }: { category: string }) => {
         fill="none"
         stroke="currentColor"
         strokeWidth="2"
-        className="h-4 w-4"
       >
         <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
         <line x1="12" y1="22" x2="12" y2="15.5" />
         <polyline points="22 8.5 12 15.5 2 8.5" />
       </svg>
+    ),
+    TypeScript: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M12 8v8" />
+        <path d="M8 8h8" />
+      </svg>
+    ),
+    JavaScript: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="2" />
+        <path d="M12 8v8" />
+        <path d="M16 12c0 2-1.5 4-4 4" />
+      </svg>
     )
   };
   return (
-    <span className="flex h-5 w-5 items-center justify-center text-brand-600">
-      {icons[category] || icons.JSON}
+    <span
+      className={`flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br ${style.iconBg} ${style.text}`}
+    >
+      <span className="h-4 w-4">{icons[category] || icons.JSON}</span>
     </span>
   );
 };
@@ -288,8 +421,8 @@ export default function HomePage() {
           </p>
 
           {/* TL;DR Section - using Premium Card */}
-          <div className="mx-auto mt-6 max-w-3xl rounded-xl border border-brand-200 bg-white p-4 shadow-sm shadow-brand-500/5 md:mt-8 md:p-6 lg:p-8">
-            <div className="mb-4 text-center text-base font-bold text-gray-900 md:mb-6">
+          <div className="mx-auto max-w-3xl rounded-xl border border-brand-200 bg-white p-4 shadow-sm shadow-brand-500/5 md:p-6">
+            <div className="mb-4 text-center text-base font-bold text-gray-900">
               TL;DR: Why Folioify?
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6 lg:gap-8">
@@ -360,53 +493,124 @@ export default function HomePage() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-2 md:gap-3">
-            {categories.map(category => (
-              <button
-                key={category}
-                className={`rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 md:rounded-xl md:px-4 md:py-2.5 md:text-base ${
-                  activeCategory === category
-                    ? "bg-gradient-to-r from-brand-500 to-brand-400 text-white shadow-lg shadow-brand-500/25"
-                    : "border border-brand-300 bg-transparent text-brand-800 hover:border-brand-400 hover:shadow-lg hover:shadow-brand-500/20"
-                }`}
-                onClick={() => setActiveCategory(category)}
-              >
-                {category}
-              </button>
-            ))}
+            {categories.map(category => {
+              const isSelected = activeCategory === category;
+              const style = getCategoryStyle(
+                category === "All" ? "Others" : category
+              );
+
+              return (
+                <button
+                  key={category}
+                  className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 md:px-5 md:py-2.5 md:text-base ${
+                    isSelected
+                      ? `bg-gradient-to-r ${style.gradient} text-white shadow-lg`
+                      : "border border-gray-200 bg-white/80 text-gray-700 shadow-sm backdrop-blur-sm hover:border-gray-300 hover:bg-white hover:text-gray-900"
+                  }`}
+                  onClick={() => setActiveCategory(category)}
+                >
+                  {category}
+                  {!isSelected && (
+                    <span className="absolute inset-0 -z-10 bg-gradient-to-r from-gray-100 to-gray-50 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Tools Grid */}
         <section className="bg-gray-50 px-4 pb-12 pt-8 sm:px-6 md:pb-16 lg:px-8">
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-4">
-            {filteredRoutes.map(route => (
-              <Link
-                key={route.path}
-                href={route.path}
-                className="relative block overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 no-underline transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5"
-              >
-                <div className="mb-2.5 flex items-center gap-2 md:mb-3">
-                  <ToolCategoryIcon category={route.category} />
-                  <span className="text-xs font-semibold uppercase text-brand-600 md:text-sm">
-                    {route.category}
-                  </span>
-                </div>
-                <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
-                  {route.searchTerm}
-                </h3>
-                <p className="mb-3 text-sm leading-relaxed text-gray-600 md:mb-4">
-                  {route.desc}
-                </p>
-                <div className="text-sm font-semibold text-brand-600 md:text-base">
-                  Launch Tool →
-                </div>
-              </Link>
-            ))}
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredRoutes.map(route => {
+              const style = getCategoryStyle(route.category);
+              return (
+                <Link
+                  key={route.path}
+                  href={route.path}
+                  className={`group relative block overflow-hidden rounded-2xl border bg-white no-underline transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${style.border} ${style.hoverBorder} ${style.shadow}`}
+                >
+                  {/* Gradient Header */}
+                  <div
+                    className={`relative h-2 bg-gradient-to-r ${style.gradient}`}
+                  >
+                    {/* Floating particles effect */}
+                    <div className="absolute inset-0 overflow-hidden">
+                      <div className="absolute -right-1 top-0 h-3 w-3 rounded-full bg-white/20 blur-sm" />
+                      <div className="absolute left-1/4 top-0 h-2 w-2 rounded-full bg-white/30 blur-sm" />
+                    </div>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-4 md:p-5">
+                    {/* Category Badge & Icon */}
+                    <div className="mb-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <ToolCategoryIcon category={route.category} />
+                        <span
+                          className={`text-xs font-semibold uppercase ${style.text}`}
+                        >
+                          {route.category}
+                        </span>
+                      </div>
+                      {/* Badge */}
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase text-white ${style.badge}`}
+                      >
+                        Free
+                      </span>
+                    </div>
+
+                    {/* Title */}
+                    <h3
+                      className={`mb-2 text-base font-bold transition-colors duration-300 group-hover:${style.text} text-gray-900 md:text-lg`}
+                    >
+                      {route.searchTerm}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-600">
+                      {route.desc}
+                    </p>
+
+                    {/* CTA Button */}
+                    <div
+                      className={`flex items-center gap-1 text-sm font-semibold ${style.text} transition-transform duration-300 group-hover:translate-x-1`}
+                    >
+                      Launch Tool
+                      <svg
+                        className="h-4 w-4"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  {/* Hover Glow Effect */}
+                  <div
+                    className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${style.bgGradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                  />
+                </Link>
+              );
+            })}
           </div>
 
           {filteredRoutes.length === 0 && (
             <div className="py-10 text-center text-gray-500 md:py-12">
-              <p>No tools found matching your criteria.</p>
+              <p className="text-lg">No tools found matching your criteria.</p>
+              <button
+                onClick={() => {
+                  setActiveCategory("All");
+                  setSearchQuery("");
+                }}
+                className="mt-4 rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600"
+              >
+                Clear filters
+              </button>
             </div>
           )}
         </section>

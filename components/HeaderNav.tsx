@@ -211,7 +211,7 @@ export default function HeaderNav() {
       >
         <span className="absolute inset-0 bg-gradient-to-br from-brand-200/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
         <span className="relative flex items-center gap-1.5 md:gap-2">
-          Tools
+          All tools
           <svg
             className={`h-3.5 w-3.5 transition-transform duration-300 md:h-4 md:w-4 ${
               isMenuOpen ? "rotate-180" : ""

@@ -57,10 +57,10 @@ const SearchBox: React.FunctionComponent = () => {
           aria-haspopup="listbox"
           aria-label="Search tools"
           className={cn(
-            "relative flex h-11 w-full min-w-[200px] max-w-[320px] items-center gap-3 rounded-2xl border bg-[var(--brand-50)]/50 px-4 py-2.5 text-left text-sm text-[var(--text-primary)] transition-all duration-300",
+            "relative flex h-11 w-full min-w-[100px] max-w-[220px] items-center gap-3 rounded-2xl border bg-[var(--brand-50)]/50 px-4 py-2.5 text-left text-sm text-[var(--text-primary)] transition-all duration-300",
             "border-[var(--brand-200)] placeholder:text-gray-500",
             "hover:border-[var(--brand-300)]",
-            "focus:outline-none focus:ring-4 focus:ring-[var(--brand-400)]/20 focus:border-[var(--brand-400)]",
+            "focus:outline-none focus:ring-4 focus:ring-[var(--brand-400)]/20",
             "data-[state=open]:border-[var(--brand-400)] data-[state=open]:ring-4 data-[state=open]:ring-[var(--brand-400)]/20"
           )}
         >
@@ -82,7 +82,7 @@ const SearchBox: React.FunctionComponent = () => {
         align="end"
         sideOffset={8}
         className={cn(
-          "w-[var(--radix-popover-trigger-width)] min-w-[280px] max-w-[min(400px,90vw)] p-0",
+          "w-[var(--radix-popover-trigger-width)] min-w-[100px] max-w-[min(400px,90vw)] p-0",
           "rounded-2xl border border-gray-200 bg-white shadow-xl shadow-[#16F2B3]/10",
           "transition-all duration-300",
           "animate-in fade-in-0 zoom-in-95 data-[side=bottom]:slide-in-from-top-2"
