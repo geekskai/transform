@@ -236,7 +236,7 @@ export default function HomePage() {
         />
       </Head>
 
-      <article className="home-page">
+      <article className="home-page min-h-screen">
         {/* GEO: Core Facts Chunk for AI Extraction */}
         <section className="fact-chunk sr-only" aria-hidden="false">
           <h2>Core Facts About Folioify</h2>
@@ -266,16 +266,16 @@ export default function HomePage() {
         </section>
 
         {/* GEO Header Section */}
-        <header className="tool-hero">
-          <span className="tool-hero__badge">
+        <header className="tool-hero px-4 pb-8 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:px-8">
+          <span className="tool-hero__badge mb-4 md:mb-6">
             <span className="tool-hero__badge-icon">✨</span>
             Trusted by Developers Worldwide
           </span>
 
-          <h1 className="tool-hero__title">
+          <h1 className="tool-hero__title mb-3 md:mb-4">
             Free Online Developer Tools (2026)
           </h1>
-          <p className="tool-hero__subtitle">
+          <p className="tool-hero__subtitle mb-6 md:mb-8">
             Secure, fast, and free developer utilities running entirely in your
             browser.
             <br />
@@ -283,29 +283,31 @@ export default function HomePage() {
           </p>
 
           {/* TL;DR Section - using Premium Card */}
-          <div className="core-info-card">
-            <div className="core-info-card__title">TL;DR: Why Folioify?</div>
-            <div className="core-info-card__grid">
+          <div className="core-info-card mx-auto mt-6 max-w-3xl p-4 md:mt-8 md:p-6 lg:p-8">
+            <div className="core-info-card__title mb-4 md:mb-6">
+              TL;DR: Why Folioify?
+            </div>
+            <div className="core-info-card__grid gap-4 md:gap-6 lg:gap-8">
               <div className="core-info-card__item">
-                <div className="core-info-card__label">Processing</div>
+                <div className="core-info-card__label mb-2">Processing</div>
                 <div className="core-info-card__value">
                   <strong>Client-Side Only</strong>
                 </div>
               </div>
               <div className="core-info-card__item">
-                <div className="core-info-card__label">Cost</div>
+                <div className="core-info-card__label mb-2">Cost</div>
                 <div className="core-info-card__value">
                   <strong>100% Free</strong>
                 </div>
               </div>
               <div className="core-info-card__item">
-                <div className="core-info-card__label">Registration</div>
+                <div className="core-info-card__label mb-2">Registration</div>
                 <div className="core-info-card__value">
                   <strong>No Signup</strong>
                 </div>
               </div>
               <div className="core-info-card__item">
-                <div className="core-info-card__label">Privacy</div>
+                <div className="core-info-card__label mb-2">Privacy</div>
                 <div className="core-info-card__value">
                   <strong>Data Stays Local</strong>
                 </div>
@@ -315,41 +317,49 @@ export default function HomePage() {
         </header>
 
         {/* What Is & Features Section */}
-        <section className="features-section">
-          <h2 className="features-section__title">What is Folioify?</h2>
-          <p className="features-section__subtitle">
+        <section className="features-section mt-12 px-4 py-12 sm:px-6 md:mt-16 md:py-16 lg:px-8">
+          <h2 className="features-section__title mb-3 md:mb-4">
+            What is Folioify?
+          </h2>
+          <p className="features-section__subtitle mx-auto mb-8 max-w-2xl md:mb-12">
             Folioify is a comprehensive toolkit designed to simplify modern web
             development workflows. Unlike other converters that upload your code
             to remote servers, we leverage WebAssembly to perform all
             transformations <strong>locally on your device</strong>.
           </p>
 
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-card__icon">
+          <div className="features-grid mx-auto max-w-5xl gap-4 md:gap-5 lg:gap-6">
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <div className="feature-card__icon mb-2.5 md:mb-3">
                 <FreeIcon />
               </div>
-              <h3 className="feature-card__title">Transform Code</h3>
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                Transform Code
+              </h3>
               <p className="feature-card__description">
                 Convert SVGs to React, JSON to TypeScript, HTML to Pug, and more
                 with pixel-perfect accuracy.
               </p>
             </div>
-            <div className="feature-card">
-              <div className="feature-card__icon">
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <div className="feature-card__icon mb-2.5 md:mb-3">
                 <SpeedIcon />
               </div>
-              <h3 className="feature-card__title">Generate Assets</h3>
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                Generate Assets
+              </h3>
               <p className="feature-card__description">
                 Create consistent data structures, schema definitions, and
                 boilerplate code instantly.
               </p>
             </div>
-            <div className="feature-card">
-              <div className="feature-card__icon">
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <div className="feature-card__icon mb-2.5 md:mb-3">
                 <PrivacyIcon />
               </div>
-              <h3 className="feature-card__title">Format Data</h3>
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                Format Data
+              </h3>
               <p className="feature-card__description">
                 Prettify and clean up messy code snippets automatically using
                 industry-standard formatters.
@@ -359,37 +369,45 @@ export default function HomePage() {
         </section>
 
         {/* Common Use Cases Section - GEO §5 */}
-        <section className="features-section">
-          <h2 className="features-section__title">Common Use Cases</h2>
-          <p className="features-section__subtitle">
+        <section className="features-section mt-12 px-4 py-12 sm:px-6 md:mt-16 md:py-16 lg:px-8">
+          <h2 className="features-section__title mb-3 md:mb-4">
+            Common Use Cases
+          </h2>
+          <p className="features-section__subtitle mx-auto mb-8 max-w-2xl md:mb-12">
             Discover how developers use Folioify to streamline their workflows.
           </p>
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-card__icon">
+          <div className="features-grid mx-auto max-w-5xl gap-4 md:gap-5 lg:gap-6">
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <div className="feature-card__icon mb-2.5 md:mb-3">
                 <FreeIcon />
               </div>
-              <h3 className="feature-card__title">Frontend Components</h3>
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                Frontend Components
+              </h3>
               <p className="feature-card__description">
                 Convert <strong>SVG icons to React/JSX</strong> components for
                 seamless integration into your UI library.
               </p>
             </div>
-            <div className="feature-card">
-              <div className="feature-card__icon">
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <div className="feature-card__icon mb-2.5 md:mb-3">
                 <SpeedIcon />
               </div>
-              <h3 className="feature-card__title">Schema & Types</h3>
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                Schema & Types
+              </h3>
               <p className="feature-card__description">
                 Generate <strong>TypeScript interfaces from JSON</strong>{" "}
                 responses to ensure type safety in your codebase.
               </p>
             </div>
-            <div className="feature-card">
-              <div className="feature-card__icon">
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <div className="feature-card__icon mb-2.5 md:mb-3">
                 <PrivacyIcon />
               </div>
-              <h3 className="feature-card__title">Markup & Styles</h3>
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                Markup & Styles
+              </h3>
               <p className="feature-card__description">
                 Transform <strong>HTML to Pug/Jade</strong> or convert CSS to
                 Tailwind utility classes.
@@ -399,32 +417,37 @@ export default function HomePage() {
         </section>
 
         {/* Boundaries Section - GEO §5: What It Cannot Do */}
-        <section
-          className="features-section"
-          style={{ background: "var(--gray-50)" }}
-        >
-          <h2 className="features-section__title">What Folioify Does Not Do</h2>
-          <p className="features-section__subtitle">
+        <section className="features-section mt-12 bg-gray-50 px-4 py-12 sm:px-6 md:mt-16 md:py-16 lg:px-8">
+          <h2 className="features-section__title mb-3 md:mb-4">
+            What Folioify Does Not Do
+          </h2>
+          <p className="features-section__subtitle mx-auto mb-8 max-w-2xl md:mb-12">
             Understanding our scope helps you choose the right tool for your
             needs.
           </p>
-          <div className="features-grid">
-            <div className="feature-card">
-              <h3 className="feature-card__title">No Server Processing</h3>
+          <div className="features-grid mx-auto max-w-5xl gap-4 md:gap-5 lg:gap-6">
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                No Server Processing
+              </h3>
               <p className="feature-card__description">
                 We do <strong>not</strong> upload, store, or process your code
                 on remote servers. Everything runs locally.
               </p>
             </div>
-            <div className="feature-card">
-              <h3 className="feature-card__title">No Accounts or Storage</h3>
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                No Accounts or Storage
+              </h3>
               <p className="feature-card__description">
                 We do <strong>not</strong> offer user accounts, cloud storage,
                 or history sync. Your data stays on your device.
               </p>
             </div>
-            <div className="feature-card">
-              <h3 className="feature-card__title">No Proprietary Lock-in</h3>
+            <div className="feature-card p-4 md:p-5 lg:p-6">
+              <h3 className="feature-card__title mb-1.5 md:mb-2">
+                No Proprietary Lock-in
+              </h3>
               <p className="feature-card__description">
                 We use <strong>open-source libraries</strong> (SVGR, Prettier,
                 json-to-ts). No vendor lock-in or proprietary formats.
@@ -434,28 +457,28 @@ export default function HomePage() {
         </section>
 
         {/* How It Works Section */}
-        <section className="howto-section">
-          <h2 className="howto-section__title">How It Works</h2>
-          <div className="howto-grid">
+        <section className="howto-section mt-12 px-4 py-12 sm:px-6 md:mt-16 md:py-16 lg:px-8">
+          <h2 className="howto-section__title mb-8 md:mb-12">How It Works</h2>
+          <div className="howto-grid mx-auto max-w-4xl gap-6 md:gap-8 lg:gap-10">
             <div className="howto-step">
-              <div className="howto-step__number">1</div>
-              <h4 className="howto-step__title">Select a Tool</h4>
+              <div className="howto-step__number mb-3 md:mb-4">1</div>
+              <h4 className="howto-step__title mb-2 md:mb-3">Select a Tool</h4>
               <p className="howto-step__description">
                 Choose from our categorized list of converters below (SVG, JSON,
                 HTML, etc.).
               </p>
             </div>
             <div className="howto-step">
-              <div className="howto-step__number">2</div>
-              <h4 className="howto-step__title">Paste Code</h4>
+              <div className="howto-step__number mb-3 md:mb-4">2</div>
+              <h4 className="howto-step__title mb-2 md:mb-3">Paste Code</h4>
               <p className="howto-step__description">
                 Paste your input code into the editor. The tool detects format
                 automatically.
               </p>
             </div>
             <div className="howto-step">
-              <div className="howto-step__number">3</div>
-              <h4 className="howto-step__title">Get Result</h4>
+              <div className="howto-step__number mb-3 md:mb-4">3</div>
+              <h4 className="howto-step__title mb-2 md:mb-3">Get Result</h4>
               <p className="howto-step__description">
                 Copy the transformed code from the output panel. It updates
                 instantly.
@@ -466,33 +489,16 @@ export default function HomePage() {
 
         {/* Search and Filters */}
         <div
-          className="home-filters"
+          className="home-filters mx-auto mt-12 max-w-5xl px-4 py-6 sm:px-6 md:mt-16 md:py-8 lg:px-8"
           id="tools"
-          style={{ padding: "24px", maxWidth: "1200px", margin: "0 auto" }}
         >
-          <div
-            className="search-bar"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              maxWidth: "600px",
-              margin: "0 auto 24px",
-              position: "relative"
-            }}
-          >
+          <div className="search-bar relative mx-auto mb-6 max-w-xl md:mb-8">
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
-              className="search-bar__icon"
-              style={{
-                position: "absolute",
-                left: "12px",
-                width: "20px",
-                height: "20px",
-                color: "var(--text-muted)"
-              }}
+              className="search-bar__icon absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500 md:left-4"
             >
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
@@ -502,41 +508,19 @@ export default function HomePage() {
               placeholder="Search 50+ developer tools..."
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="search-bar__input"
-              style={{
-                width: "100%",
-                padding: "12px 12px 12px 40px",
-                borderRadius: "12px",
-                border: "1px solid var(--border)",
-                fontSize: "16px"
-              }}
+              className="search-bar__input w-full rounded-xl border border-gray-200 py-3 pl-10 pr-4 text-base transition-all duration-300 focus:border-brand-400 focus:outline-none focus:ring-4 focus:ring-brand-400/20 md:rounded-2xl md:py-4 md:pl-12 md:text-lg"
             />
           </div>
 
-          <div
-            className="category-filters"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "8px",
-              flexWrap: "wrap"
-            }}
-          >
+          <div className="category-filters flex flex-wrap justify-center gap-2 md:gap-3">
             {categories.map(category => (
               <button
                 key={category}
-                className={`category-filter ${
-                  activeCategory === category ? "btn-primary" : "btn-secondary"
-                }`}
-                style={
+                className={`category-filter rounded-lg px-3 py-2 text-sm font-medium transition-all duration-300 md:rounded-xl md:px-4 md:py-2.5 md:text-base ${
                   activeCategory === category
-                    ? { padding: "8px 16px", fontSize: "14px" }
-                    : {
-                        padding: "8px 16px",
-                        fontSize: "14px",
-                        background: "transparent"
-                      }
-                }
+                    ? "btn-primary"
+                    : "btn-secondary bg-transparent"
+                }`}
                 onClick={() => setActiveCategory(category)}
               >
                 {category}
@@ -546,49 +530,25 @@ export default function HomePage() {
         </div>
 
         {/* Tools Grid */}
-        <section className="features-section" style={{ paddingTop: 0 }}>
-          <div className="grid-responsive">
+        <section className="features-section px-4 pb-12 pt-0 sm:px-6 md:pb-16 lg:px-8">
+          <div className="grid-responsive mx-auto max-w-5xl gap-4 md:gap-5 lg:gap-6">
             {filteredRoutes.map(route => (
               <Link
                 key={route.path}
                 href={route.path}
-                className="feature-card"
-                style={{ display: "block", textDecoration: "none" }}
+                className="feature-card block p-4 no-underline transition-all duration-300 md:p-5 lg:p-6"
               >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    marginBottom: "12px"
-                  }}
-                >
+                <div className="mb-2.5 flex items-center gap-2 md:mb-3">
                   <ToolCategoryIcon category={route.category} />
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      fontWeight: 600,
-                      color: "var(--brand-600)",
-                      textTransform: "uppercase"
-                    }}
-                  >
+                  <span className="text-xs font-semibold uppercase text-brand-600 md:text-sm">
                     {route.category}
                   </span>
                 </div>
-                <h3 className="feature-card__title">{route.searchTerm}</h3>
-                <p
-                  className="feature-card__desc"
-                  style={{ marginBottom: "16px" }}
-                >
-                  {route.desc}
-                </p>
-                <div
-                  style={{
-                    fontSize: "14px",
-                    fontWeight: 600,
-                    color: "var(--brand-600)"
-                  }}
-                >
+                <h3 className="feature-card__title mb-1.5 md:mb-2">
+                  {route.searchTerm}
+                </h3>
+                <p className="feature-card__desc mb-3 md:mb-4">{route.desc}</p>
+                <div className="text-sm font-semibold text-brand-600 md:text-base">
                   Launch Tool →
                 </div>
               </Link>
@@ -596,25 +556,23 @@ export default function HomePage() {
           </div>
 
           {filteredRoutes.length === 0 && (
-            <div
-              style={{
-                textAlign: "center",
-                padding: "40px",
-                color: "var(--text-muted)"
-              }}
-            >
+            <div className="py-10 text-center text-gray-500 md:py-12">
               <p>No tools found matching your criteria.</p>
             </div>
           )}
         </section>
 
         {/* FAQ Section */}
-        <section className="faq-section">
-          <h2 className="faq-section__title">Frequently Asked Questions</h2>
-          <div className="faq-grid">
+        <section className="faq-section mt-12 px-4 py-12 sm:px-6 md:mt-16 md:py-16 lg:px-8">
+          <h2 className="faq-section__title mb-8 md:mb-12">
+            Frequently Asked Questions
+          </h2>
+          <div className="faq-grid mx-auto max-w-4xl gap-4 md:gap-5 lg:gap-6">
             {faqItems.map((item, index) => (
-              <div key={index} className="faq-card">
-                <div className="faq-card__question">{item.question}</div>
+              <div key={index} className="faq-card p-4 md:p-5 lg:p-6">
+                <div className="faq-card__question mb-2 md:mb-3">
+                  {item.question}
+                </div>
                 <div className="faq-card__answer">{item.answer}</div>
               </div>
             ))}
@@ -622,62 +580,29 @@ export default function HomePage() {
         </section>
 
         {/* Stats Section */}
-        <section
-          className="stats-section"
-          style={{ padding: "48px 24px", background: "var(--brand-50)" }}
-        >
-          <div
-            className="grid-responsive"
-            style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}
-          >
+        <section className="stats-section mt-12 bg-brand-50 px-4 py-12 sm:px-6 md:mt-16 md:py-16 lg:px-8">
+          <div className="grid-responsive mx-auto max-w-3xl gap-6 text-center md:gap-8">
             <div className="stat-item">
-              <span
-                style={{
-                  display: "block",
-                  fontSize: "32px",
-                  fontWeight: 800,
-                  color: "var(--brand-600)"
-                }}
-              >
+              <span className="block text-3xl font-extrabold text-brand-600 md:text-4xl">
                 {routes.length}+
               </span>
-              <span
-                style={{ fontSize: "14px", color: "var(--text-secondary)" }}
-              >
+              <span className="mt-1 text-sm text-gray-600 md:mt-2 md:text-base">
                 Free Tools
               </span>
             </div>
             <div className="stat-item">
-              <span
-                style={{
-                  display: "block",
-                  fontSize: "32px",
-                  fontWeight: 800,
-                  color: "var(--brand-600)"
-                }}
-              >
+              <span className="block text-3xl font-extrabold text-brand-600 md:text-4xl">
                 {categorizedRoutes.length}
               </span>
-              <span
-                style={{ fontSize: "14px", color: "var(--text-secondary)" }}
-              >
+              <span className="mt-1 text-sm text-gray-600 md:mt-2 md:text-base">
                 Categories
               </span>
             </div>
             <div className="stat-item">
-              <span
-                style={{
-                  display: "block",
-                  fontSize: "32px",
-                  fontWeight: 800,
-                  color: "var(--brand-600)"
-                }}
-              >
+              <span className="block text-3xl font-extrabold text-brand-600 md:text-4xl">
                 0
               </span>
-              <span
-                style={{ fontSize: "14px", color: "var(--text-secondary)" }}
-              >
+              <span className="mt-1 text-sm text-gray-600 md:mt-2 md:text-base">
                 Registration
               </span>
             </div>
@@ -685,15 +610,7 @@ export default function HomePage() {
         </section>
 
         {/* Last Updated - GEO Freshness Signal */}
-        <footer
-          style={{
-            textAlign: "center",
-            padding: "24px",
-            fontSize: "13px",
-            color: "var(--text-muted)",
-            borderTop: "1px solid var(--border)"
-          }}
-        >
+        <footer className="border-t border-gray-200 px-4 py-6 text-center text-xs text-gray-500 sm:px-6 md:py-8 md:text-sm lg:px-8">
           Last Updated: <time dateTime={lastUpdated}>{lastUpdated}</time>
         </footer>
       </article>
