@@ -417,6 +417,18 @@ GEO §17：若 AI 无法抓取站点，GEO 无从谈起。建议：
 
 ---
 
+### 2026-02-07 工具页 SEO 注入对齐
+
+| 步骤                  | 状态 | 说明                                                                                            |
+| --------------------- | ---- | ----------------------------------------------------------------------------------------------- |
+| **pages/\_app.tsx**   | ✅   | 对齐参考实现：注入 Meta/JsonLd、接入 getToolMeta、工具页使用 ToolPageLayout，并保留 NProgress。 |
+| **components/Meta**   | ✅   | 继续统一 canonical、og/twitter、keywords 与 brand/locale 字段（已符合规范）。                   |
+| **components/JsonLd** | ✅   | 按 pathname 输出 WebApplication + Organization + BreadcrumbList（已符合规范）。                 |
+
+**验收**：所有 `pages/tools/*` 通过 `_app` 自动获得完整 SEO 元数据与 JSON-LD，无需逐页改动。
+
+---
+
 ### 2026-02-01 动态 robots.txt 与 sitemap
 
 | 步骤                     | 状态 | 说明                                                                                                                                                                                                               |

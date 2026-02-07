@@ -159,7 +159,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
 
   return (
     <>
-      <div className="flex flex-1 flex-row overflow-hidden min-h-0">
+      <div className="flex flex-1 flex-row overflow-hidden min-h-[600px]">
         <div className="flex flex-1 flex-col overflow-hidden border-r">
           <EditorPanel
             language={getEditorLanguage(editorLanguage)}
@@ -211,7 +211,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
       </div>
 
       {message && (
-        <div className="absolute bottom-4 left-5 right-5 z-[3] rounded-xl bg-red-100 px-6 py-4 text-red-900 flex items-center gap-2">
+        <div className="absolute max-w-7xl mx-auto -bottom-[178px] left-5 right-5 z-[3] rounded-xl bg-red-100 px-6 py-4 text-red-900 flex items-center gap-2">
           <TriangleAlert className="h-5 w-5 text-red-900" />
           <span className="font-medium">{message}</span>
         </div>

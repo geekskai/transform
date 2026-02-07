@@ -165,73 +165,76 @@ export default function HeaderNav() {
 
   return (
     <nav
-      className="header-nav flex h-14 items-center gap-4 bg-white px-4 sm:px-6 md:h-16 md:gap-6 lg:px-8"
+      className="flex max-w-7xl w-full flex-wrap items-center gap-2 py-1 sm:flex-nowrap sm:gap-4 md:py-2 md:gap-3"
       aria-label="Main"
     >
       {/* Logo - Left */}
       <Link
         href="/"
-        className="header-nav-home flex items-center gap-2 rounded-xl px-2 py-1.5 text-gray-900 transition-all duration-300 hover:bg-brand-50 hover:text-brand-800 md:gap-2.5 md:rounded-2xl md:px-3 md:py-2"
+        className="flex items-center gap-2 rounded-xl px-2 py-1 text-gray-900 transition-all duration-300 hover:bg-brand-50 hover:text-brand-800 sm:py-1.5 md:gap-2.5 md:rounded-2xl md:px-3 md:py-2"
       >
         <img
           src="/static/favicon.svg"
           alt=""
           width={24}
           height={24}
-          className="h-6 w-6 md:h-7 md:w-7"
+          className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7"
           aria-hidden
         />
-        <span className="header-nav-brand text-sm font-semibold md:text-base">
+        <span className="text-xs font-semibold sm:text-sm md:text-base">
           {SITE_CONFIG.name}
         </span>
       </Link>
 
       {/* Spacer - Center */}
-      <div className="flex-1" />
-      <SearchBox />
+      <div className="hidden md:block flex-1" />
 
-      <MegaMenuPane
-        isOpen={isMenuOpen}
-        triggerRef={triggerRef}
-        onClose={closeMenu}
-        onLinkClick={closeMenu}
-      />
-      <button
-        ref={triggerRef}
-        type="button"
-        className={`header-nav-btn group relative overflow-hidden rounded-xl border px-3 py-2 text-sm font-semibold transition-all duration-300 md:rounded-2xl md:px-4 md:py-2.5 md:text-base ${
-          isMenuOpen
-            ? "border-brand-400 bg-brand-50 text-brand-800 shadow-lg shadow-brand-500/20"
-            : "border-brand-300 bg-gradient-to-br from-brand-50 to-brand-100/50 text-brand-800 hover:border-brand-400 hover:shadow-lg hover:shadow-brand-500/20"
-        }`}
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
-        aria-expanded={isMenuOpen}
-        aria-haspopup="true"
-        aria-controls="header-mega-menu"
-      >
-        <span className="absolute inset-0 bg-gradient-to-br from-brand-200/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        <span className="relative flex items-center gap-1.5 md:gap-2">
-          All tools
-          <svg
-            className={`h-3.5 w-3.5 transition-transform duration-300 md:h-4 md:w-4 ${
-              isMenuOpen ? "rotate-180" : ""
-            }`}
-            width="10"
-            height="6"
-            viewBox="0 0 10 6"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 1L5 5L9 1"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </button>
+      <div className="flex w-full items-center justify-end gap-2">
+        <SearchBox />
+
+        <MegaMenuPane
+          isOpen={isMenuOpen}
+          triggerRef={triggerRef}
+          onClose={closeMenu}
+          onLinkClick={closeMenu}
+        />
+        <button
+          ref={triggerRef}
+          type="button"
+          className={`group relative overflow-hidden rounded-xl border px-2.5 py-1.5 text-xs font-semibold transition-all duration-300 sm:px-3 sm:py-2 sm:text-sm md:rounded-2xl md:px-4 md:py-2.5 md:text-base ${
+            isMenuOpen
+              ? "border-brand-400 bg-brand-50 text-brand-800 shadow-lg shadow-brand-500/20"
+              : "border-brand-300 bg-gradient-to-br from-brand-50 to-brand-100/50 text-brand-800 hover:border-brand-400 hover:shadow-lg hover:shadow-brand-500/20"
+          }`}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-expanded={isMenuOpen}
+          aria-haspopup="true"
+          aria-controls="header-mega-menu"
+        >
+          <span className="absolute inset-0 bg-gradient-to-br from-brand-200/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          <span className="relative flex items-center gap-1.5 md:gap-2">
+            All tools
+            <svg
+              className={`h-3 w-3 transition-transform duration-300 sm:h-3.5 sm:w-3.5 md:h-4 md:w-4 ${
+                isMenuOpen ? "rotate-180" : ""
+              }`}
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1L5 5L9 1"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
     </nav>
   );
 }

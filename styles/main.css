@@ -185,16 +185,18 @@ button[class*="intent-default"]:not([class*="intent-danger"]):hover,
 /* App root layout */
 .app-root {
   @apply flex min-h-screen flex-col bg-gray-50;
+  width: 100vw;
+  background: var(--brand-50);
 }
 .app-header {
-  @apply sticky top-0 z-[100] flex shrink-0 flex-row items-center border-b border-brand-200 bg-white px-5 shadow-sm shadow-brand-500/5;
+  @apply sticky top-0 z-[100] flex shrink-0 flex-row items-center border-b border-brand-200 shadow-sm shadow-brand-500/5;
   min-height: 56px;
 }
 .app-main {
   @apply flex flex-1 flex-col;
 }
 .app-content {
-  @apply flex min-w-0 flex-1 flex-col bg-gray-50;
+  @apply flex min-w-0 flex-1 flex-col;
 }
 
 /* ============================================================================
@@ -218,277 +220,6 @@ button[class*="intent-default"]:not([class*="intent-danger"]):hover,
 }
 
 /* ============================================================================
-   Tool Page Layout
-   ============================================================================ */
-.tool-page {
-  @apply flex h-full min-h-0 flex-1 flex-col overflow-y-auto;
-}
-.tool-page__seo {
-  @apply relative shrink-0 border-b border-brand-200 px-5 pb-3 pt-4;
-  background: linear-gradient(to bottom right, var(--surface), var(--brand-50));
-}
-.tool-page__breadcrumb {
-  @apply mb-2 text-[13px] text-gray-500;
-}
-.tool-page__breadcrumb-link {
-  @apply text-brand-700 no-underline transition-colors duration-300 hover:text-brand-800 hover:underline;
-}
-.tool-page__breadcrumb-sep {
-  @apply mx-1.5 text-gray-500;
-}
-.tool-page__breadcrumb-current {
-  @apply font-semibold text-gray-900;
-}
-.tool-page__title {
-  @apply mb-3 text-2xl font-bold leading-tight;
-  background: linear-gradient(to right, var(--text-primary), var(--brand-800));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.tool-page__intro {
-  @apply m-0 rounded-xl border border-brand-200/30 p-3;
-  background: linear-gradient(
-    to bottom right,
-    rgba(232, 253, 247, 0.5),
-    rgba(184, 250, 232, 0.3)
-  );
-}
-.tool-page__intro-heading {
-  @apply m-0 mb-1.5 text-xs font-semibold uppercase tracking-wider text-gray-500;
-}
-.tool-page__intro-desc {
-  @apply m-0 text-sm leading-relaxed text-gray-600;
-}
-.tool-page__intro-desc strong {
-  @apply font-semibold text-brand-700;
-}
-.tool-page__intro-meta {
-  @apply mt-2 text-xs text-gray-500;
-}
-.tool-page__main {
-  @apply flex min-h-0 flex-1 flex-col overflow-hidden;
-}
-.tool-page__content {
-  @apply flex-1 overflow-y-auto;
-}
-
-/* ============================================================================
-   Buttons (Complex gradients and pseudo-elements)
-   ============================================================================ */
-.btn-primary {
-  @apply relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-2xl border-none px-8 py-4 text-lg font-bold text-gray-900 shadow-lg shadow-brand-500/25 transition-all duration-300;
-  background: linear-gradient(
-    to right,
-    var(--brand-500),
-    var(--brand-400),
-    var(--brand-500)
-  );
-}
-.btn-primary:hover {
-  @apply -translate-y-px shadow-xl shadow-brand-500/30;
-}
-.btn-primary::before {
-  content: "";
-  @apply absolute inset-0 -translate-x-full transition-transform duration-700;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(255, 255, 255, 0.25),
-    transparent
-  );
-}
-.btn-primary:hover::before {
-  @apply translate-x-full;
-}
-
-.btn-secondary {
-  @apply relative inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-2xl border border-brand-300 px-6 py-4 text-base font-semibold text-brand-800 transition-all duration-300;
-  background: linear-gradient(
-    to bottom right,
-    var(--brand-50),
-    rgba(184, 250, 232, 0.5)
-  );
-}
-.btn-secondary:hover {
-  @apply border-brand-400 shadow-lg shadow-brand-500/20;
-}
-.btn-secondary::before {
-  content: "";
-  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-  background: linear-gradient(
-    to bottom right,
-    rgba(122, 245, 211, 0.2),
-    transparent
-  );
-}
-.btn-secondary:hover::before {
-  @apply opacity-100;
-}
-
-/* ============================================================================
-   Homepage Sections (Complex backgrounds and layouts)
-   ============================================================================ */
-
-/* Hero Section */
-.tool-hero {
-  @apply px-6 pb-0 pt-6 text-center;
-  background: linear-gradient(180deg, var(--brand-50) 0%, var(--page-bg) 100%);
-}
-.tool-hero__badge {
-  @apply mb-3 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[13px] font-semibold text-white shadow-lg shadow-brand-500/35;
-  background: linear-gradient(
-    135deg,
-    var(--brand-500) 0%,
-    var(--brand-400) 100%
-  );
-}
-.tool-hero__badge svg,
-.tool-hero__badge-icon {
-  @apply h-4 w-4;
-}
-.tool-hero__title {
-  @apply mb-2 text-[32px] font-extrabold leading-tight;
-  background: linear-gradient(
-    135deg,
-    var(--brand-600) 0%,
-    var(--brand-400) 50%,
-    var(--brand-500) 100%
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.tool-hero__subtitle {
-  @apply mx-auto max-w-[600px] text-[15px] leading-relaxed text-gray-600;
-}
-
-/* Core Info Card */
-.core-info-card {
-  @apply mx-auto my-4 max-w-3xl rounded-xl border border-brand-200 bg-white p-4 shadow-sm shadow-brand-500/5 md:p-6;
-}
-.core-info-card__title {
-  @apply mb-3.5 text-center text-base font-bold text-gray-900;
-}
-.core-info-card__grid {
-  @apply grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4;
-}
-.core-info-card__item {
-  @apply text-center;
-}
-.core-info-card__label {
-  @apply mb-2 text-xs font-medium uppercase tracking-wide text-gray-500;
-}
-.core-info-card__value {
-  @apply text-sm leading-relaxed text-gray-600;
-}
-.core-info-card__value strong {
-  @apply font-semibold text-brand-600;
-}
-
-/* Features Section */
-.features-section {
-  @apply bg-gray-50 px-6 py-12;
-}
-.features-section__title {
-  @apply mb-3 text-center text-[28px] font-bold text-gray-900;
-}
-.features-section__subtitle {
-  @apply mx-auto mb-10 max-w-[600px] text-center text-base text-gray-600;
-}
-.features-grid {
-  @apply mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-3;
-}
-
-/* Feature Card */
-.feature-card {
-  @apply relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 text-center transition-all duration-300 md:p-8;
-}
-.feature-card:hover {
-  @apply -translate-y-0.5 border-brand-300 shadow-xl shadow-brand-500/10;
-}
-.feature-card__icon {
-  @apply mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl text-brand-600;
-  background: linear-gradient(
-    135deg,
-    var(--brand-100) 0%,
-    var(--brand-50) 100%
-  );
-}
-.feature-card__icon svg {
-  @apply h-7 w-7;
-}
-.feature-card__title {
-  @apply mb-3 text-lg font-bold text-brand-600;
-}
-.feature-card__description {
-  @apply mb-4 text-sm leading-relaxed text-gray-600;
-}
-.feature-card__desc {
-  @apply text-sm leading-relaxed text-gray-600;
-}
-
-/* How-to Section */
-.howto-section {
-  @apply px-6 py-12;
-  background: linear-gradient(
-    135deg,
-    var(--brand-50) 0%,
-    var(--brand-100) 50%,
-    var(--brand-50) 100%
-  );
-}
-.howto-section__title {
-  @apply mb-10 text-center text-[28px] font-bold text-gray-900;
-}
-.howto-grid {
-  @apply mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-8;
-}
-.howto-step {
-  @apply text-center;
-}
-.howto-step__number {
-  @apply mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full text-xl font-bold text-white shadow-lg shadow-brand-500/35;
-  background: linear-gradient(
-    135deg,
-    var(--brand-500) 0%,
-    var(--brand-400) 100%
-  );
-}
-.howto-step__title {
-  @apply mb-2 text-lg font-semibold text-gray-900;
-}
-.howto-step__description {
-  @apply text-sm leading-relaxed text-gray-600;
-}
-.howto-step__description strong {
-  @apply font-semibold text-brand-700;
-}
-
-/* FAQ Section */
-.faq-section {
-  @apply bg-white px-6 py-12;
-}
-.faq-section__title {
-  @apply mb-10 text-center text-[28px] font-bold text-gray-900;
-}
-.faq-grid {
-  @apply mx-auto grid max-w-4xl grid-cols-1 gap-5 md:grid-cols-2;
-}
-.faq-card {
-  @apply rounded-xl border border-gray-200 bg-gray-50 p-6;
-}
-.faq-card__question {
-  @apply mb-3 text-[15px] font-semibold text-gray-900;
-}
-.faq-card__answer {
-  @apply text-sm leading-relaxed text-gray-600;
-}
-.faq-card__answer strong {
-  @apply text-brand-600;
-}
-
-/* ============================================================================
    Utility Classes
    ============================================================================ */
 
@@ -497,11 +228,6 @@ button[class*="intent-default"]:not([class*="intent-danger"]):hover,
   @apply absolute h-px w-px overflow-hidden whitespace-nowrap border-0 p-0;
   margin: -1px;
   clip: rect(0, 0, 0, 0);
-}
-
-/* Responsive grid */
-.grid-responsive {
-  @apply grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-6;
 }
 
 /* Dark/Light mode filters */
@@ -520,19 +246,6 @@ input:focus,
 textarea:focus,
 select:focus {
   @apply border-brand-400 ring-4 ring-brand-400/20;
-}
-
-/* Value card icon */
-.value-card__icon {
-  @apply h-7 w-7;
-}
-
-/* Tool card category icon */
-.tool-card__category-icon {
-  @apply flex h-5 w-5 items-center justify-center text-brand-600;
-}
-.tool-card__category-icon svg {
-  @apply h-4 w-4;
 }
 
 /* ============================================================================
@@ -566,44 +279,6 @@ select:focus {
 }
 
 /* ============================================================================
-   Breadcrumb Navigation (ToolPageLayout.tsx)
-   ============================================================================ */
-.breadcrumb {
-  @apply flex items-center gap-2 border-b border-gray-200 bg-white px-6 py-4 text-sm text-gray-500;
-}
-.breadcrumb__link {
-  @apply text-gray-600 no-underline transition-colors duration-200 hover:text-brand-600;
-}
-.breadcrumb__separator {
-  @apply text-gray-400;
-}
-.breadcrumb__current {
-  @apply font-medium text-gray-900;
-}
-
-/* ============================================================================
-   Feature Badges (ToolPageLayout.tsx)
-   ============================================================================ */
-.feature-badges {
-  @apply flex flex-wrap justify-center gap-2.5 px-6 pb-4 pt-2;
-}
-.feature-badge {
-  @apply inline-flex items-center gap-1.5 rounded-full border border-gray-200 bg-white px-4 py-2 text-[13px] text-gray-600 transition-all duration-200 hover:border-brand-300 hover:bg-brand-50;
-}
-.feature-badge__icon {
-  @apply h-[18px] w-[18px] text-brand-500;
-}
-.feature-badge__icon svg {
-  @apply h-full w-full;
-}
-.feature-badge__label {
-  @apply font-semibold text-brand-700;
-}
-.feature-badge__desc {
-  @apply text-gray-500;
-}
-
-/* ============================================================================
    Mega Menu Footer (HeaderNav.tsx)
    ============================================================================ */
 .mega-menu-footer-content strong {
@@ -611,21 +286,4 @@ select:focus {
 }
 .mega-menu-footer-content p {
   @apply m-0 text-[13px] text-gray-500;
-}
-
-/* ============================================================================
-   Tool Page Meta Footer (ToolPageLayout.tsx)
-   ============================================================================ */
-.tool-page__meta {
-  @apply border-t border-gray-200 bg-gray-50 px-6 py-3 text-center text-xs text-gray-500;
-}
-.tool-page__meta p {
-  @apply m-0;
-}
-
-/* ============================================================================
-   Header Navigation Base
-   ============================================================================ */
-.header-nav {
-  @apply w-full;
 }

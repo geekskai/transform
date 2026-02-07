@@ -374,7 +374,7 @@ export default function HomePage() {
         />
       </Head>
 
-      <article className="min-h-screen">
+      <article className="min-h-screen flex flex-col gap-4 md:gap-6 bg-brand-100">
         {/* GEO: Core Facts Chunk for AI Extraction */}
         <section className="sr-only" aria-hidden="false">
           <h2>Core Facts About Folioify</h2>
@@ -404,14 +404,14 @@ export default function HomePage() {
         </section>
 
         {/* GEO Header Section */}
-        <header className="bg-gradient-to-b from-brand-50 to-gray-50 px-4 pb-8 pt-6 text-center sm:px-6 sm:pb-12 sm:pt-8 lg:px-8">
+        <header className="bg-gradient-to-b from-brand-50 to-brand-100 px-4 pt-6 text-center md:px-6 md:pt-8 lg:px-8">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-br from-brand-500 to-brand-400 px-4 py-1.5 text-[13px] font-semibold text-white shadow-lg shadow-brand-500/35 md:mb-6">
             <span className="h-4 w-4">✨</span>
             Trusted by Developers Worldwide
           </span>
 
           <h1 className="mb-3 bg-gradient-to-br from-brand-600 via-brand-400 to-brand-500 bg-clip-text text-[32px] font-extrabold leading-tight text-transparent md:mb-4">
-            Free Online Developer Tools (2026)
+            Free Online Developer Tools (2026) ✨
           </h1>
           <p className="mx-auto max-w-[600px] text-[15px] leading-relaxed text-gray-600 md:mb-8">
             Secure, fast, and free developer utilities running entirely in your
@@ -421,9 +421,9 @@ export default function HomePage() {
           </p>
 
           {/* TL;DR Section - using Premium Card */}
-          <div className="mx-auto max-w-3xl rounded-xl border border-brand-200 bg-white p-4 shadow-sm shadow-brand-500/5 md:p-6">
+          <div className="mx-auto max-w-6xl rounded-xl border border-brand-200 bg-white p-4 shadow-sm shadow-brand-500/5 md:p-6">
             <div className="mb-4 text-center text-base font-bold text-gray-900">
-              TL;DR: Why Folioify?
+              TL;DR: Why Folioify? ⚡
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6 lg:gap-8">
               <div className="text-center">
@@ -471,8 +471,11 @@ export default function HomePage() {
         </header>
 
         {/* Search and Filters */}
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8" id="tools">
-          <div className="relative mx-auto mb-6 max-w-xl md:mb-8">
+        <div
+          className="mx-auto flex flex-col gap-4 md:gap-6 max-w-7xl px-4 md:px-6"
+          id="tools"
+        >
+          <div className="relative max-w-3xl mx-auto w-full">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -492,7 +495,7 @@ export default function HomePage() {
             />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+          <div className="flex flex-wrap justify-center gap-2">
             {categories.map(category => {
               const isSelected = activeCategory === category;
               const style = getCategoryStyle(
@@ -502,7 +505,7 @@ export default function HomePage() {
               return (
                 <button
                   key={category}
-                  className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 md:px-5 md:py-2.5 md:text-base ${
+                  className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 md:px-4 md:py-2 md:text-base ${
                     isSelected
                       ? `bg-gradient-to-r ${style.gradient} text-white shadow-lg`
                       : "border border-gray-200 bg-white/80 text-gray-700 shadow-sm backdrop-blur-sm hover:border-gray-300 hover:bg-white hover:text-gray-900"
@@ -517,108 +520,110 @@ export default function HomePage() {
               );
             })}
           </div>
-        </div>
 
-        {/* Tools Grid */}
-        <section className="bg-gray-50 px-4 pb-12 pt-8 sm:px-6 md:pb-16 lg:px-8">
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
-            {filteredRoutes.map(route => {
-              const style = getCategoryStyle(route.category);
-              return (
-                <Link
-                  key={route.path}
-                  href={route.path}
-                  className={`group relative block overflow-hidden rounded-2xl border bg-white no-underline transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${style.border} ${style.hoverBorder} ${style.shadow}`}
-                >
-                  {/* Gradient Header */}
-                  <div
-                    className={`relative h-2 bg-gradient-to-r ${style.gradient}`}
+          {/* Tools Grid */}
+          <section className="px-4 md:px-6">
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 xl:grid-cols-4">
+              {filteredRoutes.map(route => {
+                const style = getCategoryStyle(route.category);
+                return (
+                  <Link
+                    key={route.path}
+                    href={route.path}
+                    className={`group relative block overflow-hidden rounded-2xl border bg-white no-underline transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${style.border} ${style.hoverBorder} ${style.shadow}`}
                   >
-                    {/* Floating particles effect */}
-                    <div className="absolute inset-0 overflow-hidden">
-                      <div className="absolute -right-1 top-0 h-3 w-3 rounded-full bg-white/20 blur-sm" />
-                      <div className="absolute left-1/4 top-0 h-2 w-2 rounded-full bg-white/30 blur-sm" />
+                    {/* Gradient Header */}
+                    <div
+                      className={`relative h-2 bg-gradient-to-r ${style.gradient}`}
+                    >
+                      {/* Floating particles effect */}
+                      <div className="absolute inset-0 overflow-hidden">
+                        <div className="absolute -right-1 top-0 h-3 w-3 rounded-full bg-white/20 blur-sm" />
+                        <div className="absolute left-1/4 top-0 h-2 w-2 rounded-full bg-white/30 blur-sm" />
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Card Content */}
-                  <div className="p-4 md:p-5">
-                    {/* Category Badge & Icon */}
-                    <div className="mb-3 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <ToolCategoryIcon category={route.category} />
+                    {/* Card Content */}
+                    <div className="p-4 md:p-5">
+                      {/* Category Badge & Icon */}
+                      <div className="mb-3 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <ToolCategoryIcon category={route.category} />
+                          <span
+                            className={`text-xs font-semibold uppercase ${style.text}`}
+                          >
+                            {route.category}
+                          </span>
+                        </div>
+                        {/* Badge */}
                         <span
-                          className={`text-xs font-semibold uppercase ${style.text}`}
+                          className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase text-white ${style.badge}`}
                         >
-                          {route.category}
+                          Free
                         </span>
                       </div>
-                      {/* Badge */}
-                      <span
-                        className={`rounded-full px-2 py-0.5 text-[10px] font-bold uppercase text-white ${style.badge}`}
+
+                      {/* Title */}
+                      <h3
+                        className={`mb-2 text-base font-bold transition-colors duration-300 group-hover:${style.text} text-gray-900 md:text-lg`}
                       >
-                        Free
-                      </span>
+                        {route.searchTerm}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-600">
+                        {route.desc}
+                      </p>
+
+                      {/* CTA Button */}
+                      <div
+                        className={`flex items-center gap-1 text-sm font-semibold ${style.text} transition-transform duration-300 group-hover:translate-x-1`}
+                      >
+                        Launch Tool
+                        <svg
+                          className="h-4 w-4"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </div>
                     </div>
 
-                    {/* Title */}
-                    <h3
-                      className={`mb-2 text-base font-bold transition-colors duration-300 group-hover:${style.text} text-gray-900 md:text-lg`}
-                    >
-                      {route.searchTerm}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="mb-4 line-clamp-2 text-sm leading-relaxed text-gray-600">
-                      {route.desc}
-                    </p>
-
-                    {/* CTA Button */}
+                    {/* Hover Glow Effect */}
                     <div
-                      className={`flex items-center gap-1 text-sm font-semibold ${style.text} transition-transform duration-300 group-hover:translate-x-1`}
-                    >
-                      Launch Tool
-                      <svg
-                        className="h-4 w-4"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                      >
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-
-                  {/* Hover Glow Effect */}
-                  <div
-                    className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${style.bgGradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
-                  />
-                </Link>
-              );
-            })}
-          </div>
-
-          {filteredRoutes.length === 0 && (
-            <div className="py-10 text-center text-gray-500 md:py-12">
-              <p className="text-lg">No tools found matching your criteria.</p>
-              <button
-                onClick={() => {
-                  setActiveCategory("All");
-                  setSearchQuery("");
-                }}
-                className="mt-4 rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600"
-              >
-                Clear filters
-              </button>
+                      className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${style.bgGradient} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                    />
+                  </Link>
+                );
+              })}
             </div>
-          )}
-        </section>
+
+            {filteredRoutes.length === 0 && (
+              <div className="py-10 text-center text-gray-500 md:py-12">
+                <p className="text-lg">
+                  No tools found matching your criteria.
+                </p>
+                <button
+                  onClick={() => {
+                    setActiveCategory("All");
+                    setSearchQuery("");
+                  }}
+                  className="mt-4 rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600"
+                >
+                  Clear filters
+                </button>
+              </div>
+            )}
+          </section>
+        </div>
 
         {/* What Is & Features Section */}
-        <section className="bg-gray-50 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        <section className="px-4 md:px-6">
           <h2 className="mb-3 text-center text-[28px] font-bold text-gray-900 md:mb-4">
-            What is Folioify?
+            What is Folioify? 🧭
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-center text-base text-gray-600 md:mb-12">
             Folioify is a comprehensive toolkit designed to simplify modern web
@@ -668,9 +673,9 @@ export default function HomePage() {
         </section>
 
         {/* Common Use Cases Section - GEO §5 */}
-        <section className="bg-gray-50 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        <section className="px-4 md:px-6">
           <h2 className="mb-3 text-center text-[28px] font-bold text-gray-900 md:mb-4">
-            Common Use Cases
+            Common Use Cases 💡
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-center text-base text-gray-600 md:mb-12">
             Discover how developers use Folioify to streamline their workflows.
@@ -716,9 +721,9 @@ export default function HomePage() {
         </section>
 
         {/* Boundaries Section - GEO §5: What It Cannot Do */}
-        <section className="bg-gray-100 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        <section className="px-4 md:px-6">
           <h2 className="mb-3 text-center text-[28px] font-bold text-gray-900 md:mb-4">
-            What Folioify Does Not Do
+            What Folioify Does Not Do 🚫
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-center text-base text-gray-600 md:mb-12">
             Understanding our scope helps you choose the right tool for your
@@ -756,9 +761,9 @@ export default function HomePage() {
         </section>
 
         {/* How It Works Section */}
-        <section className="bg-gradient-to-br from-brand-50 via-brand-100 to-brand-50 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        <section className="px-4 bg-brand-50 py-12 sm:px-6 md:py-16 lg:px-8">
           <h2 className="mb-8 text-center text-[28px] font-bold text-gray-900 md:mb-12">
-            How It Works
+            How It Works 🪄
           </h2>
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 lg:gap-10">
             <div className="text-center">
@@ -801,15 +806,15 @@ export default function HomePage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="mt-12 bg-white px-4 py-12 sm:px-6 md:mt-16 md:py-16 lg:px-8">
-          <h2 className="mb-8 text-center text-[28px] font-bold text-gray-900 md:mb-12">
-            Frequently Asked Questions
+        <section className="px-4 md:px-6">
+          <h2 className="mb-4 text-center text-[28px] font-bold text-gray-900 md:mb-6">
+            Frequently Asked Questions ❓
           </h2>
-          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:gap-6">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:gap-6">
             {faqItems.map((item, index) => (
               <div
                 key={index}
-                className="rounded-xl border border-gray-200 bg-gray-50 p-4 md:p-5 lg:p-6"
+                className="rounded-xl border border-gray-200 bg-white p-4 md:p-5 lg:p-6"
               >
                 <div className="mb-2 text-[15px] font-semibold text-gray-900 md:mb-3">
                   {item.question}
@@ -823,7 +828,7 @@ export default function HomePage() {
         </section>
 
         {/* Stats Section */}
-        <section className="mt-12 bg-brand-50 px-4 py-12 sm:px-6 md:mt-16 md:py-16 lg:px-8">
+        <section className="mt-4 md:mt-6 bg-brand-50 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
           <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 text-center md:grid-cols-3 md:gap-8">
             <div>
               <span className="block text-3xl font-extrabold text-brand-600 md:text-4xl">
@@ -851,11 +856,6 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        {/* Last Updated - GEO Freshness Signal */}
-        <footer className="border-t border-gray-200 px-4 py-6 text-center text-xs text-gray-500 sm:px-6 md:py-8 md:text-sm lg:px-8">
-          Last Updated: <time dateTime={lastUpdated}>{lastUpdated}</time>
-        </footer>
       </article>
     </>
   );
