@@ -1133,6 +1133,11 @@
     openapi-types "^12.1.0"
     yargs "^17.6.2"
 
+"@pkgr/core@^0.2.7":
+  version "0.2.9"
+  resolved "https://registry.npmmirror.com/@pkgr/core/-/core-0.2.9.tgz#d229a7b7f9dac167a156992ef23c7f023653f53b"
+  integrity sha512-QNqXyfVS2wm9hweSYD2O7F0G06uurj9kZ96TRQE5Y9hU7+tgdZwIkbAKc5Ocy1HxEY2kuDQa6cQ1WRs/O5LFKA==
+
 "@radix-ui/number@1.1.1":
   version "1.1.1"
   resolved "https://registry.npmmirror.com/@radix-ui/number/-/number-1.1.1.tgz#7b2c9225fbf1b126539551f5985769d0048d9090"
@@ -3414,7 +3419,7 @@ cross-spawn@^6.0.0, cross-spawn@^6.0.5:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-cross-spawn@^7.0.0, cross-spawn@^7.0.3:
+cross-spawn@^7.0.3:
   version "7.0.6"
   resolved "https://registry.npmmirror.com/cross-spawn/-/cross-spawn-7.0.6.tgz#8a58fe78f00dcd70c370451759dfbfaf03e8ee9f"
   integrity sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==
@@ -4278,21 +4283,6 @@ execa@^1.0.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
-execa@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmmirror.com/execa/-/execa-4.1.0.tgz#4e5491ad1572f2f17a77d388c6c857135b22847a"
-  integrity sha512-j5W0//W7f8UxAn8hXVnwG8tLwdiUy4FJLcSupCg6maBYZDpyBvTApK7KyuI4bKj8KOh1r2YH+6ucuYtJv1bTZA==
-  dependencies:
-    cross-spawn "^7.0.0"
-    get-stream "^5.0.0"
-    human-signals "^1.1.1"
-    is-stream "^2.0.0"
-    merge-stream "^2.0.0"
-    npm-run-path "^4.0.0"
-    onetime "^5.1.0"
-    signal-exit "^3.0.2"
-    strip-final-newline "^2.0.0"
-
 execa@^5.1.1:
   version "5.1.1"
   resolved "https://registry.npmmirror.com/execa/-/execa-5.1.1.tgz#f80ad9cbf4298f7bd1d4c9555c21e93741c411dd"
@@ -4903,13 +4893,6 @@ get-stream@^4.0.0:
   dependencies:
     pump "^3.0.0"
 
-get-stream@^5.0.0:
-  version "5.2.0"
-  resolved "https://registry.npmmirror.com/get-stream/-/get-stream-5.2.0.tgz#4966a1795ee5ace65e706c4b7beb71257d6e22d3"
-  integrity sha512-nBF+F1rAZVCu/p7rjzgA+Yb4lfYXrpl7a6VmJrU8wF9I1CKvP/QwPNZHnOlwbTkY6dvtFIzFMSyQXbLoTQPRpA==
-  dependencies:
-    pump "^3.0.0"
-
 get-stream@^6.0.0:
   version "6.0.1"
   resolved "https://registry.npmmirror.com/get-stream/-/get-stream-6.0.1.tgz#a262d8eef67aced57c2852ad6167526a43cbf7b7"
@@ -5326,11 +5309,6 @@ https-browserify@^1.0.0:
   resolved "https://registry.npmmirror.com/https-browserify/-/https-browserify-1.0.0.tgz#ec06c10e0a34c0f2faf199f7fd7fc78fffd03c73"
   integrity sha512-J+FkSdyD+0mA0N+81tMotaRMfSL9SGi+xpD3T6YApKsc3bGSXJlfXri3VyFOeYkfLRQisDk1W+jIFFKBeUBbBg==
 
-human-signals@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.npmmirror.com/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
-  integrity sha512-SEQu7vl8KjNL2eoGBLF3+wAjpsNfA9XMlXAYj/3EdaNfAlxKthD1xjEQfGOUhllCGGJVNY34bRr6lPINhNjyZw==
-
 human-signals@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmmirror.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
@@ -5376,10 +5354,15 @@ iferr@^0.1.5:
   resolved "https://registry.npmmirror.com/iferr/-/iferr-0.1.5.tgz#c60eed69e6d8fdb6b3104a1fcbca1c192dc5b501"
   integrity sha512-DUNFN5j7Tln0D+TxzloUjKB+CtVu6myn0JEFak6dG18mNt9YkQ6lzGCdafwofISZ1lLF3xRHJ98VKy9ynkcFaA==
 
-ignore@^5.2.0, ignore@^5.3.0:
+ignore@^5.2.0:
   version "5.3.2"
   resolved "https://registry.npmmirror.com/ignore/-/ignore-5.3.2.tgz#3cd40e729f3643fd87cb04e50bf0eb722bc596f5"
   integrity sha512-hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==
+
+ignore@^7.0.5:
+  version "7.0.5"
+  resolved "https://registry.npmmirror.com/ignore/-/ignore-7.0.5.tgz#4cb5f6cd7d4c7ab0365738c7aea888baa6d7efd9"
+  integrity sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg==
 
 imagemin-gifsicle@^6.0.1:
   version "6.0.1"
@@ -7160,7 +7143,7 @@ npm-run-path@^2.0.0:
   dependencies:
     path-key "^2.0.0"
 
-npm-run-path@^4.0.0, npm-run-path@^4.0.1:
+npm-run-path@^4.0.1:
   version "4.0.1"
   resolved "https://registry.npmmirror.com/npm-run-path/-/npm-run-path-4.0.1.tgz#b7ecd1e5ed53da8e37a55e1c2269e0b97ed748ea"
   integrity sha512-S48WzZW777zhNIrn7gxOlISNAqi9ZC/uQFnRdbeIHhZhCA6UqpkOT8T1G7BvfdgP4Er8gF4sUbaS0i7QvIfCWw==
@@ -7746,12 +7729,7 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.3.1:
   resolved "https://registry.npmmirror.com/picomatch/-/picomatch-2.3.1.tgz#3ba3833733646d9d3e4995946c1365a67fb07a42"
   integrity sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==
 
-picomatch@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.npmmirror.com/picomatch/-/picomatch-3.0.1.tgz#817033161def55ec9638567a2f3bbc876b3e7516"
-  integrity sha512-I3EurrIQMlRc9IaAZnqRR044Phh2DXY+55o7uJ0V+hYZAcQYSuFWsc9q5PvyDHUSCe1Qxn/iBz+78s86zWnGag==
-
-picomatch@^4.0.3:
+picomatch@^4.0.2, picomatch@^4.0.3:
   version "4.0.3"
   resolved "https://registry.npmmirror.com/picomatch/-/picomatch-4.0.3.tgz#796c76136d1eead715db1e7bad785dedd695a042"
   integrity sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==
@@ -7956,18 +7934,18 @@ prettier@^2.2.0, prettier@^2.3.2, prettier@^2.4.1, prettier@^2.5.1:
   resolved "https://registry.npmmirror.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
 
-pretty-quick@^3.1.1:
-  version "3.3.1"
-  resolved "https://registry.npmmirror.com/pretty-quick/-/pretty-quick-3.3.1.tgz#cfde97fec77a8d201a0e0c9c71d9990e12587ee2"
-  integrity sha512-3b36UXfYQ+IXXqex6mCca89jC8u0mYLqFAN5eTQKoXO6oCQYcIVYZEB/5AlBHI7JPYygReM2Vv6Vom/Gln7fBg==
+pretty-quick@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.npmmirror.com/pretty-quick/-/pretty-quick-4.2.2.tgz#0fc31da666f182fe14e119905fc9829b5b85a234"
+  integrity sha512-uAh96tBW1SsD34VhhDmWuEmqbpfYc/B3j++5MC/6b3Cb8Ow7NJsvKFhg0eoGu2xXX+o9RkahkTK6sUdd8E7g5w==
   dependencies:
-    execa "^4.1.0"
-    find-up "^4.1.0"
-    ignore "^5.3.0"
+    "@pkgr/core" "^0.2.7"
+    ignore "^7.0.5"
     mri "^1.2.0"
-    picocolors "^1.0.0"
-    picomatch "^3.0.1"
-    tslib "^2.6.2"
+    picocolors "^1.1.1"
+    picomatch "^4.0.2"
+    tinyexec "^0.3.2"
+    tslib "^2.8.1"
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
@@ -9532,6 +9510,11 @@ tiny-warning@^1.0.2:
   dependencies:
     esm "^3.2.25"
 
+tinyexec@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.npmmirror.com/tinyexec/-/tinyexec-0.3.2.tgz#941794e657a85e496577995c6eef66f53f42b3d2"
+  integrity sha512-KQQR9yN7R5+OSwaK0XQoj22pwHoTlgYqmUscPYoknOoWCWfj/5/ABTMRi69FrKU5ffPVh5QcFikpWJI/P1ocHA==
+
 tinyglobby@^0.2.11:
   version "0.2.15"
   resolved "https://registry.npmmirror.com/tinyglobby/-/tinyglobby-0.2.15.tgz#e228dd1e638cea993d2fdb4fcd2d4602a79951c2"
@@ -9692,7 +9675,7 @@ tslib@^1.8.1:
   resolved "https://registry.npmmirror.com/tslib/-/tslib-1.14.1.tgz#cf2d38bdc34a134bcaf1091c41f6619e2f672d00"
   integrity sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
 
-tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.1, tslib@^2.4.0, tslib@^2.6.1, tslib@^2.6.2:
+tslib@^2.0.0, tslib@^2.0.1, tslib@^2.0.3, tslib@^2.1.0, tslib@^2.3.1, tslib@^2.4.0, tslib@^2.6.1, tslib@^2.6.2, tslib@^2.8.1:
   version "2.8.1"
   resolved "https://registry.npmmirror.com/tslib/-/tslib-2.8.1.tgz#612efe4ed235d567e8aba5f2a5fab70280ade83f"
   integrity sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==
