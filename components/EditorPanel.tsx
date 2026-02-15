@@ -205,6 +205,7 @@ EditorPanelProps) {
                 <div className="grid w-full max-w-sm items-center gap-1.5">
                   <Input
                     type="file"
+                    className="cursor-pointer bg-brand-500"
                     onChange={e => {
                       if (e.target.files)
                         onFilePicked(Array.from(e.target.files));

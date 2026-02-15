@@ -413,7 +413,7 @@ export default function HomePage() {
           <h1 className="mb-3 bg-gradient-to-br from-brand-600 via-brand-400 to-brand-500 bg-clip-text text-[32px] font-extrabold leading-tight text-transparent md:mb-4">
             Free Online Developer Tools (2026) ✨
           </h1>
-          <p className="mx-auto max-w-[600px] text-[15px] leading-relaxed text-gray-600 md:mb-8">
+          <p className="mx-auto max-w-6xl text-[15px] leading-relaxed text-gray-600 md:mb-8">
             Secure, fast, and free developer utilities running entirely in your
             browser.
             <br />
@@ -625,14 +625,14 @@ export default function HomePage() {
           <h2 className="mb-3 text-center text-[28px] font-bold text-gray-900 md:mb-4">
             What is Folioify? 🧭
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-center text-base text-gray-600 md:mb-12">
+          <p className="mx-auto mb-8 max-w-6xl text-center text-base text-gray-600 md:mb-12">
             Folioify is a comprehensive toolkit designed to simplify modern web
             development workflows. Unlike other converters that upload your code
             to remote servers, we leverage WebAssembly to perform all
             transformations <strong>locally on your device</strong>.
           </p>
 
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
               <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-600 md:mb-3">
                 <FreeIcon />
@@ -677,10 +677,10 @@ export default function HomePage() {
           <h2 className="mb-3 text-center text-[28px] font-bold text-gray-900 md:mb-4">
             Common Use Cases 💡
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-center text-base text-gray-600 md:mb-12">
+          <p className="mx-auto mb-8 max-w-6xl text-center text-base text-gray-600 md:mb-12">
             Discover how developers use Folioify to streamline their workflows.
           </p>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
               <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-600 md:mb-3">
                 <FreeIcon />
@@ -725,11 +725,11 @@ export default function HomePage() {
           <h2 className="mb-3 text-center text-[28px] font-bold text-gray-900 md:mb-4">
             What Folioify Does Not Do 🚫
           </h2>
-          <p className="mx-auto mb-8 max-w-2xl text-center text-base text-gray-600 md:mb-12">
+          <p className="mx-auto mb-8 max-w-6xl text-center text-base text-gray-600 md:mb-12">
             Understanding our scope helps you choose the right tool for your
             needs.
           </p>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
               <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
                 No Server Processing

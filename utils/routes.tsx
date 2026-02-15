@@ -1102,6 +1102,44 @@ export const categorizedRoutes = [
         lastModified: "2026-02-01"
       },
       {
+        label: "TOML Syntax Checker",
+        path: "/tools/check-toml",
+        packageUrl: "https://www.npmjs.com/package/@iarna/toml",
+        packageName: "@iarna/toml",
+        title: "TOML Syntax Checker | Free Online Tool | Folioify",
+        desc:
+          "Validate TOML syntax instantly with clear error messages. Free, no signup, runs in browser. By Folioify.",
+        keywords: [
+          "TOML syntax checker",
+          "TOML validator",
+          "validate TOML",
+          "TOML lint",
+          "config checker",
+          "free tool",
+          "folioify"
+        ],
+        lastModified: "2026-02-08"
+      },
+      {
+        label: "TOML Formatter",
+        path: "/tools/toml-formatter",
+        packageUrl: "https://www.npmjs.com/package/@iarna/toml",
+        packageName: "@iarna/toml",
+        title: "TOML Formatter | TOML Format | Folioify",
+        desc:
+          "Format TOML config files with consistent spacing and structure. Free, no signup, runs in browser.",
+        keywords: [
+          "TOML formatter",
+          "format TOML",
+          "TOML pretty print",
+          "TOML beautifier",
+          "config formatter",
+          "free tool",
+          "folioify"
+        ],
+        lastModified: "2026-02-08"
+      },
+      {
         label: "TOML to JSON",
         path: "/tools/toml-to-json",
         packageUrl: "https://www.npmjs.com/package/@iarna/toml",

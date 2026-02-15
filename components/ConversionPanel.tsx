@@ -59,10 +59,8 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
   splitEditorDefaultValue,
   resultSettingsElement
 }) {
-  const [value, setValue] = useData(editorDefaultValue || editorLanguage);
-  const [splitValue, setSplitValue] = useData(
-    splitEditorDefaultValue || splitLanguage
-  );
+  const [value, setValue] = useData(editorLanguage);
+  const [splitValue, setSplitValue] = useData(splitLanguage);
   const [result, setResult] = useState("");
   const [message, setMessage] = useState("");
   const [showUpdateSpinner, setShowUpdateSpinner] = useState(false);
@@ -83,6 +81,22 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function(
           }
         : undefined;
   }
+
+  useEffect(() => {
+    if (editorDefaultValue && (value === undefined || value === "")) {
+      setValue(editorDefaultValue);
+    }
+  }, [editorDefaultValue, value, setValue]);
+
+  useEffect(() => {
+    if (
+      splitEditorDefaultValue &&
+      splitLanguage &&
+      (splitValue === undefined || splitValue === "")
+    ) {
+      setSplitValue(splitEditorDefaultValue);
+    }
+  }, [splitEditorDefaultValue, splitLanguage, splitValue, setSplitValue]);
 
   useEffect(() => {
     let cancelled = false;

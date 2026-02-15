@@ -25,8 +25,8 @@ const socials = [
 export default function SiteFooter() {
   return (
     <footer className="relative border-t border-gray-200 bg-white">
-      <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl py-10 px-4 sm:px-6">
+        <div className="grid gap-2 md:gap-6 lg:gap-16 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <div className="flex items-center gap-2">
               <img
