@@ -165,7 +165,7 @@ export default function HeaderNav() {
 
   return (
     <nav
-      className="flex max-w-7xl w-full flex-wrap items-center gap-2 py-1 sm:flex-nowrap sm:gap-4 md:py-2 md:gap-3"
+      className="flex max-w-7xl mx-auto w-full flex-wrap items-center gap-2 py-1 sm:flex-nowrap sm:gap-4 md:py-2 md:gap-3"
       aria-label="Main"
     >
       {/* Logo - Left */}
@@ -190,7 +190,12 @@ export default function HeaderNav() {
       <div className="hidden md:block flex-1" />
 
       <div className="flex w-full items-center justify-end gap-2">
-        <SearchBox />
+        <Link
+          href="/blog"
+          className="text-brand-800 text-xs font-semibold sm:text-sm md:text-base"
+        >
+          Blog
+        </Link>
 
         <MegaMenuPane
           isOpen={isMenuOpen}
@@ -201,10 +206,10 @@ export default function HeaderNav() {
         <button
           ref={triggerRef}
           type="button"
-          className={`group relative overflow-hidden rounded-xl border px-2.5 py-1.5 text-xs font-semibold transition-all duration-300 sm:px-3 sm:py-2 sm:text-sm md:rounded-2xl md:px-4 md:py-2.5 md:text-base ${
+          className={`group relative overflow-hidden px-2.5 py-1.5 text-xs font-semibold transition-all duration-300 sm:px-3 sm:py-2 sm:text-sm md:px-4 md:py-2.5 md:text-base ${
             isMenuOpen
-              ? "border-brand-400 bg-brand-50 text-brand-800 shadow-lg shadow-brand-500/20"
-              : "border-brand-300 bg-gradient-to-br from-brand-50 to-brand-100/50 text-brand-800 hover:border-brand-400 hover:shadow-lg hover:shadow-brand-500/20"
+              ? "text-brand-800 shadow-lg shadow-brand-500/20"
+              : "text-brand-800 hover:shadow-lg hover:shadow-brand-500/20"
           }`}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-expanded={isMenuOpen}
@@ -234,6 +239,8 @@ export default function HeaderNav() {
             </svg>
           </span>
         </button>
+
+        <SearchBox />
       </div>
     </nav>
   );

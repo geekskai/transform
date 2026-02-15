@@ -9,7 +9,7 @@ function sendMsg(payload, worker: Worker) {
     id: msgId,
     payload
   };
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     // save callbacks for later
     resolves[msgId] = resolve;
     rejects[msgId] = reject;
@@ -49,6 +49,12 @@ export class Wrapper {
   constructor(worker: Worker) {
     this.worker = worker;
     this.worker.onmessage = handleMsg;
+    this.worker.onerror = err => {
+      console.error("Worker error:", err);
+      // We cannot easily reject specific messages because the ID mapping is global
+      // but not associated with the worker instance in this simple implementation.
+      // However, logging is crucial for debugging.
+    };
   }
 
   send(str): Promise<any> {

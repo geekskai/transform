@@ -67,7 +67,7 @@ export default function App(props) {
 
       <div className="app-root light">
         <header
-          className="app-header w-full backdrop-blur-[20px] max-w-7xl mx-auto"
+          className="app-header w-full backdrop-blur-[20px]"
           role="banner"
         >
           <HeaderNav />

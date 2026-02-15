@@ -179,19 +179,128 @@ export function buildBreadcrumbSchema(
   const items: { "@type": string; name: string; item?: string }[] = [
     { "@type": "ListItem", name: "Home", item: baseUrl + "/" }
   ];
-  if (pathname && pathname !== "/") {
+
+  // Blog paths
+  if (pathname.startsWith("/blog")) {
+    items.push({
+      "@type": "ListItem",
+      name: "Blog",
+      item: baseUrl + "/blog"
+    });
+
+    if (pathname !== "/blog" && toolName) {
+      items.push({
+        "@type": "ListItem",
+        name: toolName,
+        item: baseUrl + pathname
+      });
+    }
+  }
+  // Tool paths
+  else if (pathname && pathname !== "/") {
+    items.push({
+      "@type": "ListItem",
+      name: "Tools", // Or "Tools" intermediate page if it exists
+      item: baseUrl + "/" // Assuming tools are on home or standard path
+    });
     items.push({
       "@type": "ListItem",
       name: toolName || "Tool",
       item: baseUrl + pathname
     });
   }
+
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: items.map((item, i) => ({
       ...item,
       position: i + 1
+    }))
+  };
+}
+
+/** BlogPosting JSON-LD (SEO) */
+export function buildBlogPostingSchema(post: {
+  title: string;
+  description: string;
+  date: string;
+  author: string;
+  slug: string;
+  coverImage?: string;
+  images?: string | string[];
+  lastmod?: string;
+}): object {
+  const baseUrl = SITE_CONFIG.baseUrl.replace(/\/$/, "");
+  const url = `${baseUrl}/blog/${post.slug}`;
+
+  let imageList: string[] = [];
+  if (post.images) {
+    if (Array.isArray(post.images)) {
+      imageList = post.images.map(img =>
+        img.startsWith("http") ? img : `${baseUrl}${img}`
+      );
+    } else {
+      imageList = [
+        post.images.startsWith("http")
+          ? post.images
+          : `${baseUrl}${post.images}`
+      ];
+    }
+  } else if (post.coverImage) {
+    imageList = [
+      post.coverImage.startsWith("http")
+        ? post.coverImage
+        : `${baseUrl}${post.coverImage}`
+    ];
+  } else {
+    imageList = [`${baseUrl}${SITE_CONFIG.defaultOgImage}`];
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    image: imageList,
+    datePublished: post.date,
+    dateModified: post.lastmod || post.date,
+    author: {
+      "@type": "Person",
+      name: post.author || SITE_CONFIG.brand,
+      url: SITE_CONFIG.twitterHandle
+        ? `https://twitter.com/${SITE_CONFIG.twitterHandle.replace("@", "")}`
+        : undefined
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_CONFIG.name,
+      logo: {
+        "@type": "ImageObject",
+        url: `${baseUrl}/static/favicon.png`
+      }
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": url
+    }
+  };
+}
+
+/** FAQPage JSON-LD (SEO) */
+export function buildFAQPageSchema(
+  faqs: { question: string; answer: string }[]
+): object {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map(faq => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer
+      }
     }))
   };
 }

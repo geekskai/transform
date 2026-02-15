@@ -50,7 +50,7 @@ export const Meta = ({
       <title>{title}</title>
       <link rel="icon" href="/static/favicon.png" type="image/png" />
       <meta content={description} name="description" />
-      {canonical && <link rel="canonical" href={canonical} />}
+      {canonical && <link rel="canonical" href={canonical} key="canonical" />}
       {keywords && keywords.length > 0 && (
         <meta name="keywords" content={keywords.join(", ")} />
       )}
