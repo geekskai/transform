@@ -8,6 +8,15 @@ export default function BlogIndex({ allPosts }: { allPosts: any[] }) {
     <>
       <Meta
         title="Blog | Folioify"
+        keywords={[
+          "blog",
+          "folioify",
+          "technical guides",
+          "tutorials",
+          "updates",
+          "folioify team"
+        ]}
+        canonical="https://folioify.com/blog"
         description="Technical guides, tutorials, and updates from the Folioify team."
       />
 

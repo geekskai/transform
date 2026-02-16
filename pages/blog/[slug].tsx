@@ -6,11 +6,20 @@ import { MDXRemote } from "next-mdx-remote";
 import { getPostBySlug, getAllPosts } from "../../lib/blog";
 import BlogLayout from "../../components/blog/BlogLayout";
 import Link from "next/link";
+import remarkGfm from "remark-gfm";
 
 // MDX Components replacement
 const components = {
-  Link
-  // Add more custom components here if needed
+  Link,
+  img: (props: any) => (
+    <span className="block my-8">
+      <img
+        {...props}
+        className="mx-auto rounded-2xl shadow-xl border border-gray-100 max-w-full h-auto"
+        loading="lazy"
+      />
+    </span>
+  )
 };
 
 export default function Post({
@@ -53,7 +62,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
 
   const mdxSource = await serialize(post.content || "", {
     mdxOptions: {
-      remarkPlugins: [],
+      remarkPlugins: [remarkGfm],
       rehypePlugins: []
     }
   });

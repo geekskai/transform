@@ -6,7 +6,7 @@
 
 let globalMinify;
 
-require = (function() {
+require = (function () {
   function r(e, n, t) {
     function o(i, f) {
       if (!n[i]) {
@@ -20,7 +20,7 @@ require = (function() {
         var p = (n[i] = { exports: {} });
         e[i][0].call(
           p.exports,
-          function(r) {
+          function (r) {
             var n = e[i][1][r];
             return o(n || r);
           },
@@ -46,7 +46,7 @@ require = (function() {
 })()(
   {
     1: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         exports.byteLength = byteLength;
@@ -204,16 +204,16 @@ require = (function() {
       },
       {}
     ],
-    2: [function(require, module, exports) {}, {}],
+    2: [function (require, module, exports) {}, {}],
     3: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         arguments[4][2][0].apply(exports, arguments);
       },
       { dup: 2 }
     ],
     4: [
-      function(require, module, exports) {
-        (function(Buffer) {
+      function (require, module, exports) {
+        (function (Buffer) {
           /*!
            * The buffer module from node.js, for the browser.
            *
@@ -267,7 +267,7 @@ require = (function() {
               var arr = new Uint8Array(1);
               arr.__proto__ = {
                 __proto__: Uint8Array.prototype,
-                foo: function() {
+                foo: function () {
                   return 42;
                 }
               };
@@ -279,7 +279,7 @@ require = (function() {
 
           Object.defineProperty(Buffer.prototype, "parent", {
             enumerable: true,
-            get: function() {
+            get: function () {
               if (!Buffer.isBuffer(this)) return undefined;
               return this.buffer;
             }
@@ -287,7 +287,7 @@ require = (function() {
 
           Object.defineProperty(Buffer.prototype, "offset", {
             enumerable: true,
-            get: function() {
+            get: function () {
               if (!Buffer.isBuffer(this)) return undefined;
               return this.byteOffset;
             }
@@ -409,7 +409,7 @@ require = (function() {
            * Buffer.from(buffer)
            * Buffer.from(arrayBuffer[, byteOffset[, length]])
            **/
-          Buffer.from = function(value, encodingOrOffset, length) {
+          Buffer.from = function (value, encodingOrOffset, length) {
             return from(value, encodingOrOffset, length);
           };
 
@@ -448,7 +448,7 @@ require = (function() {
            * Creates a new filled Buffer instance.
            * alloc(size[, fill[, encoding]])
            **/
-          Buffer.alloc = function(size, fill, encoding) {
+          Buffer.alloc = function (size, fill, encoding) {
             return alloc(size, fill, encoding);
           };
 
@@ -460,13 +460,13 @@ require = (function() {
           /**
            * Equivalent to Buffer(num), by default creates a non-zero-filled Buffer instance.
            * */
-          Buffer.allocUnsafe = function(size) {
+          Buffer.allocUnsafe = function (size) {
             return allocUnsafe(size);
           };
           /**
            * Equivalent to SlowBuffer(num), by default creates a non-zero-filled Buffer instance.
            */
-          Buffer.allocUnsafeSlow = function(size) {
+          Buffer.allocUnsafeSlow = function (size) {
             return allocUnsafe(size);
           };
 
@@ -2304,88 +2304,88 @@ require = (function() {
             // For IE11 support
             return obj !== obj; // eslint-disable-line no-self-compare
           }
-        }.call(this, require("buffer").Buffer));
+        }).call(this, require("buffer").Buffer);
       },
       { "base64-js": 1, buffer: 4, ieee754: 105 }
     ],
     5: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         module.exports = {
-          "100": "Continue",
-          "101": "Switching Protocols",
-          "102": "Processing",
-          "200": "OK",
-          "201": "Created",
-          "202": "Accepted",
-          "203": "Non-Authoritative Information",
-          "204": "No Content",
-          "205": "Reset Content",
-          "206": "Partial Content",
-          "207": "Multi-Status",
-          "208": "Already Reported",
-          "226": "IM Used",
-          "300": "Multiple Choices",
-          "301": "Moved Permanently",
-          "302": "Found",
-          "303": "See Other",
-          "304": "Not Modified",
-          "305": "Use Proxy",
-          "307": "Temporary Redirect",
-          "308": "Permanent Redirect",
-          "400": "Bad Request",
-          "401": "Unauthorized",
-          "402": "Payment Required",
-          "403": "Forbidden",
-          "404": "Not Found",
-          "405": "Method Not Allowed",
-          "406": "Not Acceptable",
-          "407": "Proxy Authentication Required",
-          "408": "Request Timeout",
-          "409": "Conflict",
-          "410": "Gone",
-          "411": "Length Required",
-          "412": "Precondition Failed",
-          "413": "Payload Too Large",
-          "414": "URI Too Long",
-          "415": "Unsupported Media Type",
-          "416": "Range Not Satisfiable",
-          "417": "Expectation Failed",
-          "418": "I'm a teapot",
-          "421": "Misdirected Request",
-          "422": "Unprocessable Entity",
-          "423": "Locked",
-          "424": "Failed Dependency",
-          "425": "Unordered Collection",
-          "426": "Upgrade Required",
-          "428": "Precondition Required",
-          "429": "Too Many Requests",
-          "431": "Request Header Fields Too Large",
-          "451": "Unavailable For Legal Reasons",
-          "500": "Internal Server Error",
-          "501": "Not Implemented",
-          "502": "Bad Gateway",
-          "503": "Service Unavailable",
-          "504": "Gateway Timeout",
-          "505": "HTTP Version Not Supported",
-          "506": "Variant Also Negotiates",
-          "507": "Insufficient Storage",
-          "508": "Loop Detected",
-          "509": "Bandwidth Limit Exceeded",
-          "510": "Not Extended",
-          "511": "Network Authentication Required"
+          100: "Continue",
+          101: "Switching Protocols",
+          102: "Processing",
+          200: "OK",
+          201: "Created",
+          202: "Accepted",
+          203: "Non-Authoritative Information",
+          204: "No Content",
+          205: "Reset Content",
+          206: "Partial Content",
+          207: "Multi-Status",
+          208: "Already Reported",
+          226: "IM Used",
+          300: "Multiple Choices",
+          301: "Moved Permanently",
+          302: "Found",
+          303: "See Other",
+          304: "Not Modified",
+          305: "Use Proxy",
+          307: "Temporary Redirect",
+          308: "Permanent Redirect",
+          400: "Bad Request",
+          401: "Unauthorized",
+          402: "Payment Required",
+          403: "Forbidden",
+          404: "Not Found",
+          405: "Method Not Allowed",
+          406: "Not Acceptable",
+          407: "Proxy Authentication Required",
+          408: "Request Timeout",
+          409: "Conflict",
+          410: "Gone",
+          411: "Length Required",
+          412: "Precondition Failed",
+          413: "Payload Too Large",
+          414: "URI Too Long",
+          415: "Unsupported Media Type",
+          416: "Range Not Satisfiable",
+          417: "Expectation Failed",
+          418: "I'm a teapot",
+          421: "Misdirected Request",
+          422: "Unprocessable Entity",
+          423: "Locked",
+          424: "Failed Dependency",
+          425: "Unordered Collection",
+          426: "Upgrade Required",
+          428: "Precondition Required",
+          429: "Too Many Requests",
+          431: "Request Header Fields Too Large",
+          451: "Unavailable For Legal Reasons",
+          500: "Internal Server Error",
+          501: "Not Implemented",
+          502: "Bad Gateway",
+          503: "Service Unavailable",
+          504: "Gateway Timeout",
+          505: "HTTP Version Not Supported",
+          506: "Variant Also Negotiates",
+          507: "Insufficient Storage",
+          508: "Loop Detected",
+          509: "Bandwidth Limit Exceeded",
+          510: "Not Extended",
+          511: "Network Authentication Required"
         };
       },
       {}
     ],
     6: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         module.exports = require("./lib/clean");
       },
       { "./lib/clean": 7 }
     ],
     7: [
-      function(require, module, exports) {
-        (function(process) {
+      function (require, module, exports) {
+        (function (process) {
           /**
            * Clean-css - https://github.com/jakubpawlowicz/clean-css
            * Released under the terms of MIT license
@@ -2404,10 +2404,10 @@ require = (function() {
           var inlineFrom = require("./options/inline");
           var inlineRequestFrom = require("./options/inline-request");
           var inlineTimeoutFrom = require("./options/inline-timeout");
-          var OptimizationLevel = require("./options/optimization-level")
-            .OptimizationLevel;
-          var optimizationLevelFrom = require("./options/optimization-level")
-            .optimizationLevelFrom;
+          var OptimizationLevel =
+            require("./options/optimization-level").OptimizationLevel;
+          var optimizationLevelFrom =
+            require("./options/optimization-level").optimizationLevelFrom;
           var rebaseFrom = require("./options/rebase");
           var rebaseToFrom = require("./options/rebase-to");
 
@@ -2437,7 +2437,7 @@ require = (function() {
           });
 
           // for compatibility with optimize-css-assets-webpack-plugin
-          CleanCSS.process = function(input, opts) {
+          CleanCSS.process = function (input, opts) {
             var cleanCss;
             var optsTo = opts.to;
 
@@ -2446,12 +2446,12 @@ require = (function() {
               Object.assign({ returnPromise: true, rebaseTo: optsTo }, opts)
             );
 
-            return cleanCss.minify(input).then(function(output) {
+            return cleanCss.minify(input).then(function (output) {
               return { css: output.styles };
             });
           };
 
-          CleanCSS.prototype.minify = function(
+          CleanCSS.prototype.minify = function (
             input,
             maybeSourceMap,
             maybeCallback
@@ -2459,13 +2459,15 @@ require = (function() {
             var options = this.options;
 
             if (options.returnPromise) {
-              return new Promise(function(resolve, reject) {
-                minify(input, options, maybeSourceMap, function(
-                  errors,
-                  output
-                ) {
-                  return errors ? reject(errors) : resolve(output);
-                });
+              return new Promise(function (resolve, reject) {
+                minify(
+                  input,
+                  options,
+                  maybeSourceMap,
+                  function (errors, output) {
+                    return errors ? reject(errors) : resolve(output);
+                  }
+                );
               });
             } else {
               return minify(input, options, maybeSourceMap, maybeCallback);
@@ -2507,8 +2509,8 @@ require = (function() {
               context.inputSourceMapTracker.track(undefined, sourceMap);
             }
 
-            return runner(context.localOnly)(function() {
-              return readSources(input, context, function(tokens) {
+            return runner(context.localOnly)(function () {
+              return readSources(input, context, function (tokens) {
                 var serialize = context.options.sourceMap
                   ? serializeStylesAndSourceMap
                   : serializeStyles;
@@ -2531,7 +2533,7 @@ require = (function() {
             // to always execute code asynchronously when a callback is given
             // more at blog.izs.me/post/59142742143/designing-apis-for-asynchrony
             return localOnly
-              ? function(callback) {
+              ? function (callback) {
                   return callback();
                 }
               : process.nextTick;
@@ -2574,7 +2576,7 @@ require = (function() {
 
             return context.stats;
           }
-        }.call(this, require("_process")));
+        }).call(this, require("_process"));
       },
       {
         "./optimizer/level-0/optimize": 9,
@@ -2598,7 +2600,7 @@ require = (function() {
       }
     ],
     8: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Hack = {
           ASTERISK: "asterisk",
           BANG: "bang",
@@ -2611,7 +2613,7 @@ require = (function() {
       {}
     ],
     9: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function level0Optimize(tokens) {
           // noop as level 0 means no optimizations!
           return tokens;
@@ -2622,7 +2624,7 @@ require = (function() {
       {}
     ],
     10: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var shortenHex = require("./shorten-hex");
         var shortenHsl = require("./shorten-hsl");
         var shortenRgb = require("./shorten-rgb");
@@ -2636,8 +2638,8 @@ require = (function() {
         var restoreFromOptimizing = require("../restore-from-optimizing");
         var wrapForOptimizing = require("../wrap-for-optimizing").all;
 
-        var OptimizationLevel = require("../../options/optimization-level")
-          .OptimizationLevel;
+        var OptimizationLevel =
+          require("../../options/optimization-level").OptimizationLevel;
 
         var Token = require("../../tokenizer/token");
         var Marker = require("../../tokenizer/marker");
@@ -2652,14 +2654,15 @@ require = (function() {
         var CHARSET_TOKEN = "@charset";
         var CHARSET_REGEXP = new RegExp("^" + CHARSET_TOKEN, "i");
 
-        var DEFAULT_ROUNDING_PRECISION = require("../../options/rounding-precision")
-          .DEFAULT;
+        var DEFAULT_ROUNDING_PRECISION =
+          require("../../options/rounding-precision").DEFAULT;
 
         var WHOLE_PIXEL_VALUE = /(?:^|\s|\()(-?\d+)px/;
         var TIME_VALUE = /^(\-?[\d\.]+)(m?s)$/;
 
         var HEX_VALUE_PATTERN = /[0-9a-f]/i;
-        var PROPERTY_NAME_PATTERN = /^(?:\-chrome\-|\-[\w\-]+\w|\w[\w\-]+\w|\-\-\S+)$/;
+        var PROPERTY_NAME_PATTERN =
+          /^(?:\-chrome\-|\-[\w\-]+\w|\w[\w\-]+\w|\-\-\S+)$/;
         var IMPORT_PREFIX_PATTERN = /^@import/i;
         var QUOTED_PATTERN = /^('.*'|".*")$/;
         var QUOTED_BUT_SAFE_PATTERN = /^['"][a-zA-Z][a-zA-Z\d\-_]+['"]$/;
@@ -2748,104 +2751,92 @@ require = (function() {
           }
 
           value = value
-            .replace(/rgb\((\-?\d+),(\-?\d+),(\-?\d+)\)/g, function(
-              match,
-              red,
-              green,
-              blue
-            ) {
-              return shortenRgb(red, green, blue);
-            })
-            .replace(/hsl\((-?\d+),(-?\d+)%?,(-?\d+)%?\)/g, function(
-              match,
-              hue,
-              saturation,
-              lightness
-            ) {
-              return shortenHsl(hue, saturation, lightness);
-            })
-            .replace(/(^|[^='"])#([0-9a-f]{6})/gi, function(
-              match,
-              prefix,
-              color,
-              at,
-              inputValue
-            ) {
-              var suffix = inputValue[at + match.length];
-
-              if (suffix && HEX_VALUE_PATTERN.test(suffix)) {
-                return match;
-              } else if (
-                color[0] == color[1] &&
-                color[2] == color[3] &&
-                color[4] == color[5]
-              ) {
-                return (
-                  prefix +
-                  "#" +
-                  color[0] +
-                  color[2] +
-                  color[4]
-                ).toLowerCase();
-              } else {
-                return (prefix + "#" + color).toLowerCase();
+            .replace(
+              /rgb\((\-?\d+),(\-?\d+),(\-?\d+)\)/g,
+              function (match, red, green, blue) {
+                return shortenRgb(red, green, blue);
               }
-            })
-            .replace(/(^|[^='"])#([0-9a-f]{3})/gi, function(
-              match,
-              prefix,
-              color
-            ) {
-              return prefix + "#" + color.toLowerCase();
-            })
-            .replace(/(rgb|rgba|hsl|hsla)\(([^\)]+)\)/g, function(
-              match,
-              colorFunction,
-              colorDef
-            ) {
-              var tokens = colorDef.split(",");
-              var applies =
-                (colorFunction == "hsl" && tokens.length == 3) ||
-                (colorFunction == "hsla" && tokens.length == 4) ||
-                (colorFunction == "rgb" &&
-                  tokens.length == 3 &&
-                  colorDef.indexOf("%") > 0) ||
-                (colorFunction == "rgba" &&
-                  tokens.length == 4 &&
-                  colorDef.indexOf("%") > 0);
-
-              if (!applies) {
-                return match;
+            )
+            .replace(
+              /hsl\((-?\d+),(-?\d+)%?,(-?\d+)%?\)/g,
+              function (match, hue, saturation, lightness) {
+                return shortenHsl(hue, saturation, lightness);
               }
+            )
+            .replace(
+              /(^|[^='"])#([0-9a-f]{6})/gi,
+              function (match, prefix, color, at, inputValue) {
+                var suffix = inputValue[at + match.length];
 
-              if (tokens[1].indexOf("%") == -1) {
-                tokens[1] += "%";
+                if (suffix && HEX_VALUE_PATTERN.test(suffix)) {
+                  return match;
+                } else if (
+                  color[0] == color[1] &&
+                  color[2] == color[3] &&
+                  color[4] == color[5]
+                ) {
+                  return (
+                    prefix +
+                    "#" +
+                    color[0] +
+                    color[2] +
+                    color[4]
+                  ).toLowerCase();
+                } else {
+                  return (prefix + "#" + color).toLowerCase();
+                }
               }
-
-              if (tokens[2].indexOf("%") == -1) {
-                tokens[2] += "%";
+            )
+            .replace(
+              /(^|[^='"])#([0-9a-f]{3})/gi,
+              function (match, prefix, color) {
+                return prefix + "#" + color.toLowerCase();
               }
+            )
+            .replace(
+              /(rgb|rgba|hsl|hsla)\(([^\)]+)\)/g,
+              function (match, colorFunction, colorDef) {
+                var tokens = colorDef.split(",");
+                var applies =
+                  (colorFunction == "hsl" && tokens.length == 3) ||
+                  (colorFunction == "hsla" && tokens.length == 4) ||
+                  (colorFunction == "rgb" &&
+                    tokens.length == 3 &&
+                    colorDef.indexOf("%") > 0) ||
+                  (colorFunction == "rgba" &&
+                    tokens.length == 4 &&
+                    colorDef.indexOf("%") > 0);
 
-              return colorFunction + "(" + tokens.join(",") + ")";
-            });
+                if (!applies) {
+                  return match;
+                }
+
+                if (tokens[1].indexOf("%") == -1) {
+                  tokens[1] += "%";
+                }
+
+                if (tokens[2].indexOf("%") == -1) {
+                  tokens[2] += "%";
+                }
+
+                return colorFunction + "(" + tokens.join(",") + ")";
+              }
+            );
 
           if (
             compatibility.colors.opacity &&
             name.indexOf("background") == -1
           ) {
-            value = value.replace(/(?:rgba|hsla)\(0,0%?,0%?,0\)/g, function(
-              match
-            ) {
-              if (
-                split(value, ",")
-                  .pop()
-                  .indexOf("gradient(") > -1
-              ) {
-                return match;
-              }
+            value = value.replace(
+              /(?:rgba|hsla)\(0,0%?,0%?,0\)/g,
+              function (match) {
+                if (split(value, ",").pop().indexOf("gradient(") > -1) {
+                  return match;
+                }
 
-              return "transparent";
-            });
+                return "transparent";
+              }
+            );
           }
 
           return shortenHex(value);
@@ -2855,7 +2846,7 @@ require = (function() {
           if (property.value.length == 1) {
             property.value[0][1] = property.value[0][1].replace(
               /progid:DXImageTransform\.Microsoft\.(Alpha|Chroma)(\W)/,
-              function(match, filter, suffix) {
+              function (match, filter, suffix) {
                 return filter.toLowerCase() + suffix;
               }
             );
@@ -2915,7 +2906,7 @@ require = (function() {
             return value;
           }
 
-          return value.replace(WHOLE_PIXEL_VALUE, function(match, val) {
+          return value.replace(WHOLE_PIXEL_VALUE, function (match, val) {
             var newValue;
             var intVal = parseInt(val);
 
@@ -2964,28 +2955,26 @@ require = (function() {
 
           return value
             .replace(precisionOptions.decimalPointMatcher, "$1$2$3")
-            .replace(precisionOptions.zeroMatcher, function(
-              match,
-              integerPart,
-              fractionPart,
-              unit
-            ) {
-              var multiplier = precisionOptions.units[unit].multiplier;
-              var parsedInteger = parseInt(integerPart);
-              var integer = isNaN(parsedInteger) ? 0 : parsedInteger;
-              var fraction = parseFloat(fractionPart);
+            .replace(
+              precisionOptions.zeroMatcher,
+              function (match, integerPart, fractionPart, unit) {
+                var multiplier = precisionOptions.units[unit].multiplier;
+                var parsedInteger = parseInt(integerPart);
+                var integer = isNaN(parsedInteger) ? 0 : parsedInteger;
+                var fraction = parseFloat(fractionPart);
 
-              return (
-                Math.round((integer + fraction) * multiplier) / multiplier +
-                unit
-              );
-            });
+                return (
+                  Math.round((integer + fraction) * multiplier) / multiplier +
+                  unit
+                );
+              }
+            );
         }
 
         function optimizeTimeUnits(_, value) {
           if (!TIME_VALUE.test(value)) return value;
 
-          return value.replace(TIME_VALUE, function(match, val, unit) {
+          return value.replace(TIME_VALUE, function (match, val, unit) {
             var newValue;
 
             if (unit == "ms") {
@@ -3083,13 +3072,14 @@ require = (function() {
             .replace(/(^|\s)0+([1-9])/g, "$1$2")
             .replace(/(^|\D)\.0+(\D|$)/g, "$10$2")
             .replace(/(^|\D)\.0+(\D|$)/g, "$10$2")
-            .replace(/\.([1-9]*)0+(\D|$)/g, function(
-              match,
-              nonZeroPart,
-              suffix
-            ) {
-              return (nonZeroPart.length > 0 ? "." : "") + nonZeroPart + suffix;
-            })
+            .replace(
+              /\.([1-9]*)0+(\D|$)/g,
+              function (match, nonZeroPart, suffix) {
+                return (
+                  (nonZeroPart.length > 0 ? "." : "") + nonZeroPart + suffix
+                );
+              }
+            )
             .replace(/(^|\D)0\.(\d)/g, "$1.$2");
         }
 
@@ -3391,7 +3381,7 @@ require = (function() {
           var units = ["px", "em", "ex", "cm", "mm", "in", "pt", "pc", "%"];
           var otherUnits = ["ch", "rem", "vh", "vm", "vmax", "vmin", "vw"];
 
-          otherUnits.forEach(function(unit) {
+          otherUnits.forEach(function (unit) {
             if (options.compatibility.units[unit]) {
               units.push(unit);
             }
@@ -3565,7 +3555,7 @@ require = (function() {
       }
     ],
     11: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var COLORS = {
           aliceblue: "#f0f8ff",
           antiquewhite: "#faebd7",
@@ -3765,7 +3755,7 @@ require = (function() {
       {}
     ],
     12: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // HSL to RGB converter. Both methods adapted from:
         // http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript
 
@@ -3826,7 +3816,7 @@ require = (function() {
       {}
     ],
     13: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function shortenRgb(red, green, blue) {
           var normalizedRed = Math.max(0, Math.min(parseInt(red), 255));
           var normalizedGreen = Math.max(0, Math.min(parseInt(green), 255));
@@ -3851,7 +3841,7 @@ require = (function() {
       {}
     ],
     14: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var naturalCompare = require("../../utils/natural-compare");
 
         function naturalSorter(scope1, scope2) {
@@ -3879,7 +3869,7 @@ require = (function() {
       { "../../utils/natural-compare": 94 }
     ],
     15: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function tidyAtRule(value) {
           return value
             .replace(/\s+/g, " ")
@@ -3893,7 +3883,7 @@ require = (function() {
       {}
     ],
     16: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var SUPPORTED_COMPACT_BLOCK_MATCHER = /^@media\W/;
 
         function tidyBlock(values, spaceAfterClosingBrace) {
@@ -3923,7 +3913,7 @@ require = (function() {
       {}
     ],
     17: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Spaces = require("../../options/format").Spaces;
         var Marker = require("../../tokenizer/marker");
         var formatPosition = require("../../utils/format-position");
@@ -4206,7 +4196,7 @@ require = (function() {
       }
     ],
     18: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var InvalidPropertyError = require("./invalid-property-error");
 
         var wrapSingle = require("../wrap-for-optimizing").single;
@@ -4229,7 +4219,7 @@ require = (function() {
         }
 
         function _colorFilter(validator) {
-          return function(value) {
+          return function (value) {
             return (
               value[1] == "invert" ||
               validator.isColor(value[1]) ||
@@ -4239,7 +4229,7 @@ require = (function() {
         }
 
         function _styleFilter(validator) {
-          return function(value) {
+          return function (value) {
             return (
               value[1] != "inherit" &&
               validator.isStyleKeyword(value[1]) &&
@@ -4276,7 +4266,7 @@ require = (function() {
         }
 
         function _widthFilter(validator) {
-          return function(value) {
+          return function (value) {
             return (
               value[1] != "inherit" &&
               (validator.isWidth(value[1]) ||
@@ -4353,8 +4343,15 @@ require = (function() {
           var l;
 
           if (property.value.length == 1 && property.value[0][1] == "inherit") {
-            duration.value = timing.value = delay.value = iteration.value = direction.value = fill.value = play.value = name.value =
-              property.value;
+            duration.value =
+              timing.value =
+              delay.value =
+              iteration.value =
+              direction.value =
+              fill.value =
+              play.value =
+              name.value =
+                property.value;
             return components;
           }
 
@@ -4464,8 +4461,14 @@ require = (function() {
 
           if (property.value.length == 1 && property.value[0][1] == "inherit") {
             // NOTE: 'inherit' is not a valid value for background-attachment
-            color.value = image.value = repeat.value = position.value = size.value = origin.value = clip.value =
-              property.value;
+            color.value =
+              image.value =
+              repeat.value =
+              position.value =
+              size.value =
+              origin.value =
+              clip.value =
+                property.value;
             return components;
           }
 
@@ -4634,7 +4637,14 @@ require = (function() {
           }
 
           if (values.length == 1 && values[0][1] == "inherit") {
-            style.value = variant.value = weight.value = stretch.value = size.value = height.value = family.value = values;
+            style.value =
+              variant.value =
+              weight.value =
+              stretch.value =
+              size.value =
+              height.value =
+              family.value =
+                values;
             return components;
           }
 
@@ -4645,7 +4655,14 @@ require = (function() {
               validator.isPrefixed(values[0][1]))
           ) {
             values[0][1] = Marker.INTERNAL + values[0][1];
-            style.value = variant.value = weight.value = stretch.value = size.value = height.value = family.value = values;
+            style.value =
+              variant.value =
+              weight.value =
+              stretch.value =
+              size.value =
+              height.value =
+              family.value =
+                values;
             return components;
           }
 
@@ -4844,7 +4861,7 @@ require = (function() {
         }
 
         function multiplex(splitWith) {
-          return function(property, compactable, validator) {
+          return function (property, compactable, validator) {
             var splitsAt = [];
             var values = property.value;
             var i, j, l, m;
@@ -4976,8 +4993,11 @@ require = (function() {
           var l;
 
           if (property.value.length == 1 && property.value[0][1] == "inherit") {
-            prop.value = duration.value = timing.value = delay.value =
-              property.value;
+            prop.value =
+              duration.value =
+              timing.value =
+              delay.value =
+                property.value;
             return components;
           }
 
@@ -5108,7 +5128,7 @@ require = (function() {
       }
     ],
     19: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var understandable = require("./properties/understandable");
 
         function animationIterationCount(validator, value1, value2) {
@@ -5243,7 +5263,7 @@ require = (function() {
         }
 
         function components(overrideCheckers) {
-          return function(validator, value1, value2, position) {
+          return function (validator, value1, value2, position) {
             return overrideCheckers[position](validator, value1, value2);
           };
         }
@@ -5273,7 +5293,7 @@ require = (function() {
         }
 
         function keyword(propertyName) {
-          return function(validator, value1, value2) {
+          return function (validator, value1, value2) {
             if (
               !understandable(validator, value1, value2, 0, true) &&
               !validator.isKeyword(propertyName)(value2)
@@ -5291,7 +5311,7 @@ require = (function() {
         }
 
         function keywordWithGlobal(propertyName) {
-          return function(validator, value1, value2) {
+          return function (validator, value1, value2) {
             if (
               !understandable(validator, value1, value2, 0, true) &&
               !(
@@ -5439,7 +5459,7 @@ require = (function() {
         function unitOrKeywordWithGlobal(propertyName) {
           var byKeyword = keywordWithGlobal(propertyName);
 
-          return function(validator, value1, value2) {
+          return function (validator, value1, value2) {
             return (
               unit(validator, value1, value2) ||
               byKeyword(validator, value1, value2)
@@ -5553,7 +5573,7 @@ require = (function() {
       { "./properties/understandable": 40 }
     ],
     20: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var wrapSingle = require("../wrap-for-optimizing").single;
 
         var Token = require("../../tokenizer/token");
@@ -5591,7 +5611,7 @@ require = (function() {
       { "../../tokenizer/token": 84, "../wrap-for-optimizing": 58 }
     ],
     21: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Contains the interpretation of CSS properties, as used by the property optimizer
 
         var breakUp = require("./break-up");
@@ -6415,7 +6435,7 @@ require = (function() {
 
           if ("componentOf" in clonedDescriptor) {
             clonedDescriptor.componentOf = clonedDescriptor.componentOf.map(
-              function(shorthandName) {
+              function (shorthandName) {
                 return prefix + shorthandName;
               }
             );
@@ -6423,7 +6443,7 @@ require = (function() {
 
           if ("components" in clonedDescriptor) {
             clonedDescriptor.components = clonedDescriptor.components.map(
-              function(longhandName) {
+              function (longhandName) {
                 return prefix + longhandName;
               }
             );
@@ -6468,7 +6488,7 @@ require = (function() {
       }
     ],
     22: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // This extractor is used in level 2 optimizations
         // IMPORTANT: Mind Token class and this code is not related!
         // Properties will be tokenized in one step, see #429
@@ -6546,7 +6566,7 @@ require = (function() {
       { "../../tokenizer/token": 84, "../../writer/one-time": 98 }
     ],
     23: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function InvalidPropertyError(message) {
           this.name = "InvalidPropertyError";
           this.message = message;
@@ -6561,7 +6581,7 @@ require = (function() {
       {}
     ],
     24: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Marker = require("../../tokenizer/marker");
         var split = require("../../utils/split");
 
@@ -6902,7 +6922,7 @@ require = (function() {
       { "../../tokenizer/marker": 83, "../../utils/split": 96 }
     ],
     25: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var isMergeable = require("./is-mergeable");
 
         var optimizeProperties = require("./properties/optimize");
@@ -6910,8 +6930,8 @@ require = (function() {
         var sortSelectors = require("../level-1/sort-selectors");
         var tidyRules = require("../level-1/tidy-rules");
 
-        var OptimizationLevel = require("../../options/optimization-level")
-          .OptimizationLevel;
+        var OptimizationLevel =
+          require("../../options/optimization-level").OptimizationLevel;
 
         var serializeBody = require("../../writer/one-time").body;
         var serializeRules = require("../../writer/one-time").rules;
@@ -6995,15 +7015,15 @@ require = (function() {
       }
     ],
     26: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var canReorder = require("./reorderable").canReorder;
         var canReorderSingle = require("./reorderable").canReorderSingle;
         var extractProperties = require("./extract-properties");
         var rulesOverlap = require("./rules-overlap");
 
         var serializeRules = require("../../writer/one-time").rules;
-        var OptimizationLevel = require("../../options/optimization-level")
-          .OptimizationLevel;
+        var OptimizationLevel =
+          require("../../options/optimization-level").OptimizationLevel;
         var Token = require("../../tokenizer/token");
 
         function mergeMediaQueries(tokens, context) {
@@ -7138,14 +7158,14 @@ require = (function() {
       }
     ],
     27: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var isMergeable = require("./is-mergeable");
 
         var sortSelectors = require("../level-1/sort-selectors");
         var tidyRules = require("../level-1/tidy-rules");
 
-        var OptimizationLevel = require("../../options/optimization-level")
-          .OptimizationLevel;
+        var OptimizationLevel =
+          require("../../options/optimization-level").OptimizationLevel;
 
         var serializeBody = require("../../writer/one-time").body;
         var serializeRules = require("../../writer/one-time").rules;
@@ -7201,7 +7221,8 @@ require = (function() {
 
             if (
               token[2].length > 0 &&
-              (!mergeSemantically && unsafeSelector(serializeRules(token[1])))
+              !mergeSemantically &&
+              unsafeSelector(serializeRules(token[1]))
             )
               candidates = {};
 
@@ -7261,7 +7282,7 @@ require = (function() {
       }
     ],
     28: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var canReorder = require("./reorderable").canReorder;
         var extractProperties = require("./extract-properties");
 
@@ -7356,7 +7377,7 @@ require = (function() {
       }
     ],
     29: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var mergeAdjacent = require("./merge-adjacent");
         var mergeMediaQueries = require("./merge-media-queries");
         var mergeNonAdjacentByBody = require("./merge-non-adjacent-by-body");
@@ -7370,8 +7391,8 @@ require = (function() {
 
         var optimizeProperties = require("./properties/optimize");
 
-        var OptimizationLevel = require("../../options/optimization-level")
-          .OptimizationLevel;
+        var OptimizationLevel =
+          require("../../options/optimization-level").OptimizationLevel;
 
         var Token = require("../../tokenizer/token");
 
@@ -7526,7 +7547,7 @@ require = (function() {
       }
     ],
     30: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Marker = require("../../../tokenizer/marker");
 
         function everyValuesPair(fn, left, right) {
@@ -7561,7 +7582,7 @@ require = (function() {
       { "../../../tokenizer/marker": 83 }
     ],
     31: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var compactable = require("../compactable");
 
         function findComponentIn(shorthand, longhand) {
@@ -7574,7 +7595,7 @@ require = (function() {
         }
 
         function nameComparator(to) {
-          return function(property) {
+          return function (property) {
             return to.name === property.name;
           };
         }
@@ -7612,7 +7633,7 @@ require = (function() {
       { "../compactable": 21 }
     ],
     32: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function hasInherit(property) {
           for (var i = property.value.length - 1; i >= 0; i--) {
             if (property.value[i][1] == "inherit") return true;
@@ -7626,7 +7647,7 @@ require = (function() {
       {}
     ],
     33: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var compactable = require("../compactable");
 
         function isComponentOf(property1, property2, shallow) {
@@ -7648,7 +7669,7 @@ require = (function() {
         }
 
         function isSubComponentOf(property1, property2) {
-          return property1.components.some(function(component) {
+          return property1.components.some(function (component) {
             return isDirectComponentOf(component, property2);
           });
         }
@@ -7658,7 +7679,7 @@ require = (function() {
       { "../compactable": 21 }
     ],
     34: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Marker = require("../../../tokenizer/marker");
 
         function isMergeableShorthand(shorthand) {
@@ -7674,7 +7695,7 @@ require = (function() {
       { "../../../tokenizer/marker": 83 }
     ],
     35: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var everyValuesPair = require("./every-values-pair");
         var hasInherit = require("./has-inherit");
         var populateComponents = require("./populate-components");
@@ -8219,7 +8240,7 @@ require = (function() {
       }
     ],
     36: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var mergeIntoShorthands = require("./merge-into-shorthands");
         var overrideProperties = require("./override-properties");
         var populateComponents = require("./populate-components");
@@ -8230,8 +8251,8 @@ require = (function() {
         var removeUnused = require("../../remove-unused");
         var restoreFromOptimizing = require("../../restore-from-optimizing");
 
-        var OptimizationLevel = require("../../../options/optimization-level")
-          .OptimizationLevel;
+        var OptimizationLevel =
+          require("../../../options/optimization-level").OptimizationLevel;
 
         function optimizeProperties(
           properties,
@@ -8293,7 +8314,7 @@ require = (function() {
       }
     ],
     37: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var hasInherit = require("./has-inherit");
         var everyValuesPair = require("./every-values-pair");
         var findComponentIn = require("./find-component-in");
@@ -8901,7 +8922,7 @@ require = (function() {
       }
     ],
     38: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var compactable = require("../compactable");
 
         function overridesNonComponentShorthand(property1, property2) {
@@ -8919,7 +8940,7 @@ require = (function() {
       { "../compactable": 21 }
     ],
     39: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var compactable = require("../compactable");
         var InvalidPropertyError = require("../invalid-property-error");
 
@@ -8973,7 +8994,7 @@ require = (function() {
       { "../compactable": 21, "../invalid-property-error": 23 }
     ],
     40: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var sameVendorPrefixes = require("./vendor-prefixes").same;
 
         function understandable(
@@ -9002,7 +9023,7 @@ require = (function() {
       { "./vendor-prefixes": 41 }
     ],
     41: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var VENDOR_PREFIX_PATTERN = /(?:^|\W)(\-\w+\-)/g;
 
         function unique(value) {
@@ -9020,12 +9041,7 @@ require = (function() {
 
         function same(value1, value2) {
           return (
-            unique(value1)
-              .sort()
-              .join(",") ==
-            unique(value2)
-              .sort()
-              .join(",")
+            unique(value1).sort().join(",") == unique(value2).sort().join(",")
           );
         }
 
@@ -9037,7 +9053,7 @@ require = (function() {
       {}
     ],
     42: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var isMergeable = require("./is-mergeable");
 
         var optimizeProperties = require("./properties/optimize");
@@ -9285,7 +9301,7 @@ require = (function() {
       }
     ],
     43: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Token = require("../../tokenizer/token");
 
         var serializeAll = require("../../writer/one-time").all;
@@ -9323,7 +9339,7 @@ require = (function() {
       { "../../tokenizer/token": 84, "../../writer/one-time": 98 }
     ],
     44: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Token = require("../../tokenizer/token");
 
         var serializeAll = require("../../writer/one-time").all;
@@ -9358,7 +9374,7 @@ require = (function() {
       { "../../tokenizer/token": 84, "../../writer/one-time": 98 }
     ],
     45: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Token = require("../../tokenizer/token");
 
         var serializeBody = require("../../writer/one-time").body;
@@ -9401,7 +9417,7 @@ require = (function() {
       { "../../tokenizer/token": 84, "../../writer/one-time": 98 }
     ],
     46: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var populateComponents = require("./properties/populate-components");
 
         var wrapForOptimizing = require("../wrap-for-optimizing").single;
@@ -9511,7 +9527,7 @@ require = (function() {
         }
 
         function markCounterStylesAsUsed(atRules) {
-          return function(token, context) {
+          return function (token, context) {
             var property;
             var wrappedProperty;
             var i, l;
@@ -9567,7 +9583,7 @@ require = (function() {
         }
 
         function markFontFacesAsUsed(atRules) {
-          return function(token, context) {
+          return function (token, context) {
             var property;
             var wrappedProperty;
             var component;
@@ -9627,7 +9643,7 @@ require = (function() {
         }
 
         function markKeyframesAsUsed(atRules) {
-          return function(token, context) {
+          return function (token, context) {
             var property;
             var wrappedProperty;
             var component;
@@ -9685,7 +9701,7 @@ require = (function() {
             "g"
           );
 
-          return function(token) {
+          return function (token) {
             var match;
             var scope;
             var normalizedMatch;
@@ -9717,14 +9733,15 @@ require = (function() {
       }
     ],
     47: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // TODO: it'd be great to merge it with the other canReorder functionality
 
         var rulesOverlap = require("./rules-overlap");
         var specificitiesOverlap = require("./specificities-overlap");
 
         var FLEX_PROPERTIES = /align\-items|box\-align|box\-pack|flex|justify/;
-        var BORDER_PROPERTIES = /^border\-(top|right|bottom|left|color|style|width|radius)/;
+        var BORDER_PROPERTIES =
+          /^border\-(top|right|bottom|left|color|style|width|radius)/;
 
         function canReorder(left, right, cache) {
           for (var i = right.length - 1; i >= 0; i--) {
@@ -9875,7 +9892,7 @@ require = (function() {
       { "./rules-overlap": 51, "./specificities-overlap": 52 }
     ],
     48: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var compactable = require("./compactable");
 
         function restoreWithComponents(property) {
@@ -9893,7 +9910,7 @@ require = (function() {
       { "./compactable": 21 }
     ],
     49: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var shallowClone = require("./clone").shallow;
 
         var Token = require("../../tokenizer/token");
@@ -10169,7 +10186,7 @@ require = (function() {
         }
 
         function multiplex(restoreWith) {
-          return function(property, compactable) {
+          return function (property, compactable) {
             if (!property.multiplex)
               return restoreWith(property, compactable, true);
 
@@ -10293,7 +10310,7 @@ require = (function() {
       }
     ],
     50: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var canReorderSingle = require("./reorderable").canReorderSingle;
         var extractProperties = require("./extract-properties");
         var isMergeable = require("./is-mergeable");
@@ -10810,7 +10827,7 @@ require = (function() {
       }
     ],
     51: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var MODIFIER_PATTERN = /\-\-.+$/;
 
         function rulesOverlap(rule1, rule2, bemMode) {
@@ -10850,7 +10867,7 @@ require = (function() {
       {}
     ],
     52: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var specificity = require("./specificity");
 
         function specificitiesOverlap(selector1, selector2, cache) {
@@ -10893,7 +10910,7 @@ require = (function() {
       { "./specificity": 53 }
     ],
     53: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Marker = require("../../tokenizer/marker");
 
         var Selector = {
@@ -11005,7 +11022,7 @@ require = (function() {
       { "../../tokenizer/marker": 83 }
     ],
     54: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function ruleSorter(s1, s2) {
           return s1[1] > s2[1] ? 1 : -1;
         }
@@ -11031,7 +11048,7 @@ require = (function() {
       {}
     ],
     55: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function removeUnused(properties) {
           for (var i = properties.length - 1; i >= 0; i--) {
             var property = properties[i];
@@ -11047,7 +11064,7 @@ require = (function() {
       {}
     ],
     56: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Hack = require("./hack");
 
         var Marker = require("../tokenizer/marker");
@@ -11123,7 +11140,7 @@ require = (function() {
       { "../tokenizer/marker": 83, "./hack": 8 }
     ],
     57: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var functionNoVendorRegexStr = "[A-Z]+(\\-|[A-Z]|[0-9])+\\(.*?\\)";
         var functionVendorRegexStr = "\\-(\\-|[A-Z]|[0-9])+\\(.*?\\)";
         var variableRegexStr = "var\\(\\-\\-[^\\)]+\\)";
@@ -11142,11 +11159,13 @@ require = (function() {
         );
         var decimalRegex = /[0-9]/;
         var functionAnyRegex = new RegExp("^" + functionAnyRegexStr + "$", "i");
-        var hslColorRegex = /^hsl\(\s{0,31}[\-\.]?\d+\s{0,31},\s{0,31}\.?\d+%\s{0,31},\s{0,31}\.?\d+%\s{0,31}\)|hsla\(\s{0,31}[\-\.]?\d+\s{0,31},\s{0,31}\.?\d+%\s{0,31},\s{0,31}\.?\d+%\s{0,31},\s{0,31}\.?\d+\s{0,31}\)$/;
+        var hslColorRegex =
+          /^hsl\(\s{0,31}[\-\.]?\d+\s{0,31},\s{0,31}\.?\d+%\s{0,31},\s{0,31}\.?\d+%\s{0,31}\)|hsla\(\s{0,31}[\-\.]?\d+\s{0,31},\s{0,31}\.?\d+%\s{0,31},\s{0,31}\.?\d+%\s{0,31},\s{0,31}\.?\d+\s{0,31}\)$/;
         var identifierRegex = /^(\-[a-z0-9_][a-z0-9\-_]*|[a-z][a-z0-9\-_]*)$/i;
         var namedEntityRegex = /^[a-z]+$/i;
         var prefixRegex = /^-([a-z0-9]|-)*$/i;
-        var rgbColorRegex = /^rgb\(\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\d]{1,3}\s{0,31}\)|rgba\(\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\.\d]+\s{0,31}\)$/;
+        var rgbColorRegex =
+          /^rgb\(\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\d]{1,3}\s{0,31}\)|rgba\(\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\d]{1,3}\s{0,31},\s{0,31}[\.\d]+\s{0,31}\)$/;
         var timingFunctionRegex = /^(cubic\-bezier|steps)\([^\)]+\)$/;
         var validTimeUnits = ["ms", "s"];
         var urlRegex = /^url\([\s\S]+\)$/i;
@@ -11427,7 +11446,7 @@ require = (function() {
         }
 
         function isKeyword(propertyName) {
-          return function(value) {
+          return function (value) {
             return Keywords[propertyName].indexOf(value) > -1;
           };
         }
@@ -11469,7 +11488,7 @@ require = (function() {
         function isTimingFunction() {
           var isTimingFunctionKeyword = isKeyword("*-timing-function");
 
-          return function(value) {
+          return function (value) {
             return (
               isTimingFunctionKeyword(value) || timingFunctionRegex.test(value)
             );
@@ -11531,7 +11550,7 @@ require = (function() {
         }
 
         function validator(compatibility) {
-          var validUnits = Units.slice(0).filter(function(value) {
+          var validUnits = Units.slice(0).filter(function (value) {
             return (
               !(value in compatibility.units) ||
               compatibility.units[value] === true
@@ -11591,7 +11610,7 @@ require = (function() {
       {}
     ],
     58: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Hack = require("./hack");
 
         var Marker = require("../tokenizer/marker");
@@ -11829,7 +11848,7 @@ require = (function() {
       { "../tokenizer/marker": 83, "../tokenizer/token": 84, "./hack": 8 }
     ],
     59: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var DEFAULTS = {
           "*": {
             colors: {
@@ -11996,7 +12015,7 @@ require = (function() {
 
           source = {};
 
-          parts.forEach(function(part) {
+          parts.forEach(function (part) {
             var isAdd = part[0] == "+";
             var key = part.substring(1).split(".");
             var group = key[0];
@@ -12014,7 +12033,7 @@ require = (function() {
       {}
     ],
     60: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var loadRemoteResource = require("../reader/load-remote-resource");
 
         function fetchFrom(callback) {
@@ -12026,7 +12045,7 @@ require = (function() {
       { "../reader/load-remote-resource": 74 }
     ],
     61: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var systemLineBreak = require("os").EOL;
 
         var override = require("../utils/override");
@@ -12167,39 +12186,41 @@ require = (function() {
         }
 
         function toHash(string) {
-          return string
-            .split(OPTION_SEPARATOR)
-            .reduce(function(accumulator, directive) {
-              var parts = directive.split(OPTION_NAME_VALUE_SEPARATOR);
-              var name = parts[0];
-              var value = parts[1];
+          return string.split(OPTION_SEPARATOR).reduce(function (
+            accumulator,
+            directive
+          ) {
+            var parts = directive.split(OPTION_NAME_VALUE_SEPARATOR);
+            var name = parts[0];
+            var value = parts[1];
 
-              if (name == "breaks" || name == "spaces") {
-                accumulator[name] = hashValuesToHash(value);
-              } else if (name == "indentBy" || name == "wrapAt") {
-                accumulator[name] = parseInt(value);
-              } else if (name == "indentWith") {
-                accumulator[name] = mapIndentWith(value);
-              } else if (name == "breakWith") {
-                accumulator[name] = mapBreakWith(value);
-              }
+            if (name == "breaks" || name == "spaces") {
+              accumulator[name] = hashValuesToHash(value);
+            } else if (name == "indentBy" || name == "wrapAt") {
+              accumulator[name] = parseInt(value);
+            } else if (name == "indentWith") {
+              accumulator[name] = mapIndentWith(value);
+            } else if (name == "breakWith") {
+              accumulator[name] = mapBreakWith(value);
+            }
 
-              return accumulator;
-            }, {});
+            return accumulator;
+          }, {});
         }
 
         function hashValuesToHash(string) {
-          return string
-            .split(HASH_VALUES_OPTION_SEPARATOR)
-            .reduce(function(accumulator, directive) {
-              var parts = directive.split(HASH_VALUES_NAME_VALUE_SEPARATOR);
-              var name = parts[0];
-              var value = parts[1];
+          return string.split(HASH_VALUES_OPTION_SEPARATOR).reduce(function (
+            accumulator,
+            directive
+          ) {
+            var parts = directive.split(HASH_VALUES_NAME_VALUE_SEPARATOR);
+            var name = parts[0];
+            var value = parts[1];
 
-              accumulator[name] = normalizeValue(value);
+            accumulator[name] = normalizeValue(value);
 
-              return accumulator;
-            }, {});
+            return accumulator;
+          }, {});
         }
 
         function normalizeValue(value) {
@@ -12250,8 +12271,8 @@ require = (function() {
       { "../utils/override": 95, os: 109 }
     ],
     62: [
-      function(require, module, exports) {
-        (function(process) {
+      function (require, module, exports) {
+        (function (process) {
           var url = require("url");
 
           var override = require("../utils/override");
@@ -12276,12 +12297,12 @@ require = (function() {
           }
 
           module.exports = inlineRequestFrom;
-        }.call(this, require("_process")));
+        }).call(this, require("_process"));
       },
       { "../utils/override": 95, _process: 112, url: 162 }
     ],
     63: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var DEFAULT_TIMEOUT = 5000;
 
         function inlineTimeoutFrom(option) {
@@ -12293,7 +12314,7 @@ require = (function() {
       {}
     ],
     64: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function inlineOptionsFrom(rules) {
           if (Array.isArray(rules)) {
             return rules;
@@ -12311,9 +12332,9 @@ require = (function() {
       {}
     ],
     65: [
-      function(require, module, exports) {
-        var roundingPrecisionFrom = require("./rounding-precision")
-          .roundingPrecisionFrom;
+      function (require, module, exports) {
+        var roundingPrecisionFrom =
+          require("./rounding-precision").roundingPrecisionFrom;
 
         var override = require("../utils/override");
 
@@ -12424,9 +12445,8 @@ require = (function() {
             "skipProperties" in source[Two] &&
             typeof source[Two].skipProperties == "string"
           ) {
-            source[Two].skipProperties = source[Two].skipProperties.split(
-              LIST_VALUE_SEPARATOR
-            );
+            source[Two].skipProperties =
+              source[Two].skipProperties.split(LIST_VALUE_SEPARATOR);
           }
 
           if (Zero in source || One in source || Two in source) {
@@ -12538,25 +12558,26 @@ require = (function() {
         }
 
         function covertToHash(asString, level) {
-          return asString
-            .split(OPTION_SEPARATOR)
-            .reduce(function(accumulator, directive) {
-              var parts = directive.split(OPTION_VALUE_SEPARATOR);
-              var name = parts[0];
-              var value = parts[1];
-              var normalizedValue = normalizeValue(value);
+          return asString.split(OPTION_SEPARATOR).reduce(function (
+            accumulator,
+            directive
+          ) {
+            var parts = directive.split(OPTION_VALUE_SEPARATOR);
+            var name = parts[0];
+            var value = parts[1];
+            var normalizedValue = normalizeValue(value);
 
-              if (ALL_KEYWORD_1 == name || ALL_KEYWORD_2 == name) {
-                accumulator = override(
-                  accumulator,
-                  defaults(level, normalizedValue)
-                );
-              } else {
-                accumulator[name] = normalizedValue;
-              }
+            if (ALL_KEYWORD_1 == name || ALL_KEYWORD_2 == name) {
+              accumulator = override(
+                accumulator,
+                defaults(level, normalizedValue)
+              );
+            } else {
+              accumulator[name] = normalizedValue;
+            }
 
-              return accumulator;
-            }, {});
+            return accumulator;
+          }, {});
         }
 
         module.exports = {
@@ -12567,8 +12588,8 @@ require = (function() {
       { "../utils/override": 95, "./rounding-precision": 68 }
     ],
     66: [
-      function(require, module, exports) {
-        (function(process) {
+      function (require, module, exports) {
+        (function (process) {
           var path = require("path");
 
           function rebaseToFrom(option) {
@@ -12576,12 +12597,12 @@ require = (function() {
           }
 
           module.exports = rebaseToFrom;
-        }.call(this, require("_process")));
+        }).call(this, require("_process"));
       },
       { _process: 112, path: 110 }
     ],
     67: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function rebaseFrom(rebaseOption) {
           return undefined === rebaseOption ? true : !!rebaseOption;
         }
@@ -12591,7 +12612,7 @@ require = (function() {
       {}
     ],
     68: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var override = require("../utils/override");
 
         var INTEGER_PATTERN = /^\d+$/;
@@ -12658,25 +12679,26 @@ require = (function() {
             return source;
           }
 
-          return source
-            .split(DIRECTIVES_SEPARATOR)
-            .reduce(function(accumulator, directive) {
-              var directiveParts = directive.split(DIRECTIVE_VALUE_SEPARATOR);
-              var name = directiveParts[0];
-              var value = parseInt(directiveParts[1]);
+          return source.split(DIRECTIVES_SEPARATOR).reduce(function (
+            accumulator,
+            directive
+          ) {
+            var directiveParts = directive.split(DIRECTIVE_VALUE_SEPARATOR);
+            var name = directiveParts[0];
+            var value = parseInt(directiveParts[1]);
 
-              if (isNaN(value) || value == -1) {
-                value = DEFAULT_PRECISION;
-              }
+            if (isNaN(value) || value == -1) {
+              value = DEFAULT_PRECISION;
+            }
 
-              if (ALL_UNITS.indexOf(name) > -1) {
-                accumulator = override(accumulator, defaults(value));
-              } else {
-                accumulator[name] = value;
-              }
+            if (ALL_UNITS.indexOf(name) > -1) {
+              accumulator = override(accumulator, defaults(value));
+            } else {
+              accumulator[name] = value;
+            }
 
-              return accumulator;
-            }, {});
+            return accumulator;
+          }, {});
         }
 
         module.exports = {
@@ -12687,8 +12709,8 @@ require = (function() {
       { "../utils/override": 95 }
     ],
     69: [
-      function(require, module, exports) {
-        (function(global, Buffer) {
+      function (require, module, exports) {
+        (function (global, Buffer) {
           var fs = require("fs");
           var path = require("path");
 
@@ -12787,7 +12809,7 @@ require = (function() {
             return extractInputSourceMapFrom(
               sourceMapComment,
               applyContext,
-              function(inputSourceMap) {
+              function (inputSourceMap) {
                 if (inputSourceMap) {
                   applyContext.inputSourceMapTracker.track(
                     source,
@@ -12822,7 +12844,7 @@ require = (function() {
               return loadInputSourceMapFromRemoteUri(
                 uri,
                 applyContext,
-                function(sourceMap) {
+                function (sourceMap) {
                   var parsedMap;
 
                   if (sourceMap) {
@@ -12907,7 +12929,7 @@ require = (function() {
               uri,
               applyContext.inlineRequest,
               applyContext.inlineTimeout,
-              function(error, body) {
+              function (error, body) {
                 if (error) {
                   applyContext.warnings.push(
                     'Missing source map at "' + uri + '" - ' + error
@@ -13013,7 +13035,7 @@ require = (function() {
           }
 
           module.exports = applySourceMaps;
-        }.call(
+        }).call(
           this,
           typeof global !== "undefined"
             ? global
@@ -13023,7 +13045,7 @@ require = (function() {
             ? window
             : {},
           require("buffer").Buffer
-        ));
+        );
       },
       {
         "../tokenizer/token": 84,
@@ -13040,7 +13062,7 @@ require = (function() {
       }
     ],
     70: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var split = require("../utils/split");
 
         var BRACE_PREFIX = /^\(/;
@@ -13078,7 +13100,7 @@ require = (function() {
       { "../utils/split": 96 }
     ],
     71: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var SourceMapConsumer = require("source-map").SourceMapConsumer;
 
         function inputSourceMapTracker() {
@@ -13150,7 +13172,7 @@ require = (function() {
       { "source-map": 155 }
     ],
     72: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var path = require("path");
         var url = require("url");
 
@@ -13245,7 +13267,7 @@ require = (function() {
       }
     ],
     73: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var fs = require("fs");
         var path = require("path");
 
@@ -13326,13 +13348,15 @@ require = (function() {
           var content;
 
           if (isRemoteResource(uri)) {
-            return loadOriginalSourceFromRemoteUri(uri, loadContext, function(
-              content
-            ) {
-              loadContext.index++;
-              loadContext.sourcesContent[uri] = content;
-              return doLoadOriginalSources(loadContext);
-            });
+            return loadOriginalSourceFromRemoteUri(
+              uri,
+              loadContext,
+              function (content) {
+                loadContext.index++;
+                loadContext.sourcesContent[uri] = content;
+                return doLoadOriginalSources(loadContext);
+              }
+            );
           } else {
             content = loadOriginalSourceFromLocalUri(uri, loadContext);
             loadContext.index++;
@@ -13368,7 +13392,7 @@ require = (function() {
             uri,
             loadContext.inlineRequest,
             loadContext.inlineTimeout,
-            function(error, content) {
+            function (error, content) {
               if (error) {
                 loadContext.warnings.push(
                   'Missing original source at "' + uri + '" - ' + error
@@ -13419,7 +13443,7 @@ require = (function() {
       }
     ],
     74: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var http = require("http");
         var https = require("https");
         var url = require("url");
@@ -13455,7 +13479,7 @@ require = (function() {
               ? http.get
               : https.get;
 
-          fetch(requestOptions, function(res) {
+          fetch(requestOptions, function (res) {
             var chunks = [];
             var movedUri;
 
@@ -13475,15 +13499,15 @@ require = (function() {
               );
             }
 
-            res.on("data", function(chunk) {
+            res.on("data", function (chunk) {
               chunks.push(chunk.toString());
             });
-            res.on("end", function() {
+            res.on("end", function () {
               var body = chunks.join("");
               callback(null, body);
             });
           })
-            .on("error", function(res) {
+            .on("error", function (res) {
               if (errorHandled) {
                 return;
               }
@@ -13491,7 +13515,7 @@ require = (function() {
               errorHandled = true;
               callback(res.message, null);
             })
-            .on("timeout", function() {
+            .on("timeout", function () {
               if (errorHandled) {
                 return;
               }
@@ -13514,7 +13538,7 @@ require = (function() {
       }
     ],
     75: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var DATA_URI_PATTERN = /^data:(\S*?)?(;charset=[^;]+)?(;[^,]+?)?,(.+)/;
 
         function matchDataUri(uri) {
@@ -13526,7 +13550,7 @@ require = (function() {
       {}
     ],
     76: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var UNIX_SEPARATOR = "/";
         var WINDOWS_SEPARATOR_PATTERN = /\\/g;
 
@@ -13539,8 +13563,8 @@ require = (function() {
       {}
     ],
     77: [
-      function(require, module, exports) {
-        (function(Buffer, process) {
+      function (require, module, exports) {
+        (function (Buffer, process) {
           var fs = require("fs");
           var path = require("path");
 
@@ -13564,9 +13588,9 @@ require = (function() {
           var UNKNOWN_URI = "uri:unknown";
 
           function readSources(input, context, callback) {
-            return doReadSources(input, context, function(tokens) {
-              return applySourceMaps(tokens, context, function() {
-                return loadOriginalSources(context, function() {
+            return doReadSources(input, context, function (tokens) {
+              return applySourceMaps(tokens, context, function () {
+                return loadOriginalSources(context, function () {
                   return callback(tokens);
                 });
               });
@@ -13599,7 +13623,10 @@ require = (function() {
           }
 
           function fromArray(input, context, callback) {
-            var inputAsImports = input.reduce(function(accumulator, uriOrHash) {
+            var inputAsImports = input.reduce(function (
+              accumulator,
+              uriOrHash
+            ) {
               if (typeof uriOrHash === "string") {
                 return addStringSource(uriOrHash, accumulator);
               } else {
@@ -13815,9 +13842,8 @@ require = (function() {
                   uri +
                   '" as it has already been imported.'
               );
-              inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                1
-              );
+              inlinerContext.sourceTokens =
+                inlinerContext.sourceTokens.slice(1);
               return doInlineImports(inlinerContext);
             } else if (
               inlinerContext.localOnly &&
@@ -13828,9 +13854,8 @@ require = (function() {
                   uri +
                   '" as no callback given and after other content.'
               );
-              inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                1
-              );
+              inlinerContext.sourceTokens =
+                inlinerContext.sourceTokens.slice(1);
               return doInlineImports(inlinerContext);
             } else if (isRuntimeResource) {
               inlinerContext.warnings.push(
@@ -13839,9 +13864,8 @@ require = (function() {
               inlinerContext.outputTokens = inlinerContext.outputTokens.concat(
                 inlinerContext.sourceTokens.slice(0, 1)
               );
-              inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                1
-              );
+              inlinerContext.sourceTokens =
+                inlinerContext.sourceTokens.slice(1);
               return doInlineImports(inlinerContext);
             } else if (inlinerContext.localOnly && !isLoaded) {
               inlinerContext.warnings.push(
@@ -13850,9 +13874,8 @@ require = (function() {
               inlinerContext.outputTokens = inlinerContext.outputTokens.concat(
                 inlinerContext.sourceTokens.slice(0, 1)
               );
-              inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                1
-              );
+              inlinerContext.sourceTokens =
+                inlinerContext.sourceTokens.slice(1);
               return doInlineImports(inlinerContext);
             } else if (!isAllowed && inlinerContext.afterContent) {
               inlinerContext.warnings.push(
@@ -13860,9 +13883,8 @@ require = (function() {
                   uri +
                   '" as resource is not allowed and after other content.'
               );
-              inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                1
-              );
+              inlinerContext.sourceTokens =
+                inlinerContext.sourceTokens.slice(1);
               return doInlineImports(inlinerContext);
             } else if (!isAllowed) {
               inlinerContext.warnings.push(
@@ -13873,9 +13895,8 @@ require = (function() {
               inlinerContext.outputTokens = inlinerContext.outputTokens.concat(
                 inlinerContext.sourceTokens.slice(0, 1)
               );
-              inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                1
-              );
+              inlinerContext.sourceTokens =
+                inlinerContext.sourceTokens.slice(1);
               return doInlineImports(inlinerContext);
             }
 
@@ -13887,13 +13908,13 @@ require = (function() {
                   'Broken @import declaration of "' + uri + '" - ' + error
                 );
 
-                return process.nextTick(function() {
-                  inlinerContext.outputTokens = inlinerContext.outputTokens.concat(
-                    inlinerContext.sourceTokens.slice(0, 1)
-                  );
-                  inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                    1
-                  );
+                return process.nextTick(function () {
+                  inlinerContext.outputTokens =
+                    inlinerContext.outputTokens.concat(
+                      inlinerContext.sourceTokens.slice(0, 1)
+                    );
+                  inlinerContext.sourceTokens =
+                    inlinerContext.sourceTokens.slice(1);
                   doInlineImports(inlinerContext);
                 });
               }
@@ -13903,9 +13924,8 @@ require = (function() {
               inlinerContext.isRemote = true;
 
               inlinerContext.externalContext.source = originalUri;
-              inlinerContext.externalContext.sourcesContent[
-                uri
-              ] = importedStyles;
+              inlinerContext.externalContext.sourcesContent[uri] =
+                importedStyles;
               inlinerContext.externalContext.stats.originalSize +=
                 importedStyles.length;
 
@@ -13913,19 +13933,17 @@ require = (function() {
                 importedStyles,
                 inlinerContext.externalContext,
                 inlinerContext,
-                function(importedTokens) {
+                function (importedTokens) {
                   importedTokens = wrapInMedia(
                     importedTokens,
                     mediaQuery,
                     metadata
                   );
 
-                  inlinerContext.outputTokens = inlinerContext.outputTokens.concat(
-                    importedTokens
-                  );
-                  inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                    1
-                  );
+                  inlinerContext.outputTokens =
+                    inlinerContext.outputTokens.concat(importedTokens);
+                  inlinerContext.sourceTokens =
+                    inlinerContext.sourceTokens.slice(1);
 
                   return doInlineImports(inlinerContext);
                 }
@@ -14016,9 +14034,8 @@ require = (function() {
                 inlinerContext.externalContext.options.inline;
 
               inlinerContext.externalContext.source = normalizedPath;
-              inlinerContext.externalContext.sourcesContent[
-                normalizedPath
-              ] = importedStyles;
+              inlinerContext.externalContext.sourcesContent[normalizedPath] =
+                importedStyles;
               inlinerContext.externalContext.stats.originalSize +=
                 importedStyles.length;
 
@@ -14026,19 +14043,17 @@ require = (function() {
                 importedStyles,
                 inlinerContext.externalContext,
                 inlinerContext,
-                function(importedTokens) {
+                function (importedTokens) {
                   importedTokens = wrapInMedia(
                     importedTokens,
                     mediaQuery,
                     metadata
                   );
 
-                  inlinerContext.outputTokens = inlinerContext.outputTokens.concat(
-                    importedTokens
-                  );
-                  inlinerContext.sourceTokens = inlinerContext.sourceTokens.slice(
-                    1
-                  );
+                  inlinerContext.outputTokens =
+                    inlinerContext.outputTokens.concat(importedTokens);
+                  inlinerContext.sourceTokens =
+                    inlinerContext.sourceTokens.slice(1);
 
                   return doInlineImports(inlinerContext);
                 }
@@ -14067,11 +14082,11 @@ require = (function() {
           }
 
           module.exports = readSources;
-        }.call(
+        }).call(
           this,
           { isBuffer: require("../../../is-buffer/index.js") },
           require("_process")
-        ));
+        );
       },
       {
         "../../../is-buffer/index.js": 107,
@@ -14096,7 +14111,7 @@ require = (function() {
       }
     ],
     78: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var path = require("path");
 
         function rebaseLocalMap(sourceMap, sourceUri, rebaseTo) {
@@ -14104,7 +14119,7 @@ require = (function() {
           var absoluteUri = path.resolve(currentPath, sourceUri);
           var absoluteUriDirectory = path.dirname(absoluteUri);
 
-          sourceMap.sources = sourceMap.sources.map(function(source) {
+          sourceMap.sources = sourceMap.sources.map(function (source) {
             return path.relative(
               rebaseTo,
               path.resolve(absoluteUriDirectory, source)
@@ -14119,14 +14134,14 @@ require = (function() {
       { path: 110 }
     ],
     79: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var path = require("path");
         var url = require("url");
 
         function rebaseRemoteMap(sourceMap, sourceUri) {
           var sourceDirectory = path.dirname(sourceUri);
 
-          sourceMap.sources = sourceMap.sources.map(function(source) {
+          sourceMap.sources = sourceMap.sources.map(function (source) {
             return url.resolve(sourceDirectory, source);
           });
 
@@ -14138,7 +14153,7 @@ require = (function() {
       { path: 110, url: 162 }
     ],
     80: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var extractImportUrlAndMedia = require("./extract-import-url-and-media");
         var restoreImport = require("./restore-import");
         var rewriteUrl = require("./rewrite-url");
@@ -14257,7 +14272,7 @@ require = (function() {
       }
     ],
     81: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function restoreImport(uri, mediaQuery) {
           return ("@import " + uri + " " + mediaQuery).trim();
         }
@@ -14267,8 +14282,8 @@ require = (function() {
       {}
     ],
     82: [
-      function(require, module, exports) {
-        (function(process) {
+      function (require, module, exports) {
+        (function (process) {
           var path = require("path");
           var url = require("url");
 
@@ -14398,12 +14413,12 @@ require = (function() {
           }
 
           module.exports = rewriteUrl;
-        }.call(this, require("_process")));
+        }).call(this, require("_process"));
       },
       { _process: 112, path: 110, url: 162 }
     ],
     83: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Marker = {
           ASTERISK: "*",
           AT: "@",
@@ -14434,7 +14449,7 @@ require = (function() {
       {}
     ],
     84: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Token = {
           AT_RULE: "at-rule", // e.g. `@import`, `@charset`
           AT_RULE_BLOCK: "at-rule-block", // e.g. `@font-face{...}`
@@ -14456,7 +14471,7 @@ require = (function() {
       {}
     ],
     85: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Marker = require("./marker");
         var Token = require("./token");
 
@@ -14669,9 +14684,8 @@ require = (function() {
               ];
               newTokens.push(lastToken);
 
-              serializedBufferPart = serializedBuffer.substring(
-                lastCommentStartAt
-              );
+              serializedBufferPart =
+                serializedBuffer.substring(lastCommentStartAt);
               metadata = [
                 position.line,
                 position.column - serializedBufferPart.length + 1,
@@ -15481,7 +15495,7 @@ require = (function() {
       { "../utils/format-position": 87, "./marker": 83, "./token": 84 }
     ],
     86: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function cloneArray(array) {
           var cloned = array.slice(0);
 
@@ -15497,7 +15511,7 @@ require = (function() {
       {}
     ],
     87: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function formatPosition(metadata) {
           var line = metadata[0];
           var column = metadata[1];
@@ -15513,7 +15527,7 @@ require = (function() {
       {}
     ],
     88: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var NO_PROTOCOL_RESOURCE_PATTERN = /^\/\//;
 
         function hasProtocol(uri) {
@@ -15525,7 +15539,7 @@ require = (function() {
       {}
     ],
     89: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var DATA_URI_PATTERN = /^data:(\S*?)?(;charset=[^;]+)?(;[^,]+?)?,(.+)/;
 
         function isDataUriResource(uri) {
@@ -15537,7 +15551,7 @@ require = (function() {
       {}
     ],
     90: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var HTTP_RESOURCE_PATTERN = /^http:\/\//;
 
         function isHttpResource(uri) {
@@ -15549,7 +15563,7 @@ require = (function() {
       {}
     ],
     91: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var HTTPS_RESOURCE_PATTERN = /^https:\/\//;
 
         function isHttpsResource(uri) {
@@ -15561,7 +15575,7 @@ require = (function() {
       {}
     ],
     92: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var IMPORT_PREFIX_PATTERN = /^@import/i;
 
         function isImport(value) {
@@ -15573,7 +15587,7 @@ require = (function() {
       {}
     ],
     93: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var REMOTE_RESOURCE_PATTERN = /^(\w+:\/\/|\/\/)/;
 
         function isRemoteResource(uri) {
@@ -15585,7 +15599,7 @@ require = (function() {
       {}
     ],
     94: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // adapted from http://nedbatchelder.com/blog/200712.html#e20071211T054956
 
         var NUMBER_PATTERN = /([0-9]+)/;
@@ -15623,7 +15637,7 @@ require = (function() {
       {}
     ],
     95: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         function override(source1, source2) {
           var target = {};
           var key1;
@@ -15666,7 +15680,7 @@ require = (function() {
       {}
     ],
     96: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Marker = require("../tokenizer/marker");
 
         function split(value, separator) {
@@ -15726,7 +15740,7 @@ require = (function() {
       { "../tokenizer/marker": 83 }
     ],
     97: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var emptyCharacter = "";
 
         var Breaks = require("../options/format").Breaks;
@@ -16061,7 +16075,7 @@ require = (function() {
       }
     ],
     98: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var helpers = require("./helpers");
 
         function store(serializeContext, token) {
@@ -16120,7 +16134,7 @@ require = (function() {
       { "./helpers": 97 }
     ],
     99: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var all = require("./helpers").all;
 
         function store(serializeContext, token) {
@@ -16163,7 +16177,7 @@ require = (function() {
             store: store,
             wrap: context.options.format.wrapAt
               ? wrap
-              : function() {
+              : function () {
                   /* noop */
                 }
           };
@@ -16180,8 +16194,8 @@ require = (function() {
       { "./helpers": 97 }
     ],
     100: [
-      function(require, module, exports) {
-        (function(process) {
+      function (require, module, exports) {
+        (function (process) {
           var SourceMapGenerator = require("source-map").SourceMapGenerator;
           var all = require("./helpers").all;
 
@@ -16287,7 +16301,7 @@ require = (function() {
               store: store,
               wrap: context.options.format.wrapAt
                 ? wrap
-                : function() {
+                : function () {
                     /* noop */
                   }
             };
@@ -16301,7 +16315,7 @@ require = (function() {
           }
 
           module.exports = serializeStylesAndSourceMap;
-        }.call(this, require("_process")));
+        }).call(this, require("_process"));
       },
       {
         "../utils/is-remote-resource": 93,
@@ -16311,8 +16325,8 @@ require = (function() {
       }
     ],
     101: [
-      function(require, module, exports) {
-        (function(Buffer) {
+      function (require, module, exports) {
+        (function (Buffer) {
           // Copyright Joyent, Inc. and other Node contributors.
           //
           // Permission is hereby granted, free of charge, to any person obtaining a
@@ -16422,12 +16436,12 @@ require = (function() {
           function objectToString(o) {
             return Object.prototype.toString.call(o);
           }
-        }.call(this, { isBuffer: require("../../is-buffer/index.js") }));
+        }).call(this, { isBuffer: require("../../is-buffer/index.js") });
       },
       { "../../is-buffer/index.js": 107 }
     ],
     102: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Copyright Joyent, Inc. and other Node contributors.
         //
         // Permission is hereby granted, free of charge, to any person obtaining a
@@ -16488,10 +16502,10 @@ require = (function() {
         if (hasDefineProperty) {
           Object.defineProperty(EventEmitter, "defaultMaxListeners", {
             enumerable: true,
-            get: function() {
+            get: function () {
               return defaultMaxListeners;
             },
-            set: function(arg) {
+            set: function (arg) {
               // check whether the input is a positive number (whose value is zero or
               // greater and not a NaN).
               if (typeof arg !== "number" || arg < 0 || arg !== arg)
@@ -16774,15 +16788,13 @@ require = (function() {
           return this;
         };
 
-        EventEmitter.prototype.prependOnceListener = function prependOnceListener(
-          type,
-          listener
-        ) {
-          if (typeof listener !== "function")
-            throw new TypeError('"listener" argument must be a function');
-          this.prependListener(type, _onceWrap(this, type, listener));
-          return this;
-        };
+        EventEmitter.prototype.prependOnceListener =
+          function prependOnceListener(type, listener) {
+            if (typeof listener !== "function")
+              throw new TypeError('"listener" argument must be a function');
+            this.prependListener(type, _onceWrap(this, type, listener));
+            return this;
+          };
 
         // Emits a 'removeListener' event if and only if the listener was removed.
         EventEmitter.prototype.removeListener = function removeListener(
@@ -16905,7 +16917,7 @@ require = (function() {
           return _listeners(this, type, false);
         };
 
-        EventEmitter.listenerCount = function(emitter, type) {
+        EventEmitter.listenerCount = function (emitter, type) {
           if (typeof emitter.listenerCount === "function") {
             return emitter.listenerCount(type);
           } else {
@@ -16956,7 +16968,7 @@ require = (function() {
         }
 
         function objectCreatePolyfill(proto) {
-          var F = function() {};
+          var F = function () {};
           F.prototype = proto;
           return new F();
         }
@@ -16970,7 +16982,7 @@ require = (function() {
         }
         function functionBindPolyfill(context) {
           var fn = this;
-          return function() {
+          return function () {
             return fn.apply(context, arguments);
           };
         }
@@ -16978,10 +16990,10 @@ require = (function() {
       {}
     ],
     103: [
-      function(require, module, exports) {
-        (function(global) {
+      function (require, module, exports) {
+        (function (global) {
           /*! https://mths.be/he v1.2.0 by @mathias | MIT license */
-          (function(root) {
+          (function (root) {
             // Detect free variables `exports`.
             var freeExports = typeof exports == "object" && exports;
 
@@ -17013,9 +17025,11 @@ require = (function() {
             // All BMP symbols that are not ASCII newlines, printable ASCII symbols, or
             // code points listed in the first column of the overrides table on
             // https://html.spec.whatwg.org/multipage/syntax.html#table-charref-overrides.
-            var regexBmpWhitelist = /[\x01-\t\x0B\f\x0E-\x1F\x7F\x81\x8D\x8F\x90\x9D\xA0-\uFFFF]/g;
+            var regexBmpWhitelist =
+              /[\x01-\t\x0B\f\x0E-\x1F\x7F\x81\x8D\x8F\x90\x9D\xA0-\uFFFF]/g;
 
-            var regexEncodeNonAscii = /<\u20D2|=\u20E5|>\u20D2|\u205F\u200A|\u219D\u0338|\u2202\u0338|\u2220\u20D2|\u2229\uFE00|\u222A\uFE00|\u223C\u20D2|\u223D\u0331|\u223E\u0333|\u2242\u0338|\u224B\u0338|\u224D\u20D2|\u224E\u0338|\u224F\u0338|\u2250\u0338|\u2261\u20E5|\u2264\u20D2|\u2265\u20D2|\u2266\u0338|\u2267\u0338|\u2268\uFE00|\u2269\uFE00|\u226A\u0338|\u226A\u20D2|\u226B\u0338|\u226B\u20D2|\u227F\u0338|\u2282\u20D2|\u2283\u20D2|\u228A\uFE00|\u228B\uFE00|\u228F\u0338|\u2290\u0338|\u2293\uFE00|\u2294\uFE00|\u22B4\u20D2|\u22B5\u20D2|\u22D8\u0338|\u22D9\u0338|\u22DA\uFE00|\u22DB\uFE00|\u22F5\u0338|\u22F9\u0338|\u2933\u0338|\u29CF\u0338|\u29D0\u0338|\u2A6D\u0338|\u2A70\u0338|\u2A7D\u0338|\u2A7E\u0338|\u2AA1\u0338|\u2AA2\u0338|\u2AAC\uFE00|\u2AAD\uFE00|\u2AAF\u0338|\u2AB0\u0338|\u2AC5\u0338|\u2AC6\u0338|\u2ACB\uFE00|\u2ACC\uFE00|\u2AFD\u20E5|[\xA0-\u0113\u0116-\u0122\u0124-\u012B\u012E-\u014D\u0150-\u017E\u0192\u01B5\u01F5\u0237\u02C6\u02C7\u02D8-\u02DD\u0311\u0391-\u03A1\u03A3-\u03A9\u03B1-\u03C9\u03D1\u03D2\u03D5\u03D6\u03DC\u03DD\u03F0\u03F1\u03F5\u03F6\u0401-\u040C\u040E-\u044F\u0451-\u045C\u045E\u045F\u2002-\u2005\u2007-\u2010\u2013-\u2016\u2018-\u201A\u201C-\u201E\u2020-\u2022\u2025\u2026\u2030-\u2035\u2039\u203A\u203E\u2041\u2043\u2044\u204F\u2057\u205F-\u2063\u20AC\u20DB\u20DC\u2102\u2105\u210A-\u2113\u2115-\u211E\u2122\u2124\u2127-\u2129\u212C\u212D\u212F-\u2131\u2133-\u2138\u2145-\u2148\u2153-\u215E\u2190-\u219B\u219D-\u21A7\u21A9-\u21AE\u21B0-\u21B3\u21B5-\u21B7\u21BA-\u21DB\u21DD\u21E4\u21E5\u21F5\u21FD-\u2205\u2207-\u2209\u220B\u220C\u220F-\u2214\u2216-\u2218\u221A\u221D-\u2238\u223A-\u2257\u2259\u225A\u225C\u225F-\u2262\u2264-\u228B\u228D-\u229B\u229D-\u22A5\u22A7-\u22B0\u22B2-\u22BB\u22BD-\u22DB\u22DE-\u22E3\u22E6-\u22F7\u22F9-\u22FE\u2305\u2306\u2308-\u2310\u2312\u2313\u2315\u2316\u231C-\u231F\u2322\u2323\u232D\u232E\u2336\u233D\u233F\u237C\u23B0\u23B1\u23B4-\u23B6\u23DC-\u23DF\u23E2\u23E7\u2423\u24C8\u2500\u2502\u250C\u2510\u2514\u2518\u251C\u2524\u252C\u2534\u253C\u2550-\u256C\u2580\u2584\u2588\u2591-\u2593\u25A1\u25AA\u25AB\u25AD\u25AE\u25B1\u25B3-\u25B5\u25B8\u25B9\u25BD-\u25BF\u25C2\u25C3\u25CA\u25CB\u25EC\u25EF\u25F8-\u25FC\u2605\u2606\u260E\u2640\u2642\u2660\u2663\u2665\u2666\u266A\u266D-\u266F\u2713\u2717\u2720\u2736\u2758\u2772\u2773\u27C8\u27C9\u27E6-\u27ED\u27F5-\u27FA\u27FC\u27FF\u2902-\u2905\u290C-\u2913\u2916\u2919-\u2920\u2923-\u292A\u2933\u2935-\u2939\u293C\u293D\u2945\u2948-\u294B\u294E-\u2976\u2978\u2979\u297B-\u297F\u2985\u2986\u298B-\u2996\u299A\u299C\u299D\u29A4-\u29B7\u29B9\u29BB\u29BC\u29BE-\u29C5\u29C9\u29CD-\u29D0\u29DC-\u29DE\u29E3-\u29E5\u29EB\u29F4\u29F6\u2A00-\u2A02\u2A04\u2A06\u2A0C\u2A0D\u2A10-\u2A17\u2A22-\u2A27\u2A29\u2A2A\u2A2D-\u2A31\u2A33-\u2A3C\u2A3F\u2A40\u2A42-\u2A4D\u2A50\u2A53-\u2A58\u2A5A-\u2A5D\u2A5F\u2A66\u2A6A\u2A6D-\u2A75\u2A77-\u2A9A\u2A9D-\u2AA2\u2AA4-\u2AB0\u2AB3-\u2AC8\u2ACB\u2ACC\u2ACF-\u2ADB\u2AE4\u2AE6-\u2AE9\u2AEB-\u2AF3\u2AFD\uFB00-\uFB04]|\uD835[\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDCCF\uDD04\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDD6B]/g;
+            var regexEncodeNonAscii =
+              /<\u20D2|=\u20E5|>\u20D2|\u205F\u200A|\u219D\u0338|\u2202\u0338|\u2220\u20D2|\u2229\uFE00|\u222A\uFE00|\u223C\u20D2|\u223D\u0331|\u223E\u0333|\u2242\u0338|\u224B\u0338|\u224D\u20D2|\u224E\u0338|\u224F\u0338|\u2250\u0338|\u2261\u20E5|\u2264\u20D2|\u2265\u20D2|\u2266\u0338|\u2267\u0338|\u2268\uFE00|\u2269\uFE00|\u226A\u0338|\u226A\u20D2|\u226B\u0338|\u226B\u20D2|\u227F\u0338|\u2282\u20D2|\u2283\u20D2|\u228A\uFE00|\u228B\uFE00|\u228F\u0338|\u2290\u0338|\u2293\uFE00|\u2294\uFE00|\u22B4\u20D2|\u22B5\u20D2|\u22D8\u0338|\u22D9\u0338|\u22DA\uFE00|\u22DB\uFE00|\u22F5\u0338|\u22F9\u0338|\u2933\u0338|\u29CF\u0338|\u29D0\u0338|\u2A6D\u0338|\u2A70\u0338|\u2A7D\u0338|\u2A7E\u0338|\u2AA1\u0338|\u2AA2\u0338|\u2AAC\uFE00|\u2AAD\uFE00|\u2AAF\u0338|\u2AB0\u0338|\u2AC5\u0338|\u2AC6\u0338|\u2ACB\uFE00|\u2ACC\uFE00|\u2AFD\u20E5|[\xA0-\u0113\u0116-\u0122\u0124-\u012B\u012E-\u014D\u0150-\u017E\u0192\u01B5\u01F5\u0237\u02C6\u02C7\u02D8-\u02DD\u0311\u0391-\u03A1\u03A3-\u03A9\u03B1-\u03C9\u03D1\u03D2\u03D5\u03D6\u03DC\u03DD\u03F0\u03F1\u03F5\u03F6\u0401-\u040C\u040E-\u044F\u0451-\u045C\u045E\u045F\u2002-\u2005\u2007-\u2010\u2013-\u2016\u2018-\u201A\u201C-\u201E\u2020-\u2022\u2025\u2026\u2030-\u2035\u2039\u203A\u203E\u2041\u2043\u2044\u204F\u2057\u205F-\u2063\u20AC\u20DB\u20DC\u2102\u2105\u210A-\u2113\u2115-\u211E\u2122\u2124\u2127-\u2129\u212C\u212D\u212F-\u2131\u2133-\u2138\u2145-\u2148\u2153-\u215E\u2190-\u219B\u219D-\u21A7\u21A9-\u21AE\u21B0-\u21B3\u21B5-\u21B7\u21BA-\u21DB\u21DD\u21E4\u21E5\u21F5\u21FD-\u2205\u2207-\u2209\u220B\u220C\u220F-\u2214\u2216-\u2218\u221A\u221D-\u2238\u223A-\u2257\u2259\u225A\u225C\u225F-\u2262\u2264-\u228B\u228D-\u229B\u229D-\u22A5\u22A7-\u22B0\u22B2-\u22BB\u22BD-\u22DB\u22DE-\u22E3\u22E6-\u22F7\u22F9-\u22FE\u2305\u2306\u2308-\u2310\u2312\u2313\u2315\u2316\u231C-\u231F\u2322\u2323\u232D\u232E\u2336\u233D\u233F\u237C\u23B0\u23B1\u23B4-\u23B6\u23DC-\u23DF\u23E2\u23E7\u2423\u24C8\u2500\u2502\u250C\u2510\u2514\u2518\u251C\u2524\u252C\u2534\u253C\u2550-\u256C\u2580\u2584\u2588\u2591-\u2593\u25A1\u25AA\u25AB\u25AD\u25AE\u25B1\u25B3-\u25B5\u25B8\u25B9\u25BD-\u25BF\u25C2\u25C3\u25CA\u25CB\u25EC\u25EF\u25F8-\u25FC\u2605\u2606\u260E\u2640\u2642\u2660\u2663\u2665\u2666\u266A\u266D-\u266F\u2713\u2717\u2720\u2736\u2758\u2772\u2773\u27C8\u27C9\u27E6-\u27ED\u27F5-\u27FA\u27FC\u27FF\u2902-\u2905\u290C-\u2913\u2916\u2919-\u2920\u2923-\u292A\u2933\u2935-\u2939\u293C\u293D\u2945\u2948-\u294B\u294E-\u2976\u2978\u2979\u297B-\u297F\u2985\u2986\u298B-\u2996\u299A\u299C\u299D\u29A4-\u29B7\u29B9\u29BB\u29BC\u29BE-\u29C5\u29C9\u29CD-\u29D0\u29DC-\u29DE\u29E3-\u29E5\u29EB\u29F4\u29F6\u2A00-\u2A02\u2A04\u2A06\u2A0C\u2A0D\u2A10-\u2A17\u2A22-\u2A27\u2A29\u2A2A\u2A2D-\u2A31\u2A33-\u2A3C\u2A3F\u2A40\u2A42-\u2A4D\u2A50\u2A53-\u2A58\u2A5A-\u2A5D\u2A5F\u2A66\u2A6A\u2A6D-\u2A75\u2A77-\u2A9A\u2A9D-\u2AA2\u2AA4-\u2AB0\u2AB3-\u2AC8\u2ACB\u2ACC\u2ACF-\u2ADB\u2AE4\u2AE6-\u2AE9\u2AEB-\u2AF3\u2AFD\uFB00-\uFB04]|\uD835[\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB9\uDCBB\uDCBD-\uDCC3\uDCC5-\uDCCF\uDD04\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD1E-\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD52-\uDD6B]/g;
             var encodeMap = {
               "\xAD": "shy",
               "\u200C": "zwnj",
@@ -18549,8 +18563,10 @@ require = (function() {
             };
 
             var regexInvalidEntity = /&#(?:[xX][^a-fA-F0-9]|[^0-9xX])/;
-            var regexInvalidRawCodePoint = /[\0-\x08\x0B\x0E-\x1F\x7F-\x9F\uFDD0-\uFDEF\uFFFE\uFFFF]|[\uD83F\uD87F\uD8BF\uD8FF\uD93F\uD97F\uD9BF\uD9FF\uDA3F\uDA7F\uDABF\uDAFF\uDB3F\uDB7F\uDBBF\uDBFF][\uDFFE\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
-            var regexDecode = /&(CounterClockwiseContourIntegral|DoubleLongLeftRightArrow|ClockwiseContourIntegral|NotNestedGreaterGreater|NotSquareSupersetEqual|DiacriticalDoubleAcute|NotRightTriangleEqual|NotSucceedsSlantEqual|NotPrecedesSlantEqual|CloseCurlyDoubleQuote|NegativeVeryThinSpace|DoubleContourIntegral|FilledVerySmallSquare|CapitalDifferentialD|OpenCurlyDoubleQuote|EmptyVerySmallSquare|NestedGreaterGreater|DoubleLongRightArrow|NotLeftTriangleEqual|NotGreaterSlantEqual|ReverseUpEquilibrium|DoubleLeftRightArrow|NotSquareSubsetEqual|NotDoubleVerticalBar|RightArrowLeftArrow|NotGreaterFullEqual|NotRightTriangleBar|SquareSupersetEqual|DownLeftRightVector|DoubleLongLeftArrow|leftrightsquigarrow|LeftArrowRightArrow|NegativeMediumSpace|blacktriangleright|RightDownVectorBar|PrecedesSlantEqual|RightDoubleBracket|SucceedsSlantEqual|NotLeftTriangleBar|RightTriangleEqual|SquareIntersection|RightDownTeeVector|ReverseEquilibrium|NegativeThickSpace|longleftrightarrow|Longleftrightarrow|LongLeftRightArrow|DownRightTeeVector|DownRightVectorBar|GreaterSlantEqual|SquareSubsetEqual|LeftDownVectorBar|LeftDoubleBracket|VerticalSeparator|rightleftharpoons|NotGreaterGreater|NotSquareSuperset|blacktriangleleft|blacktriangledown|NegativeThinSpace|LeftDownTeeVector|NotLessSlantEqual|leftrightharpoons|DoubleUpDownArrow|DoubleVerticalBar|LeftTriangleEqual|FilledSmallSquare|twoheadrightarrow|NotNestedLessLess|DownLeftTeeVector|DownLeftVectorBar|RightAngleBracket|NotTildeFullEqual|NotReverseElement|RightUpDownVector|DiacriticalTilde|NotSucceedsTilde|circlearrowright|NotPrecedesEqual|rightharpoondown|DoubleRightArrow|NotSucceedsEqual|NonBreakingSpace|NotRightTriangle|LessEqualGreater|RightUpTeeVector|LeftAngleBracket|GreaterFullEqual|DownArrowUpArrow|RightUpVectorBar|twoheadleftarrow|GreaterEqualLess|downharpoonright|RightTriangleBar|ntrianglerighteq|NotSupersetEqual|LeftUpDownVector|DiacriticalAcute|rightrightarrows|vartriangleright|UpArrowDownArrow|DiacriticalGrave|UnderParenthesis|EmptySmallSquare|LeftUpVectorBar|leftrightarrows|DownRightVector|downharpoonleft|trianglerighteq|ShortRightArrow|OverParenthesis|DoubleLeftArrow|DoubleDownArrow|NotSquareSubset|bigtriangledown|ntrianglelefteq|UpperRightArrow|curvearrowright|vartriangleleft|NotLeftTriangle|nleftrightarrow|LowerRightArrow|NotHumpDownHump|NotGreaterTilde|rightthreetimes|LeftUpTeeVector|NotGreaterEqual|straightepsilon|LeftTriangleBar|rightsquigarrow|ContourIntegral|rightleftarrows|CloseCurlyQuote|RightDownVector|LeftRightVector|nLeftrightarrow|leftharpoondown|circlearrowleft|SquareSuperset|OpenCurlyQuote|hookrightarrow|HorizontalLine|DiacriticalDot|NotLessGreater|ntriangleright|DoubleRightTee|InvisibleComma|InvisibleTimes|LowerLeftArrow|DownLeftVector|NotSubsetEqual|curvearrowleft|trianglelefteq|NotVerticalBar|TildeFullEqual|downdownarrows|NotGreaterLess|RightTeeVector|ZeroWidthSpace|looparrowright|LongRightArrow|doublebarwedge|ShortLeftArrow|ShortDownArrow|RightVectorBar|GreaterGreater|ReverseElement|rightharpoonup|LessSlantEqual|leftthreetimes|upharpoonright|rightarrowtail|LeftDownVector|Longrightarrow|NestedLessLess|UpperLeftArrow|nshortparallel|leftleftarrows|leftrightarrow|Leftrightarrow|LeftRightArrow|longrightarrow|upharpoonleft|RightArrowBar|ApplyFunction|LeftTeeVector|leftarrowtail|NotEqualTilde|varsubsetneqq|varsupsetneqq|RightTeeArrow|SucceedsEqual|SucceedsTilde|LeftVectorBar|SupersetEqual|hookleftarrow|DifferentialD|VerticalTilde|VeryThinSpace|blacktriangle|bigtriangleup|LessFullEqual|divideontimes|leftharpoonup|UpEquilibrium|ntriangleleft|RightTriangle|measuredangle|shortparallel|longleftarrow|Longleftarrow|LongLeftArrow|DoubleLeftTee|Poincareplane|PrecedesEqual|triangleright|DoubleUpArrow|RightUpVector|fallingdotseq|looparrowleft|PrecedesTilde|NotTildeEqual|NotTildeTilde|smallsetminus|Proportional|triangleleft|triangledown|UnderBracket|NotHumpEqual|exponentiale|ExponentialE|NotLessTilde|HilbertSpace|RightCeiling|blacklozenge|varsupsetneq|HumpDownHump|GreaterEqual|VerticalLine|LeftTeeArrow|NotLessEqual|DownTeeArrow|LeftTriangle|varsubsetneq|Intersection|NotCongruent|DownArrowBar|LeftUpVector|LeftArrowBar|risingdotseq|GreaterTilde|RoundImplies|SquareSubset|ShortUpArrow|NotSuperset|quaternions|precnapprox|backepsilon|preccurlyeq|OverBracket|blacksquare|MediumSpace|VerticalBar|circledcirc|circleddash|CircleMinus|CircleTimes|LessGreater|curlyeqprec|curlyeqsucc|diamondsuit|UpDownArrow|Updownarrow|RuleDelayed|Rrightarrow|updownarrow|RightVector|nRightarrow|nrightarrow|eqslantless|LeftCeiling|Equilibrium|SmallCircle|expectation|NotSucceeds|thickapprox|GreaterLess|SquareUnion|NotPrecedes|NotLessLess|straightphi|succnapprox|succcurlyeq|SubsetEqual|sqsupseteq|Proportion|Laplacetrf|ImaginaryI|supsetneqq|NotGreater|gtreqqless|NotElement|ThickSpace|TildeEqual|TildeTilde|Fouriertrf|rmoustache|EqualTilde|eqslantgtr|UnderBrace|LeftVector|UpArrowBar|nLeftarrow|nsubseteqq|subsetneqq|nsupseteqq|nleftarrow|succapprox|lessapprox|UpTeeArrow|upuparrows|curlywedge|lesseqqgtr|varepsilon|varnothing|RightFloor|complement|CirclePlus|sqsubseteq|Lleftarrow|circledast|RightArrow|Rightarrow|rightarrow|lmoustache|Bernoullis|precapprox|mapstoleft|mapstodown|longmapsto|dotsquare|downarrow|DoubleDot|nsubseteq|supsetneq|leftarrow|nsupseteq|subsetneq|ThinSpace|ngeqslant|subseteqq|HumpEqual|NotSubset|triangleq|NotCupCap|lesseqgtr|heartsuit|TripleDot|Leftarrow|Coproduct|Congruent|varpropto|complexes|gvertneqq|LeftArrow|LessTilde|supseteqq|MinusPlus|CircleDot|nleqslant|NotExists|gtreqless|nparallel|UnionPlus|LeftFloor|checkmark|CenterDot|centerdot|Mellintrf|gtrapprox|bigotimes|OverBrace|spadesuit|therefore|pitchfork|rationals|PlusMinus|Backslash|Therefore|DownBreve|backsimeq|backprime|DownArrow|nshortmid|Downarrow|lvertneqq|eqvparsl|imagline|imagpart|infintie|integers|Integral|intercal|LessLess|Uarrocir|intlarhk|sqsupset|angmsdaf|sqsubset|llcorner|vartheta|cupbrcap|lnapprox|Superset|SuchThat|succnsim|succneqq|angmsdag|biguplus|curlyvee|trpezium|Succeeds|NotTilde|bigwedge|angmsdah|angrtvbd|triminus|cwconint|fpartint|lrcorner|smeparsl|subseteq|urcorner|lurdshar|laemptyv|DDotrahd|approxeq|ldrushar|awconint|mapstoup|backcong|shortmid|triangle|geqslant|gesdotol|timesbar|circledR|circledS|setminus|multimap|naturals|scpolint|ncongdot|RightTee|boxminus|gnapprox|boxtimes|andslope|thicksim|angmsdaa|varsigma|cirfnint|rtriltri|angmsdab|rppolint|angmsdac|barwedge|drbkarow|clubsuit|thetasym|bsolhsub|capbrcup|dzigrarr|doteqdot|DotEqual|dotminus|UnderBar|NotEqual|realpart|otimesas|ulcorner|hksearow|hkswarow|parallel|PartialD|elinters|emptyset|plusacir|bbrktbrk|angmsdad|pointint|bigoplus|angmsdae|Precedes|bigsqcup|varkappa|notindot|supseteq|precneqq|precnsim|profalar|profline|profsurf|leqslant|lesdotor|raemptyv|subplus|notnivb|notnivc|subrarr|zigrarr|vzigzag|submult|subedot|Element|between|cirscir|larrbfs|larrsim|lotimes|lbrksld|lbrkslu|lozenge|ldrdhar|dbkarow|bigcirc|epsilon|simrarr|simplus|ltquest|Epsilon|luruhar|gtquest|maltese|npolint|eqcolon|npreceq|bigodot|ddagger|gtrless|bnequiv|harrcir|ddotseq|equivDD|backsim|demptyv|nsqsube|nsqsupe|Upsilon|nsubset|upsilon|minusdu|nsucceq|swarrow|nsupset|coloneq|searrow|boxplus|napprox|natural|asympeq|alefsym|congdot|nearrow|bigstar|diamond|supplus|tritime|LeftTee|nvinfin|triplus|NewLine|nvltrie|nvrtrie|nwarrow|nexists|Diamond|ruluhar|Implies|supmult|angzarr|suplarr|suphsub|questeq|because|digamma|Because|olcross|bemptyv|omicron|Omicron|rotimes|NoBreak|intprod|angrtvb|orderof|uwangle|suphsol|lesdoto|orslope|DownTee|realine|cudarrl|rdldhar|OverBar|supedot|lessdot|supdsub|topfork|succsim|rbrkslu|rbrksld|pertenk|cudarrr|isindot|planckh|lessgtr|pluscir|gesdoto|plussim|plustwo|lesssim|cularrp|rarrsim|Cayleys|notinva|notinvb|notinvc|UpArrow|Uparrow|uparrow|NotLess|dwangle|precsim|Product|curarrm|Cconint|dotplus|rarrbfs|ccupssm|Cedilla|cemptyv|notniva|quatint|frac35|frac38|frac45|frac56|frac58|frac78|tridot|xoplus|gacute|gammad|Gammad|lfisht|lfloor|bigcup|sqsupe|gbreve|Gbreve|lharul|sqsube|sqcups|Gcedil|apacir|llhard|lmidot|Lmidot|lmoust|andand|sqcaps|approx|Abreve|spades|circeq|tprime|divide|topcir|Assign|topbot|gesdot|divonx|xuplus|timesd|gesles|atilde|solbar|SOFTcy|loplus|timesb|lowast|lowbar|dlcorn|dlcrop|softcy|dollar|lparlt|thksim|lrhard|Atilde|lsaquo|smashp|bigvee|thinsp|wreath|bkarow|lsquor|lstrok|Lstrok|lthree|ltimes|ltlarr|DotDot|simdot|ltrPar|weierp|xsqcup|angmsd|sigmav|sigmaf|zeetrf|Zcaron|zcaron|mapsto|vsupne|thetav|cirmid|marker|mcomma|Zacute|vsubnE|there4|gtlPar|vsubne|bottom|gtrarr|SHCHcy|shchcy|midast|midcir|middot|minusb|minusd|gtrdot|bowtie|sfrown|mnplus|models|colone|seswar|Colone|mstpos|searhk|gtrsim|nacute|Nacute|boxbox|telrec|hairsp|Tcedil|nbumpe|scnsim|ncaron|Ncaron|ncedil|Ncedil|hamilt|Scedil|nearhk|hardcy|HARDcy|tcedil|Tcaron|commat|nequiv|nesear|tcaron|target|hearts|nexist|varrho|scedil|Scaron|scaron|hellip|Sacute|sacute|hercon|swnwar|compfn|rtimes|rthree|rsquor|rsaquo|zacute|wedgeq|homtht|barvee|barwed|Barwed|rpargt|horbar|conint|swarhk|roplus|nltrie|hslash|hstrok|Hstrok|rmoust|Conint|bprime|hybull|hyphen|iacute|Iacute|supsup|supsub|supsim|varphi|coprod|brvbar|agrave|Supset|supset|igrave|Igrave|notinE|Agrave|iiiint|iinfin|copysr|wedbar|Verbar|vangrt|becaus|incare|verbar|inodot|bullet|drcorn|intcal|drcrop|cularr|vellip|Utilde|bumpeq|cupcap|dstrok|Dstrok|CupCap|cupcup|cupdot|eacute|Eacute|supdot|iquest|easter|ecaron|Ecaron|ecolon|isinsv|utilde|itilde|Itilde|curarr|succeq|Bumpeq|cacute|ulcrop|nparsl|Cacute|nprcue|egrave|Egrave|nrarrc|nrarrw|subsup|subsub|nrtrie|jsercy|nsccue|Jsercy|kappav|kcedil|Kcedil|subsim|ulcorn|nsimeq|egsdot|veebar|kgreen|capand|elsdot|Subset|subset|curren|aacute|lacute|Lacute|emptyv|ntilde|Ntilde|lagran|lambda|Lambda|capcap|Ugrave|langle|subdot|emsp13|numero|emsp14|nvdash|nvDash|nVdash|nVDash|ugrave|ufisht|nvHarr|larrfs|nvlArr|larrhk|larrlp|larrpl|nvrArr|Udblac|nwarhk|larrtl|nwnear|oacute|Oacute|latail|lAtail|sstarf|lbrace|odblac|Odblac|lbrack|udblac|odsold|eparsl|lcaron|Lcaron|ograve|Ograve|lcedil|Lcedil|Aacute|ssmile|ssetmn|squarf|ldquor|capcup|ominus|cylcty|rharul|eqcirc|dagger|rfloor|rfisht|Dagger|daleth|equals|origof|capdot|equest|dcaron|Dcaron|rdquor|oslash|Oslash|otilde|Otilde|otimes|Otimes|urcrop|Ubreve|ubreve|Yacute|Uacute|uacute|Rcedil|rcedil|urcorn|parsim|Rcaron|Vdashl|rcaron|Tstrok|percnt|period|permil|Exists|yacute|rbrack|rbrace|phmmat|ccaron|Ccaron|planck|ccedil|plankv|tstrok|female|plusdo|plusdu|ffilig|plusmn|ffllig|Ccedil|rAtail|dfisht|bernou|ratail|Rarrtl|rarrtl|angsph|rarrpl|rarrlp|rarrhk|xwedge|xotime|forall|ForAll|Vvdash|vsupnE|preceq|bigcap|frac12|frac13|frac14|primes|rarrfs|prnsim|frac15|Square|frac16|square|lesdot|frac18|frac23|propto|prurel|rarrap|rangle|puncsp|frac25|Racute|qprime|racute|lesges|frac34|abreve|AElig|eqsim|utdot|setmn|urtri|Equal|Uring|seArr|uring|searr|dashv|Dashv|mumap|nabla|iogon|Iogon|sdote|sdotb|scsim|napid|napos|equiv|natur|Acirc|dblac|erarr|nbump|iprod|erDot|ucirc|awint|esdot|angrt|ncong|isinE|scnap|Scirc|scirc|ndash|isins|Ubrcy|nearr|neArr|isinv|nedot|ubrcy|acute|Ycirc|iukcy|Iukcy|xutri|nesim|caret|jcirc|Jcirc|caron|twixt|ddarr|sccue|exist|jmath|sbquo|ngeqq|angst|ccaps|lceil|ngsim|UpTee|delta|Delta|rtrif|nharr|nhArr|nhpar|rtrie|jukcy|Jukcy|kappa|rsquo|Kappa|nlarr|nlArr|TSHcy|rrarr|aogon|Aogon|fflig|xrarr|tshcy|ccirc|nleqq|filig|upsih|nless|dharl|nlsim|fjlig|ropar|nltri|dharr|robrk|roarr|fllig|fltns|roang|rnmid|subnE|subne|lAarr|trisb|Ccirc|acirc|ccups|blank|VDash|forkv|Vdash|langd|cedil|blk12|blk14|laquo|strns|diams|notin|vDash|larrb|blk34|block|disin|uplus|vdash|vBarv|aelig|starf|Wedge|check|xrArr|lates|lbarr|lBarr|notni|lbbrk|bcong|frasl|lbrke|frown|vrtri|vprop|vnsup|gamma|Gamma|wedge|xodot|bdquo|srarr|doteq|ldquo|boxdl|boxdL|gcirc|Gcirc|boxDl|boxDL|boxdr|boxdR|boxDr|TRADE|trade|rlhar|boxDR|vnsub|npart|vltri|rlarr|boxhd|boxhD|nprec|gescc|nrarr|nrArr|boxHd|boxHD|boxhu|boxhU|nrtri|boxHu|clubs|boxHU|times|colon|Colon|gimel|xlArr|Tilde|nsime|tilde|nsmid|nspar|THORN|thorn|xlarr|nsube|nsubE|thkap|xhArr|comma|nsucc|boxul|boxuL|nsupe|nsupE|gneqq|gnsim|boxUl|boxUL|grave|boxur|boxuR|boxUr|boxUR|lescc|angle|bepsi|boxvh|varpi|boxvH|numsp|Theta|gsime|gsiml|theta|boxVh|boxVH|boxvl|gtcir|gtdot|boxvL|boxVl|boxVL|crarr|cross|Cross|nvsim|boxvr|nwarr|nwArr|sqsup|dtdot|Uogon|lhard|lharu|dtrif|ocirc|Ocirc|lhblk|duarr|odash|sqsub|Hacek|sqcup|llarr|duhar|oelig|OElig|ofcir|boxvR|uogon|lltri|boxVr|csube|uuarr|ohbar|csupe|ctdot|olarr|olcir|harrw|oline|sqcap|omacr|Omacr|omega|Omega|boxVR|aleph|lneqq|lnsim|loang|loarr|rharu|lobrk|hcirc|operp|oplus|rhard|Hcirc|orarr|Union|order|ecirc|Ecirc|cuepr|szlig|cuesc|breve|reals|eDDot|Breve|hoarr|lopar|utrif|rdquo|Umacr|umacr|efDot|swArr|ultri|alpha|rceil|ovbar|swarr|Wcirc|wcirc|smtes|smile|bsemi|lrarr|aring|parsl|lrhar|bsime|uhblk|lrtri|cupor|Aring|uharr|uharl|slarr|rbrke|bsolb|lsime|rbbrk|RBarr|lsimg|phone|rBarr|rbarr|icirc|lsquo|Icirc|emacr|Emacr|ratio|simne|plusb|simlE|simgE|simeq|pluse|ltcir|ltdot|empty|xharr|xdtri|iexcl|Alpha|ltrie|rarrw|pound|ltrif|xcirc|bumpe|prcue|bumpE|asymp|amacr|cuvee|Sigma|sigma|iiint|udhar|iiota|ijlig|IJlig|supnE|imacr|Imacr|prime|Prime|image|prnap|eogon|Eogon|rarrc|mdash|mDDot|cuwed|imath|supne|imped|Amacr|udarr|prsim|micro|rarrb|cwint|raquo|infin|eplus|range|rangd|Ucirc|radic|minus|amalg|veeeq|rAarr|epsiv|ycirc|quest|sharp|quot|zwnj|Qscr|race|qscr|Qopf|qopf|qint|rang|Rang|Zscr|zscr|Zopf|zopf|rarr|rArr|Rarr|Pscr|pscr|prop|prod|prnE|prec|ZHcy|zhcy|prap|Zeta|zeta|Popf|popf|Zdot|plus|zdot|Yuml|yuml|phiv|YUcy|yucy|Yscr|yscr|perp|Yopf|yopf|part|para|YIcy|Ouml|rcub|yicy|YAcy|rdca|ouml|osol|Oscr|rdsh|yacy|real|oscr|xvee|andd|rect|andv|Xscr|oror|ordm|ordf|xscr|ange|aopf|Aopf|rHar|Xopf|opar|Oopf|xopf|xnis|rhov|oopf|omid|xmap|oint|apid|apos|ogon|ascr|Ascr|odot|odiv|xcup|xcap|ocir|oast|nvlt|nvle|nvgt|nvge|nvap|Wscr|wscr|auml|ntlg|ntgl|nsup|nsub|nsim|Nscr|nscr|nsce|Wopf|ring|npre|wopf|npar|Auml|Barv|bbrk|Nopf|nopf|nmid|nLtv|beta|ropf|Ropf|Beta|beth|nles|rpar|nleq|bnot|bNot|nldr|NJcy|rscr|Rscr|Vscr|vscr|rsqb|njcy|bopf|nisd|Bopf|rtri|Vopf|nGtv|ngtr|vopf|boxh|boxH|boxv|nges|ngeq|boxV|bscr|scap|Bscr|bsim|Vert|vert|bsol|bull|bump|caps|cdot|ncup|scnE|ncap|nbsp|napE|Cdot|cent|sdot|Vbar|nang|vBar|chcy|Mscr|mscr|sect|semi|CHcy|Mopf|mopf|sext|circ|cire|mldr|mlcp|cirE|comp|shcy|SHcy|vArr|varr|cong|copf|Copf|copy|COPY|malt|male|macr|lvnE|cscr|ltri|sime|ltcc|simg|Cscr|siml|csub|Uuml|lsqb|lsim|uuml|csup|Lscr|lscr|utri|smid|lpar|cups|smte|lozf|darr|Lopf|Uscr|solb|lopf|sopf|Sopf|lneq|uscr|spar|dArr|lnap|Darr|dash|Sqrt|LJcy|ljcy|lHar|dHar|Upsi|upsi|diam|lesg|djcy|DJcy|leqq|dopf|Dopf|dscr|Dscr|dscy|ldsh|ldca|squf|DScy|sscr|Sscr|dsol|lcub|late|star|Star|Uopf|Larr|lArr|larr|uopf|dtri|dzcy|sube|subE|Lang|lang|Kscr|kscr|Kopf|kopf|KJcy|kjcy|KHcy|khcy|DZcy|ecir|edot|eDot|Jscr|jscr|succ|Jopf|jopf|Edot|uHar|emsp|ensp|Iuml|iuml|eopf|isin|Iscr|iscr|Eopf|epar|sung|epsi|escr|sup1|sup2|sup3|Iota|iota|supe|supE|Iopf|iopf|IOcy|iocy|Escr|esim|Esim|imof|Uarr|QUOT|uArr|uarr|euml|IEcy|iecy|Idot|Euml|euro|excl|Hscr|hscr|Hopf|hopf|TScy|tscy|Tscr|hbar|tscr|flat|tbrk|fnof|hArr|harr|half|fopf|Fopf|tdot|gvnE|fork|trie|gtcc|fscr|Fscr|gdot|gsim|Gscr|gscr|Gopf|gopf|gneq|Gdot|tosa|gnap|Topf|topf|geqq|toea|GJcy|gjcy|tint|gesl|mid|Sfr|ggg|top|ges|gla|glE|glj|geq|gne|gEl|gel|gnE|Gcy|gcy|gap|Tfr|tfr|Tcy|tcy|Hat|Tau|Ffr|tau|Tab|hfr|Hfr|ffr|Fcy|fcy|icy|Icy|iff|ETH|eth|ifr|Ifr|Eta|eta|int|Int|Sup|sup|ucy|Ucy|Sum|sum|jcy|ENG|ufr|Ufr|eng|Jcy|jfr|els|ell|egs|Efr|efr|Jfr|uml|kcy|Kcy|Ecy|ecy|kfr|Kfr|lap|Sub|sub|lat|lcy|Lcy|leg|Dot|dot|lEg|leq|les|squ|div|die|lfr|Lfr|lgE|Dfr|dfr|Del|deg|Dcy|dcy|lne|lnE|sol|loz|smt|Cup|lrm|cup|lsh|Lsh|sim|shy|map|Map|mcy|Mcy|mfr|Mfr|mho|gfr|Gfr|sfr|cir|Chi|chi|nap|Cfr|vcy|Vcy|cfr|Scy|scy|ncy|Ncy|vee|Vee|Cap|cap|nfr|scE|sce|Nfr|nge|ngE|nGg|vfr|Vfr|ngt|bot|nGt|nis|niv|Rsh|rsh|nle|nlE|bne|Bfr|bfr|nLl|nlt|nLt|Bcy|bcy|not|Not|rlm|wfr|Wfr|npr|nsc|num|ocy|ast|Ocy|ofr|xfr|Xfr|Ofr|ogt|ohm|apE|olt|Rho|ape|rho|Rfr|rfr|ord|REG|ang|reg|orv|And|and|AMP|Rcy|amp|Afr|ycy|Ycy|yen|yfr|Yfr|rcy|par|pcy|Pcy|pfr|Pfr|phi|Phi|afr|Acy|acy|zcy|Zcy|piv|acE|acd|zfr|Zfr|pre|prE|psi|Psi|qfr|Qfr|zwj|Or|ge|Gg|gt|gg|el|oS|lt|Lt|LT|Re|lg|gl|eg|ne|Im|it|le|DD|wp|wr|nu|Nu|dd|lE|Sc|sc|pi|Pi|ee|af|ll|Ll|rx|gE|xi|pm|Xi|ic|pr|Pr|in|ni|mp|mu|ac|Mu|or|ap|Gt|GT|ii);|&(Aacute|Agrave|Atilde|Ccedil|Eacute|Egrave|Iacute|Igrave|Ntilde|Oacute|Ograve|Oslash|Otilde|Uacute|Ugrave|Yacute|aacute|agrave|atilde|brvbar|ccedil|curren|divide|eacute|egrave|frac12|frac14|frac34|iacute|igrave|iquest|middot|ntilde|oacute|ograve|oslash|otilde|plusmn|uacute|ugrave|yacute|AElig|Acirc|Aring|Ecirc|Icirc|Ocirc|THORN|Ucirc|acirc|acute|aelig|aring|cedil|ecirc|icirc|iexcl|laquo|micro|ocirc|pound|raquo|szlig|thorn|times|ucirc|Auml|COPY|Euml|Iuml|Ouml|QUOT|Uuml|auml|cent|copy|euml|iuml|macr|nbsp|ordf|ordm|ouml|para|quot|sect|sup1|sup2|sup3|uuml|yuml|AMP|ETH|REG|amp|deg|eth|not|reg|shy|uml|yen|GT|LT|gt|lt)(?!;)([=a-zA-Z0-9]?)|&#([0-9]+)(;?)|&#[xX]([a-fA-F0-9]+)(;?)|&([0-9a-zA-Z]+)/g;
+            var regexInvalidRawCodePoint =
+              /[\0-\x08\x0B\x0E-\x1F\x7F-\x9F\uFDD0-\uFDEF\uFFFE\uFFFF]|[\uD83F\uD87F\uD8BF\uD8FF\uD93F\uD97F\uD9BF\uD9FF\uDA3F\uDA7F\uDABF\uDAFF\uDB3F\uDB7F\uDBBF\uDBFF][\uDFFE\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/;
+            var regexDecode =
+              /&(CounterClockwiseContourIntegral|DoubleLongLeftRightArrow|ClockwiseContourIntegral|NotNestedGreaterGreater|NotSquareSupersetEqual|DiacriticalDoubleAcute|NotRightTriangleEqual|NotSucceedsSlantEqual|NotPrecedesSlantEqual|CloseCurlyDoubleQuote|NegativeVeryThinSpace|DoubleContourIntegral|FilledVerySmallSquare|CapitalDifferentialD|OpenCurlyDoubleQuote|EmptyVerySmallSquare|NestedGreaterGreater|DoubleLongRightArrow|NotLeftTriangleEqual|NotGreaterSlantEqual|ReverseUpEquilibrium|DoubleLeftRightArrow|NotSquareSubsetEqual|NotDoubleVerticalBar|RightArrowLeftArrow|NotGreaterFullEqual|NotRightTriangleBar|SquareSupersetEqual|DownLeftRightVector|DoubleLongLeftArrow|leftrightsquigarrow|LeftArrowRightArrow|NegativeMediumSpace|blacktriangleright|RightDownVectorBar|PrecedesSlantEqual|RightDoubleBracket|SucceedsSlantEqual|NotLeftTriangleBar|RightTriangleEqual|SquareIntersection|RightDownTeeVector|ReverseEquilibrium|NegativeThickSpace|longleftrightarrow|Longleftrightarrow|LongLeftRightArrow|DownRightTeeVector|DownRightVectorBar|GreaterSlantEqual|SquareSubsetEqual|LeftDownVectorBar|LeftDoubleBracket|VerticalSeparator|rightleftharpoons|NotGreaterGreater|NotSquareSuperset|blacktriangleleft|blacktriangledown|NegativeThinSpace|LeftDownTeeVector|NotLessSlantEqual|leftrightharpoons|DoubleUpDownArrow|DoubleVerticalBar|LeftTriangleEqual|FilledSmallSquare|twoheadrightarrow|NotNestedLessLess|DownLeftTeeVector|DownLeftVectorBar|RightAngleBracket|NotTildeFullEqual|NotReverseElement|RightUpDownVector|DiacriticalTilde|NotSucceedsTilde|circlearrowright|NotPrecedesEqual|rightharpoondown|DoubleRightArrow|NotSucceedsEqual|NonBreakingSpace|NotRightTriangle|LessEqualGreater|RightUpTeeVector|LeftAngleBracket|GreaterFullEqual|DownArrowUpArrow|RightUpVectorBar|twoheadleftarrow|GreaterEqualLess|downharpoonright|RightTriangleBar|ntrianglerighteq|NotSupersetEqual|LeftUpDownVector|DiacriticalAcute|rightrightarrows|vartriangleright|UpArrowDownArrow|DiacriticalGrave|UnderParenthesis|EmptySmallSquare|LeftUpVectorBar|leftrightarrows|DownRightVector|downharpoonleft|trianglerighteq|ShortRightArrow|OverParenthesis|DoubleLeftArrow|DoubleDownArrow|NotSquareSubset|bigtriangledown|ntrianglelefteq|UpperRightArrow|curvearrowright|vartriangleleft|NotLeftTriangle|nleftrightarrow|LowerRightArrow|NotHumpDownHump|NotGreaterTilde|rightthreetimes|LeftUpTeeVector|NotGreaterEqual|straightepsilon|LeftTriangleBar|rightsquigarrow|ContourIntegral|rightleftarrows|CloseCurlyQuote|RightDownVector|LeftRightVector|nLeftrightarrow|leftharpoondown|circlearrowleft|SquareSuperset|OpenCurlyQuote|hookrightarrow|HorizontalLine|DiacriticalDot|NotLessGreater|ntriangleright|DoubleRightTee|InvisibleComma|InvisibleTimes|LowerLeftArrow|DownLeftVector|NotSubsetEqual|curvearrowleft|trianglelefteq|NotVerticalBar|TildeFullEqual|downdownarrows|NotGreaterLess|RightTeeVector|ZeroWidthSpace|looparrowright|LongRightArrow|doublebarwedge|ShortLeftArrow|ShortDownArrow|RightVectorBar|GreaterGreater|ReverseElement|rightharpoonup|LessSlantEqual|leftthreetimes|upharpoonright|rightarrowtail|LeftDownVector|Longrightarrow|NestedLessLess|UpperLeftArrow|nshortparallel|leftleftarrows|leftrightarrow|Leftrightarrow|LeftRightArrow|longrightarrow|upharpoonleft|RightArrowBar|ApplyFunction|LeftTeeVector|leftarrowtail|NotEqualTilde|varsubsetneqq|varsupsetneqq|RightTeeArrow|SucceedsEqual|SucceedsTilde|LeftVectorBar|SupersetEqual|hookleftarrow|DifferentialD|VerticalTilde|VeryThinSpace|blacktriangle|bigtriangleup|LessFullEqual|divideontimes|leftharpoonup|UpEquilibrium|ntriangleleft|RightTriangle|measuredangle|shortparallel|longleftarrow|Longleftarrow|LongLeftArrow|DoubleLeftTee|Poincareplane|PrecedesEqual|triangleright|DoubleUpArrow|RightUpVector|fallingdotseq|looparrowleft|PrecedesTilde|NotTildeEqual|NotTildeTilde|smallsetminus|Proportional|triangleleft|triangledown|UnderBracket|NotHumpEqual|exponentiale|ExponentialE|NotLessTilde|HilbertSpace|RightCeiling|blacklozenge|varsupsetneq|HumpDownHump|GreaterEqual|VerticalLine|LeftTeeArrow|NotLessEqual|DownTeeArrow|LeftTriangle|varsubsetneq|Intersection|NotCongruent|DownArrowBar|LeftUpVector|LeftArrowBar|risingdotseq|GreaterTilde|RoundImplies|SquareSubset|ShortUpArrow|NotSuperset|quaternions|precnapprox|backepsilon|preccurlyeq|OverBracket|blacksquare|MediumSpace|VerticalBar|circledcirc|circleddash|CircleMinus|CircleTimes|LessGreater|curlyeqprec|curlyeqsucc|diamondsuit|UpDownArrow|Updownarrow|RuleDelayed|Rrightarrow|updownarrow|RightVector|nRightarrow|nrightarrow|eqslantless|LeftCeiling|Equilibrium|SmallCircle|expectation|NotSucceeds|thickapprox|GreaterLess|SquareUnion|NotPrecedes|NotLessLess|straightphi|succnapprox|succcurlyeq|SubsetEqual|sqsupseteq|Proportion|Laplacetrf|ImaginaryI|supsetneqq|NotGreater|gtreqqless|NotElement|ThickSpace|TildeEqual|TildeTilde|Fouriertrf|rmoustache|EqualTilde|eqslantgtr|UnderBrace|LeftVector|UpArrowBar|nLeftarrow|nsubseteqq|subsetneqq|nsupseteqq|nleftarrow|succapprox|lessapprox|UpTeeArrow|upuparrows|curlywedge|lesseqqgtr|varepsilon|varnothing|RightFloor|complement|CirclePlus|sqsubseteq|Lleftarrow|circledast|RightArrow|Rightarrow|rightarrow|lmoustache|Bernoullis|precapprox|mapstoleft|mapstodown|longmapsto|dotsquare|downarrow|DoubleDot|nsubseteq|supsetneq|leftarrow|nsupseteq|subsetneq|ThinSpace|ngeqslant|subseteqq|HumpEqual|NotSubset|triangleq|NotCupCap|lesseqgtr|heartsuit|TripleDot|Leftarrow|Coproduct|Congruent|varpropto|complexes|gvertneqq|LeftArrow|LessTilde|supseteqq|MinusPlus|CircleDot|nleqslant|NotExists|gtreqless|nparallel|UnionPlus|LeftFloor|checkmark|CenterDot|centerdot|Mellintrf|gtrapprox|bigotimes|OverBrace|spadesuit|therefore|pitchfork|rationals|PlusMinus|Backslash|Therefore|DownBreve|backsimeq|backprime|DownArrow|nshortmid|Downarrow|lvertneqq|eqvparsl|imagline|imagpart|infintie|integers|Integral|intercal|LessLess|Uarrocir|intlarhk|sqsupset|angmsdaf|sqsubset|llcorner|vartheta|cupbrcap|lnapprox|Superset|SuchThat|succnsim|succneqq|angmsdag|biguplus|curlyvee|trpezium|Succeeds|NotTilde|bigwedge|angmsdah|angrtvbd|triminus|cwconint|fpartint|lrcorner|smeparsl|subseteq|urcorner|lurdshar|laemptyv|DDotrahd|approxeq|ldrushar|awconint|mapstoup|backcong|shortmid|triangle|geqslant|gesdotol|timesbar|circledR|circledS|setminus|multimap|naturals|scpolint|ncongdot|RightTee|boxminus|gnapprox|boxtimes|andslope|thicksim|angmsdaa|varsigma|cirfnint|rtriltri|angmsdab|rppolint|angmsdac|barwedge|drbkarow|clubsuit|thetasym|bsolhsub|capbrcup|dzigrarr|doteqdot|DotEqual|dotminus|UnderBar|NotEqual|realpart|otimesas|ulcorner|hksearow|hkswarow|parallel|PartialD|elinters|emptyset|plusacir|bbrktbrk|angmsdad|pointint|bigoplus|angmsdae|Precedes|bigsqcup|varkappa|notindot|supseteq|precneqq|precnsim|profalar|profline|profsurf|leqslant|lesdotor|raemptyv|subplus|notnivb|notnivc|subrarr|zigrarr|vzigzag|submult|subedot|Element|between|cirscir|larrbfs|larrsim|lotimes|lbrksld|lbrkslu|lozenge|ldrdhar|dbkarow|bigcirc|epsilon|simrarr|simplus|ltquest|Epsilon|luruhar|gtquest|maltese|npolint|eqcolon|npreceq|bigodot|ddagger|gtrless|bnequiv|harrcir|ddotseq|equivDD|backsim|demptyv|nsqsube|nsqsupe|Upsilon|nsubset|upsilon|minusdu|nsucceq|swarrow|nsupset|coloneq|searrow|boxplus|napprox|natural|asympeq|alefsym|congdot|nearrow|bigstar|diamond|supplus|tritime|LeftTee|nvinfin|triplus|NewLine|nvltrie|nvrtrie|nwarrow|nexists|Diamond|ruluhar|Implies|supmult|angzarr|suplarr|suphsub|questeq|because|digamma|Because|olcross|bemptyv|omicron|Omicron|rotimes|NoBreak|intprod|angrtvb|orderof|uwangle|suphsol|lesdoto|orslope|DownTee|realine|cudarrl|rdldhar|OverBar|supedot|lessdot|supdsub|topfork|succsim|rbrkslu|rbrksld|pertenk|cudarrr|isindot|planckh|lessgtr|pluscir|gesdoto|plussim|plustwo|lesssim|cularrp|rarrsim|Cayleys|notinva|notinvb|notinvc|UpArrow|Uparrow|uparrow|NotLess|dwangle|precsim|Product|curarrm|Cconint|dotplus|rarrbfs|ccupssm|Cedilla|cemptyv|notniva|quatint|frac35|frac38|frac45|frac56|frac58|frac78|tridot|xoplus|gacute|gammad|Gammad|lfisht|lfloor|bigcup|sqsupe|gbreve|Gbreve|lharul|sqsube|sqcups|Gcedil|apacir|llhard|lmidot|Lmidot|lmoust|andand|sqcaps|approx|Abreve|spades|circeq|tprime|divide|topcir|Assign|topbot|gesdot|divonx|xuplus|timesd|gesles|atilde|solbar|SOFTcy|loplus|timesb|lowast|lowbar|dlcorn|dlcrop|softcy|dollar|lparlt|thksim|lrhard|Atilde|lsaquo|smashp|bigvee|thinsp|wreath|bkarow|lsquor|lstrok|Lstrok|lthree|ltimes|ltlarr|DotDot|simdot|ltrPar|weierp|xsqcup|angmsd|sigmav|sigmaf|zeetrf|Zcaron|zcaron|mapsto|vsupne|thetav|cirmid|marker|mcomma|Zacute|vsubnE|there4|gtlPar|vsubne|bottom|gtrarr|SHCHcy|shchcy|midast|midcir|middot|minusb|minusd|gtrdot|bowtie|sfrown|mnplus|models|colone|seswar|Colone|mstpos|searhk|gtrsim|nacute|Nacute|boxbox|telrec|hairsp|Tcedil|nbumpe|scnsim|ncaron|Ncaron|ncedil|Ncedil|hamilt|Scedil|nearhk|hardcy|HARDcy|tcedil|Tcaron|commat|nequiv|nesear|tcaron|target|hearts|nexist|varrho|scedil|Scaron|scaron|hellip|Sacute|sacute|hercon|swnwar|compfn|rtimes|rthree|rsquor|rsaquo|zacute|wedgeq|homtht|barvee|barwed|Barwed|rpargt|horbar|conint|swarhk|roplus|nltrie|hslash|hstrok|Hstrok|rmoust|Conint|bprime|hybull|hyphen|iacute|Iacute|supsup|supsub|supsim|varphi|coprod|brvbar|agrave|Supset|supset|igrave|Igrave|notinE|Agrave|iiiint|iinfin|copysr|wedbar|Verbar|vangrt|becaus|incare|verbar|inodot|bullet|drcorn|intcal|drcrop|cularr|vellip|Utilde|bumpeq|cupcap|dstrok|Dstrok|CupCap|cupcup|cupdot|eacute|Eacute|supdot|iquest|easter|ecaron|Ecaron|ecolon|isinsv|utilde|itilde|Itilde|curarr|succeq|Bumpeq|cacute|ulcrop|nparsl|Cacute|nprcue|egrave|Egrave|nrarrc|nrarrw|subsup|subsub|nrtrie|jsercy|nsccue|Jsercy|kappav|kcedil|Kcedil|subsim|ulcorn|nsimeq|egsdot|veebar|kgreen|capand|elsdot|Subset|subset|curren|aacute|lacute|Lacute|emptyv|ntilde|Ntilde|lagran|lambda|Lambda|capcap|Ugrave|langle|subdot|emsp13|numero|emsp14|nvdash|nvDash|nVdash|nVDash|ugrave|ufisht|nvHarr|larrfs|nvlArr|larrhk|larrlp|larrpl|nvrArr|Udblac|nwarhk|larrtl|nwnear|oacute|Oacute|latail|lAtail|sstarf|lbrace|odblac|Odblac|lbrack|udblac|odsold|eparsl|lcaron|Lcaron|ograve|Ograve|lcedil|Lcedil|Aacute|ssmile|ssetmn|squarf|ldquor|capcup|ominus|cylcty|rharul|eqcirc|dagger|rfloor|rfisht|Dagger|daleth|equals|origof|capdot|equest|dcaron|Dcaron|rdquor|oslash|Oslash|otilde|Otilde|otimes|Otimes|urcrop|Ubreve|ubreve|Yacute|Uacute|uacute|Rcedil|rcedil|urcorn|parsim|Rcaron|Vdashl|rcaron|Tstrok|percnt|period|permil|Exists|yacute|rbrack|rbrace|phmmat|ccaron|Ccaron|planck|ccedil|plankv|tstrok|female|plusdo|plusdu|ffilig|plusmn|ffllig|Ccedil|rAtail|dfisht|bernou|ratail|Rarrtl|rarrtl|angsph|rarrpl|rarrlp|rarrhk|xwedge|xotime|forall|ForAll|Vvdash|vsupnE|preceq|bigcap|frac12|frac13|frac14|primes|rarrfs|prnsim|frac15|Square|frac16|square|lesdot|frac18|frac23|propto|prurel|rarrap|rangle|puncsp|frac25|Racute|qprime|racute|lesges|frac34|abreve|AElig|eqsim|utdot|setmn|urtri|Equal|Uring|seArr|uring|searr|dashv|Dashv|mumap|nabla|iogon|Iogon|sdote|sdotb|scsim|napid|napos|equiv|natur|Acirc|dblac|erarr|nbump|iprod|erDot|ucirc|awint|esdot|angrt|ncong|isinE|scnap|Scirc|scirc|ndash|isins|Ubrcy|nearr|neArr|isinv|nedot|ubrcy|acute|Ycirc|iukcy|Iukcy|xutri|nesim|caret|jcirc|Jcirc|caron|twixt|ddarr|sccue|exist|jmath|sbquo|ngeqq|angst|ccaps|lceil|ngsim|UpTee|delta|Delta|rtrif|nharr|nhArr|nhpar|rtrie|jukcy|Jukcy|kappa|rsquo|Kappa|nlarr|nlArr|TSHcy|rrarr|aogon|Aogon|fflig|xrarr|tshcy|ccirc|nleqq|filig|upsih|nless|dharl|nlsim|fjlig|ropar|nltri|dharr|robrk|roarr|fllig|fltns|roang|rnmid|subnE|subne|lAarr|trisb|Ccirc|acirc|ccups|blank|VDash|forkv|Vdash|langd|cedil|blk12|blk14|laquo|strns|diams|notin|vDash|larrb|blk34|block|disin|uplus|vdash|vBarv|aelig|starf|Wedge|check|xrArr|lates|lbarr|lBarr|notni|lbbrk|bcong|frasl|lbrke|frown|vrtri|vprop|vnsup|gamma|Gamma|wedge|xodot|bdquo|srarr|doteq|ldquo|boxdl|boxdL|gcirc|Gcirc|boxDl|boxDL|boxdr|boxdR|boxDr|TRADE|trade|rlhar|boxDR|vnsub|npart|vltri|rlarr|boxhd|boxhD|nprec|gescc|nrarr|nrArr|boxHd|boxHD|boxhu|boxhU|nrtri|boxHu|clubs|boxHU|times|colon|Colon|gimel|xlArr|Tilde|nsime|tilde|nsmid|nspar|THORN|thorn|xlarr|nsube|nsubE|thkap|xhArr|comma|nsucc|boxul|boxuL|nsupe|nsupE|gneqq|gnsim|boxUl|boxUL|grave|boxur|boxuR|boxUr|boxUR|lescc|angle|bepsi|boxvh|varpi|boxvH|numsp|Theta|gsime|gsiml|theta|boxVh|boxVH|boxvl|gtcir|gtdot|boxvL|boxVl|boxVL|crarr|cross|Cross|nvsim|boxvr|nwarr|nwArr|sqsup|dtdot|Uogon|lhard|lharu|dtrif|ocirc|Ocirc|lhblk|duarr|odash|sqsub|Hacek|sqcup|llarr|duhar|oelig|OElig|ofcir|boxvR|uogon|lltri|boxVr|csube|uuarr|ohbar|csupe|ctdot|olarr|olcir|harrw|oline|sqcap|omacr|Omacr|omega|Omega|boxVR|aleph|lneqq|lnsim|loang|loarr|rharu|lobrk|hcirc|operp|oplus|rhard|Hcirc|orarr|Union|order|ecirc|Ecirc|cuepr|szlig|cuesc|breve|reals|eDDot|Breve|hoarr|lopar|utrif|rdquo|Umacr|umacr|efDot|swArr|ultri|alpha|rceil|ovbar|swarr|Wcirc|wcirc|smtes|smile|bsemi|lrarr|aring|parsl|lrhar|bsime|uhblk|lrtri|cupor|Aring|uharr|uharl|slarr|rbrke|bsolb|lsime|rbbrk|RBarr|lsimg|phone|rBarr|rbarr|icirc|lsquo|Icirc|emacr|Emacr|ratio|simne|plusb|simlE|simgE|simeq|pluse|ltcir|ltdot|empty|xharr|xdtri|iexcl|Alpha|ltrie|rarrw|pound|ltrif|xcirc|bumpe|prcue|bumpE|asymp|amacr|cuvee|Sigma|sigma|iiint|udhar|iiota|ijlig|IJlig|supnE|imacr|Imacr|prime|Prime|image|prnap|eogon|Eogon|rarrc|mdash|mDDot|cuwed|imath|supne|imped|Amacr|udarr|prsim|micro|rarrb|cwint|raquo|infin|eplus|range|rangd|Ucirc|radic|minus|amalg|veeeq|rAarr|epsiv|ycirc|quest|sharp|quot|zwnj|Qscr|race|qscr|Qopf|qopf|qint|rang|Rang|Zscr|zscr|Zopf|zopf|rarr|rArr|Rarr|Pscr|pscr|prop|prod|prnE|prec|ZHcy|zhcy|prap|Zeta|zeta|Popf|popf|Zdot|plus|zdot|Yuml|yuml|phiv|YUcy|yucy|Yscr|yscr|perp|Yopf|yopf|part|para|YIcy|Ouml|rcub|yicy|YAcy|rdca|ouml|osol|Oscr|rdsh|yacy|real|oscr|xvee|andd|rect|andv|Xscr|oror|ordm|ordf|xscr|ange|aopf|Aopf|rHar|Xopf|opar|Oopf|xopf|xnis|rhov|oopf|omid|xmap|oint|apid|apos|ogon|ascr|Ascr|odot|odiv|xcup|xcap|ocir|oast|nvlt|nvle|nvgt|nvge|nvap|Wscr|wscr|auml|ntlg|ntgl|nsup|nsub|nsim|Nscr|nscr|nsce|Wopf|ring|npre|wopf|npar|Auml|Barv|bbrk|Nopf|nopf|nmid|nLtv|beta|ropf|Ropf|Beta|beth|nles|rpar|nleq|bnot|bNot|nldr|NJcy|rscr|Rscr|Vscr|vscr|rsqb|njcy|bopf|nisd|Bopf|rtri|Vopf|nGtv|ngtr|vopf|boxh|boxH|boxv|nges|ngeq|boxV|bscr|scap|Bscr|bsim|Vert|vert|bsol|bull|bump|caps|cdot|ncup|scnE|ncap|nbsp|napE|Cdot|cent|sdot|Vbar|nang|vBar|chcy|Mscr|mscr|sect|semi|CHcy|Mopf|mopf|sext|circ|cire|mldr|mlcp|cirE|comp|shcy|SHcy|vArr|varr|cong|copf|Copf|copy|COPY|malt|male|macr|lvnE|cscr|ltri|sime|ltcc|simg|Cscr|siml|csub|Uuml|lsqb|lsim|uuml|csup|Lscr|lscr|utri|smid|lpar|cups|smte|lozf|darr|Lopf|Uscr|solb|lopf|sopf|Sopf|lneq|uscr|spar|dArr|lnap|Darr|dash|Sqrt|LJcy|ljcy|lHar|dHar|Upsi|upsi|diam|lesg|djcy|DJcy|leqq|dopf|Dopf|dscr|Dscr|dscy|ldsh|ldca|squf|DScy|sscr|Sscr|dsol|lcub|late|star|Star|Uopf|Larr|lArr|larr|uopf|dtri|dzcy|sube|subE|Lang|lang|Kscr|kscr|Kopf|kopf|KJcy|kjcy|KHcy|khcy|DZcy|ecir|edot|eDot|Jscr|jscr|succ|Jopf|jopf|Edot|uHar|emsp|ensp|Iuml|iuml|eopf|isin|Iscr|iscr|Eopf|epar|sung|epsi|escr|sup1|sup2|sup3|Iota|iota|supe|supE|Iopf|iopf|IOcy|iocy|Escr|esim|Esim|imof|Uarr|QUOT|uArr|uarr|euml|IEcy|iecy|Idot|Euml|euro|excl|Hscr|hscr|Hopf|hopf|TScy|tscy|Tscr|hbar|tscr|flat|tbrk|fnof|hArr|harr|half|fopf|Fopf|tdot|gvnE|fork|trie|gtcc|fscr|Fscr|gdot|gsim|Gscr|gscr|Gopf|gopf|gneq|Gdot|tosa|gnap|Topf|topf|geqq|toea|GJcy|gjcy|tint|gesl|mid|Sfr|ggg|top|ges|gla|glE|glj|geq|gne|gEl|gel|gnE|Gcy|gcy|gap|Tfr|tfr|Tcy|tcy|Hat|Tau|Ffr|tau|Tab|hfr|Hfr|ffr|Fcy|fcy|icy|Icy|iff|ETH|eth|ifr|Ifr|Eta|eta|int|Int|Sup|sup|ucy|Ucy|Sum|sum|jcy|ENG|ufr|Ufr|eng|Jcy|jfr|els|ell|egs|Efr|efr|Jfr|uml|kcy|Kcy|Ecy|ecy|kfr|Kfr|lap|Sub|sub|lat|lcy|Lcy|leg|Dot|dot|lEg|leq|les|squ|div|die|lfr|Lfr|lgE|Dfr|dfr|Del|deg|Dcy|dcy|lne|lnE|sol|loz|smt|Cup|lrm|cup|lsh|Lsh|sim|shy|map|Map|mcy|Mcy|mfr|Mfr|mho|gfr|Gfr|sfr|cir|Chi|chi|nap|Cfr|vcy|Vcy|cfr|Scy|scy|ncy|Ncy|vee|Vee|Cap|cap|nfr|scE|sce|Nfr|nge|ngE|nGg|vfr|Vfr|ngt|bot|nGt|nis|niv|Rsh|rsh|nle|nlE|bne|Bfr|bfr|nLl|nlt|nLt|Bcy|bcy|not|Not|rlm|wfr|Wfr|npr|nsc|num|ocy|ast|Ocy|ofr|xfr|Xfr|Ofr|ogt|ohm|apE|olt|Rho|ape|rho|Rfr|rfr|ord|REG|ang|reg|orv|And|and|AMP|Rcy|amp|Afr|ycy|Ycy|yen|yfr|Yfr|rcy|par|pcy|Pcy|pfr|Pfr|phi|Phi|afr|Acy|acy|zcy|Zcy|piv|acE|acd|zfr|Zfr|pre|prE|psi|Psi|qfr|Qfr|zwj|Or|ge|Gg|gt|gg|el|oS|lt|Lt|LT|Re|lg|gl|eg|ne|Im|it|le|DD|wp|wr|nu|Nu|dd|lE|Sc|sc|pi|Pi|ee|af|ll|Ll|rx|gE|xi|pm|Xi|ic|pr|Pr|in|ni|mp|mu|ac|Mu|or|ap|Gt|GT|ii);|&(Aacute|Agrave|Atilde|Ccedil|Eacute|Egrave|Iacute|Igrave|Ntilde|Oacute|Ograve|Oslash|Otilde|Uacute|Ugrave|Yacute|aacute|agrave|atilde|brvbar|ccedil|curren|divide|eacute|egrave|frac12|frac14|frac34|iacute|igrave|iquest|middot|ntilde|oacute|ograve|oslash|otilde|plusmn|uacute|ugrave|yacute|AElig|Acirc|Aring|Ecirc|Icirc|Ocirc|THORN|Ucirc|acirc|acute|aelig|aring|cedil|ecirc|icirc|iexcl|laquo|micro|ocirc|pound|raquo|szlig|thorn|times|ucirc|Auml|COPY|Euml|Iuml|Ouml|QUOT|Uuml|auml|cent|copy|euml|iuml|macr|nbsp|ordf|ordm|ouml|para|quot|sect|sup1|sup2|sup3|uuml|yuml|AMP|ETH|REG|amp|deg|eth|not|reg|shy|uml|yen|GT|LT|gt|lt)(?!;)([=a-zA-Z0-9]?)|&#([0-9]+)(;?)|&#[xX]([a-fA-F0-9]+)(;?)|&([0-9a-zA-Z]+)/g;
             var decodeMap = {
               aacute: "\xE1",
               Aacute: "\xC1",
@@ -20787,163 +20803,48 @@ require = (function() {
               yuml: "\xFF"
             };
             var decodeMapNumeric = {
-              "0": "\uFFFD",
-              "128": "\u20AC",
-              "130": "\u201A",
-              "131": "\u0192",
-              "132": "\u201E",
-              "133": "\u2026",
-              "134": "\u2020",
-              "135": "\u2021",
-              "136": "\u02C6",
-              "137": "\u2030",
-              "138": "\u0160",
-              "139": "\u2039",
-              "140": "\u0152",
-              "142": "\u017D",
-              "145": "\u2018",
-              "146": "\u2019",
-              "147": "\u201C",
-              "148": "\u201D",
-              "149": "\u2022",
-              "150": "\u2013",
-              "151": "\u2014",
-              "152": "\u02DC",
-              "153": "\u2122",
-              "154": "\u0161",
-              "155": "\u203A",
-              "156": "\u0153",
-              "158": "\u017E",
-              "159": "\u0178"
+              0: "\uFFFD",
+              128: "\u20AC",
+              130: "\u201A",
+              131: "\u0192",
+              132: "\u201E",
+              133: "\u2026",
+              134: "\u2020",
+              135: "\u2021",
+              136: "\u02C6",
+              137: "\u2030",
+              138: "\u0160",
+              139: "\u2039",
+              140: "\u0152",
+              142: "\u017D",
+              145: "\u2018",
+              146: "\u2019",
+              147: "\u201C",
+              148: "\u201D",
+              149: "\u2022",
+              150: "\u2013",
+              151: "\u2014",
+              152: "\u02DC",
+              153: "\u2122",
+              154: "\u0161",
+              155: "\u203A",
+              156: "\u0153",
+              158: "\u017E",
+              159: "\u0178"
             };
             var invalidReferenceCodePoints = [
-              1,
-              2,
-              3,
-              4,
-              5,
-              6,
-              7,
-              8,
-              11,
-              13,
-              14,
-              15,
-              16,
-              17,
-              18,
-              19,
-              20,
-              21,
-              22,
-              23,
-              24,
-              25,
-              26,
-              27,
-              28,
-              29,
-              30,
-              31,
-              127,
-              128,
-              129,
-              130,
-              131,
-              132,
-              133,
-              134,
-              135,
-              136,
-              137,
-              138,
-              139,
-              140,
-              141,
-              142,
-              143,
-              144,
-              145,
-              146,
-              147,
-              148,
-              149,
-              150,
-              151,
-              152,
-              153,
-              154,
-              155,
-              156,
-              157,
-              158,
-              159,
-              64976,
-              64977,
-              64978,
-              64979,
-              64980,
-              64981,
-              64982,
-              64983,
-              64984,
-              64985,
-              64986,
-              64987,
-              64988,
-              64989,
-              64990,
-              64991,
-              64992,
-              64993,
-              64994,
-              64995,
-              64996,
-              64997,
-              64998,
-              64999,
-              65000,
-              65001,
-              65002,
-              65003,
-              65004,
-              65005,
-              65006,
-              65007,
-              65534,
-              65535,
-              131070,
-              131071,
-              196606,
-              196607,
-              262142,
-              262143,
-              327678,
-              327679,
-              393214,
-              393215,
-              458750,
-              458751,
-              524286,
-              524287,
-              589822,
-              589823,
-              655358,
-              655359,
-              720894,
-              720895,
-              786430,
-              786431,
-              851966,
-              851967,
-              917502,
-              917503,
-              983038,
-              983039,
-              1048574,
-              1048575,
-              1114110,
-              1114111
+              1, 2, 3, 4, 5, 6, 7, 8, 11, 13, 14, 15, 16, 17, 18, 19, 20, 21,
+              22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 127, 128, 129, 130, 131,
+              132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144,
+              145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157,
+              158, 159, 64976, 64977, 64978, 64979, 64980, 64981, 64982, 64983,
+              64984, 64985, 64986, 64987, 64988, 64989, 64990, 64991, 64992,
+              64993, 64994, 64995, 64996, 64997, 64998, 64999, 65000, 65001,
+              65002, 65003, 65004, 65005, 65006, 65007, 65534, 65535, 131070,
+              131071, 196606, 196607, 262142, 262143, 327678, 327679, 393214,
+              393215, 458750, 458751, 524286, 524287, 589822, 589823, 655358,
+              655359, 720894, 720895, 786430, 786431, 851966, 851967, 917502,
+              917503, 983038, 983039, 1048574, 1048575, 1114110, 1114111
             ];
 
             /*--------------------------------------------------------------------------*/
@@ -20952,11 +20853,11 @@ require = (function() {
 
             var object = {};
             var hasOwnProperty = object.hasOwnProperty;
-            var has = function(object, propertyName) {
+            var has = function (object, propertyName) {
               return hasOwnProperty.call(object, propertyName);
             };
 
-            var contains = function(array, value) {
+            var contains = function (array, value) {
               var index = -1;
               var length = array.length;
               while (++index < length) {
@@ -20967,7 +20868,7 @@ require = (function() {
               return false;
             };
 
-            var merge = function(options, defaults) {
+            var merge = function (options, defaults) {
               if (!options) {
                 return defaults;
               }
@@ -20982,7 +20883,7 @@ require = (function() {
             };
 
             // Modified version of `ucs2encode`; see https://mths.be/punycode.
-            var codePointToSymbol = function(codePoint, strict) {
+            var codePointToSymbol = function (codePoint, strict) {
               var output = "";
               if (
                 (codePoint >= 0xd800 && codePoint <= 0xdfff) ||
@@ -21019,21 +20920,21 @@ require = (function() {
               return output;
             };
 
-            var hexEscape = function(codePoint) {
+            var hexEscape = function (codePoint) {
               return "&#x" + codePoint.toString(16).toUpperCase() + ";";
             };
 
-            var decEscape = function(codePoint) {
+            var decEscape = function (codePoint) {
               return "&#" + codePoint + ";";
             };
 
-            var parseError = function(message) {
+            var parseError = function (message) {
               throw Error("Parse error: " + message);
             };
 
             /*--------------------------------------------------------------------------*/
 
-            var encode = function(string, options) {
+            var encode = function (string, options) {
               options = merge(options, encode.options);
               var strict = options.strict;
               if (strict && regexInvalidRawCodePoint.test(string)) {
@@ -21044,13 +20945,13 @@ require = (function() {
               var allowUnsafeSymbols = options.allowUnsafeSymbols;
               var escapeCodePoint = options.decimal ? decEscape : hexEscape;
 
-              var escapeBmpSymbol = function(symbol) {
+              var escapeBmpSymbol = function (symbol) {
                 return escapeCodePoint(symbol.charCodeAt(0));
               };
 
               if (encodeEverything) {
                 // Encode ASCII symbols.
-                string = string.replace(regexAsciiWhitelist, function(symbol) {
+                string = string.replace(regexAsciiWhitelist, function (symbol) {
                   // Use named references if requested & possible.
                   if (useNamedReferences && has(encodeMap, symbol)) {
                     return "&" + encodeMap[symbol] + ";";
@@ -21068,19 +20969,20 @@ require = (function() {
                 // Encode non-ASCII symbols.
                 if (useNamedReferences) {
                   // Encode non-ASCII symbols that can be replaced with a named reference.
-                  string = string.replace(regexEncodeNonAscii, function(
-                    string
-                  ) {
-                    // Note: there is no need to check `has(encodeMap, string)` here.
-                    return "&" + encodeMap[string] + ";";
-                  });
+                  string = string.replace(
+                    regexEncodeNonAscii,
+                    function (string) {
+                      // Note: there is no need to check `has(encodeMap, string)` here.
+                      return "&" + encodeMap[string] + ";";
+                    }
+                  );
                 }
                 // Note: any remaining non-ASCII symbols are handled outside of the `if`.
               } else if (useNamedReferences) {
                 // Apply named character references.
                 // Encode `<>"'&` using named character references.
                 if (!allowUnsafeSymbols) {
-                  string = string.replace(regexEscape, function(string) {
+                  string = string.replace(regexEscape, function (string) {
                     return "&" + encodeMap[string] + ";"; // no need to check `has()` here
                   });
                 }
@@ -21090,7 +20992,7 @@ require = (function() {
                   .replace(/&gt;\u20D2/g, "&nvgt;")
                   .replace(/&lt;\u20D2/g, "&nvlt;");
                 // Encode non-ASCII symbols that can be replaced with a named reference.
-                string = string.replace(regexEncodeNonAscii, function(string) {
+                string = string.replace(regexEncodeNonAscii, function (string) {
                   // Note: there is no need to check `has(encodeMap, string)` here.
                   return "&" + encodeMap[string] + ";";
                 });
@@ -21102,7 +21004,7 @@ require = (function() {
               return (
                 string
                   // Encode astral symbols.
-                  .replace(regexAstralSymbols, function($0) {
+                  .replace(regexAstralSymbols, function ($0) {
                     // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
                     var high = $0.charCodeAt(0);
                     var low = $0.charCodeAt(1);
@@ -21124,93 +21026,86 @@ require = (function() {
               decimal: false
             };
 
-            var decode = function(html, options) {
+            var decode = function (html, options) {
               options = merge(options, decode.options);
               var strict = options.strict;
               if (strict && regexInvalidEntity.test(html)) {
                 parseError("malformed character reference");
               }
-              return html.replace(regexDecode, function(
-                $0,
-                $1,
-                $2,
-                $3,
-                $4,
-                $5,
-                $6,
-                $7,
-                $8
-              ) {
-                var codePoint;
-                var semicolon;
-                var decDigits;
-                var hexDigits;
-                var reference;
-                var next;
+              return html.replace(
+                regexDecode,
+                function ($0, $1, $2, $3, $4, $5, $6, $7, $8) {
+                  var codePoint;
+                  var semicolon;
+                  var decDigits;
+                  var hexDigits;
+                  var reference;
+                  var next;
 
-                if ($1) {
-                  reference = $1;
-                  // Note: there is no need to check `has(decodeMap, reference)`.
-                  return decodeMap[reference];
-                }
+                  if ($1) {
+                    reference = $1;
+                    // Note: there is no need to check `has(decodeMap, reference)`.
+                    return decodeMap[reference];
+                  }
 
-                if ($2) {
-                  // Decode named character references without trailing `;`, e.g. `&amp`.
-                  // This is only a parse error if it gets converted to `&`, or if it is
-                  // followed by `=` in an attribute context.
-                  reference = $2;
-                  next = $3;
-                  if (next && options.isAttributeValue) {
-                    if (strict && next == "=") {
-                      parseError("`&` did not start a character reference");
+                  if ($2) {
+                    // Decode named character references without trailing `;`, e.g. `&amp`.
+                    // This is only a parse error if it gets converted to `&`, or if it is
+                    // followed by `=` in an attribute context.
+                    reference = $2;
+                    next = $3;
+                    if (next && options.isAttributeValue) {
+                      if (strict && next == "=") {
+                        parseError("`&` did not start a character reference");
+                      }
+                      return $0;
+                    } else {
+                      if (strict) {
+                        parseError(
+                          "named character reference was not terminated by a semicolon"
+                        );
+                      }
+                      // Note: there is no need to check `has(decodeMapLegacy, reference)`.
+                      return decodeMapLegacy[reference] + (next || "");
                     }
-                    return $0;
-                  } else {
-                    if (strict) {
+                  }
+
+                  if ($4) {
+                    // Decode decimal escapes, e.g. `&#119558;`.
+                    decDigits = $4;
+                    semicolon = $5;
+                    if (strict && !semicolon) {
                       parseError(
-                        "named character reference was not terminated by a semicolon"
+                        "character reference was not terminated by a semicolon"
                       );
                     }
-                    // Note: there is no need to check `has(decodeMapLegacy, reference)`.
-                    return decodeMapLegacy[reference] + (next || "");
+                    codePoint = parseInt(decDigits, 10);
+                    return codePointToSymbol(codePoint, strict);
                   }
-                }
 
-                if ($4) {
-                  // Decode decimal escapes, e.g. `&#119558;`.
-                  decDigits = $4;
-                  semicolon = $5;
-                  if (strict && !semicolon) {
+                  if ($6) {
+                    // Decode hexadecimal escapes, e.g. `&#x1D306;`.
+                    hexDigits = $6;
+                    semicolon = $7;
+                    if (strict && !semicolon) {
+                      parseError(
+                        "character reference was not terminated by a semicolon"
+                      );
+                    }
+                    codePoint = parseInt(hexDigits, 16);
+                    return codePointToSymbol(codePoint, strict);
+                  }
+
+                  // If we’re still here, `if ($7)` is implied; it’s an ambiguous
+                  // ampersand for sure. https://mths.be/notes/ambiguous-ampersands
+                  if (strict) {
                     parseError(
-                      "character reference was not terminated by a semicolon"
+                      "named character reference was not terminated by a semicolon"
                     );
                   }
-                  codePoint = parseInt(decDigits, 10);
-                  return codePointToSymbol(codePoint, strict);
+                  return $0;
                 }
-
-                if ($6) {
-                  // Decode hexadecimal escapes, e.g. `&#x1D306;`.
-                  hexDigits = $6;
-                  semicolon = $7;
-                  if (strict && !semicolon) {
-                    parseError(
-                      "character reference was not terminated by a semicolon"
-                    );
-                  }
-                  codePoint = parseInt(hexDigits, 16);
-                  return codePointToSymbol(codePoint, strict);
-                }
-
-                // If we’re still here, `if ($7)` is implied; it’s an ambiguous
-                // ampersand for sure. https://mths.be/notes/ambiguous-ampersands
-                if (strict) {
-                  parseError(
-                    "named character reference was not terminated by a semicolon"
-                  );
-                }
-                return $0;
-              });
+              );
             };
             // Expose default options (so they can be overridden globally).
             decode.options = {
@@ -21218,8 +21113,8 @@ require = (function() {
               strict: false
             };
 
-            var escape = function(string) {
-              return string.replace(regexEscape, function($0) {
+            var escape = function (string) {
+              return string.replace(regexEscape, function ($0) {
                 // Note: there is no need to check `has(escapeMap, $0)` here.
                 return escapeMap[$0];
               });
@@ -21242,7 +21137,7 @@ require = (function() {
               typeof define.amd == "object" &&
               define.amd
             ) {
-              define(function() {
+              define(function () {
                 return he;
               });
             } else if (freeExports && !freeExports.nodeType) {
@@ -21260,7 +21155,7 @@ require = (function() {
               root.he = he;
             }
           })(this);
-        }.call(
+        }).call(
           this,
           typeof global !== "undefined"
             ? global
@@ -21269,12 +21164,12 @@ require = (function() {
             : typeof window !== "undefined"
             ? window
             : {}
-        ));
+        );
       },
       {}
     ],
     104: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var http = require("http");
         var url = require("url");
 
@@ -21284,12 +21179,12 @@ require = (function() {
           if (http.hasOwnProperty(key)) https[key] = http[key];
         }
 
-        https.request = function(params, cb) {
+        https.request = function (params, cb) {
           params = validateParams(params);
           return http.request.call(this, params, cb);
         };
 
-        https.get = function(params, cb) {
+        https.get = function (params, cb) {
           params = validateParams(params);
           return http.get.call(this, params, cb);
         };
@@ -21314,8 +21209,8 @@ require = (function() {
       { http: 156, url: 162 }
     ],
     105: [
-      function(require, module, exports) {
-        exports.read = function(buffer, offset, isLE, mLen, nBytes) {
+      function (require, module, exports) {
+        exports.read = function (buffer, offset, isLE, mLen, nBytes) {
           var e, m;
           var eLen = nBytes * 8 - mLen - 1;
           var eMax = (1 << eLen) - 1;
@@ -21356,7 +21251,7 @@ require = (function() {
           return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
         };
 
-        exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
+        exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
           var e, m, c;
           var eLen = nBytes * 8 - mLen - 1;
           var eMax = (1 << eLen) - 1;
@@ -21419,7 +21314,7 @@ require = (function() {
       {}
     ],
     106: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         if (typeof Object.create === "function") {
           // implementation from standard node.js 'util' module
           module.exports = function inherits(ctor, superCtor) {
@@ -21437,7 +21332,7 @@ require = (function() {
           // old school shim for old browsers
           module.exports = function inherits(ctor, superCtor) {
             ctor.super_ = superCtor;
-            var TempCtor = function() {};
+            var TempCtor = function () {};
             TempCtor.prototype = superCtor.prototype;
             ctor.prototype = new TempCtor();
             ctor.prototype.constructor = ctor;
@@ -21447,7 +21342,7 @@ require = (function() {
       {}
     ],
     107: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /*!
          * Determine if an object is a Buffer
          *
@@ -21457,7 +21352,7 @@ require = (function() {
 
         // The _isBuffer check is for Safari 5-7 support, because it's missing
         // Object.prototype.constructor. Remove this eventually
-        module.exports = function(obj) {
+        module.exports = function (obj) {
           return (
             obj != null &&
             (isBuffer(obj) || isSlowBuffer(obj) || !!obj._isBuffer)
@@ -21484,87 +21379,87 @@ require = (function() {
       {}
     ],
     108: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var toString = {}.toString;
 
         module.exports =
           Array.isArray ||
-          function(arr) {
+          function (arr) {
             return toString.call(arr) == "[object Array]";
           };
       },
       {}
     ],
     109: [
-      function(require, module, exports) {
-        exports.endianness = function() {
+      function (require, module, exports) {
+        exports.endianness = function () {
           return "LE";
         };
 
-        exports.hostname = function() {
+        exports.hostname = function () {
           if (typeof location !== "undefined") {
             return location.hostname;
           } else return "";
         };
 
-        exports.loadavg = function() {
+        exports.loadavg = function () {
           return [];
         };
 
-        exports.uptime = function() {
+        exports.uptime = function () {
           return 0;
         };
 
-        exports.freemem = function() {
+        exports.freemem = function () {
           return Number.MAX_VALUE;
         };
 
-        exports.totalmem = function() {
+        exports.totalmem = function () {
           return Number.MAX_VALUE;
         };
 
-        exports.cpus = function() {
+        exports.cpus = function () {
           return [];
         };
 
-        exports.type = function() {
+        exports.type = function () {
           return "Browser";
         };
 
-        exports.release = function() {
+        exports.release = function () {
           if (typeof navigator !== "undefined") {
             return navigator.appVersion;
           }
           return "";
         };
 
-        exports.networkInterfaces = exports.getNetworkInterfaces = function() {
+        exports.networkInterfaces = exports.getNetworkInterfaces = function () {
           return {};
         };
 
-        exports.arch = function() {
+        exports.arch = function () {
           return "javascript";
         };
 
-        exports.platform = function() {
+        exports.platform = function () {
           return "browser";
         };
 
-        exports.tmpdir = exports.tmpDir = function() {
+        exports.tmpdir = exports.tmpDir = function () {
           return "/tmp";
         };
 
         exports.EOL = "\n";
 
-        exports.homedir = function() {
+        exports.homedir = function () {
           return "/";
         };
       },
       {}
     ],
     110: [
-      function(require, module, exports) {
-        (function(process) {
+      function (require, module, exports) {
+        (function (process) {
           // .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
           // backported and transplited with Babel, with backwards-compat fixes
 
@@ -21621,7 +21516,7 @@ require = (function() {
 
           // path.resolve([from ...], to)
           // posix version
-          exports.resolve = function() {
+          exports.resolve = function () {
             var resolvedPath = "",
               resolvedAbsolute = false;
 
@@ -21650,7 +21545,7 @@ require = (function() {
 
             // Normalize the path
             resolvedPath = normalizeArray(
-              filter(resolvedPath.split("/"), function(p) {
+              filter(resolvedPath.split("/"), function (p) {
                 return !!p;
               }),
               !resolvedAbsolute
@@ -21661,13 +21556,13 @@ require = (function() {
 
           // path.normalize(path)
           // posix version
-          exports.normalize = function(path) {
+          exports.normalize = function (path) {
             var isAbsolute = exports.isAbsolute(path),
               trailingSlash = substr(path, -1) === "/";
 
             // Normalize the path
             path = normalizeArray(
-              filter(path.split("/"), function(p) {
+              filter(path.split("/"), function (p) {
                 return !!p;
               }),
               !isAbsolute
@@ -21684,15 +21579,15 @@ require = (function() {
           };
 
           // posix version
-          exports.isAbsolute = function(path) {
+          exports.isAbsolute = function (path) {
             return path.charAt(0) === "/";
           };
 
           // posix version
-          exports.join = function() {
+          exports.join = function () {
             var paths = Array.prototype.slice.call(arguments, 0);
             return exports.normalize(
-              filter(paths, function(p, index) {
+              filter(paths, function (p, index) {
                 if (typeof p !== "string") {
                   throw new TypeError("Arguments to path.join must be strings");
                 }
@@ -21703,7 +21598,7 @@ require = (function() {
 
           // path.relative(from, to)
           // posix version
-          exports.relative = function(from, to) {
+          exports.relative = function (from, to) {
             from = exports.resolve(from).substr(1);
             to = exports.resolve(to).substr(1);
 
@@ -21747,7 +21642,7 @@ require = (function() {
           exports.sep = "/";
           exports.delimiter = ":";
 
-          exports.dirname = function(path) {
+          exports.dirname = function (path) {
             if (typeof path !== "string") path = path + "";
             if (path.length === 0) return ".";
             var code = path.charCodeAt(0);
@@ -21806,7 +21701,7 @@ require = (function() {
 
           // Uses a mixed approach for backwards-compatibility, as ext behavior changed
           // in new Node.js versions, so only basename() above is backported here
-          exports.basename = function(path, ext) {
+          exports.basename = function (path, ext) {
             var f = basename(path);
             if (ext && f.substr(-1 * ext.length) === ext) {
               f = f.substr(0, f.length - ext.length);
@@ -21814,7 +21709,7 @@ require = (function() {
             return f;
           };
 
-          exports.extname = function(path) {
+          exports.extname = function (path) {
             if (typeof path !== "string") path = path + "";
             var startDot = -1;
             var startPart = 0;
@@ -21878,20 +21773,20 @@ require = (function() {
           // String.prototype.substr - negative index don't work in IE8
           var substr =
             "ab".substr(-1) === "b"
-              ? function(str, start, len) {
+              ? function (str, start, len) {
                   return str.substr(start, len);
                 }
-              : function(str, start, len) {
+              : function (str, start, len) {
                   if (start < 0) start = str.length + start;
                   return str.substr(start, len);
                 };
-        }.call(this, require("_process")));
+        }).call(this, require("_process"));
       },
       { _process: 112 }
     ],
     111: [
-      function(require, module, exports) {
-        (function(process) {
+      function (require, module, exports) {
+        (function (process) {
           "use strict";
 
           if (
@@ -21938,12 +21833,12 @@ require = (function() {
                 });
             }
           }
-        }.call(this, require("_process")));
+        }).call(this, require("_process"));
       },
       { _process: 112 }
     ],
     112: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // shim for using process in browser
         var process = (module.exports = {});
 
@@ -21961,7 +21856,7 @@ require = (function() {
         function defaultClearTimeout() {
           throw new Error("clearTimeout has not been defined");
         }
-        (function() {
+        (function () {
           try {
             if (typeof setTimeout === "function") {
               cachedSetTimeout = setTimeout;
@@ -22079,7 +21974,7 @@ require = (function() {
           runClearTimeout(timeout);
         }
 
-        process.nextTick = function(fun) {
+        process.nextTick = function (fun) {
           var args = new Array(arguments.length - 1);
           if (arguments.length > 1) {
             for (var i = 1; i < arguments.length; i++) {
@@ -22097,7 +21992,7 @@ require = (function() {
           this.fun = fun;
           this.array = array;
         }
-        Item.prototype.run = function() {
+        Item.prototype.run = function () {
           this.fun.apply(null, this.array);
         };
         process.title = "browser";
@@ -22119,31 +22014,31 @@ require = (function() {
         process.prependListener = noop;
         process.prependOnceListener = noop;
 
-        process.listeners = function(name) {
+        process.listeners = function (name) {
           return [];
         };
 
-        process.binding = function(name) {
+        process.binding = function (name) {
           throw new Error("process.binding is not supported");
         };
 
-        process.cwd = function() {
+        process.cwd = function () {
           return "/";
         };
-        process.chdir = function(dir) {
+        process.chdir = function (dir) {
           throw new Error("process.chdir is not supported");
         };
-        process.umask = function() {
+        process.umask = function () {
           return 0;
         };
       },
       {}
     ],
     113: [
-      function(require, module, exports) {
-        (function(global) {
+      function (require, module, exports) {
+        (function (global) {
           /*! https://mths.be/punycode v1.4.1 by @mathias */
-          (function(root) {
+          (function (root) {
             /** Detect free variables */
             var freeExports =
               typeof exports == "object" &&
@@ -22301,7 +22196,7 @@ require = (function() {
              * @returns {String} The new Unicode string (UCS-2).
              */
             function ucs2encode(array) {
-              return map(array, function(value) {
+              return map(array, function (value) {
                 var output = "";
                 if (value > 0xffff) {
                   value -= 0x10000;
@@ -22608,7 +22503,7 @@ require = (function() {
              * string.
              */
             function toUnicode(input) {
-              return mapDomain(input, function(string) {
+              return mapDomain(input, function (string) {
                 return regexPunycode.test(string)
                   ? decode(string.slice(4).toLowerCase())
                   : string;
@@ -22627,7 +22522,7 @@ require = (function() {
              * email address.
              */
             function toASCII(input) {
-              return mapDomain(input, function(string) {
+              return mapDomain(input, function (string) {
                 return regexNonASCII.test(string)
                   ? "xn--" + encode(string)
                   : string;
@@ -22669,7 +22564,7 @@ require = (function() {
               typeof define.amd == "object" &&
               define.amd
             ) {
-              define("punycode", function() {
+              define("punycode", function () {
                 return punycode;
               });
             } else if (freeExports && freeModule) {
@@ -22688,7 +22583,7 @@ require = (function() {
               root.punycode = punycode;
             }
           })(this);
-        }.call(
+        }).call(
           this,
           typeof global !== "undefined"
             ? global
@@ -22697,12 +22592,12 @@ require = (function() {
             : typeof window !== "undefined"
             ? window
             : {}
-        ));
+        );
       },
       {}
     ],
     114: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Copyright Joyent, Inc. and other Node contributors.
         //
         // Permission is hereby granted, free of charge, to any person obtaining a
@@ -22733,7 +22628,7 @@ require = (function() {
           return Object.prototype.hasOwnProperty.call(obj, prop);
         }
 
-        module.exports = function(qs, sep, eq, options) {
+        module.exports = function (qs, sep, eq, options) {
           sep = sep || "&";
           eq = eq || "=";
           var obj = {};
@@ -22789,14 +22684,14 @@ require = (function() {
 
         var isArray =
           Array.isArray ||
-          function(xs) {
+          function (xs) {
             return Object.prototype.toString.call(xs) === "[object Array]";
           };
       },
       {}
     ],
     115: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Copyright Joyent, Inc. and other Node contributors.
         //
         // Permission is hereby granted, free of charge, to any person obtaining a
@@ -22820,7 +22715,7 @@ require = (function() {
 
         "use strict";
 
-        var stringifyPrimitive = function(v) {
+        var stringifyPrimitive = function (v) {
           switch (typeof v) {
             case "string":
               return v;
@@ -22836,7 +22731,7 @@ require = (function() {
           }
         };
 
-        module.exports = function(obj, sep, eq, name) {
+        module.exports = function (obj, sep, eq, name) {
           sep = sep || "&";
           eq = eq || "=";
           if (obj === null) {
@@ -22844,10 +22739,10 @@ require = (function() {
           }
 
           if (typeof obj === "object") {
-            return map(objectKeys(obj), function(k) {
+            return map(objectKeys(obj), function (k) {
               var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
               if (isArray(obj[k])) {
-                return map(obj[k], function(v) {
+                return map(obj[k], function (v) {
                   return ks + encodeURIComponent(stringifyPrimitive(v));
                 }).join(sep);
               } else {
@@ -22866,7 +22761,7 @@ require = (function() {
 
         var isArray =
           Array.isArray ||
-          function(xs) {
+          function (xs) {
             return Object.prototype.toString.call(xs) === "[object Array]";
           };
 
@@ -22881,7 +22776,7 @@ require = (function() {
 
         var objectKeys =
           Object.keys ||
-          function(obj) {
+          function (obj) {
             var res = [];
             for (var key in obj) {
               if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
@@ -22892,7 +22787,7 @@ require = (function() {
       {}
     ],
     116: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         exports.decode = exports.parse = require("./decode");
@@ -22901,7 +22796,7 @@ require = (function() {
       { "./decode": 114, "./encode": 115 }
     ],
     117: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Copyright Joyent, Inc. and other Node contributors.
         //
         // Permission is hereby granted, free of charge, to any person obtaining a
@@ -22938,7 +22833,7 @@ require = (function() {
         /*<replacement>*/
         var objectKeys =
           Object.keys ||
-          function(obj) {
+          function (obj) {
             var keys = [];
             for (var key in obj) {
               keys.push(key);
@@ -22991,7 +22886,7 @@ require = (function() {
           // because otherwise some prototype manipulation in
           // userland will fail
           enumerable: false,
-          get: function() {
+          get: function () {
             return this._writableState.highWaterMark;
           }
         });
@@ -23012,7 +22907,7 @@ require = (function() {
         }
 
         Object.defineProperty(Duplex.prototype, "destroyed", {
-          get: function() {
+          get: function () {
             if (
               this._readableState === undefined ||
               this._writableState === undefined
@@ -23023,7 +22918,7 @@ require = (function() {
               this._readableState.destroyed && this._writableState.destroyed
             );
           },
-          set: function(value) {
+          set: function (value) {
             // we ignore the value if the stream
             // has not been initialized yet
             if (
@@ -23040,7 +22935,7 @@ require = (function() {
           }
         });
 
-        Duplex.prototype._destroy = function(err, cb) {
+        Duplex.prototype._destroy = function (err, cb) {
           this.push(null);
           this.end();
 
@@ -23056,7 +22951,7 @@ require = (function() {
       }
     ],
     118: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Copyright Joyent, Inc. and other Node contributors.
         //
         // Permission is hereby granted, free of charge, to any person obtaining a
@@ -23101,15 +22996,15 @@ require = (function() {
           Transform.call(this, options);
         }
 
-        PassThrough.prototype._transform = function(chunk, encoding, cb) {
+        PassThrough.prototype._transform = function (chunk, encoding, cb) {
           cb(null, chunk);
         };
       },
       { "./_stream_transform": 120, "core-util-is": 101, inherits: 106 }
     ],
     119: [
-      function(require, module, exports) {
-        (function(process, global) {
+      function (require, module, exports) {
+        (function (process, global) {
           // Copyright Joyent, Inc. and other Node contributors.
           //
           // Permission is hereby granted, free of charge, to any person obtaining a
@@ -23153,7 +23048,7 @@ require = (function() {
           /*<replacement>*/
           var EE = require("events").EventEmitter;
 
-          var EElistenerCount = function(emitter, type) {
+          var EElistenerCount = function (emitter, type) {
             return emitter.listeners(type).length;
           };
           /*</replacement>*/
@@ -23165,7 +23060,7 @@ require = (function() {
           /*<replacement>*/
 
           var Buffer = require("safe-buffer").Buffer;
-          var OurUint8Array = global.Uint8Array || function() {};
+          var OurUint8Array = global.Uint8Array || function () {};
           function _uint8ArrayToBuffer(chunk) {
             return Buffer.from(chunk);
           }
@@ -23186,7 +23081,7 @@ require = (function() {
           if (debugUtil && debugUtil.debuglog) {
             debug = debugUtil.debuglog("stream");
           } else {
-            debug = function() {};
+            debug = function () {};
           }
           /*</replacement>*/
 
@@ -23318,13 +23213,13 @@ require = (function() {
           }
 
           Object.defineProperty(Readable.prototype, "destroyed", {
-            get: function() {
+            get: function () {
               if (this._readableState === undefined) {
                 return false;
               }
               return this._readableState.destroyed;
             },
-            set: function(value) {
+            set: function (value) {
               // we ignore the value if the stream
               // has not been initialized yet
               if (!this._readableState) {
@@ -23339,7 +23234,7 @@ require = (function() {
 
           Readable.prototype.destroy = destroyImpl.destroy;
           Readable.prototype._undestroy = destroyImpl.undestroy;
-          Readable.prototype._destroy = function(err, cb) {
+          Readable.prototype._destroy = function (err, cb) {
             this.push(null);
             cb(err);
           };
@@ -23348,7 +23243,7 @@ require = (function() {
           // This returns true if the highWaterMark has not been hit yet,
           // similar to how Writable.write() returns true if you should
           // write() some more.
-          Readable.prototype.push = function(chunk, encoding) {
+          Readable.prototype.push = function (chunk, encoding) {
             var state = this._readableState;
             var skipChunkCheck;
 
@@ -23375,7 +23270,7 @@ require = (function() {
           };
 
           // Unshift should *always* be something directly out of read()
-          Readable.prototype.unshift = function(chunk) {
+          Readable.prototype.unshift = function (chunk) {
             return readableAddChunk(this, chunk, null, true, false);
           };
 
@@ -23476,12 +23371,12 @@ require = (function() {
             );
           }
 
-          Readable.prototype.isPaused = function() {
+          Readable.prototype.isPaused = function () {
             return this._readableState.flowing === false;
           };
 
           // backwards compatibility.
-          Readable.prototype.setEncoding = function(enc) {
+          Readable.prototype.setEncoding = function (enc) {
             if (!StringDecoder)
               StringDecoder = require("string_decoder/").StringDecoder;
             this._readableState.decoder = new StringDecoder(enc);
@@ -23532,7 +23427,7 @@ require = (function() {
           }
 
           // you can override either this method, or the async _read(n) below.
-          Readable.prototype.read = function(n) {
+          Readable.prototype.read = function (n) {
             debug("read", n);
             n = parseInt(n, 10);
             var state = this._readableState;
@@ -23708,11 +23603,11 @@ require = (function() {
           // call cb(er, data) where data is <= n in length.
           // for virtual (non-string, non-buffer) streams, "length" is somewhat
           // arbitrary, and perhaps not very meaningful.
-          Readable.prototype._read = function(n) {
+          Readable.prototype._read = function (n) {
             this.emit("error", new Error("_read() is not implemented"));
           };
 
-          Readable.prototype.pipe = function(dest, pipeOpts) {
+          Readable.prototype.pipe = function (dest, pipeOpts) {
             var src = this;
             var state = this._readableState;
 
@@ -23864,7 +23759,7 @@ require = (function() {
           };
 
           function pipeOnDrain(src) {
-            return function() {
+            return function () {
               var state = src._readableState;
               debug("pipeOnDrain", state.awaitDrain);
               if (state.awaitDrain) state.awaitDrain--;
@@ -23875,7 +23770,7 @@ require = (function() {
             };
           }
 
-          Readable.prototype.unpipe = function(dest) {
+          Readable.prototype.unpipe = function (dest) {
             var state = this._readableState;
             var unpipeInfo = { hasUnpiped: false };
 
@@ -23928,7 +23823,7 @@ require = (function() {
 
           // set up data events if they are asked for
           // Ensure readable listeners eventually get something
-          Readable.prototype.on = function(ev, fn) {
+          Readable.prototype.on = function (ev, fn) {
             var res = Stream.prototype.on.call(this, ev, fn);
 
             if (ev === "data") {
@@ -23958,7 +23853,7 @@ require = (function() {
 
           // pause() and resume() are remnants of the legacy readable stream API
           // If the user uses them, then switch into old mode.
-          Readable.prototype.resume = function() {
+          Readable.prototype.resume = function () {
             var state = this._readableState;
             if (!state.flowing) {
               debug("resume");
@@ -23988,7 +23883,7 @@ require = (function() {
             if (state.flowing && !state.reading) stream.read(0);
           }
 
-          Readable.prototype.pause = function() {
+          Readable.prototype.pause = function () {
             debug("call pause flowing=%j", this._readableState.flowing);
             if (false !== this._readableState.flowing) {
               debug("pause");
@@ -24007,13 +23902,13 @@ require = (function() {
           // wrap an old-style stream as the async data source.
           // This is *not* part of the readable stream interface.
           // It is an ugly unfortunate mess of history.
-          Readable.prototype.wrap = function(stream) {
+          Readable.prototype.wrap = function (stream) {
             var _this = this;
 
             var state = this._readableState;
             var paused = false;
 
-            stream.on("end", function() {
+            stream.on("end", function () {
               debug("wrapped end");
               if (state.decoder && !state.ended) {
                 var chunk = state.decoder.end();
@@ -24023,7 +23918,7 @@ require = (function() {
               _this.push(null);
             });
 
-            stream.on("data", function(chunk) {
+            stream.on("data", function (chunk) {
               debug("wrapped data");
               if (state.decoder) chunk = state.decoder.write(chunk);
 
@@ -24043,8 +23938,8 @@ require = (function() {
             // important when wrapping filters and duplexes.
             for (var i in stream) {
               if (this[i] === undefined && typeof stream[i] === "function") {
-                this[i] = (function(method) {
-                  return function() {
+                this[i] = (function (method) {
+                  return function () {
                     return stream[method].apply(stream, arguments);
                   };
                 })(i);
@@ -24058,7 +23953,7 @@ require = (function() {
 
             // when we try to consume some more bytes, simply unpause the
             // underlying stream.
-            this._read = function(n) {
+            this._read = function (n) {
               debug("wrapped _read", n);
               if (paused) {
                 paused = false;
@@ -24074,7 +23969,7 @@ require = (function() {
             // because otherwise some prototype manipulation in
             // userland will fail
             enumerable: false,
-            get: function() {
+            get: function () {
               return this._readableState.highWaterMark;
             }
           });
@@ -24219,7 +24114,7 @@ require = (function() {
             }
             return -1;
           }
-        }.call(
+        }).call(
           this,
           require("_process"),
           typeof global !== "undefined"
@@ -24229,7 +24124,7 @@ require = (function() {
             : typeof window !== "undefined"
             ? window
             : {}
-        ));
+        );
       },
       {
         "./_stream_duplex": 117,
@@ -24248,7 +24143,7 @@ require = (function() {
       }
     ],
     120: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Copyright Joyent, Inc. and other Node contributors.
         //
         // Permission is hereby granted, free of charge, to any person obtaining a
@@ -24392,7 +24287,7 @@ require = (function() {
           var _this = this;
 
           if (typeof this._flush === "function") {
-            this._flush(function(er, data) {
+            this._flush(function (er, data) {
               done(_this, er, data);
             });
           } else {
@@ -24400,7 +24295,7 @@ require = (function() {
           }
         }
 
-        Transform.prototype.push = function(chunk, encoding) {
+        Transform.prototype.push = function (chunk, encoding) {
           this._transformState.needTransform = false;
           return Duplex.prototype.push.call(this, chunk, encoding);
         };
@@ -24415,11 +24310,11 @@ require = (function() {
         // Call `cb(err)` when you are done with this chunk.  If you pass
         // an error, then that'll put the hurt on the whole operation.  If you
         // never call cb(), then you'll never get another chunk.
-        Transform.prototype._transform = function(chunk, encoding, cb) {
+        Transform.prototype._transform = function (chunk, encoding, cb) {
           throw new Error("_transform() is not implemented");
         };
 
-        Transform.prototype._write = function(chunk, encoding, cb) {
+        Transform.prototype._write = function (chunk, encoding, cb) {
           var ts = this._transformState;
           ts.writecb = cb;
           ts.writechunk = chunk;
@@ -24438,7 +24333,7 @@ require = (function() {
         // Doesn't matter what the args are here.
         // _transform does all the work.
         // That we got here means that the readable side wants more data.
-        Transform.prototype._read = function(n) {
+        Transform.prototype._read = function (n) {
           var ts = this._transformState;
 
           if (ts.writechunk !== null && ts.writecb && !ts.transforming) {
@@ -24451,10 +24346,10 @@ require = (function() {
           }
         };
 
-        Transform.prototype._destroy = function(err, cb) {
+        Transform.prototype._destroy = function (err, cb) {
           var _this2 = this;
 
-          Duplex.prototype._destroy.call(this, err, function(err2) {
+          Duplex.prototype._destroy.call(this, err, function (err2) {
             cb(err2);
             _this2.emit("close");
           });
@@ -24481,8 +24376,8 @@ require = (function() {
       { "./_stream_duplex": 117, "core-util-is": 101, inherits: 106 }
     ],
     121: [
-      function(require, module, exports) {
-        (function(process, global, setImmediate) {
+      function (require, module, exports) {
+        (function (process, global, setImmediate) {
           // Copyright Joyent, Inc. and other Node contributors.
           //
           // Permission is hereby granted, free of charge, to any person obtaining a
@@ -24532,7 +24427,7 @@ require = (function() {
 
             this.next = null;
             this.entry = null;
-            this.finish = function() {
+            this.finish = function () {
               onCorkedFinish(_this, state);
             };
           }
@@ -24570,7 +24465,7 @@ require = (function() {
           /*<replacement>*/
 
           var Buffer = require("safe-buffer").Buffer;
-          var OurUint8Array = global.Uint8Array || function() {};
+          var OurUint8Array = global.Uint8Array || function () {};
           function _uint8ArrayToBuffer(chunk) {
             return Buffer.from(chunk);
           }
@@ -24669,7 +24564,7 @@ require = (function() {
             this.bufferProcessing = false;
 
             // the callback that's passed to _write(chunk,cb)
-            this.onwrite = function(er) {
+            this.onwrite = function (er) {
               onwrite(stream, er);
             };
 
@@ -24711,11 +24606,11 @@ require = (function() {
             return out;
           };
 
-          (function() {
+          (function () {
             try {
               Object.defineProperty(WritableState.prototype, "buffer", {
                 get: internalUtil.deprecate(
-                  function() {
+                  function () {
                     return this.getBuffer();
                   },
                   "_writableState.buffer is deprecated. Use _writableState.getBuffer " +
@@ -24736,7 +24631,7 @@ require = (function() {
           ) {
             realHasInstance = Function.prototype[Symbol.hasInstance];
             Object.defineProperty(Writable, Symbol.hasInstance, {
-              value: function(object) {
+              value: function (object) {
                 if (realHasInstance.call(this, object)) return true;
                 if (this !== Writable) return false;
 
@@ -24744,7 +24639,7 @@ require = (function() {
               }
             });
           } else {
-            realHasInstance = function(object) {
+            realHasInstance = function (object) {
               return object instanceof this;
             };
           }
@@ -24789,7 +24684,7 @@ require = (function() {
           }
 
           // Otherwise people can pipe Writable streams, which is just wrong.
-          Writable.prototype.pipe = function() {
+          Writable.prototype.pipe = function () {
             this.emit("error", new Error("Cannot pipe, not readable"));
           };
 
@@ -24824,7 +24719,7 @@ require = (function() {
             return valid;
           }
 
-          Writable.prototype.write = function(chunk, encoding, cb) {
+          Writable.prototype.write = function (chunk, encoding, cb) {
             var state = this._writableState;
             var ret = false;
             var isBuf = !state.objectMode && _isUint8Array(chunk);
@@ -24852,13 +24747,13 @@ require = (function() {
             return ret;
           };
 
-          Writable.prototype.cork = function() {
+          Writable.prototype.cork = function () {
             var state = this._writableState;
 
             state.corked++;
           };
 
-          Writable.prototype.uncork = function() {
+          Writable.prototype.uncork = function () {
             var state = this._writableState;
 
             if (state.corked) {
@@ -24918,7 +24813,7 @@ require = (function() {
             // because otherwise some prototype manipulation in
             // userland will fail
             enumerable: false,
-            get: function() {
+            get: function () {
               return this._writableState.highWaterMark;
             }
           });
@@ -25124,13 +25019,13 @@ require = (function() {
             state.bufferProcessing = false;
           }
 
-          Writable.prototype._write = function(chunk, encoding, cb) {
+          Writable.prototype._write = function (chunk, encoding, cb) {
             cb(new Error("_write() is not implemented"));
           };
 
           Writable.prototype._writev = null;
 
-          Writable.prototype.end = function(chunk, encoding, cb) {
+          Writable.prototype.end = function (chunk, encoding, cb) {
             var state = this._writableState;
 
             if (typeof chunk === "function") {
@@ -25165,7 +25060,7 @@ require = (function() {
             );
           }
           function callFinal(stream, state) {
-            stream._final(function(err) {
+            stream._final(function (err) {
               state.pendingcb--;
               if (err) {
                 stream.emit("error", err);
@@ -25228,13 +25123,13 @@ require = (function() {
           }
 
           Object.defineProperty(Writable.prototype, "destroyed", {
-            get: function() {
+            get: function () {
               if (this._writableState === undefined) {
                 return false;
               }
               return this._writableState.destroyed;
             },
-            set: function(value) {
+            set: function (value) {
               // we ignore the value if the stream
               // has not been initialized yet
               if (!this._writableState) {
@@ -25249,11 +25144,11 @@ require = (function() {
 
           Writable.prototype.destroy = destroyImpl.destroy;
           Writable.prototype._undestroy = destroyImpl.undestroy;
-          Writable.prototype._destroy = function(err, cb) {
+          Writable.prototype._destroy = function (err, cb) {
             this.end();
             cb(err);
           };
-        }.call(
+        }).call(
           this,
           require("_process"),
           typeof global !== "undefined"
@@ -25264,7 +25159,7 @@ require = (function() {
             ? window
             : {},
           require("timers").setImmediate
-        ));
+        );
       },
       {
         "./_stream_duplex": 117,
@@ -25280,7 +25175,7 @@ require = (function() {
       }
     ],
     122: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function _classCallCheck(instance, Constructor) {
@@ -25296,7 +25191,7 @@ require = (function() {
           src.copy(target, offset);
         }
 
-        module.exports = (function() {
+        module.exports = (function () {
           function BufferList() {
             _classCallCheck(this, BufferList);
 
@@ -25362,7 +25257,7 @@ require = (function() {
         })();
 
         if (util && util.inspect && util.inspect.custom) {
-          module.exports.prototype[util.inspect.custom] = function() {
+          module.exports.prototype[util.inspect.custom] = function () {
             var obj = util.inspect({ length: this.length });
             return this.constructor.name + " " + obj;
           };
@@ -25371,7 +25266,7 @@ require = (function() {
       { "safe-buffer": 144, util: 2 }
     ],
     123: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         /*<replacement>*/
@@ -25412,7 +25307,7 @@ require = (function() {
             this._writableState.destroyed = true;
           }
 
-          this._destroy(err || null, function(err) {
+          this._destroy(err || null, function (err) {
             if (!cb && err) {
               pna.nextTick(emitErrorNT, _this, err);
               if (_this._writableState) {
@@ -25455,13 +25350,13 @@ require = (function() {
       { "process-nextick-args": 111 }
     ],
     124: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         module.exports = require("events").EventEmitter;
       },
       { events: 102 }
     ],
     125: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Copyright Joyent, Inc. and other Node contributors.
         //
         // Permission is hereby granted, free of charge, to any person obtaining a
@@ -25492,7 +25387,7 @@ require = (function() {
 
         var isEncoding =
           Buffer.isEncoding ||
-          function(encoding) {
+          function (encoding) {
             encoding = "" + encoding;
             switch (encoding && encoding.toLowerCase()) {
               case "hex":
@@ -25584,7 +25479,7 @@ require = (function() {
           this.lastChar = Buffer.allocUnsafe(nb);
         }
 
-        StringDecoder.prototype.write = function(buf) {
+        StringDecoder.prototype.write = function (buf) {
           if (buf.length === 0) return "";
           var r;
           var i;
@@ -25607,7 +25502,7 @@ require = (function() {
         StringDecoder.prototype.text = utf8Text;
 
         // Attempts to complete a partial non-UTF-8 character using bytes from a Buffer
-        StringDecoder.prototype.fillLast = function(buf) {
+        StringDecoder.prototype.fillLast = function (buf) {
           if (this.lastNeed <= buf.length) {
             buf.copy(
               this.lastChar,
@@ -25794,7 +25689,7 @@ require = (function() {
       { "safe-buffer": 144 }
     ],
     126: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         exports = module.exports = require("./lib/_stream_readable.js");
         exports.Stream = exports;
         exports.Readable = exports;
@@ -25812,7 +25707,7 @@ require = (function() {
       }
     ],
     127: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         module.exports = {
@@ -25826,7 +25721,7 @@ require = (function() {
       {}
     ],
     128: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var constants = require("./constants");
@@ -25998,7 +25893,7 @@ require = (function() {
       { "./constants": 127 }
     ],
     129: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var constants = require("./constants");
@@ -26030,7 +25925,7 @@ require = (function() {
         /*
 	Usage: instance=new RelateUrl(); instance.relate();
 */
-        RelateUrl.prototype.relate = function(from, to, options) {
+        RelateUrl.prototype.relate = function (from, to, options) {
           // relate(to,options)
           if (objUtils.isPlainObject(to)) {
             options = to;
@@ -26068,7 +25963,7 @@ require = (function() {
         /*
 	Usage: RelateUrl.relate();
 */
-        RelateUrl.relate = function(from, to, options) {
+        RelateUrl.relate = function (from, to, options) {
           return new RelateUrl().relate(from, to, options);
         };
 
@@ -26087,7 +25982,7 @@ require = (function() {
       }
     ],
     130: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var objUtils = require("./util/object");
@@ -26129,7 +26024,7 @@ require = (function() {
       { "./util/object": 142 }
     ],
     131: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function parseHost(urlObj, options) {
@@ -26154,7 +26049,7 @@ require = (function() {
       {}
     ],
     132: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function hrefInfo(urlObj) {
@@ -26179,7 +26074,7 @@ require = (function() {
       {}
     ],
     133: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var hrefInfo = require("./hrefInfo");
@@ -26240,13 +26135,13 @@ require = (function() {
       }
     ],
     134: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function isDirectoryIndex(resource, options) {
           var verdict = false;
 
-          options.directoryIndexes.every(function(index) {
+          options.directoryIndexes.every(function (index) {
             if (index === resource) {
               verdict = true;
               return false;
@@ -26303,7 +26198,7 @@ require = (function() {
           if (path !== "/") {
             var cleaned = [];
 
-            path.split("/").forEach(function(dir) {
+            path.split("/").forEach(function (dir) {
               // Cleanup -- splitting "/dir/" becomes ["","dir",""]
               if (dir !== "") {
                 cleaned.push(dir);
@@ -26322,7 +26217,7 @@ require = (function() {
       {}
     ],
     135: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function parsePort(urlObj, options) {
@@ -26352,7 +26247,7 @@ require = (function() {
       {}
     ],
     136: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
         var hasOwnProperty = Object.prototype.hasOwnProperty;
 
@@ -26396,7 +26291,7 @@ require = (function() {
       {}
     ],
     137: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var _parseUrl = require("url").parse;
@@ -26498,7 +26393,7 @@ require = (function() {
         function validScheme(url, options) {
           var valid = true;
 
-          options.rejectedSchemes.every(function(rejectedScheme) {
+          options.rejectedSchemes.every(function (rejectedScheme) {
             valid = !(url.indexOf(rejectedScheme + ":") === 0);
 
             // Break loop
@@ -26521,7 +26416,7 @@ require = (function() {
       { url: 162 }
     ],
     138: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var findRelation = require("./findRelation");
@@ -26604,7 +26499,7 @@ require = (function() {
       { "../util/object": 142, "../util/path": 143, "./findRelation": 139 }
     ],
     139: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function findRelation_upToPath(urlObj, siteUrlObj, options) {
@@ -26709,7 +26604,7 @@ require = (function() {
       {}
     ],
     140: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var absolutize = require("./absolutize");
@@ -26727,7 +26622,7 @@ require = (function() {
       { "./absolutize": 138, "./relativize": 141 }
     ],
     141: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var pathUtils = require("../util/path");
@@ -26743,7 +26638,7 @@ require = (function() {
           var parentIndex = -1;
 
           // Find parents
-          siteAbsolutePath.forEach(function(siteAbsoluteDir, i) {
+          siteAbsolutePath.forEach(function (siteAbsoluteDir, i) {
             if (related) {
               if (absolutePath[i] !== siteAbsoluteDir) {
                 related = false;
@@ -26759,7 +26654,7 @@ require = (function() {
           });
 
           // Form path
-          absolutePath.forEach(function(dir, i) {
+          absolutePath.forEach(function (dir, i) {
             if (i > parentIndex) {
               relativePath.push(dir);
             }
@@ -26785,7 +26680,7 @@ require = (function() {
       { "../util/path": 143 }
     ],
     142: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         /*
@@ -26838,7 +26733,7 @@ require = (function() {
       {}
     ],
     143: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function joinPath(pathArray) {
@@ -26852,7 +26747,7 @@ require = (function() {
         function resolveDotSegments(pathArray) {
           var pathAbsolute = [];
 
-          pathArray.forEach(function(dir) {
+          pathArray.forEach(function (dir) {
             if (dir !== "..") {
               if (dir !== ".") {
                 pathAbsolute.push(dir);
@@ -26876,7 +26771,7 @@ require = (function() {
       {}
     ],
     144: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* eslint-disable node/no-deprecated-api */
         var buffer = require("buffer");
         var Buffer = buffer.Buffer;
@@ -26907,14 +26802,14 @@ require = (function() {
         // Copy static methods from Buffer
         copyProps(Buffer, SafeBuffer);
 
-        SafeBuffer.from = function(arg, encodingOrOffset, length) {
+        SafeBuffer.from = function (arg, encodingOrOffset, length) {
           if (typeof arg === "number") {
             throw new TypeError("Argument must not be a number");
           }
           return Buffer(arg, encodingOrOffset, length);
         };
 
-        SafeBuffer.alloc = function(size, fill, encoding) {
+        SafeBuffer.alloc = function (size, fill, encoding) {
           if (typeof size !== "number") {
             throw new TypeError("Argument must be a number");
           }
@@ -26931,14 +26826,14 @@ require = (function() {
           return buf;
         };
 
-        SafeBuffer.allocUnsafe = function(size) {
+        SafeBuffer.allocUnsafe = function (size) {
           if (typeof size !== "number") {
             throw new TypeError("Argument must be a number");
           }
           return Buffer(size);
         };
 
-        SafeBuffer.allocUnsafeSlow = function(size) {
+        SafeBuffer.allocUnsafeSlow = function (size) {
           if (typeof size !== "number") {
             throw new TypeError("Argument must be a number");
           }
@@ -26948,7 +26843,7 @@ require = (function() {
       { buffer: 4 }
     ],
     145: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -27081,7 +26976,7 @@ require = (function() {
       { "./util": 154 }
     ],
     146: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -27224,7 +27119,7 @@ require = (function() {
       { "./base64": 147 }
     ],
     147: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -27232,14 +27127,15 @@ require = (function() {
          * http://opensource.org/licenses/BSD-3-Clause
          */
 
-        var intToCharMap = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(
-          ""
-        );
+        var intToCharMap =
+          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".split(
+            ""
+          );
 
         /**
          * Encode an integer in the range of 0 to 63 to a single base 64 digit.
          */
-        exports.encode = function(number) {
+        exports.encode = function (number) {
           if (0 <= number && number < intToCharMap.length) {
             return intToCharMap[number];
           }
@@ -27250,7 +27146,7 @@ require = (function() {
          * Decode a single base 64 character code digit to an integer. Returns -1 on
          * failure.
          */
-        exports.decode = function(charCode) {
+        exports.decode = function (charCode) {
           var bigA = 65; // 'A'
           var bigZ = 90; // 'Z'
 
@@ -27298,7 +27194,7 @@ require = (function() {
       {}
     ],
     148: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -27439,7 +27335,7 @@ require = (function() {
       {}
     ],
     149: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2014 Mozilla Foundation and contributors
@@ -27528,7 +27424,7 @@ require = (function() {
       { "./util": 154 }
     ],
     150: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -27640,14 +27536,14 @@ require = (function() {
          * @param {function} comparator
          *        Function to use to compare two items.
          */
-        exports.quickSort = function(ary, comparator) {
+        exports.quickSort = function (ary, comparator) {
           doQuickSort(ary, comparator, 0, ary.length - 1);
         };
       },
       {}
     ],
     151: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -27672,7 +27568,7 @@ require = (function() {
             : new BasicSourceMapConsumer(sourceMap, aSourceMapURL);
         }
 
-        SourceMapConsumer.fromSourceMap = function(aSourceMap, aSourceMapURL) {
+        SourceMapConsumer.fromSourceMap = function (aSourceMap, aSourceMapURL) {
           return BasicSourceMapConsumer.fromSourceMap(
             aSourceMap,
             aSourceMapURL
@@ -27721,7 +27617,7 @@ require = (function() {
           {
             configurable: true,
             enumerable: true,
-            get: function() {
+            get: function () {
               if (!this.__generatedMappings) {
                 this._parseMappings(this._mappings, this.sourceRoot);
               }
@@ -27738,7 +27634,7 @@ require = (function() {
           {
             configurable: true,
             enumerable: true,
-            get: function() {
+            get: function () {
               if (!this.__originalMappings) {
                 this._parseMappings(this._mappings, this.sourceRoot);
               }
@@ -27748,25 +27644,21 @@ require = (function() {
           }
         );
 
-        SourceMapConsumer.prototype._charIsMappingSeparator = function SourceMapConsumer_charIsMappingSeparator(
-          aStr,
-          index
-        ) {
-          var c = aStr.charAt(index);
-          return c === ";" || c === ",";
-        };
+        SourceMapConsumer.prototype._charIsMappingSeparator =
+          function SourceMapConsumer_charIsMappingSeparator(aStr, index) {
+            var c = aStr.charAt(index);
+            return c === ";" || c === ",";
+          };
 
         /**
          * Parse the mappings in a string in to a data structure which we can easily
          * query (the ordered arrays in the `this.__generatedMappings` and
          * `this.__originalMappings` properties).
          */
-        SourceMapConsumer.prototype._parseMappings = function SourceMapConsumer_parseMappings(
-          aStr,
-          aSourceRoot
-        ) {
-          throw new Error("Subclasses must implement _parseMappings");
-        };
+        SourceMapConsumer.prototype._parseMappings =
+          function SourceMapConsumer_parseMappings(aStr, aSourceRoot) {
+            throw new Error("Subclasses must implement _parseMappings");
+          };
 
         SourceMapConsumer.GENERATED_ORDER = 1;
         SourceMapConsumer.ORIGINAL_ORDER = 2;
@@ -27790,50 +27682,47 @@ require = (function() {
          *        order or the original's source/line/column order, respectively. Defaults to
          *        `SourceMapConsumer.GENERATED_ORDER`.
          */
-        SourceMapConsumer.prototype.eachMapping = function SourceMapConsumer_eachMapping(
-          aCallback,
-          aContext,
-          aOrder
-        ) {
-          var context = aContext || null;
-          var order = aOrder || SourceMapConsumer.GENERATED_ORDER;
+        SourceMapConsumer.prototype.eachMapping =
+          function SourceMapConsumer_eachMapping(aCallback, aContext, aOrder) {
+            var context = aContext || null;
+            var order = aOrder || SourceMapConsumer.GENERATED_ORDER;
 
-          var mappings;
-          switch (order) {
-            case SourceMapConsumer.GENERATED_ORDER:
-              mappings = this._generatedMappings;
-              break;
-            case SourceMapConsumer.ORIGINAL_ORDER:
-              mappings = this._originalMappings;
-              break;
-            default:
-              throw new Error("Unknown order of iteration.");
-          }
+            var mappings;
+            switch (order) {
+              case SourceMapConsumer.GENERATED_ORDER:
+                mappings = this._generatedMappings;
+                break;
+              case SourceMapConsumer.ORIGINAL_ORDER:
+                mappings = this._originalMappings;
+                break;
+              default:
+                throw new Error("Unknown order of iteration.");
+            }
 
-          var sourceRoot = this.sourceRoot;
-          mappings
-            .map(function(mapping) {
-              var source =
-                mapping.source === null
-                  ? null
-                  : this._sources.at(mapping.source);
-              source = util.computeSourceURL(
-                sourceRoot,
-                source,
-                this._sourceMapURL
-              );
-              return {
-                source: source,
-                generatedLine: mapping.generatedLine,
-                generatedColumn: mapping.generatedColumn,
-                originalLine: mapping.originalLine,
-                originalColumn: mapping.originalColumn,
-                name:
-                  mapping.name === null ? null : this._names.at(mapping.name)
-              };
-            }, this)
-            .forEach(aCallback, context);
-        };
+            var sourceRoot = this.sourceRoot;
+            mappings
+              .map(function (mapping) {
+                var source =
+                  mapping.source === null
+                    ? null
+                    : this._sources.at(mapping.source);
+                source = util.computeSourceURL(
+                  sourceRoot,
+                  source,
+                  this._sourceMapURL
+                );
+                return {
+                  source: source,
+                  generatedLine: mapping.generatedLine,
+                  generatedColumn: mapping.generatedColumn,
+                  originalLine: mapping.originalLine,
+                  originalColumn: mapping.originalColumn,
+                  name:
+                    mapping.name === null ? null : this._names.at(mapping.name)
+                };
+              }, this)
+              .forEach(aCallback, context);
+          };
 
         /**
          * Returns all generated line and column information for the original source,
@@ -27857,80 +27746,87 @@ require = (function() {
          *   - column: The column number in the generated source, or null.
          *    The column number is 0-based.
          */
-        SourceMapConsumer.prototype.allGeneratedPositionsFor = function SourceMapConsumer_allGeneratedPositionsFor(
-          aArgs
-        ) {
-          var line = util.getArg(aArgs, "line");
+        SourceMapConsumer.prototype.allGeneratedPositionsFor =
+          function SourceMapConsumer_allGeneratedPositionsFor(aArgs) {
+            var line = util.getArg(aArgs, "line");
 
-          // When there is no exact match, BasicSourceMapConsumer.prototype._findMapping
-          // returns the index of the closest mapping less than the needle. By
-          // setting needle.originalColumn to 0, we thus find the last mapping for
-          // the given line, provided such a mapping exists.
-          var needle = {
-            source: util.getArg(aArgs, "source"),
-            originalLine: line,
-            originalColumn: util.getArg(aArgs, "column", 0)
-          };
+            // When there is no exact match, BasicSourceMapConsumer.prototype._findMapping
+            // returns the index of the closest mapping less than the needle. By
+            // setting needle.originalColumn to 0, we thus find the last mapping for
+            // the given line, provided such a mapping exists.
+            var needle = {
+              source: util.getArg(aArgs, "source"),
+              originalLine: line,
+              originalColumn: util.getArg(aArgs, "column", 0)
+            };
 
-          needle.source = this._findSourceIndex(needle.source);
-          if (needle.source < 0) {
-            return [];
-          }
+            needle.source = this._findSourceIndex(needle.source);
+            if (needle.source < 0) {
+              return [];
+            }
 
-          var mappings = [];
+            var mappings = [];
 
-          var index = this._findMapping(
-            needle,
-            this._originalMappings,
-            "originalLine",
-            "originalColumn",
-            util.compareByOriginalPositions,
-            binarySearch.LEAST_UPPER_BOUND
-          );
-          if (index >= 0) {
-            var mapping = this._originalMappings[index];
+            var index = this._findMapping(
+              needle,
+              this._originalMappings,
+              "originalLine",
+              "originalColumn",
+              util.compareByOriginalPositions,
+              binarySearch.LEAST_UPPER_BOUND
+            );
+            if (index >= 0) {
+              var mapping = this._originalMappings[index];
 
-            if (aArgs.column === undefined) {
-              var originalLine = mapping.originalLine;
+              if (aArgs.column === undefined) {
+                var originalLine = mapping.originalLine;
 
-              // Iterate until either we run out of mappings, or we run into
-              // a mapping for a different line than the one we found. Since
-              // mappings are sorted, this is guaranteed to find all mappings for
-              // the line we found.
-              while (mapping && mapping.originalLine === originalLine) {
-                mappings.push({
-                  line: util.getArg(mapping, "generatedLine", null),
-                  column: util.getArg(mapping, "generatedColumn", null),
-                  lastColumn: util.getArg(mapping, "lastGeneratedColumn", null)
-                });
+                // Iterate until either we run out of mappings, or we run into
+                // a mapping for a different line than the one we found. Since
+                // mappings are sorted, this is guaranteed to find all mappings for
+                // the line we found.
+                while (mapping && mapping.originalLine === originalLine) {
+                  mappings.push({
+                    line: util.getArg(mapping, "generatedLine", null),
+                    column: util.getArg(mapping, "generatedColumn", null),
+                    lastColumn: util.getArg(
+                      mapping,
+                      "lastGeneratedColumn",
+                      null
+                    )
+                  });
 
-                mapping = this._originalMappings[++index];
-              }
-            } else {
-              var originalColumn = mapping.originalColumn;
+                  mapping = this._originalMappings[++index];
+                }
+              } else {
+                var originalColumn = mapping.originalColumn;
 
-              // Iterate until either we run out of mappings, or we run into
-              // a mapping for a different line than the one we were searching for.
-              // Since mappings are sorted, this is guaranteed to find all mappings for
-              // the line we are searching for.
-              while (
-                mapping &&
-                mapping.originalLine === line &&
-                mapping.originalColumn == originalColumn
-              ) {
-                mappings.push({
-                  line: util.getArg(mapping, "generatedLine", null),
-                  column: util.getArg(mapping, "generatedColumn", null),
-                  lastColumn: util.getArg(mapping, "lastGeneratedColumn", null)
-                });
+                // Iterate until either we run out of mappings, or we run into
+                // a mapping for a different line than the one we were searching for.
+                // Since mappings are sorted, this is guaranteed to find all mappings for
+                // the line we are searching for.
+                while (
+                  mapping &&
+                  mapping.originalLine === line &&
+                  mapping.originalColumn == originalColumn
+                ) {
+                  mappings.push({
+                    line: util.getArg(mapping, "generatedLine", null),
+                    column: util.getArg(mapping, "generatedColumn", null),
+                    lastColumn: util.getArg(
+                      mapping,
+                      "lastGeneratedColumn",
+                      null
+                    )
+                  });
 
-                mapping = this._originalMappings[++index];
+                  mapping = this._originalMappings[++index];
+                }
               }
             }
-          }
 
-          return mappings;
-        };
+            return mappings;
+          };
 
         exports.SourceMapConsumer = SourceMapConsumer;
 
@@ -28004,7 +27900,7 @@ require = (function() {
             // the source root, if the source root is absolute. Not doing this would
             // be particularly problematic when the source root is a prefix of the
             // source (valid, but why??). See github issue #199 and bugzil.la/1188982.
-            .map(function(source) {
+            .map(function (source) {
               return sourceRoot &&
                 util.isAbsolute(sourceRoot) &&
                 util.isAbsolute(source)
@@ -28019,7 +27915,7 @@ require = (function() {
           this._names = ArraySet.fromArray(names.map(String), true);
           this._sources = ArraySet.fromArray(sources, true);
 
-          this._absoluteSources = this._sources.toArray().map(function(s) {
+          this._absoluteSources = this._sources.toArray().map(function (s) {
             return util.computeSourceURL(sourceRoot, s, aSourceMapURL);
           });
 
@@ -28039,7 +27935,7 @@ require = (function() {
          * Utility function to find the index of a source.  Returns -1 if not
          * found.
          */
-        BasicSourceMapConsumer.prototype._findSourceIndex = function(aSource) {
+        BasicSourceMapConsumer.prototype._findSourceIndex = function (aSource) {
           var relativeSource = aSource;
           if (this.sourceRoot != null) {
             relativeSource = util.relative(this.sourceRoot, relativeSource);
@@ -28070,65 +27966,67 @@ require = (function() {
          *        The URL at which the source map can be found (optional)
          * @returns BasicSourceMapConsumer
          */
-        BasicSourceMapConsumer.fromSourceMap = function SourceMapConsumer_fromSourceMap(
-          aSourceMap,
-          aSourceMapURL
-        ) {
-          var smc = Object.create(BasicSourceMapConsumer.prototype);
+        BasicSourceMapConsumer.fromSourceMap =
+          function SourceMapConsumer_fromSourceMap(aSourceMap, aSourceMapURL) {
+            var smc = Object.create(BasicSourceMapConsumer.prototype);
 
-          var names = (smc._names = ArraySet.fromArray(
-            aSourceMap._names.toArray(),
-            true
-          ));
-          var sources = (smc._sources = ArraySet.fromArray(
-            aSourceMap._sources.toArray(),
-            true
-          ));
-          smc.sourceRoot = aSourceMap._sourceRoot;
-          smc.sourcesContent = aSourceMap._generateSourcesContent(
-            smc._sources.toArray(),
-            smc.sourceRoot
-          );
-          smc.file = aSourceMap._file;
-          smc._sourceMapURL = aSourceMapURL;
-          smc._absoluteSources = smc._sources.toArray().map(function(s) {
-            return util.computeSourceURL(smc.sourceRoot, s, aSourceMapURL);
-          });
+            var names = (smc._names = ArraySet.fromArray(
+              aSourceMap._names.toArray(),
+              true
+            ));
+            var sources = (smc._sources = ArraySet.fromArray(
+              aSourceMap._sources.toArray(),
+              true
+            ));
+            smc.sourceRoot = aSourceMap._sourceRoot;
+            smc.sourcesContent = aSourceMap._generateSourcesContent(
+              smc._sources.toArray(),
+              smc.sourceRoot
+            );
+            smc.file = aSourceMap._file;
+            smc._sourceMapURL = aSourceMapURL;
+            smc._absoluteSources = smc._sources.toArray().map(function (s) {
+              return util.computeSourceURL(smc.sourceRoot, s, aSourceMapURL);
+            });
 
-          // Because we are modifying the entries (by converting string sources and
-          // names to indices into the sources and names ArraySets), we have to make
-          // a copy of the entry or else bad things happen. Shared mutable state
-          // strikes again! See github issue #191.
+            // Because we are modifying the entries (by converting string sources and
+            // names to indices into the sources and names ArraySets), we have to make
+            // a copy of the entry or else bad things happen. Shared mutable state
+            // strikes again! See github issue #191.
 
-          var generatedMappings = aSourceMap._mappings.toArray().slice();
-          var destGeneratedMappings = (smc.__generatedMappings = []);
-          var destOriginalMappings = (smc.__originalMappings = []);
+            var generatedMappings = aSourceMap._mappings.toArray().slice();
+            var destGeneratedMappings = (smc.__generatedMappings = []);
+            var destOriginalMappings = (smc.__originalMappings = []);
 
-          for (var i = 0, length = generatedMappings.length; i < length; i++) {
-            var srcMapping = generatedMappings[i];
-            var destMapping = new Mapping();
-            destMapping.generatedLine = srcMapping.generatedLine;
-            destMapping.generatedColumn = srcMapping.generatedColumn;
+            for (
+              var i = 0, length = generatedMappings.length;
+              i < length;
+              i++
+            ) {
+              var srcMapping = generatedMappings[i];
+              var destMapping = new Mapping();
+              destMapping.generatedLine = srcMapping.generatedLine;
+              destMapping.generatedColumn = srcMapping.generatedColumn;
 
-            if (srcMapping.source) {
-              destMapping.source = sources.indexOf(srcMapping.source);
-              destMapping.originalLine = srcMapping.originalLine;
-              destMapping.originalColumn = srcMapping.originalColumn;
+              if (srcMapping.source) {
+                destMapping.source = sources.indexOf(srcMapping.source);
+                destMapping.originalLine = srcMapping.originalLine;
+                destMapping.originalColumn = srcMapping.originalColumn;
 
-              if (srcMapping.name) {
-                destMapping.name = names.indexOf(srcMapping.name);
+                if (srcMapping.name) {
+                  destMapping.name = names.indexOf(srcMapping.name);
+                }
+
+                destOriginalMappings.push(destMapping);
               }
 
-              destOriginalMappings.push(destMapping);
+              destGeneratedMappings.push(destMapping);
             }
 
-            destGeneratedMappings.push(destMapping);
-          }
+            quickSort(smc.__originalMappings, util.compareByOriginalPositions);
 
-          quickSort(smc.__originalMappings, util.compareByOriginalPositions);
-
-          return smc;
-        };
+            return smc;
+          };
 
         /**
          * The version of the source mapping spec that we are consuming.
@@ -28139,7 +28037,7 @@ require = (function() {
          * The list of original sources.
          */
         Object.defineProperty(BasicSourceMapConsumer.prototype, "sources", {
-          get: function() {
+          get: function () {
             return this._absoluteSources.slice();
           }
         });
@@ -28161,171 +28059,175 @@ require = (function() {
          * query (the ordered arrays in the `this.__generatedMappings` and
          * `this.__originalMappings` properties).
          */
-        BasicSourceMapConsumer.prototype._parseMappings = function SourceMapConsumer_parseMappings(
-          aStr,
-          aSourceRoot
-        ) {
-          var generatedLine = 1;
-          var previousGeneratedColumn = 0;
-          var previousOriginalLine = 0;
-          var previousOriginalColumn = 0;
-          var previousSource = 0;
-          var previousName = 0;
-          var length = aStr.length;
-          var index = 0;
-          var cachedSegments = {};
-          var temp = {};
-          var originalMappings = [];
-          var generatedMappings = [];
-          var mapping, str, segment, end, value;
+        BasicSourceMapConsumer.prototype._parseMappings =
+          function SourceMapConsumer_parseMappings(aStr, aSourceRoot) {
+            var generatedLine = 1;
+            var previousGeneratedColumn = 0;
+            var previousOriginalLine = 0;
+            var previousOriginalColumn = 0;
+            var previousSource = 0;
+            var previousName = 0;
+            var length = aStr.length;
+            var index = 0;
+            var cachedSegments = {};
+            var temp = {};
+            var originalMappings = [];
+            var generatedMappings = [];
+            var mapping, str, segment, end, value;
 
-          while (index < length) {
-            if (aStr.charAt(index) === ";") {
-              generatedLine++;
-              index++;
-              previousGeneratedColumn = 0;
-            } else if (aStr.charAt(index) === ",") {
-              index++;
-            } else {
-              mapping = new Mapping();
-              mapping.generatedLine = generatedLine;
-
-              // Because each offset is encoded relative to the previous one,
-              // many segments often have the same encoding. We can exploit this
-              // fact by caching the parsed variable length fields of each segment,
-              // allowing us to avoid a second parse if we encounter the same
-              // segment again.
-              for (end = index; end < length; end++) {
-                if (this._charIsMappingSeparator(aStr, end)) {
-                  break;
-                }
-              }
-              str = aStr.slice(index, end);
-
-              segment = cachedSegments[str];
-              if (segment) {
-                index += str.length;
+            while (index < length) {
+              if (aStr.charAt(index) === ";") {
+                generatedLine++;
+                index++;
+                previousGeneratedColumn = 0;
+              } else if (aStr.charAt(index) === ",") {
+                index++;
               } else {
-                segment = [];
-                while (index < end) {
-                  base64VLQ.decode(aStr, index, temp);
-                  value = temp.value;
-                  index = temp.rest;
-                  segment.push(value);
+                mapping = new Mapping();
+                mapping.generatedLine = generatedLine;
+
+                // Because each offset is encoded relative to the previous one,
+                // many segments often have the same encoding. We can exploit this
+                // fact by caching the parsed variable length fields of each segment,
+                // allowing us to avoid a second parse if we encounter the same
+                // segment again.
+                for (end = index; end < length; end++) {
+                  if (this._charIsMappingSeparator(aStr, end)) {
+                    break;
+                  }
+                }
+                str = aStr.slice(index, end);
+
+                segment = cachedSegments[str];
+                if (segment) {
+                  index += str.length;
+                } else {
+                  segment = [];
+                  while (index < end) {
+                    base64VLQ.decode(aStr, index, temp);
+                    value = temp.value;
+                    index = temp.rest;
+                    segment.push(value);
+                  }
+
+                  if (segment.length === 2) {
+                    throw new Error("Found a source, but no line and column");
+                  }
+
+                  if (segment.length === 3) {
+                    throw new Error("Found a source and line, but no column");
+                  }
+
+                  cachedSegments[str] = segment;
                 }
 
-                if (segment.length === 2) {
-                  throw new Error("Found a source, but no line and column");
+                // Generated column.
+                mapping.generatedColumn = previousGeneratedColumn + segment[0];
+                previousGeneratedColumn = mapping.generatedColumn;
+
+                if (segment.length > 1) {
+                  // Original source.
+                  mapping.source = previousSource + segment[1];
+                  previousSource += segment[1];
+
+                  // Original line.
+                  mapping.originalLine = previousOriginalLine + segment[2];
+                  previousOriginalLine = mapping.originalLine;
+                  // Lines are stored 0-based
+                  mapping.originalLine += 1;
+
+                  // Original column.
+                  mapping.originalColumn = previousOriginalColumn + segment[3];
+                  previousOriginalColumn = mapping.originalColumn;
+
+                  if (segment.length > 4) {
+                    // Original name.
+                    mapping.name = previousName + segment[4];
+                    previousName += segment[4];
+                  }
                 }
 
-                if (segment.length === 3) {
-                  throw new Error("Found a source and line, but no column");
+                generatedMappings.push(mapping);
+                if (typeof mapping.originalLine === "number") {
+                  originalMappings.push(mapping);
                 }
-
-                cachedSegments[str] = segment;
-              }
-
-              // Generated column.
-              mapping.generatedColumn = previousGeneratedColumn + segment[0];
-              previousGeneratedColumn = mapping.generatedColumn;
-
-              if (segment.length > 1) {
-                // Original source.
-                mapping.source = previousSource + segment[1];
-                previousSource += segment[1];
-
-                // Original line.
-                mapping.originalLine = previousOriginalLine + segment[2];
-                previousOriginalLine = mapping.originalLine;
-                // Lines are stored 0-based
-                mapping.originalLine += 1;
-
-                // Original column.
-                mapping.originalColumn = previousOriginalColumn + segment[3];
-                previousOriginalColumn = mapping.originalColumn;
-
-                if (segment.length > 4) {
-                  // Original name.
-                  mapping.name = previousName + segment[4];
-                  previousName += segment[4];
-                }
-              }
-
-              generatedMappings.push(mapping);
-              if (typeof mapping.originalLine === "number") {
-                originalMappings.push(mapping);
               }
             }
-          }
 
-          quickSort(
-            generatedMappings,
-            util.compareByGeneratedPositionsDeflated
-          );
-          this.__generatedMappings = generatedMappings;
+            quickSort(
+              generatedMappings,
+              util.compareByGeneratedPositionsDeflated
+            );
+            this.__generatedMappings = generatedMappings;
 
-          quickSort(originalMappings, util.compareByOriginalPositions);
-          this.__originalMappings = originalMappings;
-        };
+            quickSort(originalMappings, util.compareByOriginalPositions);
+            this.__originalMappings = originalMappings;
+          };
 
         /**
          * Find the mapping that best matches the hypothetical "needle" mapping that
          * we are searching for in the given "haystack" of mappings.
          */
-        BasicSourceMapConsumer.prototype._findMapping = function SourceMapConsumer_findMapping(
-          aNeedle,
-          aMappings,
-          aLineName,
-          aColumnName,
-          aComparator,
-          aBias
-        ) {
-          // To return the position we are searching for, we must first find the
-          // mapping for the given position and then return the opposite position it
-          // points to. Because the mappings are sorted, we can use binary search to
-          // find the best mapping.
+        BasicSourceMapConsumer.prototype._findMapping =
+          function SourceMapConsumer_findMapping(
+            aNeedle,
+            aMappings,
+            aLineName,
+            aColumnName,
+            aComparator,
+            aBias
+          ) {
+            // To return the position we are searching for, we must first find the
+            // mapping for the given position and then return the opposite position it
+            // points to. Because the mappings are sorted, we can use binary search to
+            // find the best mapping.
 
-          if (aNeedle[aLineName] <= 0) {
-            throw new TypeError(
-              "Line must be greater than or equal to 1, got " +
-                aNeedle[aLineName]
-            );
-          }
-          if (aNeedle[aColumnName] < 0) {
-            throw new TypeError(
-              "Column must be greater than or equal to 0, got " +
-                aNeedle[aColumnName]
-            );
-          }
+            if (aNeedle[aLineName] <= 0) {
+              throw new TypeError(
+                "Line must be greater than or equal to 1, got " +
+                  aNeedle[aLineName]
+              );
+            }
+            if (aNeedle[aColumnName] < 0) {
+              throw new TypeError(
+                "Column must be greater than or equal to 0, got " +
+                  aNeedle[aColumnName]
+              );
+            }
 
-          return binarySearch.search(aNeedle, aMappings, aComparator, aBias);
-        };
+            return binarySearch.search(aNeedle, aMappings, aComparator, aBias);
+          };
 
         /**
          * Compute the last column for each generated mapping. The last column is
          * inclusive.
          */
-        BasicSourceMapConsumer.prototype.computeColumnSpans = function SourceMapConsumer_computeColumnSpans() {
-          for (var index = 0; index < this._generatedMappings.length; ++index) {
-            var mapping = this._generatedMappings[index];
+        BasicSourceMapConsumer.prototype.computeColumnSpans =
+          function SourceMapConsumer_computeColumnSpans() {
+            for (
+              var index = 0;
+              index < this._generatedMappings.length;
+              ++index
+            ) {
+              var mapping = this._generatedMappings[index];
 
-            // Mappings do not contain a field for the last generated columnt. We
-            // can come up with an optimistic estimate, however, by assuming that
-            // mappings are contiguous (i.e. given two consecutive mappings, the
-            // first mapping ends where the second one starts).
-            if (index + 1 < this._generatedMappings.length) {
-              var nextMapping = this._generatedMappings[index + 1];
+              // Mappings do not contain a field for the last generated columnt. We
+              // can come up with an optimistic estimate, however, by assuming that
+              // mappings are contiguous (i.e. given two consecutive mappings, the
+              // first mapping ends where the second one starts).
+              if (index + 1 < this._generatedMappings.length) {
+                var nextMapping = this._generatedMappings[index + 1];
 
-              if (mapping.generatedLine === nextMapping.generatedLine) {
-                mapping.lastGeneratedColumn = nextMapping.generatedColumn - 1;
-                continue;
+                if (mapping.generatedLine === nextMapping.generatedLine) {
+                  mapping.lastGeneratedColumn = nextMapping.generatedColumn - 1;
+                  continue;
+                }
               }
-            }
 
-            // The last mapping for each line spans the entire line.
-            mapping.lastGeneratedColumn = Infinity;
-          }
-        };
+              // The last mapping for each line spans the entire line.
+              mapping.lastGeneratedColumn = Infinity;
+            }
+          };
 
         /**
          * Returns the original source, line, and column information for the generated
@@ -28351,132 +28253,132 @@ require = (function() {
          *     column number is 0-based.
          *   - name: The original identifier, or null.
          */
-        BasicSourceMapConsumer.prototype.originalPositionFor = function SourceMapConsumer_originalPositionFor(
-          aArgs
-        ) {
-          var needle = {
-            generatedLine: util.getArg(aArgs, "line"),
-            generatedColumn: util.getArg(aArgs, "column")
-          };
+        BasicSourceMapConsumer.prototype.originalPositionFor =
+          function SourceMapConsumer_originalPositionFor(aArgs) {
+            var needle = {
+              generatedLine: util.getArg(aArgs, "line"),
+              generatedColumn: util.getArg(aArgs, "column")
+            };
 
-          var index = this._findMapping(
-            needle,
-            this._generatedMappings,
-            "generatedLine",
-            "generatedColumn",
-            util.compareByGeneratedPositionsDeflated,
-            util.getArg(aArgs, "bias", SourceMapConsumer.GREATEST_LOWER_BOUND)
-          );
+            var index = this._findMapping(
+              needle,
+              this._generatedMappings,
+              "generatedLine",
+              "generatedColumn",
+              util.compareByGeneratedPositionsDeflated,
+              util.getArg(aArgs, "bias", SourceMapConsumer.GREATEST_LOWER_BOUND)
+            );
 
-          if (index >= 0) {
-            var mapping = this._generatedMappings[index];
+            if (index >= 0) {
+              var mapping = this._generatedMappings[index];
 
-            if (mapping.generatedLine === needle.generatedLine) {
-              var source = util.getArg(mapping, "source", null);
-              if (source !== null) {
-                source = this._sources.at(source);
-                source = util.computeSourceURL(
-                  this.sourceRoot,
-                  source,
-                  this._sourceMapURL
-                );
+              if (mapping.generatedLine === needle.generatedLine) {
+                var source = util.getArg(mapping, "source", null);
+                if (source !== null) {
+                  source = this._sources.at(source);
+                  source = util.computeSourceURL(
+                    this.sourceRoot,
+                    source,
+                    this._sourceMapURL
+                  );
+                }
+                var name = util.getArg(mapping, "name", null);
+                if (name !== null) {
+                  name = this._names.at(name);
+                }
+                return {
+                  source: source,
+                  line: util.getArg(mapping, "originalLine", null),
+                  column: util.getArg(mapping, "originalColumn", null),
+                  name: name
+                };
               }
-              var name = util.getArg(mapping, "name", null);
-              if (name !== null) {
-                name = this._names.at(name);
-              }
-              return {
-                source: source,
-                line: util.getArg(mapping, "originalLine", null),
-                column: util.getArg(mapping, "originalColumn", null),
-                name: name
-              };
             }
-          }
 
-          return {
-            source: null,
-            line: null,
-            column: null,
-            name: null
+            return {
+              source: null,
+              line: null,
+              column: null,
+              name: null
+            };
           };
-        };
 
         /**
          * Return true if we have the source content for every source in the source
          * map, false otherwise.
          */
-        BasicSourceMapConsumer.prototype.hasContentsOfAllSources = function BasicSourceMapConsumer_hasContentsOfAllSources() {
-          if (!this.sourcesContent) {
-            return false;
-          }
-          return (
-            this.sourcesContent.length >= this._sources.size() &&
-            !this.sourcesContent.some(function(sc) {
-              return sc == null;
-            })
-          );
-        };
+        BasicSourceMapConsumer.prototype.hasContentsOfAllSources =
+          function BasicSourceMapConsumer_hasContentsOfAllSources() {
+            if (!this.sourcesContent) {
+              return false;
+            }
+            return (
+              this.sourcesContent.length >= this._sources.size() &&
+              !this.sourcesContent.some(function (sc) {
+                return sc == null;
+              })
+            );
+          };
 
         /**
          * Returns the original source content. The only argument is the url of the
          * original source file. Returns null if no original source content is
          * available.
          */
-        BasicSourceMapConsumer.prototype.sourceContentFor = function SourceMapConsumer_sourceContentFor(
-          aSource,
-          nullOnMissing
-        ) {
-          if (!this.sourcesContent) {
-            return null;
-          }
-
-          var index = this._findSourceIndex(aSource);
-          if (index >= 0) {
-            return this.sourcesContent[index];
-          }
-
-          var relativeSource = aSource;
-          if (this.sourceRoot != null) {
-            relativeSource = util.relative(this.sourceRoot, relativeSource);
-          }
-
-          var url;
-          if (
-            this.sourceRoot != null &&
-            (url = util.urlParse(this.sourceRoot))
-          ) {
-            // XXX: file:// URIs and absolute paths lead to unexpected behavior for
-            // many users. We can help them out when they expect file:// URIs to
-            // behave like it would if they were running a local HTTP server. See
-            // https://bugzilla.mozilla.org/show_bug.cgi?id=885597.
-            var fileUriAbsPath = relativeSource.replace(/^file:\/\//, "");
-            if (url.scheme == "file" && this._sources.has(fileUriAbsPath)) {
-              return this.sourcesContent[this._sources.indexOf(fileUriAbsPath)];
+        BasicSourceMapConsumer.prototype.sourceContentFor =
+          function SourceMapConsumer_sourceContentFor(aSource, nullOnMissing) {
+            if (!this.sourcesContent) {
+              return null;
             }
 
+            var index = this._findSourceIndex(aSource);
+            if (index >= 0) {
+              return this.sourcesContent[index];
+            }
+
+            var relativeSource = aSource;
+            if (this.sourceRoot != null) {
+              relativeSource = util.relative(this.sourceRoot, relativeSource);
+            }
+
+            var url;
             if (
-              (!url.path || url.path == "/") &&
-              this._sources.has("/" + relativeSource)
+              this.sourceRoot != null &&
+              (url = util.urlParse(this.sourceRoot))
             ) {
-              return this.sourcesContent[
-                this._sources.indexOf("/" + relativeSource)
-              ];
-            }
-          }
+              // XXX: file:// URIs and absolute paths lead to unexpected behavior for
+              // many users. We can help them out when they expect file:// URIs to
+              // behave like it would if they were running a local HTTP server. See
+              // https://bugzilla.mozilla.org/show_bug.cgi?id=885597.
+              var fileUriAbsPath = relativeSource.replace(/^file:\/\//, "");
+              if (url.scheme == "file" && this._sources.has(fileUriAbsPath)) {
+                return this.sourcesContent[
+                  this._sources.indexOf(fileUriAbsPath)
+                ];
+              }
 
-          // This function is used recursively from
-          // IndexedSourceMapConsumer.prototype.sourceContentFor. In that case, we
-          // don't want to throw if we can't find the source - we just want to
-          // return null, so we provide a flag to exit gracefully.
-          if (nullOnMissing) {
-            return null;
-          } else {
-            throw new Error(
-              '"' + relativeSource + '" is not in the SourceMap.'
-            );
-          }
-        };
+              if (
+                (!url.path || url.path == "/") &&
+                this._sources.has("/" + relativeSource)
+              ) {
+                return this.sourcesContent[
+                  this._sources.indexOf("/" + relativeSource)
+                ];
+              }
+            }
+
+            // This function is used recursively from
+            // IndexedSourceMapConsumer.prototype.sourceContentFor. In that case, we
+            // don't want to throw if we can't find the source - we just want to
+            // return null, so we provide a flag to exit gracefully.
+            if (nullOnMissing) {
+              return null;
+            } else {
+              throw new Error(
+                '"' + relativeSource + '" is not in the SourceMap.'
+              );
+            }
+          };
 
         /**
          * Returns the generated line and column information for the original source,
@@ -28501,52 +28403,51 @@ require = (function() {
          *   - column: The column number in the generated source, or null.
          *     The column number is 0-based.
          */
-        BasicSourceMapConsumer.prototype.generatedPositionFor = function SourceMapConsumer_generatedPositionFor(
-          aArgs
-        ) {
-          var source = util.getArg(aArgs, "source");
-          source = this._findSourceIndex(source);
-          if (source < 0) {
+        BasicSourceMapConsumer.prototype.generatedPositionFor =
+          function SourceMapConsumer_generatedPositionFor(aArgs) {
+            var source = util.getArg(aArgs, "source");
+            source = this._findSourceIndex(source);
+            if (source < 0) {
+              return {
+                line: null,
+                column: null,
+                lastColumn: null
+              };
+            }
+
+            var needle = {
+              source: source,
+              originalLine: util.getArg(aArgs, "line"),
+              originalColumn: util.getArg(aArgs, "column")
+            };
+
+            var index = this._findMapping(
+              needle,
+              this._originalMappings,
+              "originalLine",
+              "originalColumn",
+              util.compareByOriginalPositions,
+              util.getArg(aArgs, "bias", SourceMapConsumer.GREATEST_LOWER_BOUND)
+            );
+
+            if (index >= 0) {
+              var mapping = this._originalMappings[index];
+
+              if (mapping.source === needle.source) {
+                return {
+                  line: util.getArg(mapping, "generatedLine", null),
+                  column: util.getArg(mapping, "generatedColumn", null),
+                  lastColumn: util.getArg(mapping, "lastGeneratedColumn", null)
+                };
+              }
+            }
+
             return {
               line: null,
               column: null,
               lastColumn: null
             };
-          }
-
-          var needle = {
-            source: source,
-            originalLine: util.getArg(aArgs, "line"),
-            originalColumn: util.getArg(aArgs, "column")
           };
-
-          var index = this._findMapping(
-            needle,
-            this._originalMappings,
-            "originalLine",
-            "originalColumn",
-            util.compareByOriginalPositions,
-            util.getArg(aArgs, "bias", SourceMapConsumer.GREATEST_LOWER_BOUND)
-          );
-
-          if (index >= 0) {
-            var mapping = this._originalMappings[index];
-
-            if (mapping.source === needle.source) {
-              return {
-                line: util.getArg(mapping, "generatedLine", null),
-                column: util.getArg(mapping, "generatedColumn", null),
-                lastColumn: util.getArg(mapping, "lastGeneratedColumn", null)
-              };
-            }
-          }
-
-          return {
-            line: null,
-            column: null,
-            lastColumn: null
-          };
-        };
 
         exports.BasicSourceMapConsumer = BasicSourceMapConsumer;
 
@@ -28619,7 +28520,7 @@ require = (function() {
             line: -1,
             column: 0
           };
-          this._sections = sections.map(function(s) {
+          this._sections = sections.map(function (s) {
             if (s.url) {
               // The url field will require support for asynchronicity.
               // See https://github.com/mozilla/source-map/issues/16
@@ -28671,7 +28572,7 @@ require = (function() {
          * The list of original sources.
          */
         Object.defineProperty(IndexedSourceMapConsumer.prototype, "sources", {
-          get: function() {
+          get: function () {
             var sources = [];
             for (var i = 0; i < this._sections.length; i++) {
               for (
@@ -28705,88 +28606,90 @@ require = (function() {
          *     column number is 0-based.
          *   - name: The original identifier, or null.
          */
-        IndexedSourceMapConsumer.prototype.originalPositionFor = function IndexedSourceMapConsumer_originalPositionFor(
-          aArgs
-        ) {
-          var needle = {
-            generatedLine: util.getArg(aArgs, "line"),
-            generatedColumn: util.getArg(aArgs, "column")
-          };
-
-          // Find the section containing the generated position we're trying to map
-          // to an original position.
-          var sectionIndex = binarySearch.search(
-            needle,
-            this._sections,
-            function(needle, section) {
-              var cmp =
-                needle.generatedLine - section.generatedOffset.generatedLine;
-              if (cmp) {
-                return cmp;
-              }
-
-              return (
-                needle.generatedColumn - section.generatedOffset.generatedColumn
-              );
-            }
-          );
-          var section = this._sections[sectionIndex];
-
-          if (!section) {
-            return {
-              source: null,
-              line: null,
-              column: null,
-              name: null
+        IndexedSourceMapConsumer.prototype.originalPositionFor =
+          function IndexedSourceMapConsumer_originalPositionFor(aArgs) {
+            var needle = {
+              generatedLine: util.getArg(aArgs, "line"),
+              generatedColumn: util.getArg(aArgs, "column")
             };
-          }
 
-          return section.consumer.originalPositionFor({
-            line:
-              needle.generatedLine -
-              (section.generatedOffset.generatedLine - 1),
-            column:
-              needle.generatedColumn -
-              (section.generatedOffset.generatedLine === needle.generatedLine
-                ? section.generatedOffset.generatedColumn - 1
-                : 0),
-            bias: aArgs.bias
-          });
-        };
+            // Find the section containing the generated position we're trying to map
+            // to an original position.
+            var sectionIndex = binarySearch.search(
+              needle,
+              this._sections,
+              function (needle, section) {
+                var cmp =
+                  needle.generatedLine - section.generatedOffset.generatedLine;
+                if (cmp) {
+                  return cmp;
+                }
+
+                return (
+                  needle.generatedColumn -
+                  section.generatedOffset.generatedColumn
+                );
+              }
+            );
+            var section = this._sections[sectionIndex];
+
+            if (!section) {
+              return {
+                source: null,
+                line: null,
+                column: null,
+                name: null
+              };
+            }
+
+            return section.consumer.originalPositionFor({
+              line:
+                needle.generatedLine -
+                (section.generatedOffset.generatedLine - 1),
+              column:
+                needle.generatedColumn -
+                (section.generatedOffset.generatedLine === needle.generatedLine
+                  ? section.generatedOffset.generatedColumn - 1
+                  : 0),
+              bias: aArgs.bias
+            });
+          };
 
         /**
          * Return true if we have the source content for every source in the source
          * map, false otherwise.
          */
-        IndexedSourceMapConsumer.prototype.hasContentsOfAllSources = function IndexedSourceMapConsumer_hasContentsOfAllSources() {
-          return this._sections.every(function(s) {
-            return s.consumer.hasContentsOfAllSources();
-          });
-        };
+        IndexedSourceMapConsumer.prototype.hasContentsOfAllSources =
+          function IndexedSourceMapConsumer_hasContentsOfAllSources() {
+            return this._sections.every(function (s) {
+              return s.consumer.hasContentsOfAllSources();
+            });
+          };
 
         /**
          * Returns the original source content. The only argument is the url of the
          * original source file. Returns null if no original source content is
          * available.
          */
-        IndexedSourceMapConsumer.prototype.sourceContentFor = function IndexedSourceMapConsumer_sourceContentFor(
-          aSource,
-          nullOnMissing
-        ) {
-          for (var i = 0; i < this._sections.length; i++) {
-            var section = this._sections[i];
+        IndexedSourceMapConsumer.prototype.sourceContentFor =
+          function IndexedSourceMapConsumer_sourceContentFor(
+            aSource,
+            nullOnMissing
+          ) {
+            for (var i = 0; i < this._sections.length; i++) {
+              var section = this._sections[i];
 
-            var content = section.consumer.sourceContentFor(aSource, true);
-            if (content) {
-              return content;
+              var content = section.consumer.sourceContentFor(aSource, true);
+              if (content) {
+                return content;
+              }
             }
-          }
-          if (nullOnMissing) {
-            return null;
-          } else {
-            throw new Error('"' + aSource + '" is not in the SourceMap.');
-          }
-        };
+            if (nullOnMissing) {
+              return null;
+            } else {
+              throw new Error('"' + aSource + '" is not in the SourceMap.');
+            }
+          };
 
         /**
          * Returns the generated line and column information for the original source,
@@ -28806,112 +28709,108 @@ require = (function() {
          *   - column: The column number in the generated source, or null.
          *     The column number is 0-based.
          */
-        IndexedSourceMapConsumer.prototype.generatedPositionFor = function IndexedSourceMapConsumer_generatedPositionFor(
-          aArgs
-        ) {
-          for (var i = 0; i < this._sections.length; i++) {
-            var section = this._sections[i];
+        IndexedSourceMapConsumer.prototype.generatedPositionFor =
+          function IndexedSourceMapConsumer_generatedPositionFor(aArgs) {
+            for (var i = 0; i < this._sections.length; i++) {
+              var section = this._sections[i];
 
-            // Only consider this section if the requested source is in the list of
-            // sources of the consumer.
-            if (
-              section.consumer._findSourceIndex(
-                util.getArg(aArgs, "source")
-              ) === -1
-            ) {
-              continue;
+              // Only consider this section if the requested source is in the list of
+              // sources of the consumer.
+              if (
+                section.consumer._findSourceIndex(
+                  util.getArg(aArgs, "source")
+                ) === -1
+              ) {
+                continue;
+              }
+              var generatedPosition =
+                section.consumer.generatedPositionFor(aArgs);
+              if (generatedPosition) {
+                var ret = {
+                  line:
+                    generatedPosition.line +
+                    (section.generatedOffset.generatedLine - 1),
+                  column:
+                    generatedPosition.column +
+                    (section.generatedOffset.generatedLine ===
+                    generatedPosition.line
+                      ? section.generatedOffset.generatedColumn - 1
+                      : 0)
+                };
+                return ret;
+              }
             }
-            var generatedPosition = section.consumer.generatedPositionFor(
-              aArgs
-            );
-            if (generatedPosition) {
-              var ret = {
-                line:
-                  generatedPosition.line +
-                  (section.generatedOffset.generatedLine - 1),
-                column:
-                  generatedPosition.column +
-                  (section.generatedOffset.generatedLine ===
-                  generatedPosition.line
-                    ? section.generatedOffset.generatedColumn - 1
-                    : 0)
-              };
-              return ret;
-            }
-          }
 
-          return {
-            line: null,
-            column: null
+            return {
+              line: null,
+              column: null
+            };
           };
-        };
 
         /**
          * Parse the mappings in a string in to a data structure which we can easily
          * query (the ordered arrays in the `this.__generatedMappings` and
          * `this.__originalMappings` properties).
          */
-        IndexedSourceMapConsumer.prototype._parseMappings = function IndexedSourceMapConsumer_parseMappings(
-          aStr,
-          aSourceRoot
-        ) {
-          this.__generatedMappings = [];
-          this.__originalMappings = [];
-          for (var i = 0; i < this._sections.length; i++) {
-            var section = this._sections[i];
-            var sectionMappings = section.consumer._generatedMappings;
-            for (var j = 0; j < sectionMappings.length; j++) {
-              var mapping = sectionMappings[j];
+        IndexedSourceMapConsumer.prototype._parseMappings =
+          function IndexedSourceMapConsumer_parseMappings(aStr, aSourceRoot) {
+            this.__generatedMappings = [];
+            this.__originalMappings = [];
+            for (var i = 0; i < this._sections.length; i++) {
+              var section = this._sections[i];
+              var sectionMappings = section.consumer._generatedMappings;
+              for (var j = 0; j < sectionMappings.length; j++) {
+                var mapping = sectionMappings[j];
 
-              var source = section.consumer._sources.at(mapping.source);
-              source = util.computeSourceURL(
-                section.consumer.sourceRoot,
-                source,
-                this._sourceMapURL
-              );
-              this._sources.add(source);
-              source = this._sources.indexOf(source);
+                var source = section.consumer._sources.at(mapping.source);
+                source = util.computeSourceURL(
+                  section.consumer.sourceRoot,
+                  source,
+                  this._sourceMapURL
+                );
+                this._sources.add(source);
+                source = this._sources.indexOf(source);
 
-              var name = null;
-              if (mapping.name) {
-                name = section.consumer._names.at(mapping.name);
-                this._names.add(name);
-                name = this._names.indexOf(name);
-              }
+                var name = null;
+                if (mapping.name) {
+                  name = section.consumer._names.at(mapping.name);
+                  this._names.add(name);
+                  name = this._names.indexOf(name);
+                }
 
-              // The mappings coming from the consumer for the section have
-              // generated positions relative to the start of the section, so we
-              // need to offset them to be relative to the start of the concatenated
-              // generated file.
-              var adjustedMapping = {
-                source: source,
-                generatedLine:
-                  mapping.generatedLine +
-                  (section.generatedOffset.generatedLine - 1),
-                generatedColumn:
-                  mapping.generatedColumn +
-                  (section.generatedOffset.generatedLine ===
-                  mapping.generatedLine
-                    ? section.generatedOffset.generatedColumn - 1
-                    : 0),
-                originalLine: mapping.originalLine,
-                originalColumn: mapping.originalColumn,
-                name: name
-              };
+                // The mappings coming from the consumer for the section have
+                // generated positions relative to the start of the section, so we
+                // need to offset them to be relative to the start of the concatenated
+                // generated file.
+                var adjustedMapping = {
+                  source: source,
+                  generatedLine:
+                    mapping.generatedLine +
+                    (section.generatedOffset.generatedLine - 1),
+                  generatedColumn:
+                    mapping.generatedColumn +
+                    (section.generatedOffset.generatedLine ===
+                    mapping.generatedLine
+                      ? section.generatedOffset.generatedColumn - 1
+                      : 0),
+                  originalLine: mapping.originalLine,
+                  originalColumn: mapping.originalColumn,
+                  name: name
+                };
 
-              this.__generatedMappings.push(adjustedMapping);
-              if (typeof adjustedMapping.originalLine === "number") {
-                this.__originalMappings.push(adjustedMapping);
+                this.__generatedMappings.push(adjustedMapping);
+                if (typeof adjustedMapping.originalLine === "number") {
+                  this.__originalMappings.push(adjustedMapping);
+                }
               }
             }
-          }
 
-          quickSort(
-            this.__generatedMappings,
-            util.compareByGeneratedPositionsDeflated
-          );
-          quickSort(this.__originalMappings, util.compareByOriginalPositions);
-        };
+            quickSort(
+              this.__generatedMappings,
+              util.compareByGeneratedPositionsDeflated
+            );
+            quickSort(this.__originalMappings, util.compareByOriginalPositions);
+          };
 
         exports.IndexedSourceMapConsumer = IndexedSourceMapConsumer;
       },
@@ -28924,7 +28823,7 @@ require = (function() {
       }
     ],
     152: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -28965,60 +28864,59 @@ require = (function() {
          *
          * @param aSourceMapConsumer The SourceMap.
          */
-        SourceMapGenerator.fromSourceMap = function SourceMapGenerator_fromSourceMap(
-          aSourceMapConsumer
-        ) {
-          var sourceRoot = aSourceMapConsumer.sourceRoot;
-          var generator = new SourceMapGenerator({
-            file: aSourceMapConsumer.file,
-            sourceRoot: sourceRoot
-          });
-          aSourceMapConsumer.eachMapping(function(mapping) {
-            var newMapping = {
-              generated: {
-                line: mapping.generatedLine,
-                column: mapping.generatedColumn
-              }
-            };
-
-            if (mapping.source != null) {
-              newMapping.source = mapping.source;
-              if (sourceRoot != null) {
-                newMapping.source = util.relative(
-                  sourceRoot,
-                  newMapping.source
-                );
-              }
-
-              newMapping.original = {
-                line: mapping.originalLine,
-                column: mapping.originalColumn
+        SourceMapGenerator.fromSourceMap =
+          function SourceMapGenerator_fromSourceMap(aSourceMapConsumer) {
+            var sourceRoot = aSourceMapConsumer.sourceRoot;
+            var generator = new SourceMapGenerator({
+              file: aSourceMapConsumer.file,
+              sourceRoot: sourceRoot
+            });
+            aSourceMapConsumer.eachMapping(function (mapping) {
+              var newMapping = {
+                generated: {
+                  line: mapping.generatedLine,
+                  column: mapping.generatedColumn
+                }
               };
 
-              if (mapping.name != null) {
-                newMapping.name = mapping.name;
+              if (mapping.source != null) {
+                newMapping.source = mapping.source;
+                if (sourceRoot != null) {
+                  newMapping.source = util.relative(
+                    sourceRoot,
+                    newMapping.source
+                  );
+                }
+
+                newMapping.original = {
+                  line: mapping.originalLine,
+                  column: mapping.originalColumn
+                };
+
+                if (mapping.name != null) {
+                  newMapping.name = mapping.name;
+                }
               }
-            }
 
-            generator.addMapping(newMapping);
-          });
-          aSourceMapConsumer.sources.forEach(function(sourceFile) {
-            var sourceRelative = sourceFile;
-            if (sourceRoot !== null) {
-              sourceRelative = util.relative(sourceRoot, sourceFile);
-            }
+              generator.addMapping(newMapping);
+            });
+            aSourceMapConsumer.sources.forEach(function (sourceFile) {
+              var sourceRelative = sourceFile;
+              if (sourceRoot !== null) {
+                sourceRelative = util.relative(sourceRoot, sourceFile);
+              }
 
-            if (!generator._sources.has(sourceRelative)) {
-              generator._sources.add(sourceRelative);
-            }
+              if (!generator._sources.has(sourceRelative)) {
+                generator._sources.add(sourceRelative);
+              }
 
-            var content = aSourceMapConsumer.sourceContentFor(sourceFile);
-            if (content != null) {
-              generator.setSourceContent(sourceFile, content);
-            }
-          });
-          return generator;
-        };
+              var content = aSourceMapConsumer.sourceContentFor(sourceFile);
+              if (content != null) {
+                generator.setSourceContent(sourceFile, content);
+              }
+            });
+            return generator;
+          };
 
         /**
          * Add a single mapping from original source line and column to the generated
@@ -29030,70 +28928,70 @@ require = (function() {
          *   - source: The original source file (relative to the sourceRoot).
          *   - name: An optional original token name for this mapping.
          */
-        SourceMapGenerator.prototype.addMapping = function SourceMapGenerator_addMapping(
-          aArgs
-        ) {
-          var generated = util.getArg(aArgs, "generated");
-          var original = util.getArg(aArgs, "original", null);
-          var source = util.getArg(aArgs, "source", null);
-          var name = util.getArg(aArgs, "name", null);
+        SourceMapGenerator.prototype.addMapping =
+          function SourceMapGenerator_addMapping(aArgs) {
+            var generated = util.getArg(aArgs, "generated");
+            var original = util.getArg(aArgs, "original", null);
+            var source = util.getArg(aArgs, "source", null);
+            var name = util.getArg(aArgs, "name", null);
 
-          if (!this._skipValidation) {
-            this._validateMapping(generated, original, source, name);
-          }
-
-          if (source != null) {
-            source = String(source);
-            if (!this._sources.has(source)) {
-              this._sources.add(source);
+            if (!this._skipValidation) {
+              this._validateMapping(generated, original, source, name);
             }
-          }
 
-          if (name != null) {
-            name = String(name);
-            if (!this._names.has(name)) {
-              this._names.add(name);
+            if (source != null) {
+              source = String(source);
+              if (!this._sources.has(source)) {
+                this._sources.add(source);
+              }
             }
-          }
 
-          this._mappings.add({
-            generatedLine: generated.line,
-            generatedColumn: generated.column,
-            originalLine: original != null && original.line,
-            originalColumn: original != null && original.column,
-            source: source,
-            name: name
-          });
-        };
+            if (name != null) {
+              name = String(name);
+              if (!this._names.has(name)) {
+                this._names.add(name);
+              }
+            }
+
+            this._mappings.add({
+              generatedLine: generated.line,
+              generatedColumn: generated.column,
+              originalLine: original != null && original.line,
+              originalColumn: original != null && original.column,
+              source: source,
+              name: name
+            });
+          };
 
         /**
          * Set the source content for a source file.
          */
-        SourceMapGenerator.prototype.setSourceContent = function SourceMapGenerator_setSourceContent(
-          aSourceFile,
-          aSourceContent
-        ) {
-          var source = aSourceFile;
-          if (this._sourceRoot != null) {
-            source = util.relative(this._sourceRoot, source);
-          }
+        SourceMapGenerator.prototype.setSourceContent =
+          function SourceMapGenerator_setSourceContent(
+            aSourceFile,
+            aSourceContent
+          ) {
+            var source = aSourceFile;
+            if (this._sourceRoot != null) {
+              source = util.relative(this._sourceRoot, source);
+            }
 
-          if (aSourceContent != null) {
-            // Add the source content to the _sourcesContents map.
-            // Create a new _sourcesContents map if the property is null.
-            if (!this._sourcesContents) {
-              this._sourcesContents = Object.create(null);
+            if (aSourceContent != null) {
+              // Add the source content to the _sourcesContents map.
+              // Create a new _sourcesContents map if the property is null.
+              if (!this._sourcesContents) {
+                this._sourcesContents = Object.create(null);
+              }
+              this._sourcesContents[util.toSetString(source)] = aSourceContent;
+            } else if (this._sourcesContents) {
+              // Remove the source file from the _sourcesContents map.
+              // If the _sourcesContents map is empty, set the property to null.
+              delete this._sourcesContents[util.toSetString(source)];
+              if (Object.keys(this._sourcesContents).length === 0) {
+                this._sourcesContents = null;
+              }
             }
-            this._sourcesContents[util.toSetString(source)] = aSourceContent;
-          } else if (this._sourcesContents) {
-            // Remove the source file from the _sourcesContents map.
-            // If the _sourcesContents map is empty, set the property to null.
-            delete this._sourcesContents[util.toSetString(source)];
-            if (Object.keys(this._sourcesContents).length === 0) {
-              this._sourcesContents = null;
-            }
-          }
-        };
+          };
 
         /**
          * Applies the mappings of a sub-source-map for a specific source file to the
@@ -29111,84 +29009,88 @@ require = (function() {
          *        paths. If so, those relative source paths need to be rewritten
          *        relative to the SourceMapGenerator.
          */
-        SourceMapGenerator.prototype.applySourceMap = function SourceMapGenerator_applySourceMap(
-          aSourceMapConsumer,
-          aSourceFile,
-          aSourceMapPath
-        ) {
-          var sourceFile = aSourceFile;
-          // If aSourceFile is omitted, we will use the file property of the SourceMap
-          if (aSourceFile == null) {
-            if (aSourceMapConsumer.file == null) {
-              throw new Error(
-                "SourceMapGenerator.prototype.applySourceMap requires either an explicit source file, " +
-                  'or the source map\'s "file" property. Both were omitted.'
-              );
+        SourceMapGenerator.prototype.applySourceMap =
+          function SourceMapGenerator_applySourceMap(
+            aSourceMapConsumer,
+            aSourceFile,
+            aSourceMapPath
+          ) {
+            var sourceFile = aSourceFile;
+            // If aSourceFile is omitted, we will use the file property of the SourceMap
+            if (aSourceFile == null) {
+              if (aSourceMapConsumer.file == null) {
+                throw new Error(
+                  "SourceMapGenerator.prototype.applySourceMap requires either an explicit source file, " +
+                    'or the source map\'s "file" property. Both were omitted.'
+                );
+              }
+              sourceFile = aSourceMapConsumer.file;
             }
-            sourceFile = aSourceMapConsumer.file;
-          }
-          var sourceRoot = this._sourceRoot;
-          // Make "sourceFile" relative if an absolute Url is passed.
-          if (sourceRoot != null) {
-            sourceFile = util.relative(sourceRoot, sourceFile);
-          }
-          // Applying the SourceMap can add and remove items from the sources and
-          // the names array.
-          var newSources = new ArraySet();
-          var newNames = new ArraySet();
+            var sourceRoot = this._sourceRoot;
+            // Make "sourceFile" relative if an absolute Url is passed.
+            if (sourceRoot != null) {
+              sourceFile = util.relative(sourceRoot, sourceFile);
+            }
+            // Applying the SourceMap can add and remove items from the sources and
+            // the names array.
+            var newSources = new ArraySet();
+            var newNames = new ArraySet();
 
-          // Find mappings for the "sourceFile"
-          this._mappings.unsortedForEach(function(mapping) {
-            if (mapping.source === sourceFile && mapping.originalLine != null) {
-              // Check if it can be mapped by the source map, then update the mapping.
-              var original = aSourceMapConsumer.originalPositionFor({
-                line: mapping.originalLine,
-                column: mapping.originalColumn
-              });
-              if (original.source != null) {
-                // Copy mapping
-                mapping.source = original.source;
+            // Find mappings for the "sourceFile"
+            this._mappings.unsortedForEach(function (mapping) {
+              if (
+                mapping.source === sourceFile &&
+                mapping.originalLine != null
+              ) {
+                // Check if it can be mapped by the source map, then update the mapping.
+                var original = aSourceMapConsumer.originalPositionFor({
+                  line: mapping.originalLine,
+                  column: mapping.originalColumn
+                });
+                if (original.source != null) {
+                  // Copy mapping
+                  mapping.source = original.source;
+                  if (aSourceMapPath != null) {
+                    mapping.source = util.join(aSourceMapPath, mapping.source);
+                  }
+                  if (sourceRoot != null) {
+                    mapping.source = util.relative(sourceRoot, mapping.source);
+                  }
+                  mapping.originalLine = original.line;
+                  mapping.originalColumn = original.column;
+                  if (original.name != null) {
+                    mapping.name = original.name;
+                  }
+                }
+              }
+
+              var source = mapping.source;
+              if (source != null && !newSources.has(source)) {
+                newSources.add(source);
+              }
+
+              var name = mapping.name;
+              if (name != null && !newNames.has(name)) {
+                newNames.add(name);
+              }
+            }, this);
+            this._sources = newSources;
+            this._names = newNames;
+
+            // Copy sourcesContents of applied map.
+            aSourceMapConsumer.sources.forEach(function (sourceFile) {
+              var content = aSourceMapConsumer.sourceContentFor(sourceFile);
+              if (content != null) {
                 if (aSourceMapPath != null) {
-                  mapping.source = util.join(aSourceMapPath, mapping.source);
+                  sourceFile = util.join(aSourceMapPath, sourceFile);
                 }
                 if (sourceRoot != null) {
-                  mapping.source = util.relative(sourceRoot, mapping.source);
+                  sourceFile = util.relative(sourceRoot, sourceFile);
                 }
-                mapping.originalLine = original.line;
-                mapping.originalColumn = original.column;
-                if (original.name != null) {
-                  mapping.name = original.name;
-                }
+                this.setSourceContent(sourceFile, content);
               }
-            }
-
-            var source = mapping.source;
-            if (source != null && !newSources.has(source)) {
-              newSources.add(source);
-            }
-
-            var name = mapping.name;
-            if (name != null && !newNames.has(name)) {
-              newNames.add(name);
-            }
-          }, this);
-          this._sources = newSources;
-          this._names = newNames;
-
-          // Copy sourcesContents of applied map.
-          aSourceMapConsumer.sources.forEach(function(sourceFile) {
-            var content = aSourceMapConsumer.sourceContentFor(sourceFile);
-            if (content != null) {
-              if (aSourceMapPath != null) {
-                sourceFile = util.join(aSourceMapPath, sourceFile);
-              }
-              if (sourceRoot != null) {
-                sourceFile = util.relative(sourceRoot, sourceFile);
-              }
-              this.setSourceContent(sourceFile, content);
-            }
-          }, this);
-        };
+            }, this);
+          };
 
         /**
          * A mapping can have one of the three levels of data:
@@ -29201,197 +29103,202 @@ require = (function() {
          * To maintain consistency, we validate that any new mapping being added falls
          * in to one of these categories.
          */
-        SourceMapGenerator.prototype._validateMapping = function SourceMapGenerator_validateMapping(
-          aGenerated,
-          aOriginal,
-          aSource,
-          aName
-        ) {
-          // When aOriginal is truthy but has empty values for .line and .column,
-          // it is most likely a programmer error. In this case we throw a very
-          // specific error message to try to guide them the right way.
-          // For example: https://github.com/Polymer/polymer-bundler/pull/519
-          if (
-            aOriginal &&
-            typeof aOriginal.line !== "number" &&
-            typeof aOriginal.column !== "number"
+        SourceMapGenerator.prototype._validateMapping =
+          function SourceMapGenerator_validateMapping(
+            aGenerated,
+            aOriginal,
+            aSource,
+            aName
           ) {
-            throw new Error(
-              "original.line and original.column are not numbers -- you probably meant to omit " +
-                "the original mapping entirely and only map the generated position. If so, pass " +
-                "null for the original mapping instead of an object with empty or null values."
-            );
-          }
+            // When aOriginal is truthy but has empty values for .line and .column,
+            // it is most likely a programmer error. In this case we throw a very
+            // specific error message to try to guide them the right way.
+            // For example: https://github.com/Polymer/polymer-bundler/pull/519
+            if (
+              aOriginal &&
+              typeof aOriginal.line !== "number" &&
+              typeof aOriginal.column !== "number"
+            ) {
+              throw new Error(
+                "original.line and original.column are not numbers -- you probably meant to omit " +
+                  "the original mapping entirely and only map the generated position. If so, pass " +
+                  "null for the original mapping instead of an object with empty or null values."
+              );
+            }
 
-          if (
-            aGenerated &&
-            "line" in aGenerated &&
-            "column" in aGenerated &&
-            aGenerated.line > 0 &&
-            aGenerated.column >= 0 &&
-            !aOriginal &&
-            !aSource &&
-            !aName
-          ) {
-            // Case 1.
-            return;
-          } else if (
-            aGenerated &&
-            "line" in aGenerated &&
-            "column" in aGenerated &&
-            aOriginal &&
-            "line" in aOriginal &&
-            "column" in aOriginal &&
-            aGenerated.line > 0 &&
-            aGenerated.column >= 0 &&
-            aOriginal.line > 0 &&
-            aOriginal.column >= 0 &&
-            aSource
-          ) {
-            // Cases 2 and 3.
-            return;
-          } else {
-            throw new Error(
-              "Invalid mapping: " +
-                JSON.stringify({
-                  generated: aGenerated,
-                  source: aSource,
-                  original: aOriginal,
-                  name: aName
-                })
-            );
-          }
-        };
+            if (
+              aGenerated &&
+              "line" in aGenerated &&
+              "column" in aGenerated &&
+              aGenerated.line > 0 &&
+              aGenerated.column >= 0 &&
+              !aOriginal &&
+              !aSource &&
+              !aName
+            ) {
+              // Case 1.
+              return;
+            } else if (
+              aGenerated &&
+              "line" in aGenerated &&
+              "column" in aGenerated &&
+              aOriginal &&
+              "line" in aOriginal &&
+              "column" in aOriginal &&
+              aGenerated.line > 0 &&
+              aGenerated.column >= 0 &&
+              aOriginal.line > 0 &&
+              aOriginal.column >= 0 &&
+              aSource
+            ) {
+              // Cases 2 and 3.
+              return;
+            } else {
+              throw new Error(
+                "Invalid mapping: " +
+                  JSON.stringify({
+                    generated: aGenerated,
+                    source: aSource,
+                    original: aOriginal,
+                    name: aName
+                  })
+              );
+            }
+          };
 
         /**
          * Serialize the accumulated mappings in to the stream of base 64 VLQs
          * specified by the source map format.
          */
-        SourceMapGenerator.prototype._serializeMappings = function SourceMapGenerator_serializeMappings() {
-          var previousGeneratedColumn = 0;
-          var previousGeneratedLine = 1;
-          var previousOriginalColumn = 0;
-          var previousOriginalLine = 0;
-          var previousName = 0;
-          var previousSource = 0;
-          var result = "";
-          var next;
-          var mapping;
-          var nameIdx;
-          var sourceIdx;
+        SourceMapGenerator.prototype._serializeMappings =
+          function SourceMapGenerator_serializeMappings() {
+            var previousGeneratedColumn = 0;
+            var previousGeneratedLine = 1;
+            var previousOriginalColumn = 0;
+            var previousOriginalLine = 0;
+            var previousName = 0;
+            var previousSource = 0;
+            var result = "";
+            var next;
+            var mapping;
+            var nameIdx;
+            var sourceIdx;
 
-          var mappings = this._mappings.toArray();
-          for (var i = 0, len = mappings.length; i < len; i++) {
-            mapping = mappings[i];
-            next = "";
+            var mappings = this._mappings.toArray();
+            for (var i = 0, len = mappings.length; i < len; i++) {
+              mapping = mappings[i];
+              next = "";
 
-            if (mapping.generatedLine !== previousGeneratedLine) {
-              previousGeneratedColumn = 0;
-              while (mapping.generatedLine !== previousGeneratedLine) {
-                next += ";";
-                previousGeneratedLine++;
-              }
-            } else {
-              if (i > 0) {
-                if (
-                  !util.compareByGeneratedPositionsInflated(
-                    mapping,
-                    mappings[i - 1]
-                  )
-                ) {
-                  continue;
+              if (mapping.generatedLine !== previousGeneratedLine) {
+                previousGeneratedColumn = 0;
+                while (mapping.generatedLine !== previousGeneratedLine) {
+                  next += ";";
+                  previousGeneratedLine++;
                 }
-                next += ",";
+              } else {
+                if (i > 0) {
+                  if (
+                    !util.compareByGeneratedPositionsInflated(
+                      mapping,
+                      mappings[i - 1]
+                    )
+                  ) {
+                    continue;
+                  }
+                  next += ",";
+                }
               }
-            }
-
-            next += base64VLQ.encode(
-              mapping.generatedColumn - previousGeneratedColumn
-            );
-            previousGeneratedColumn = mapping.generatedColumn;
-
-            if (mapping.source != null) {
-              sourceIdx = this._sources.indexOf(mapping.source);
-              next += base64VLQ.encode(sourceIdx - previousSource);
-              previousSource = sourceIdx;
-
-              // lines are stored 0-based in SourceMap spec version 3
-              next += base64VLQ.encode(
-                mapping.originalLine - 1 - previousOriginalLine
-              );
-              previousOriginalLine = mapping.originalLine - 1;
 
               next += base64VLQ.encode(
-                mapping.originalColumn - previousOriginalColumn
+                mapping.generatedColumn - previousGeneratedColumn
               );
-              previousOriginalColumn = mapping.originalColumn;
+              previousGeneratedColumn = mapping.generatedColumn;
 
-              if (mapping.name != null) {
-                nameIdx = this._names.indexOf(mapping.name);
-                next += base64VLQ.encode(nameIdx - previousName);
-                previousName = nameIdx;
+              if (mapping.source != null) {
+                sourceIdx = this._sources.indexOf(mapping.source);
+                next += base64VLQ.encode(sourceIdx - previousSource);
+                previousSource = sourceIdx;
+
+                // lines are stored 0-based in SourceMap spec version 3
+                next += base64VLQ.encode(
+                  mapping.originalLine - 1 - previousOriginalLine
+                );
+                previousOriginalLine = mapping.originalLine - 1;
+
+                next += base64VLQ.encode(
+                  mapping.originalColumn - previousOriginalColumn
+                );
+                previousOriginalColumn = mapping.originalColumn;
+
+                if (mapping.name != null) {
+                  nameIdx = this._names.indexOf(mapping.name);
+                  next += base64VLQ.encode(nameIdx - previousName);
+                  previousName = nameIdx;
+                }
               }
+
+              result += next;
             }
 
-            result += next;
-          }
+            return result;
+          };
 
-          return result;
-        };
-
-        SourceMapGenerator.prototype._generateSourcesContent = function SourceMapGenerator_generateSourcesContent(
-          aSources,
-          aSourceRoot
-        ) {
-          return aSources.map(function(source) {
-            if (!this._sourcesContents) {
-              return null;
-            }
-            if (aSourceRoot != null) {
-              source = util.relative(aSourceRoot, source);
-            }
-            var key = util.toSetString(source);
-            return Object.prototype.hasOwnProperty.call(
-              this._sourcesContents,
-              key
-            )
-              ? this._sourcesContents[key]
-              : null;
-          }, this);
-        };
+        SourceMapGenerator.prototype._generateSourcesContent =
+          function SourceMapGenerator_generateSourcesContent(
+            aSources,
+            aSourceRoot
+          ) {
+            return aSources.map(function (source) {
+              if (!this._sourcesContents) {
+                return null;
+              }
+              if (aSourceRoot != null) {
+                source = util.relative(aSourceRoot, source);
+              }
+              var key = util.toSetString(source);
+              return Object.prototype.hasOwnProperty.call(
+                this._sourcesContents,
+                key
+              )
+                ? this._sourcesContents[key]
+                : null;
+            }, this);
+          };
 
         /**
          * Externalize the source map.
          */
-        SourceMapGenerator.prototype.toJSON = function SourceMapGenerator_toJSON() {
-          var map = {
-            version: this._version,
-            sources: this._sources.toArray(),
-            names: this._names.toArray(),
-            mappings: this._serializeMappings()
-          };
-          if (this._file != null) {
-            map.file = this._file;
-          }
-          if (this._sourceRoot != null) {
-            map.sourceRoot = this._sourceRoot;
-          }
-          if (this._sourcesContents) {
-            map.sourcesContent = this._generateSourcesContent(
-              map.sources,
-              map.sourceRoot
-            );
-          }
+        SourceMapGenerator.prototype.toJSON =
+          function SourceMapGenerator_toJSON() {
+            var map = {
+              version: this._version,
+              sources: this._sources.toArray(),
+              names: this._names.toArray(),
+              mappings: this._serializeMappings()
+            };
+            if (this._file != null) {
+              map.file = this._file;
+            }
+            if (this._sourceRoot != null) {
+              map.sourceRoot = this._sourceRoot;
+            }
+            if (this._sourcesContents) {
+              map.sourcesContent = this._generateSourcesContent(
+                map.sources,
+                map.sourceRoot
+              );
+            }
 
-          return map;
-        };
+            return map;
+          };
 
         /**
          * Render the source map being generated to a string.
          */
-        SourceMapGenerator.prototype.toString = function SourceMapGenerator_toString() {
-          return JSON.stringify(this.toJSON());
-        };
+        SourceMapGenerator.prototype.toString =
+          function SourceMapGenerator_toString() {
+            return JSON.stringify(this.toJSON());
+          };
 
         exports.SourceMapGenerator = SourceMapGenerator;
       },
@@ -29403,7 +29310,7 @@ require = (function() {
       }
     ],
     153: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -29411,8 +29318,8 @@ require = (function() {
          * http://opensource.org/licenses/BSD-3-Clause
          */
 
-        var SourceMapGenerator = require("./source-map-generator")
-          .SourceMapGenerator;
+        var SourceMapGenerator =
+          require("./source-map-generator").SourceMapGenerator;
         var util = require("./util");
 
         // Matches a Windows-style `\r\n` newline or a `\n` newline used by all other
@@ -29458,131 +29365,132 @@ require = (function() {
          * @param aRelativePath Optional. The path that relative sources in the
          *        SourceMapConsumer should be relative to.
          */
-        SourceNode.fromStringWithSourceMap = function SourceNode_fromStringWithSourceMap(
-          aGeneratedCode,
-          aSourceMapConsumer,
-          aRelativePath
-        ) {
-          // The SourceNode we want to fill with the generated code
-          // and the SourceMap
-          var node = new SourceNode();
+        SourceNode.fromStringWithSourceMap =
+          function SourceNode_fromStringWithSourceMap(
+            aGeneratedCode,
+            aSourceMapConsumer,
+            aRelativePath
+          ) {
+            // The SourceNode we want to fill with the generated code
+            // and the SourceMap
+            var node = new SourceNode();
 
-          // All even indices of this array are one line of the generated code,
-          // while all odd indices are the newlines between two adjacent lines
-          // (since `REGEX_NEWLINE` captures its match).
-          // Processed fragments are accessed by calling `shiftNextLine`.
-          var remainingLines = aGeneratedCode.split(REGEX_NEWLINE);
-          var remainingLinesIndex = 0;
-          var shiftNextLine = function() {
-            var lineContents = getNextLine();
-            // The last line of a file might not have a newline.
-            var newLine = getNextLine() || "";
-            return lineContents + newLine;
+            // All even indices of this array are one line of the generated code,
+            // while all odd indices are the newlines between two adjacent lines
+            // (since `REGEX_NEWLINE` captures its match).
+            // Processed fragments are accessed by calling `shiftNextLine`.
+            var remainingLines = aGeneratedCode.split(REGEX_NEWLINE);
+            var remainingLinesIndex = 0;
+            var shiftNextLine = function () {
+              var lineContents = getNextLine();
+              // The last line of a file might not have a newline.
+              var newLine = getNextLine() || "";
+              return lineContents + newLine;
 
-            function getNextLine() {
-              return remainingLinesIndex < remainingLines.length
-                ? remainingLines[remainingLinesIndex++]
-                : undefined;
-            }
-          };
+              function getNextLine() {
+                return remainingLinesIndex < remainingLines.length
+                  ? remainingLines[remainingLinesIndex++]
+                  : undefined;
+              }
+            };
 
-          // We need to remember the position of "remainingLines"
-          var lastGeneratedLine = 1,
-            lastGeneratedColumn = 0;
+            // We need to remember the position of "remainingLines"
+            var lastGeneratedLine = 1,
+              lastGeneratedColumn = 0;
 
-          // The generate SourceNodes we need a code range.
-          // To extract it current and last mapping is used.
-          // Here we store the last mapping.
-          var lastMapping = null;
+            // The generate SourceNodes we need a code range.
+            // To extract it current and last mapping is used.
+            // Here we store the last mapping.
+            var lastMapping = null;
 
-          aSourceMapConsumer.eachMapping(function(mapping) {
-            if (lastMapping !== null) {
-              // We add the code from "lastMapping" to "mapping":
-              // First check if there is a new line in between.
-              if (lastGeneratedLine < mapping.generatedLine) {
-                // Associate first line with "lastMapping"
-                addMappingWithCode(lastMapping, shiftNextLine());
+            aSourceMapConsumer.eachMapping(function (mapping) {
+              if (lastMapping !== null) {
+                // We add the code from "lastMapping" to "mapping":
+                // First check if there is a new line in between.
+                if (lastGeneratedLine < mapping.generatedLine) {
+                  // Associate first line with "lastMapping"
+                  addMappingWithCode(lastMapping, shiftNextLine());
+                  lastGeneratedLine++;
+                  lastGeneratedColumn = 0;
+                  // The remaining code is added without mapping
+                } else {
+                  // There is no new line in between.
+                  // Associate the code between "lastGeneratedColumn" and
+                  // "mapping.generatedColumn" with "lastMapping"
+                  var nextLine = remainingLines[remainingLinesIndex] || "";
+                  var code = nextLine.substr(
+                    0,
+                    mapping.generatedColumn - lastGeneratedColumn
+                  );
+                  remainingLines[remainingLinesIndex] = nextLine.substr(
+                    mapping.generatedColumn - lastGeneratedColumn
+                  );
+                  lastGeneratedColumn = mapping.generatedColumn;
+                  addMappingWithCode(lastMapping, code);
+                  // No more remaining code, continue
+                  lastMapping = mapping;
+                  return;
+                }
+              }
+              // We add the generated code until the first mapping
+              // to the SourceNode without any mapping.
+              // Each line is added as separate string.
+              while (lastGeneratedLine < mapping.generatedLine) {
+                node.add(shiftNextLine());
                 lastGeneratedLine++;
-                lastGeneratedColumn = 0;
-                // The remaining code is added without mapping
-              } else {
-                // There is no new line in between.
-                // Associate the code between "lastGeneratedColumn" and
-                // "mapping.generatedColumn" with "lastMapping"
+              }
+              if (lastGeneratedColumn < mapping.generatedColumn) {
                 var nextLine = remainingLines[remainingLinesIndex] || "";
-                var code = nextLine.substr(
-                  0,
-                  mapping.generatedColumn - lastGeneratedColumn
-                );
+                node.add(nextLine.substr(0, mapping.generatedColumn));
                 remainingLines[remainingLinesIndex] = nextLine.substr(
-                  mapping.generatedColumn - lastGeneratedColumn
+                  mapping.generatedColumn
                 );
                 lastGeneratedColumn = mapping.generatedColumn;
-                addMappingWithCode(lastMapping, code);
-                // No more remaining code, continue
-                lastMapping = mapping;
-                return;
+              }
+              lastMapping = mapping;
+            }, this);
+            // We have processed all mappings.
+            if (remainingLinesIndex < remainingLines.length) {
+              if (lastMapping) {
+                // Associate the remaining code in the current line with "lastMapping"
+                addMappingWithCode(lastMapping, shiftNextLine());
+              }
+              // and add the remaining lines without any mapping
+              node.add(remainingLines.splice(remainingLinesIndex).join(""));
+            }
+
+            // Copy sourcesContent into SourceNode
+            aSourceMapConsumer.sources.forEach(function (sourceFile) {
+              var content = aSourceMapConsumer.sourceContentFor(sourceFile);
+              if (content != null) {
+                if (aRelativePath != null) {
+                  sourceFile = util.join(aRelativePath, sourceFile);
+                }
+                node.setSourceContent(sourceFile, content);
+              }
+            });
+
+            return node;
+
+            function addMappingWithCode(mapping, code) {
+              if (mapping === null || mapping.source === undefined) {
+                node.add(code);
+              } else {
+                var source = aRelativePath
+                  ? util.join(aRelativePath, mapping.source)
+                  : mapping.source;
+                node.add(
+                  new SourceNode(
+                    mapping.originalLine,
+                    mapping.originalColumn,
+                    source,
+                    code,
+                    mapping.name
+                  )
+                );
               }
             }
-            // We add the generated code until the first mapping
-            // to the SourceNode without any mapping.
-            // Each line is added as separate string.
-            while (lastGeneratedLine < mapping.generatedLine) {
-              node.add(shiftNextLine());
-              lastGeneratedLine++;
-            }
-            if (lastGeneratedColumn < mapping.generatedColumn) {
-              var nextLine = remainingLines[remainingLinesIndex] || "";
-              node.add(nextLine.substr(0, mapping.generatedColumn));
-              remainingLines[remainingLinesIndex] = nextLine.substr(
-                mapping.generatedColumn
-              );
-              lastGeneratedColumn = mapping.generatedColumn;
-            }
-            lastMapping = mapping;
-          }, this);
-          // We have processed all mappings.
-          if (remainingLinesIndex < remainingLines.length) {
-            if (lastMapping) {
-              // Associate the remaining code in the current line with "lastMapping"
-              addMappingWithCode(lastMapping, shiftNextLine());
-            }
-            // and add the remaining lines without any mapping
-            node.add(remainingLines.splice(remainingLinesIndex).join(""));
-          }
-
-          // Copy sourcesContent into SourceNode
-          aSourceMapConsumer.sources.forEach(function(sourceFile) {
-            var content = aSourceMapConsumer.sourceContentFor(sourceFile);
-            if (content != null) {
-              if (aRelativePath != null) {
-                sourceFile = util.join(aRelativePath, sourceFile);
-              }
-              node.setSourceContent(sourceFile, content);
-            }
-          });
-
-          return node;
-
-          function addMappingWithCode(mapping, code) {
-            if (mapping === null || mapping.source === undefined) {
-              node.add(code);
-            } else {
-              var source = aRelativePath
-                ? util.join(aRelativePath, mapping.source)
-                : mapping.source;
-              node.add(
-                new SourceNode(
-                  mapping.originalLine,
-                  mapping.originalColumn,
-                  source,
-                  code,
-                  mapping.name
-                )
-              );
-            }
-          }
-        };
+          };
 
         /**
          * Add a chunk of generated JS to this source node.
@@ -29592,7 +29500,7 @@ require = (function() {
          */
         SourceNode.prototype.add = function SourceNode_add(aChunk) {
           if (Array.isArray(aChunk)) {
-            aChunk.forEach(function(chunk) {
+            aChunk.forEach(function (chunk) {
               this.add(chunk);
             }, this);
           } else if (aChunk[isSourceNode] || typeof aChunk === "string") {
@@ -29710,12 +29618,10 @@ require = (function() {
          * @param aSourceFile The filename of the source file
          * @param aSourceContent The content of the source file
          */
-        SourceNode.prototype.setSourceContent = function SourceNode_setSourceContent(
-          aSourceFile,
-          aSourceContent
-        ) {
-          this.sourceContents[util.toSetString(aSourceFile)] = aSourceContent;
-        };
+        SourceNode.prototype.setSourceContent =
+          function SourceNode_setSourceContent(aSourceFile, aSourceContent) {
+            this.sourceContents[util.toSetString(aSourceFile)] = aSourceContent;
+          };
 
         /**
          * Walk over the tree of SourceNodes. The walking function is called for each
@@ -29723,23 +29629,22 @@ require = (function() {
          *
          * @param aFn The traversal function.
          */
-        SourceNode.prototype.walkSourceContents = function SourceNode_walkSourceContents(
-          aFn
-        ) {
-          for (var i = 0, len = this.children.length; i < len; i++) {
-            if (this.children[i][isSourceNode]) {
-              this.children[i].walkSourceContents(aFn);
+        SourceNode.prototype.walkSourceContents =
+          function SourceNode_walkSourceContents(aFn) {
+            for (var i = 0, len = this.children.length; i < len; i++) {
+              if (this.children[i][isSourceNode]) {
+                this.children[i].walkSourceContents(aFn);
+              }
             }
-          }
 
-          var sources = Object.keys(this.sourceContents);
-          for (var i = 0, len = sources.length; i < len; i++) {
-            aFn(
-              util.fromSetString(sources[i]),
-              this.sourceContents[sources[i]]
-            );
-          }
-        };
+            var sources = Object.keys(this.sourceContents);
+            for (var i = 0, len = sources.length; i < len; i++) {
+              aFn(
+                util.fromSetString(sources[i]),
+                this.sourceContents[sources[i]]
+              );
+            }
+          };
 
         /**
          * Return the string representation of this source node. Walks over the tree
@@ -29747,7 +29652,7 @@ require = (function() {
          */
         SourceNode.prototype.toString = function SourceNode_toString() {
           var str = "";
-          this.walk(function(chunk) {
+          this.walk(function (chunk) {
             str += chunk;
           });
           return str;
@@ -29757,70 +29662,32 @@ require = (function() {
          * Returns the string representation of this source node along with a source
          * map.
          */
-        SourceNode.prototype.toStringWithSourceMap = function SourceNode_toStringWithSourceMap(
-          aArgs
-        ) {
-          var generated = {
-            code: "",
-            line: 1,
-            column: 0
-          };
-          var map = new SourceMapGenerator(aArgs);
-          var sourceMappingActive = false;
-          var lastOriginalSource = null;
-          var lastOriginalLine = null;
-          var lastOriginalColumn = null;
-          var lastOriginalName = null;
-          this.walk(function(chunk, original) {
-            generated.code += chunk;
-            if (
-              original.source !== null &&
-              original.line !== null &&
-              original.column !== null
-            ) {
+        SourceNode.prototype.toStringWithSourceMap =
+          function SourceNode_toStringWithSourceMap(aArgs) {
+            var generated = {
+              code: "",
+              line: 1,
+              column: 0
+            };
+            var map = new SourceMapGenerator(aArgs);
+            var sourceMappingActive = false;
+            var lastOriginalSource = null;
+            var lastOriginalLine = null;
+            var lastOriginalColumn = null;
+            var lastOriginalName = null;
+            this.walk(function (chunk, original) {
+              generated.code += chunk;
               if (
-                lastOriginalSource !== original.source ||
-                lastOriginalLine !== original.line ||
-                lastOriginalColumn !== original.column ||
-                lastOriginalName !== original.name
+                original.source !== null &&
+                original.line !== null &&
+                original.column !== null
               ) {
-                map.addMapping({
-                  source: original.source,
-                  original: {
-                    line: original.line,
-                    column: original.column
-                  },
-                  generated: {
-                    line: generated.line,
-                    column: generated.column
-                  },
-                  name: original.name
-                });
-              }
-              lastOriginalSource = original.source;
-              lastOriginalLine = original.line;
-              lastOriginalColumn = original.column;
-              lastOriginalName = original.name;
-              sourceMappingActive = true;
-            } else if (sourceMappingActive) {
-              map.addMapping({
-                generated: {
-                  line: generated.line,
-                  column: generated.column
-                }
-              });
-              lastOriginalSource = null;
-              sourceMappingActive = false;
-            }
-            for (var idx = 0, length = chunk.length; idx < length; idx++) {
-              if (chunk.charCodeAt(idx) === NEWLINE_CODE) {
-                generated.line++;
-                generated.column = 0;
-                // Mappings end at eol
-                if (idx + 1 === length) {
-                  lastOriginalSource = null;
-                  sourceMappingActive = false;
-                } else if (sourceMappingActive) {
+                if (
+                  lastOriginalSource !== original.source ||
+                  lastOriginalLine !== original.line ||
+                  lastOriginalColumn !== original.column ||
+                  lastOriginalName !== original.name
+                ) {
                   map.addMapping({
                     source: original.source,
                     original: {
@@ -29834,24 +29701,61 @@ require = (function() {
                     name: original.name
                   });
                 }
-              } else {
-                generated.column++;
+                lastOriginalSource = original.source;
+                lastOriginalLine = original.line;
+                lastOriginalColumn = original.column;
+                lastOriginalName = original.name;
+                sourceMappingActive = true;
+              } else if (sourceMappingActive) {
+                map.addMapping({
+                  generated: {
+                    line: generated.line,
+                    column: generated.column
+                  }
+                });
+                lastOriginalSource = null;
+                sourceMappingActive = false;
               }
-            }
-          });
-          this.walkSourceContents(function(sourceFile, sourceContent) {
-            map.setSourceContent(sourceFile, sourceContent);
-          });
+              for (var idx = 0, length = chunk.length; idx < length; idx++) {
+                if (chunk.charCodeAt(idx) === NEWLINE_CODE) {
+                  generated.line++;
+                  generated.column = 0;
+                  // Mappings end at eol
+                  if (idx + 1 === length) {
+                    lastOriginalSource = null;
+                    sourceMappingActive = false;
+                  } else if (sourceMappingActive) {
+                    map.addMapping({
+                      source: original.source,
+                      original: {
+                        line: original.line,
+                        column: original.column
+                      },
+                      generated: {
+                        line: generated.line,
+                        column: generated.column
+                      },
+                      name: original.name
+                    });
+                  }
+                } else {
+                  generated.column++;
+                }
+              }
+            });
+            this.walkSourceContents(function (sourceFile, sourceContent) {
+              map.setSourceContent(sourceFile, sourceContent);
+            });
 
-          return { code: generated.code, map: map };
-        };
+            return { code: generated.code, map: map };
+          };
 
         exports.SourceNode = SourceNode;
       },
       { "./source-map-generator": 152, "./util": 154 }
     ],
     154: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /* -*- Mode: js; js-indent-level: 2; -*- */
         /*
          * Copyright 2011 Mozilla Foundation and contributors
@@ -29880,7 +29784,8 @@ require = (function() {
         }
         exports.getArg = getArg;
 
-        var urlRegexp = /^(?:([\w+\-.]+):)?\/\/(?:(\w+:\w+)@)?([\w.-]*)(?::(\d+))?(.*)$/;
+        var urlRegexp =
+          /^(?:([\w+\-.]+):)?\/\/(?:(\w+:\w+)@)?([\w.-]*)(?::(\d+))?(.*)$/;
         var dataUrlRegexp = /^data:.+\,.+$/;
 
         function urlParse(aUrl) {
@@ -30036,7 +29941,7 @@ require = (function() {
         }
         exports.join = join;
 
-        exports.isAbsolute = function(aPath) {
+        exports.isAbsolute = function (aPath) {
           return aPath.charAt(0) === "/" || urlRegexp.test(aPath);
         };
 
@@ -30080,7 +29985,7 @@ require = (function() {
         }
         exports.relative = relative;
 
-        var supportsNullProto = (function() {
+        var supportsNullProto = (function () {
           var obj = Object.create(null);
           return !("__proto__" in obj);
         })();
@@ -30233,7 +30138,8 @@ require = (function() {
 
           return strcmp(mappingA.name, mappingB.name);
         }
-        exports.compareByGeneratedPositionsDeflated = compareByGeneratedPositionsDeflated;
+        exports.compareByGeneratedPositionsDeflated =
+          compareByGeneratedPositionsDeflated;
 
         function strcmp(aStr1, aStr2) {
           if (aStr1 === aStr2) {
@@ -30287,7 +30193,8 @@ require = (function() {
 
           return strcmp(mappingA.name, mappingB.name);
         }
-        exports.compareByGeneratedPositionsInflated = compareByGeneratedPositionsInflated;
+        exports.compareByGeneratedPositionsInflated =
+          compareByGeneratedPositionsInflated;
 
         /**
          * Strip any JSON XSSI avoidance prefix from the string (as documented
@@ -30358,14 +30265,16 @@ require = (function() {
       {}
     ],
     155: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /*
          * Copyright 2009-2011 Mozilla Foundation and contributors
          * Licensed under the New BSD license. See LICENSE.txt or:
          * http://opensource.org/licenses/BSD-3-Clause
          */
-        exports.SourceMapGenerator = require("./lib/source-map-generator").SourceMapGenerator;
-        exports.SourceMapConsumer = require("./lib/source-map-consumer").SourceMapConsumer;
+        exports.SourceMapGenerator =
+          require("./lib/source-map-generator").SourceMapGenerator;
+        exports.SourceMapConsumer =
+          require("./lib/source-map-consumer").SourceMapConsumer;
         exports.SourceNode = require("./lib/source-node").SourceNode;
       },
       {
@@ -30375,8 +30284,8 @@ require = (function() {
       }
     ],
     156: [
-      function(require, module, exports) {
-        (function(global) {
+      function (require, module, exports) {
+        (function (global) {
           var ClientRequest = require("./lib/request");
           var response = require("./lib/response");
           var extend = require("xtend");
@@ -30385,7 +30294,7 @@ require = (function() {
 
           var http = exports;
 
-          http.request = function(opts, cb) {
+          http.request = function (opts, cb) {
             if (typeof opts === "string") opts = url.parse(opts);
             else opts = extend(opts);
 
@@ -30429,7 +30338,7 @@ require = (function() {
           http.ClientRequest = ClientRequest;
           http.IncomingMessage = response.IncomingMessage;
 
-          http.Agent = function() {};
+          http.Agent = function () {};
           http.Agent.defaultMaxSockets = 4;
 
           http.globalAgent = new http.Agent();
@@ -30464,7 +30373,7 @@ require = (function() {
             "UNLOCK",
             "UNSUBSCRIBE"
           ];
-        }.call(
+        }).call(
           this,
           typeof global !== "undefined"
             ? global
@@ -30473,7 +30382,7 @@ require = (function() {
             : typeof window !== "undefined"
             ? window
             : {}
-        ));
+        );
       },
       {
         "./lib/request": 158,
@@ -30484,8 +30393,8 @@ require = (function() {
       }
     ],
     157: [
-      function(require, module, exports) {
-        (function(global) {
+      function (require, module, exports) {
+        (function (global) {
           exports.fetch =
             isFunction(global.fetch) && isFunction(global.ReadableStream);
 
@@ -30571,7 +30480,7 @@ require = (function() {
           }
 
           xhr = null; // Help gc
-        }.call(
+        }).call(
           this,
           typeof global !== "undefined"
             ? global
@@ -30580,13 +30489,13 @@ require = (function() {
             : typeof window !== "undefined"
             ? window
             : {}
-        ));
+        );
       },
       {}
     ],
     158: [
-      function(require, module, exports) {
-        (function(process, global, Buffer) {
+      function (require, module, exports) {
+        (function (process, global, Buffer) {
           var capability = require("./capability");
           var inherits = require("inherits");
           var response = require("./response");
@@ -30612,7 +30521,7 @@ require = (function() {
             }
           }
 
-          var ClientRequest = (module.exports = function(opts) {
+          var ClientRequest = (module.exports = function (opts) {
             var self = this;
             stream.Writable.call(self);
 
@@ -30624,7 +30533,7 @@ require = (function() {
                 "Authorization",
                 "Basic " + new Buffer(opts.auth).toString("base64")
               );
-            Object.keys(opts.headers).forEach(function(name) {
+            Object.keys(opts.headers).forEach(function (name) {
               self.setHeader(name, opts.headers[name]);
             });
 
@@ -30657,14 +30566,14 @@ require = (function() {
             self._mode = decideMode(preferBinary, useFetch);
             self._fetchTimer = null;
 
-            self.on("finish", function() {
+            self.on("finish", function () {
               self._onFinish();
             });
           });
 
           inherits(ClientRequest, stream.Writable);
 
-          ClientRequest.prototype.setHeader = function(name, value) {
+          ClientRequest.prototype.setHeader = function (name, value) {
             var self = this;
             var lowerName = name.toLowerCase();
             // This check is not necessary, but it prevents warnings from browsers about setting unsafe
@@ -30678,18 +30587,18 @@ require = (function() {
             };
           };
 
-          ClientRequest.prototype.getHeader = function(name) {
+          ClientRequest.prototype.getHeader = function (name) {
             var header = this._headers[name.toLowerCase()];
             if (header) return header.value;
             return null;
           };
 
-          ClientRequest.prototype.removeHeader = function(name) {
+          ClientRequest.prototype.removeHeader = function (name) {
             var self = this;
             delete self._headers[name.toLowerCase()];
           };
 
-          ClientRequest.prototype._onFinish = function() {
+          ClientRequest.prototype._onFinish = function () {
             var self = this;
 
             if (self._destroyed) return;
@@ -30702,7 +30611,7 @@ require = (function() {
                 body = toArrayBuffer(Buffer.concat(self._body));
               } else if (capability.blobConstructor) {
                 body = new global.Blob(
-                  self._body.map(function(buffer) {
+                  self._body.map(function (buffer) {
                     return toArrayBuffer(buffer);
                   }),
                   {
@@ -30717,11 +30626,11 @@ require = (function() {
 
             // create flattened list of headers
             var headersList = [];
-            Object.keys(headersObj).forEach(function(keyName) {
+            Object.keys(headersObj).forEach(function (keyName) {
               var name = headersObj[keyName].name;
               var value = headersObj[keyName].value;
               if (Array.isArray(value)) {
-                value.forEach(function(v) {
+                value.forEach(function (v) {
                   headersList.push([name, v]);
                 });
               } else {
@@ -30738,7 +30647,7 @@ require = (function() {
                 self._fetchAbortController = controller;
 
                 if ("requestTimeout" in opts && opts.requestTimeout !== 0) {
-                  self._fetchTimer = global.setTimeout(function() {
+                  self._fetchTimer = global.setTimeout(function () {
                     self.emit("requestTimeout");
                     if (self._fetchAbortController)
                       self._fetchAbortController.abort();
@@ -30756,11 +30665,11 @@ require = (function() {
                   signal: signal
                 })
                 .then(
-                  function(response) {
+                  function (response) {
                     self._fetchResponse = response;
                     self._connect();
                   },
-                  function(reason) {
+                  function (reason) {
                     global.clearTimeout(self._fetchTimer);
                     if (!self._destroyed) self.emit("error", reason);
                   }
@@ -30770,7 +30679,7 @@ require = (function() {
               try {
                 xhr.open(self._opts.method, self._opts.url, true);
               } catch (err) {
-                process.nextTick(function() {
+                process.nextTick(function () {
                   self.emit("error", err);
                 });
                 return;
@@ -30788,17 +30697,17 @@ require = (function() {
 
               if ("requestTimeout" in opts) {
                 xhr.timeout = opts.requestTimeout;
-                xhr.ontimeout = function() {
+                xhr.ontimeout = function () {
                   self.emit("requestTimeout");
                 };
               }
 
-              headersList.forEach(function(header) {
+              headersList.forEach(function (header) {
                 xhr.setRequestHeader(header[0], header[1]);
               });
 
               self._response = null;
-              xhr.onreadystatechange = function() {
+              xhr.onreadystatechange = function () {
                 switch (xhr.readyState) {
                   case rStates.LOADING:
                   case rStates.DONE:
@@ -30809,12 +30718,12 @@ require = (function() {
               // Necessary for streaming in Firefox, since xhr.response is ONLY defined
               // in onprogress, not in onreadystatechange with xhr.readyState = 3
               if (self._mode === "moz-chunked-arraybuffer") {
-                xhr.onprogress = function() {
+                xhr.onprogress = function () {
                   self._onXHRProgress();
                 };
               }
 
-              xhr.onerror = function() {
+              xhr.onerror = function () {
                 if (self._destroyed) return;
                 self.emit("error", new Error("XHR error"));
               };
@@ -30822,7 +30731,7 @@ require = (function() {
               try {
                 xhr.send(body);
               } catch (err) {
-                process.nextTick(function() {
+                process.nextTick(function () {
                   self.emit("error", err);
                 });
                 return;
@@ -30844,7 +30753,7 @@ require = (function() {
             }
           }
 
-          ClientRequest.prototype._onXHRProgress = function() {
+          ClientRequest.prototype._onXHRProgress = function () {
             var self = this;
 
             if (!statusValid(self._xhr) || self._destroyed) return;
@@ -30854,7 +30763,7 @@ require = (function() {
             self._response._onXHRProgress();
           };
 
-          ClientRequest.prototype._connect = function() {
+          ClientRequest.prototype._connect = function () {
             var self = this;
 
             if (self._destroyed) return;
@@ -30865,31 +30774,32 @@ require = (function() {
               self._mode,
               self._fetchTimer
             );
-            self._response.on("error", function(err) {
+            self._response.on("error", function (err) {
               self.emit("error", err);
             });
 
             self.emit("response", self._response);
           };
 
-          ClientRequest.prototype._write = function(chunk, encoding, cb) {
+          ClientRequest.prototype._write = function (chunk, encoding, cb) {
             var self = this;
 
             self._body.push(chunk);
             cb();
           };
 
-          ClientRequest.prototype.abort = ClientRequest.prototype.destroy = function() {
-            var self = this;
-            self._destroyed = true;
-            global.clearTimeout(self._fetchTimer);
-            if (self._response) self._response._destroyed = true;
-            if (self._xhr) self._xhr.abort();
-            else if (self._fetchAbortController)
-              self._fetchAbortController.abort();
-          };
+          ClientRequest.prototype.abort = ClientRequest.prototype.destroy =
+            function () {
+              var self = this;
+              self._destroyed = true;
+              global.clearTimeout(self._fetchTimer);
+              if (self._response) self._response._destroyed = true;
+              if (self._xhr) self._xhr.abort();
+              else if (self._fetchAbortController)
+                self._fetchAbortController.abort();
+            };
 
-          ClientRequest.prototype.end = function(data, encoding, cb) {
+          ClientRequest.prototype.end = function (data, encoding, cb) {
             var self = this;
             if (typeof data === "function") {
               cb = data;
@@ -30899,10 +30809,10 @@ require = (function() {
             stream.Writable.prototype.end.call(self, data, encoding, cb);
           };
 
-          ClientRequest.prototype.flushHeaders = function() {};
-          ClientRequest.prototype.setTimeout = function() {};
-          ClientRequest.prototype.setNoDelay = function() {};
-          ClientRequest.prototype.setSocketKeepAlive = function() {};
+          ClientRequest.prototype.flushHeaders = function () {};
+          ClientRequest.prototype.setTimeout = function () {};
+          ClientRequest.prototype.setNoDelay = function () {};
+          ClientRequest.prototype.setSocketKeepAlive = function () {};
 
           // Taken from http://www.w3.org/TR/XMLHttpRequest/#the-setrequestheader%28%29-method
           var unsafeHeaders = [
@@ -30927,7 +30837,7 @@ require = (function() {
             "upgrade",
             "via"
           ];
-        }.call(
+        }).call(
           this,
           require("_process"),
           typeof global !== "undefined"
@@ -30938,7 +30848,7 @@ require = (function() {
             ? window
             : {},
           require("buffer").Buffer
-        ));
+        );
       },
       {
         "./capability": 157,
@@ -30951,8 +30861,8 @@ require = (function() {
       }
     ],
     159: [
-      function(require, module, exports) {
-        (function(process, global, Buffer) {
+      function (require, module, exports) {
+        (function (process, global, Buffer) {
           var capability = require("./capability");
           var inherits = require("inherits");
           var stream = require("readable-stream");
@@ -30965,7 +30875,7 @@ require = (function() {
             DONE: 4
           });
 
-          var IncomingMessage = (exports.IncomingMessage = function(
+          var IncomingMessage = (exports.IncomingMessage = function (
             xhr,
             response,
             mode,
@@ -30981,9 +30891,9 @@ require = (function() {
             self.rawTrailers = [];
 
             // Fake the 'close' event, but only once 'end' fires
-            self.on("end", function() {
+            self.on("end", function () {
               // The nextTick is necessary to prevent the 'request' module from causing an infinite loop
-              process.nextTick(function() {
+              process.nextTick(function () {
                 self.emit("close");
               });
             });
@@ -30995,15 +30905,15 @@ require = (function() {
               self.statusCode = response.status;
               self.statusMessage = response.statusText;
 
-              response.headers.forEach(function(header, key) {
+              response.headers.forEach(function (header, key) {
                 self.headers[key.toLowerCase()] = header;
                 self.rawHeaders.push(key, header);
               });
 
               if (capability.writableStream) {
                 var writable = new WritableStream({
-                  write: function(chunk) {
-                    return new Promise(function(resolve, reject) {
+                  write: function (chunk) {
+                    return new Promise(function (resolve, reject) {
                       if (self._destroyed) {
                         reject();
                       } else if (self.push(new Buffer(chunk))) {
@@ -31013,17 +30923,17 @@ require = (function() {
                       }
                     });
                   },
-                  close: function() {
+                  close: function () {
                     global.clearTimeout(fetchTimer);
                     if (!self._destroyed) self.push(null);
                   },
-                  abort: function(err) {
+                  abort: function (err) {
                     if (!self._destroyed) self.emit("error", err);
                   }
                 });
 
                 try {
-                  response.body.pipeTo(writable).catch(function(err) {
+                  response.body.pipeTo(writable).catch(function (err) {
                     global.clearTimeout(fetchTimer);
                     if (!self._destroyed) self.emit("error", err);
                   });
@@ -31035,7 +30945,7 @@ require = (function() {
               function read() {
                 reader
                   .read()
-                  .then(function(result) {
+                  .then(function (result) {
                     if (self._destroyed) return;
                     if (result.done) {
                       global.clearTimeout(fetchTimer);
@@ -31045,7 +30955,7 @@ require = (function() {
                     self.push(new Buffer(result.value));
                     read();
                   })
-                  .catch(function(err) {
+                  .catch(function (err) {
                     global.clearTimeout(fetchTimer);
                     if (!self._destroyed) self.emit("error", err);
                   });
@@ -31059,7 +30969,7 @@ require = (function() {
               self.statusCode = xhr.status;
               self.statusMessage = xhr.statusText;
               var headers = xhr.getAllResponseHeaders().split(/\r?\n/);
-              headers.forEach(function(header) {
+              headers.forEach(function (header) {
                 var matches = header.match(/^([^:]+):\s*(.*)/);
                 if (matches) {
                   var key = matches[1].toLowerCase();
@@ -31093,7 +31003,7 @@ require = (function() {
 
           inherits(IncomingMessage, stream.Readable);
 
-          IncomingMessage.prototype._read = function() {
+          IncomingMessage.prototype._read = function () {
             var self = this;
 
             var resolve = self._resumeFetch;
@@ -31103,7 +31013,7 @@ require = (function() {
             }
           };
 
-          IncomingMessage.prototype._onXHRProgress = function() {
+          IncomingMessage.prototype._onXHRProgress = function () {
             var self = this;
 
             var xhr = self._xhr;
@@ -31157,7 +31067,7 @@ require = (function() {
                 response = xhr.response;
                 if (xhr.readyState !== rStates.LOADING) break;
                 var reader = new global.MSStreamReader();
-                reader.onprogress = function() {
+                reader.onprogress = function () {
                   if (reader.result.byteLength > self._pos) {
                     self.push(
                       new Buffer(new Uint8Array(reader.result.slice(self._pos)))
@@ -31165,7 +31075,7 @@ require = (function() {
                     self._pos = reader.result.byteLength;
                   }
                 };
-                reader.onload = function() {
+                reader.onload = function () {
                   self.push(null);
                 };
                 // reader.onerror = ??? // TODO: this
@@ -31181,7 +31091,7 @@ require = (function() {
               self.push(null);
             }
           };
-        }.call(
+        }).call(
           this,
           require("_process"),
           typeof global !== "undefined"
@@ -31192,7 +31102,7 @@ require = (function() {
             ? window
             : {},
           require("buffer").Buffer
-        ));
+        );
       },
       {
         "./capability": 157,
@@ -31203,8 +31113,8 @@ require = (function() {
       }
     ],
     160: [
-      function(require, module, exports) {
-        (function(setImmediate, clearImmediate) {
+      function (require, module, exports) {
+        (function (setImmediate, clearImmediate) {
           var nextTick = require("process/browser.js").nextTick;
           var apply = Function.prototype.apply;
           var slice = Array.prototype.slice;
@@ -31213,19 +31123,19 @@ require = (function() {
 
           // DOM APIs, for completeness
 
-          exports.setTimeout = function() {
+          exports.setTimeout = function () {
             return new Timeout(
               apply.call(setTimeout, window, arguments),
               clearTimeout
             );
           };
-          exports.setInterval = function() {
+          exports.setInterval = function () {
             return new Timeout(
               apply.call(setInterval, window, arguments),
               clearInterval
             );
           };
-          exports.clearTimeout = exports.clearInterval = function(timeout) {
+          exports.clearTimeout = exports.clearInterval = function (timeout) {
             timeout.close();
           };
 
@@ -31233,23 +31143,23 @@ require = (function() {
             this._id = id;
             this._clearFn = clearFn;
           }
-          Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-          Timeout.prototype.close = function() {
+          Timeout.prototype.unref = Timeout.prototype.ref = function () {};
+          Timeout.prototype.close = function () {
             this._clearFn.call(window, this._id);
           };
 
           // Does not start the time, just sets up the members needed.
-          exports.enroll = function(item, msecs) {
+          exports.enroll = function (item, msecs) {
             clearTimeout(item._idleTimeoutId);
             item._idleTimeout = msecs;
           };
 
-          exports.unenroll = function(item) {
+          exports.unenroll = function (item) {
             clearTimeout(item._idleTimeoutId);
             item._idleTimeout = -1;
           };
 
-          exports._unrefActive = exports.active = function(item) {
+          exports._unrefActive = exports.active = function (item) {
             clearTimeout(item._idleTimeoutId);
 
             var msecs = item._idleTimeout;
@@ -31264,7 +31174,7 @@ require = (function() {
           exports.setImmediate =
             typeof setImmediate === "function"
               ? setImmediate
-              : function(fn) {
+              : function (fn) {
                   var id = nextImmediateId++;
                   var args =
                     arguments.length < 2 ? false : slice.call(arguments, 1);
@@ -31291,22 +31201,22 @@ require = (function() {
           exports.clearImmediate =
             typeof clearImmediate === "function"
               ? clearImmediate
-              : function(id) {
+              : function (id) {
                   delete immediateIds[id];
                 };
-        }.call(
+        }).call(
           this,
           require("timers").setImmediate,
           require("timers").clearImmediate
-        ));
+        );
       },
       { "process/browser.js": 112, timers: 160 }
     ],
     161: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         var Buffer = require("buffer").Buffer;
 
-        module.exports = function(buf) {
+        module.exports = function (buf) {
           // If the buffer is backed by a Uint8Array, a faster version will work
           if (buf instanceof Uint8Array) {
             // If the buffer isn't a subarray, return the underlying ArrayBuffer
@@ -31341,7 +31251,7 @@ require = (function() {
       { buffer: 4 }
     ],
     162: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         // Copyright Joyent, Inc. and other Node contributors.
         //
         // Permission is hereby granted, free of charge, to any person obtaining a
@@ -31447,7 +31357,7 @@ require = (function() {
           return u;
         }
 
-        Url.prototype.parse = function(
+        Url.prototype.parse = function (
           url,
           parseQueryString,
           slashesDenoteHost
@@ -31726,7 +31636,7 @@ require = (function() {
           return obj.format();
         }
 
-        Url.prototype.format = function() {
+        Url.prototype.format = function () {
           var auth = this.auth || "";
           if (auth) {
             auth = encodeURIComponent(auth);
@@ -31781,7 +31691,7 @@ require = (function() {
           if (hash && hash.charAt(0) !== "#") hash = "#" + hash;
           if (search && search.charAt(0) !== "?") search = "?" + search;
 
-          pathname = pathname.replace(/[?#]/g, function(match) {
+          pathname = pathname.replace(/[?#]/g, function (match) {
             return encodeURIComponent(match);
           });
           search = search.replace("#", "%23");
@@ -31793,7 +31703,7 @@ require = (function() {
           return urlParse(source, false, true).resolve(relative);
         }
 
-        Url.prototype.resolve = function(relative) {
+        Url.prototype.resolve = function (relative) {
           return this.resolveObject(urlParse(relative, false, true)).format();
         };
 
@@ -31802,7 +31712,7 @@ require = (function() {
           return urlParse(source, false, true).resolveObject(relative);
         }
 
-        Url.prototype.resolveObject = function(relative) {
+        Url.prototype.resolveObject = function (relative) {
           if (util.isString(relative)) {
             var rel = new Url();
             rel.parse(relative, false, true);
@@ -32091,7 +32001,7 @@ require = (function() {
           return result;
         };
 
-        Url.prototype.parseHost = function() {
+        Url.prototype.parseHost = function () {
           var host = this.host;
           var port = portPattern.exec(host);
           if (port) {
@@ -32107,20 +32017,20 @@ require = (function() {
       { "./util": 163, punycode: 113, querystring: 116 }
     ],
     163: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         module.exports = {
-          isString: function(arg) {
+          isString: function (arg) {
             return typeof arg === "string";
           },
-          isObject: function(arg) {
+          isObject: function (arg) {
             return typeof arg === "object" && arg !== null;
           },
-          isNull: function(arg) {
+          isNull: function (arg) {
             return arg === null;
           },
-          isNullOrUndefined: function(arg) {
+          isNullOrUndefined: function (arg) {
             return arg == null;
           }
         };
@@ -32128,8 +32038,8 @@ require = (function() {
       {}
     ],
     164: [
-      function(require, module, exports) {
-        (function(global) {
+      function (require, module, exports) {
+        (function (global) {
           /**
            * Module exports.
            */
@@ -32196,7 +32106,7 @@ require = (function() {
             if (null == val) return false;
             return String(val).toLowerCase() === "true";
           }
-        }.call(
+        }).call(
           this,
           typeof global !== "undefined"
             ? global
@@ -32205,12 +32115,12 @@ require = (function() {
             : typeof window !== "undefined"
             ? window
             : {}
-        ));
+        );
       },
       {}
     ],
     165: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         module.exports = extend;
 
         var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -32234,7 +32144,7 @@ require = (function() {
       {}
     ],
     166: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         /*!
          * HTML Parser By John Resig (ejohn.org)
          * Modified by Juriy "kangax" Zaytsev
@@ -32285,7 +32195,7 @@ require = (function() {
             /([^ \t\n\f\r"'`=<>]+)/.source
           ],
           // https://www.w3.org/TR/1999/REC-xml-names-19990114/#NT-QName
-          qnameCapture = (function() {
+          qnameCapture = (function () {
             // based on https://www.npmjs.com/package/ncname
             var combiningChar =
               "\\u0300-\\u0345\\u0360\\u0361\\u0483-\\u0486\\u0591-\\u05A1\\u05A3-\\u05B9\\u05BB-\\u05BD\\u05BF\\u05C1\\u05C2\\u05C4\\u064B-\\u0652\\u0670\\u06D6-\\u06E4\\u06E7\\u06E8\\u06EA-\\u06ED\\u0901-\\u0903\\u093C\\u093E-\\u094D\\u0951-\\u0954\\u0962\\u0963\\u0981-\\u0983\\u09BC\\u09BE-\\u09C4\\u09C7\\u09C8\\u09CB-\\u09CD\\u09D7\\u09E2\\u09E3\\u0A02\\u0A3C\\u0A3E-\\u0A42\\u0A47\\u0A48\\u0A4B-\\u0A4D\\u0A70\\u0A71\\u0A81-\\u0A83\\u0ABC\\u0ABE-\\u0AC5\\u0AC7-\\u0AC9\\u0ACB-\\u0ACD\\u0B01-\\u0B03\\u0B3C\\u0B3E-\\u0B43\\u0B47\\u0B48\\u0B4B-\\u0B4D\\u0B56\\u0B57\\u0B82\\u0B83\\u0BBE-\\u0BC2\\u0BC6-\\u0BC8\\u0BCA-\\u0BCD\\u0BD7\\u0C01-\\u0C03\\u0C3E-\\u0C44\\u0C46-\\u0C48\\u0C4A-\\u0C4D\\u0C55\\u0C56\\u0C82\\u0C83\\u0CBE-\\u0CC4\\u0CC6-\\u0CC8\\u0CCA-\\u0CCD\\u0CD5\\u0CD6\\u0D02\\u0D03\\u0D3E-\\u0D43\\u0D46-\\u0D48\\u0D4A-\\u0D4D\\u0D57\\u0E31\\u0E34-\\u0E3A\\u0E47-\\u0E4E\\u0EB1\\u0EB4-\\u0EB9\\u0EBB\\u0EBC\\u0EC8-\\u0ECD\\u0F18\\u0F19\\u0F35\\u0F37\\u0F39\\u0F3E\\u0F3F\\u0F71-\\u0F84\\u0F86-\\u0F8B\\u0F90-\\u0F95\\u0F97\\u0F99-\\u0FAD\\u0FB1-\\u0FB7\\u0FB9\\u20D0-\\u20DC\\u20E1\\u302A-\\u302F\\u3099\\u309A";
@@ -32313,7 +32223,7 @@ require = (function() {
           doctype = /^<!DOCTYPE\s?[^>]+>/i;
 
         var IS_REGEX_CAPTURING_BROKEN = false;
-        "x".replace(/x(.)?/g, function(m, g) {
+        "x".replace(/x(.)?/g, function (m, g) {
           IS_REGEX_CAPTURING_BROKEN = g === "";
         });
 
@@ -32381,7 +32291,7 @@ require = (function() {
         function joinSingleAttrAssigns(handler) {
           return singleAttrAssigns
             .concat(handler.customAttrAssign || [])
-            .map(function(assign) {
+            .map(function (assign) {
               return "(?:" + assign.source + ")";
             })
             .join("|");
@@ -32499,7 +32409,7 @@ require = (function() {
                   "i"
                 ));
 
-              html = html.replace(reStackedTag, function(all, text) {
+              html = html.replace(reStackedTag, function (all, text) {
                 if (
                   stackedTag !== "script" &&
                   stackedTag !== "style" &&
@@ -32599,7 +32509,7 @@ require = (function() {
               (tagName === "html" && lastTag === "head") ||
               !!unarySlash;
 
-            var attrs = match.attrs.map(function(args) {
+            var attrs = match.attrs.map(function (args) {
               var name, value, customOpen, customClose, customAssign, quote;
               var ncp = 7; // number of captured parts, scalar
 
@@ -32725,11 +32635,11 @@ require = (function() {
         }
 
         exports.HTMLParser = HTMLParser;
-        exports.HTMLtoXML = function(html) {
+        exports.HTMLtoXML = function (html) {
           var results = "";
 
           new HTMLParser(html, {
-            start: function(tag, attrs, unary) {
+            start: function (tag, attrs, unary) {
               results += "<" + tag;
 
               for (var i = 0, len = attrs.length; i < len; i++) {
@@ -32743,16 +32653,16 @@ require = (function() {
 
               results += (unary ? "/" : "") + ">";
             },
-            end: function(tag) {
+            end: function (tag) {
               results += "</" + tag + ">";
             },
-            chars: function(text) {
+            chars: function (text) {
               results += text;
             },
-            comment: function(text) {
+            comment: function (text) {
               results += "<!--" + text + "-->";
             },
-            ignore: function(text) {
+            ignore: function (text) {
               results += text;
             }
           });
@@ -32760,7 +32670,7 @@ require = (function() {
           return results;
         };
 
-        exports.HTMLtoDOM = function(html, doc) {
+        exports.HTMLtoDOM = function (html, doc) {
           // There can be only one of these elements
           var one = {
             html: true,
@@ -32800,7 +32710,7 @@ require = (function() {
           // If we're dealing with an empty document then we
           // need to pre-populate it with the HTML document structure
           if (!documentElement && doc.createElement) {
-            (function() {
+            (function () {
               var html = doc.createElement("html");
               var head = doc.createElement("head");
               head.appendChild(doc.createElement("title"));
@@ -32822,7 +32732,7 @@ require = (function() {
           var curParentNode = one.body;
 
           new HTMLParser(html, {
-            start: function(tagName, attrs, unary) {
+            start: function (tagName, attrs, unary) {
               // If it's a pre-built element, then we can ignore
               // its construction
               if (one[tagName]) {
@@ -32850,19 +32760,19 @@ require = (function() {
                 curParentNode = elem;
               }
             },
-            end: function(/* tag */) {
+            end: function (/* tag */) {
               elems.length -= 1;
 
               // Init the new parentNode
               curParentNode = elems[elems.length - 1];
             },
-            chars: function(text) {
+            chars: function (text) {
               curParentNode.appendChild(doc.createTextNode(text));
             },
-            comment: function(/* text */) {
+            comment: function (/* text */) {
               // create comment node
             },
-            ignore: function(/* text */) {
+            ignore: function (/* text */) {
               // What to do here?
             }
           });
@@ -32873,12 +32783,12 @@ require = (function() {
       { "./utils": 168 }
     ],
     167: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function Sorter() {}
 
-        Sorter.prototype.sort = function(tokens, fromIndex) {
+        Sorter.prototype.sort = function (tokens, fromIndex) {
           fromIndex = fromIndex || 0;
           for (var i = 0, len = this.keys.length; i < len; i++) {
             var key = this.keys[i];
@@ -32901,9 +32811,9 @@ require = (function() {
         function TokenChain() {}
 
         TokenChain.prototype = {
-          add: function(tokens) {
+          add: function (tokens) {
             var self = this;
-            tokens.forEach(function(token) {
+            tokens.forEach(function (token) {
               var key = "$" + token;
               if (!self[key]) {
                 self[key] = [];
@@ -32912,25 +32822,25 @@ require = (function() {
               self[key].push(tokens);
             });
           },
-          createSorter: function() {
+          createSorter: function () {
             var self = this;
             var sorter = new Sorter();
             sorter.keys = Object.keys(self)
-              .sort(function(j, k) {
+              .sort(function (j, k) {
                 var m = self[j].length;
                 var n = self[k].length;
                 return m < n ? 1 : m > n ? -1 : j < k ? -1 : j > k ? 1 : 0;
               })
-              .filter(function(key) {
+              .filter(function (key) {
                 if (self[key].processed < self[key].length) {
                   var token = key.slice(1);
                   var chain = new TokenChain();
-                  self[key].forEach(function(tokens) {
+                  self[key].forEach(function (tokens) {
                     var index;
                     while ((index = tokens.indexOf(token)) !== -1) {
                       tokens.splice(index, 1);
                     }
-                    tokens.forEach(function(token) {
+                    tokens.forEach(function (token) {
                       self["$" + token].processed++;
                     });
                     chain.add(tokens.slice(0));
@@ -32949,32 +32859,32 @@ require = (function() {
       {}
     ],
     168: [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         function createMap(values, ignoreCase) {
           var map = {};
-          values.forEach(function(value) {
+          values.forEach(function (value) {
             map[value] = 1;
           });
           return ignoreCase
-            ? function(value) {
+            ? function (value) {
                 return map[value.toLowerCase()] === 1;
               }
-            : function(value) {
+            : function (value) {
                 return map[value] === 1;
               };
         }
 
         exports.createMap = createMap;
-        exports.createMapFromString = function(values, ignoreCase) {
+        exports.createMapFromString = function (values, ignoreCase) {
           return createMap(values.split(/,/), ignoreCase);
         };
       },
       {}
     ],
     "html-minifier": [
-      function(require, module, exports) {
+      function (require, module, exports) {
         "use strict";
 
         var CleanCSS = require("clean-css");
@@ -32995,7 +32905,7 @@ require = (function() {
           // Non-breaking space is specifically handled inside the replacer function here:
           return (
             str &&
-            str.replace(/[ \n\r\t\f\xA0]+/g, function(spaces) {
+            str.replace(/[ \n\r\t\f\xA0]+/g, function (spaces) {
               return spaces === "\t"
                 ? "\t"
                 : spaces.replace(/(^|\xA0+)[^\xA0]+/g, "$1 ");
@@ -33015,11 +32925,11 @@ require = (function() {
 
           if (options.preserveLineBreaks) {
             str = str
-              .replace(/^[ \n\r\t\f]*?[\n\r][ \n\r\t\f]*/, function() {
+              .replace(/^[ \n\r\t\f]*?[\n\r][ \n\r\t\f]*/, function () {
                 lineBreakBefore = "\n";
                 return "";
               })
-              .replace(/[ \n\r\t\f]*?[\n\r][ \n\r\t\f]*$/, function() {
+              .replace(/[ \n\r\t\f]*?[\n\r][ \n\r\t\f]*$/, function () {
                 lineBreakAfter = "\n";
                 return "";
               });
@@ -33027,7 +32937,7 @@ require = (function() {
 
           if (trimLeft) {
             // Non-breaking space is specifically handled inside the replacer function here:
-            str = str.replace(/^[ \n\r\t\f\xA0]+/, function(spaces) {
+            str = str.replace(/^[ \n\r\t\f\xA0]+/, function (spaces) {
               var conservative =
                 !lineBreakBefore && options.conservativeCollapse;
               if (conservative && spaces === "\t") {
@@ -33044,7 +32954,7 @@ require = (function() {
 
           if (trimRight) {
             // Non-breaking space is specifically handled inside the replacer function here:
-            str = str.replace(/[ \n\r\t\f\xA0]+$/, function(spaces) {
+            str = str.replace(/[ \n\r\t\f\xA0]+$/, function (spaces) {
               var conservative =
                 !lineBreakAfter && options.conservativeCollapse;
               if (conservative && spaces === "\t") {
@@ -33321,7 +33231,7 @@ require = (function() {
             // https://html.spec.whatwg.org/multipage/embedded-content.html#attr-img-srcset
             attrValue = trimWhitespace(attrValue)
               .split(/\s+,\s*|\s*,\s+/)
-              .map(function(candidate) {
+              .map(function (candidate) {
                 var url = candidate;
                 var descriptor = "";
                 var match = candidate.match(
@@ -33341,7 +33251,7 @@ require = (function() {
           } else if (isMetaViewport(tag, attrs) && attrName === "content") {
             attrValue = attrValue
               .replace(/\s+/g, "")
-              .replace(/[0-9]+\.[0-9]+/g, function(numString) {
+              .replace(/[0-9]+\.[0-9]+/g, function (numString) {
                 // "0.90000" -> "0.9"
                 // "1.0" -> "1"
                 // "1.0001" -> "1.0001" (unchanged)
@@ -33427,7 +33337,7 @@ require = (function() {
           return options.processConditionalComments
             ? comment.replace(
                 /^(\[if\s[^\]]+]>)([\s\S]*?)(<!\[endif])$/,
-                function(match, prefix, text, suffix) {
+                function (match, prefix, text, suffix) {
                   return prefix + minify(text, options, true) + suffix;
                 }
               )
@@ -33731,7 +33641,7 @@ require = (function() {
 
         function processOptions(values) {
           var options = {
-            name: function(name) {
+            name: function (name) {
               return name.toLowerCase();
             },
             canCollapseWhitespace: canCollapseWhitespace,
@@ -33745,7 +33655,7 @@ require = (function() {
             minifyJS: identity,
             minifyURLs: identity
           };
-          Object.keys(values).forEach(function(key) {
+          Object.keys(values).forEach(function (key) {
             var value = values[key];
             if (key === "caseSensitive") {
               if (value) {
@@ -33762,10 +33672,10 @@ require = (function() {
               if (typeof value !== "object") {
                 value = {};
               }
-              options.minifyCSS = function(text, type) {
+              options.minifyCSS = function (text, type) {
                 text = text.replace(
                   /(url\s*\(\s*)("|'|)(.*?)\2(\s*\))/gi,
-                  function(match, prefix, quote, url, suffix) {
+                  function (match, prefix, quote, url, suffix) {
                     return (
                       prefix + quote + options.minifyURLs(url) + quote + suffix
                     );
@@ -33788,7 +33698,7 @@ require = (function() {
                 value = {};
               }
               (value.parse || (value.parse = {})).bare_returns = false;
-              options.minifyJS = function(text, inline) {
+              options.minifyJS = function (text, inline) {
                 var start = text.match(/^\s*<!--.*/);
                 var code = start
                   ? text.slice(start[0].length).replace(/\n\s*-->\s*$/, "")
@@ -33810,7 +33720,7 @@ require = (function() {
               } else if (typeof value !== "object") {
                 value = {};
               }
-              options.minifyURLs = function(text) {
+              options.minifyURLs = function (text) {
                 try {
                   return RelateUrl.relate(text, value);
                 } catch (err) {
@@ -33842,7 +33752,7 @@ require = (function() {
           var classChain = options.sortClassName && new TokenChain();
 
           function attrNames(attrs) {
-            return attrs.map(function(attr) {
+            return attrs.map(function (attr) {
               return options.name(attr.name);
             });
           }
@@ -33860,7 +33770,7 @@ require = (function() {
           function scan(input) {
             var currentTag, currentType;
             new HTMLParser(input, {
-              start: function(tag, attrs) {
+              start: function (tag, attrs) {
                 if (attrChains) {
                   if (!attrChains[tag]) {
                     attrChains[tag] = new TokenChain();
@@ -33888,10 +33798,10 @@ require = (function() {
                   }
                 }
               },
-              end: function() {
+              end: function () {
                 currentTag = "";
               },
-              chars: function(text) {
+              chars: function (text) {
                 if (
                   options.processScripts &&
                   specialContentTags(currentTag) &&
@@ -33914,15 +33824,15 @@ require = (function() {
             for (var tag in attrChains) {
               attrSorters[tag] = attrChains[tag].createSorter();
             }
-            options.sortAttributes = function(tag, attrs) {
+            options.sortAttributes = function (tag, attrs) {
               var sorter = attrSorters[tag];
               if (sorter) {
                 var attrMap = Object.create(null);
                 var names = attrNames(attrs);
-                names.forEach(function(name, index) {
+                names.forEach(function (name, index) {
                   (attrMap[name] || (attrMap[name] = [])).push(attrs[index]);
                 });
-                sorter.sort(names).forEach(function(name, index) {
+                sorter.sort(names).forEach(function (name, index) {
                   attrs[index] = attrMap[name].shift();
                 });
               }
@@ -33930,7 +33840,7 @@ require = (function() {
           }
           if (classChain) {
             var sorter = classChain.createSorter();
-            options.sortClassName = function(value) {
+            options.sortClassName = function (value) {
               return sorter.sort(value.split(/[ \n\f\r]+/)).join(" ");
             };
           }
@@ -33963,12 +33873,13 @@ require = (function() {
           // completely-horribly-broken-alien-non-html-emoj-cthulhu-filled content
           value = value.replace(
             /<!-- htmlmin:ignore -->([\s\S]*?)<!-- htmlmin:ignore -->/g,
-            function(match, group1) {
+            function (match, group1) {
               if (!uidIgnore) {
                 uidIgnore = uniqueId(value);
                 var pattern = new RegExp("^" + uidIgnore + "([0-9]+)$");
                 if (options.ignoreCustomComments) {
-                  options.ignoreCustomComments = options.ignoreCustomComments.slice();
+                  options.ignoreCustomComments =
+                    options.ignoreCustomComments.slice();
                 } else {
                   options.ignoreCustomComments = [];
                 }
@@ -33981,16 +33892,18 @@ require = (function() {
             }
           );
 
-          var customFragments = options.ignoreCustomFragments.map(function(re) {
-            return re.source;
-          });
+          var customFragments = options.ignoreCustomFragments.map(
+            function (re) {
+              return re.source;
+            }
+          );
           if (customFragments.length) {
             var reCustomIgnore = new RegExp(
               "\\s*(?:" + customFragments.join("|") + ")+\\s*",
               "g"
             );
             // temporarily replace custom ignored fragments with unique attributes
-            value = value.replace(reCustomIgnore, function(match) {
+            value = value.replace(reCustomIgnore, function (match) {
               if (!uidAttr) {
                 uidAttr = uniqueId(value);
                 uidPattern = new RegExp(
@@ -33998,22 +33911,21 @@ require = (function() {
                   "g"
                 );
                 if (options.minifyCSS) {
-                  options.minifyCSS = (function(fn) {
-                    return function(text, type) {
-                      text = text.replace(uidPattern, function(
-                        match,
-                        prefix,
-                        index
-                      ) {
-                        var chunks = ignoredCustomMarkupChunks[+index];
-                        return (
-                          chunks[1] + uidAttr + index + uidAttr + chunks[2]
-                        );
-                      });
+                  options.minifyCSS = (function (fn) {
+                    return function (text, type) {
+                      text = text.replace(
+                        uidPattern,
+                        function (match, prefix, index) {
+                          var chunks = ignoredCustomMarkupChunks[+index];
+                          return (
+                            chunks[1] + uidAttr + index + uidAttr + chunks[2]
+                          );
+                        }
+                      );
                       var ids = [];
                       new CleanCSS()
                         .minify(wrapCSS(text, type))
-                        .warnings.forEach(function(warning) {
+                        .warnings.forEach(function (warning) {
                           var match = uidPattern.exec(warning);
                           if (match) {
                             var id = uidAttr + match[2] + uidAttr;
@@ -34022,7 +33934,7 @@ require = (function() {
                           }
                         });
                       text = fn(text, type);
-                      ids.forEach(function(id) {
+                      ids.forEach(function (id) {
                         text = text.replace(ignoreCSS(id), id);
                       });
                       return text;
@@ -34030,19 +33942,18 @@ require = (function() {
                   })(options.minifyCSS);
                 }
                 if (options.minifyJS) {
-                  options.minifyJS = (function(fn) {
-                    return function(text, type) {
+                  options.minifyJS = (function (fn) {
+                    return function (text, type) {
                       return fn(
-                        text.replace(uidPattern, function(
-                          match,
-                          prefix,
-                          index
-                        ) {
-                          var chunks = ignoredCustomMarkupChunks[+index];
-                          return (
-                            chunks[1] + uidAttr + index + uidAttr + chunks[2]
-                          );
-                        }),
+                        text.replace(
+                          uidPattern,
+                          function (match, prefix, index) {
+                            var chunks = ignoredCustomMarkupChunks[+index];
+                            return (
+                              chunks[1] + uidAttr + index + uidAttr + chunks[2]
+                            );
+                          }
+                        ),
                         type
                       );
                     };
@@ -34140,7 +34051,7 @@ require = (function() {
             customAttrSurround: options.customAttrSurround,
             html5: options.html5,
 
-            start: function(tag, attrs, unary, unarySlash, autoGenerated) {
+            start: function (tag, attrs, unary, unarySlash, autoGenerated) {
               if (tag.toLowerCase() === "svg") {
                 options = Object.create(options);
                 options.caseSensitive = true;
@@ -34240,7 +34151,7 @@ require = (function() {
                 optionalStartTag = "";
               }
             },
-            end: function(tag, attrs, autoGenerated) {
+            end: function (tag, attrs, autoGenerated) {
               if (tag.toLowerCase() === "svg") {
                 options = Object.getPrototypeOf(options);
               }
@@ -34319,7 +34230,7 @@ require = (function() {
                 }
               }
             },
-            chars: function(text, prevTag, nextTag) {
+            chars: function (text, prevTag, nextTag) {
               prevTag = prevTag === "" ? "comment" : prevTag;
               nextTag = nextTag === "" ? "comment" : nextTag;
               if (
@@ -34346,7 +34257,7 @@ require = (function() {
                         var charsIndex = buffer.length - 2;
                         buffer[charsIndex] = buffer[charsIndex].replace(
                           /\s+$/,
-                          function(trailingSpaces) {
+                          function (trailingSpaces) {
                             text = trailingSpaces + text;
                             return "";
                           }
@@ -34457,9 +34368,12 @@ require = (function() {
                 options.collapseWhitespace &&
                 stackNoTrimWhitespace.length
               ) {
-                text = text.replace(uidPattern, function(match, prefix, index) {
-                  return ignoredCustomMarkupChunks[+index][0];
-                });
+                text = text.replace(
+                  uidPattern,
+                  function (match, prefix, index) {
+                    return ignoredCustomMarkupChunks[+index][0];
+                  }
+                );
               }
               currentChars += text;
               if (text) {
@@ -34467,7 +34381,7 @@ require = (function() {
               }
               buffer.push(text);
             },
-            comment: function(text, nonStandard) {
+            comment: function (text, nonStandard) {
               var prefix = nonStandard ? "<!" : "<!--";
               var suffix = nonStandard ? ">" : "-->";
               if (isConditionalComment(text)) {
@@ -34488,7 +34402,7 @@ require = (function() {
               }
               buffer.push(text);
             },
-            doctype: function(doctype) {
+            doctype: function (doctype) {
               buffer.push(
                 options.useShortDoctype
                   ? "<!doctype" +
@@ -34518,40 +34432,38 @@ require = (function() {
             buffer,
             options,
             uidPattern
-              ? function(str) {
-                  return str.replace(uidPattern, function(
-                    match,
-                    prefix,
-                    index,
-                    suffix
-                  ) {
-                    var chunk = ignoredCustomMarkupChunks[+index][0];
-                    if (options.collapseWhitespace) {
-                      if (prefix !== "\t") {
-                        chunk = prefix + chunk;
+              ? function (str) {
+                  return str.replace(
+                    uidPattern,
+                    function (match, prefix, index, suffix) {
+                      var chunk = ignoredCustomMarkupChunks[+index][0];
+                      if (options.collapseWhitespace) {
+                        if (prefix !== "\t") {
+                          chunk = prefix + chunk;
+                        }
+                        if (suffix !== "\t") {
+                          chunk += suffix;
+                        }
+                        return collapseWhitespace(
+                          chunk,
+                          {
+                            preserveLineBreaks: options.preserveLineBreaks,
+                            conservativeCollapse: !options.trimCustomFragments
+                          },
+                          /^[ \n\r\t\f]/.test(chunk),
+                          /[ \n\r\t\f]$/.test(chunk)
+                        );
                       }
-                      if (suffix !== "\t") {
-                        chunk += suffix;
-                      }
-                      return collapseWhitespace(
-                        chunk,
-                        {
-                          preserveLineBreaks: options.preserveLineBreaks,
-                          conservativeCollapse: !options.trimCustomFragments
-                        },
-                        /^[ \n\r\t\f]/.test(chunk),
-                        /[ \n\r\t\f]$/.test(chunk)
-                      );
+                      return chunk;
                     }
-                    return chunk;
-                  });
+                  );
                 }
               : identity,
             uidIgnore
-              ? function(str) {
+              ? function (str) {
                   return str.replace(
                     new RegExp("<!--" + uidIgnore + "([0-9]+)-->", "g"),
-                    function(match, index) {
+                    function (match, index) {
                       return ignoredMarkupChunks[+index];
                     }
                   );
@@ -34600,7 +34512,7 @@ require = (function() {
             : str;
         }
 
-        exports.minify = function(value, options) {
+        exports.minify = function (value, options) {
           var start = Date.now();
           options = processOptions(options || {});
           var result = minify(value, options);
@@ -34621,9 +34533,9 @@ require = (function() {
       }
     ],
     "uglify-js": [
-      function(require, module, exports) {
-        (function(Buffer) {
-          (function(exports) {
+      function (require, module, exports) {
+        (function (Buffer) {
+          (function (exports) {
             "use strict";
             function characters(str) {
               return str.split("");
@@ -34644,7 +34556,7 @@ require = (function() {
             }
             function configure_error_stack(fn) {
               Object.defineProperty(fn.prototype, "stack", {
-                get: function() {
+                get: function () {
                   var err = new Error(this.message);
                   err.name = this.name;
                   try {
@@ -34702,7 +34614,7 @@ require = (function() {
             function return_null() {
               return null;
             }
-            var MAP = (function() {
+            var MAP = (function () {
               function MAP(a, f, backwards) {
                 var ret = [],
                   top = [],
@@ -34746,13 +34658,13 @@ require = (function() {
                 }
                 return top.concat(ret);
               }
-              MAP.at_top = function(val) {
+              MAP.at_top = function (val) {
                 return new AtTop(val);
               };
-              MAP.splice = function(val) {
+              MAP.splice = function (val) {
                 return new Splice(val);
               };
-              MAP.last = function(val) {
+              MAP.last = function (val) {
                 return new Last(val);
               };
               var skip = (MAP.skip = {});
@@ -34771,7 +34683,7 @@ require = (function() {
               if (array.indexOf(el) < 0) return array.push(el);
             }
             function string_template(text, props) {
-              return text.replace(/\{(.+?)\}/g, function(str, p) {
+              return text.replace(/\{(.+?)\}/g, function (str, p) {
                 return props && props[p];
               });
             }
@@ -34782,7 +34694,7 @@ require = (function() {
             function makePredicate(words) {
               if (!Array.isArray(words)) words = words.split(" ");
               var map = Object.create(null);
-              words.forEach(function(word) {
+              words.forEach(function (word) {
                 map[word] = true;
               });
               return map;
@@ -34797,12 +34709,12 @@ require = (function() {
               this._size = 0;
             }
             Dictionary.prototype = {
-              set: function(key, val) {
+              set: function (key, val) {
                 if (!this.has(key)) ++this._size;
                 this._values["$" + key] = val;
                 return this;
               },
-              add: function(key, val) {
+              add: function (key, val) {
                 if (this.has(key)) {
                   this.get(key).push(val);
                 } else {
@@ -34810,42 +34722,42 @@ require = (function() {
                 }
                 return this;
               },
-              get: function(key) {
+              get: function (key) {
                 return this._values["$" + key];
               },
-              del: function(key) {
+              del: function (key) {
                 if (this.has(key)) {
                   --this._size;
                   delete this._values["$" + key];
                 }
                 return this;
               },
-              has: function(key) {
+              has: function (key) {
                 return "$" + key in this._values;
               },
-              each: function(f) {
+              each: function (f) {
                 for (var i in this._values) f(this._values[i], i.substr(1));
               },
-              size: function() {
+              size: function () {
                 return this._size;
               },
-              map: function(f) {
+              map: function (f) {
                 var ret = [];
                 for (var i in this._values)
                   ret.push(f(this._values[i], i.substr(1)));
                 return ret;
               },
-              clone: function() {
+              clone: function () {
                 var ret = new Dictionary();
                 for (var i in this._values) ret._values[i] = this._values[i];
                 ret._size = this._size;
                 return ret;
               },
-              toObject: function() {
+              toObject: function () {
                 return this._values;
               }
             };
-            Dictionary.fromObject = function(obj) {
+            Dictionary.fromObject = function (obj) {
               var dict = new Dictionary();
               dict._size = merge(dict._values, obj);
               return dict;
@@ -34886,7 +34798,7 @@ require = (function() {
                 "(props){",
                 "if(props){"
               ];
-              props.forEach(function(prop) {
+              props.forEach(function (prop) {
                 code.push("this.", prop, "=props.", prop, ";");
               });
               var proto = base && new base();
@@ -34918,7 +34830,7 @@ require = (function() {
                       ctor.prototype[name] = methods[name];
                     }
                   }
-              ctor.DEFMETHOD = function(name, method) {
+              ctor.DEFMETHOD = function (name, method) {
                 this.prototype[name] = method;
               };
               if (typeof exports !== "undefined") {
@@ -34936,11 +34848,11 @@ require = (function() {
               "Node",
               "start end",
               {
-                _clone: function(deep) {
+                _clone: function (deep) {
                   if (deep) {
                     var self = this.clone();
                     return self.transform(
-                      new TreeTransformer(function(node) {
+                      new TreeTransformer(function (node) {
                         if (node !== self) {
                           return node.clone(true);
                         }
@@ -34949,7 +34861,7 @@ require = (function() {
                   }
                   return new this.CTOR(this);
                 },
-                clone: function(deep) {
+                clone: function (deep) {
                   return this._clone(deep);
                 },
                 $documentation: "Base class of all AST nodes",
@@ -34957,16 +34869,16 @@ require = (function() {
                   start: "[AST_Token] The first token of this node",
                   end: "[AST_Token] The last token of this node"
                 },
-                _walk: function(visitor) {
+                _walk: function (visitor) {
                   return visitor._visit(this);
                 },
-                walk: function(visitor) {
+                walk: function (visitor) {
                   return this._walk(visitor);
                 }
               },
               null
             );
-            AST_Node.warn = function(txt, props) {
+            AST_Node.warn = function (txt, props) {
               if (AST_Node.warn_function)
                 AST_Node.warn_function(string_template(txt, props));
             };
@@ -34999,11 +34911,10 @@ require = (function() {
                 $documentation:
                   "A statement consisting of an expression, i.e. a = 1 + 2",
                 $propdoc: {
-                  body:
-                    "[AST_Node] an expression node (should not be instanceof AST_Statement)"
+                  body: "[AST_Node] an expression node (should not be instanceof AST_Statement)"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.body._walk(visitor);
                   });
                 }
@@ -35015,7 +34926,7 @@ require = (function() {
               if (body instanceof AST_Statement) {
                 body._walk(visitor);
               } else
-                body.forEach(function(node) {
+                body.forEach(function (node) {
                   node._walk(visitor);
                 });
             }
@@ -35025,8 +34936,8 @@ require = (function() {
               {
                 $documentation: "A body of statements (usually braced)",
                 $propdoc: { body: "[AST_Statement*] an array of statements" },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     walk_body(this, visitor);
                   });
                 }
@@ -35055,8 +34966,7 @@ require = (function() {
                 $documentation:
                   "Base class for all statements that contain one nested body: `For`, `ForIn`, `Do`, `While`, `With`",
                 $propdoc: {
-                  body:
-                    "[AST_Statement] the body; this should always be present, even if it's an AST_EmptyStatement"
+                  body: "[AST_Statement] the body; this should always be present, even if it's an AST_EmptyStatement"
                 }
               },
               AST_Statement
@@ -35067,19 +34977,19 @@ require = (function() {
               {
                 $documentation: "Statement with a label",
                 $propdoc: { label: "[AST_Label] a label definition" },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.label._walk(visitor);
                     this.body._walk(visitor);
                   });
                 },
-                clone: function(deep) {
+                clone: function (deep) {
                   var node = this._clone(deep);
                   if (deep) {
                     var label = node.label;
                     var def = this.label;
                     node.walk(
-                      new TreeWalker(function(node) {
+                      new TreeWalker(function (node) {
                         if (
                           node instanceof AST_LoopControl &&
                           node.label &&
@@ -35119,8 +35029,8 @@ require = (function() {
               null,
               {
                 $documentation: "A `do` statement",
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.body._walk(visitor);
                     this.condition._walk(visitor);
                   });
@@ -35133,8 +35043,8 @@ require = (function() {
               null,
               {
                 $documentation: "A `while` statement",
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.condition._walk(visitor);
                     this.body._walk(visitor);
                   });
@@ -35148,14 +35058,13 @@ require = (function() {
               {
                 $documentation: "A `for` statement",
                 $propdoc: {
-                  init:
-                    "[AST_Node?] the `for` initialization code, or null if empty",
+                  init: "[AST_Node?] the `for` initialization code, or null if empty",
                   condition:
                     "[AST_Node?] the `for` termination clause, or null if empty",
                   step: "[AST_Node?] the `for` update clause, or null if empty"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     if (this.init) this.init._walk(visitor);
                     if (this.condition) this.condition._walk(visitor);
                     if (this.step) this.step._walk(visitor);
@@ -35174,8 +35083,8 @@ require = (function() {
                   init: "[AST_Node] the `for/in` initialization code",
                   object: "[AST_Node] the object that we're looping through"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.init._walk(visitor);
                     this.object._walk(visitor);
                     this.body._walk(visitor);
@@ -35190,8 +35099,8 @@ require = (function() {
               {
                 $documentation: "A `with` statement",
                 $propdoc: { expression: "[AST_Node] the `with` expression" },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.expression._walk(visitor);
                     this.body._walk(visitor);
                   });
@@ -35220,14 +35129,14 @@ require = (function() {
                   cname:
                     "[integer/S] current index for mangling variables (used internally by the mangler)"
                 },
-                clone: function(deep) {
+                clone: function (deep) {
                   var node = this._clone(deep);
                   if (this.variables) node.variables = this.variables.clone();
                   if (this.functions) node.functions = this.functions.clone();
                   if (this.enclosed) node.enclosed = this.enclosed.slice();
                   return node;
                 },
-                pinned: function() {
+                pinned: function () {
                   return this.uses_eval || this.uses_with;
                 }
               },
@@ -35242,7 +35151,7 @@ require = (function() {
                   globals:
                     "[Object/S] a map of name -> SymbolDef for all undeclared names"
                 },
-                wrap_commonjs: function(name) {
+                wrap_commonjs: function (name) {
                   var body = this.body;
                   var wrapped_tl =
                     "(function(exports){'$ORIG';})(typeof " +
@@ -35254,7 +35163,7 @@ require = (function() {
                     ");";
                   wrapped_tl = parse(wrapped_tl);
                   wrapped_tl = wrapped_tl.transform(
-                    new TreeTransformer(function(node) {
+                    new TreeTransformer(function (node) {
                       if (
                         node instanceof AST_Directive &&
                         node.value == "$ORIG"
@@ -35265,7 +35174,7 @@ require = (function() {
                   );
                   return wrapped_tl;
                 },
-                wrap_enclose: function(args_values) {
+                wrap_enclose: function (args_values) {
                   if (typeof args_values != "string") args_values = "";
                   var index = args_values.indexOf(":");
                   if (index < 0) index = args_values.length;
@@ -35279,7 +35188,7 @@ require = (function() {
                       ")"
                     ].join("")
                   ).transform(
-                    new TreeTransformer(function(node) {
+                    new TreeTransformer(function (node) {
                       if (
                         node instanceof AST_Directive &&
                         node.value == "$ORIG"
@@ -35303,10 +35212,10 @@ require = (function() {
                   uses_arguments:
                     "[boolean/S] tells whether this function accesses the arguments array"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     if (this.name) this.name._walk(visitor);
-                    this.argnames.forEach(function(argname) {
+                    this.argnames.forEach(function (argname) {
                       argname._walk(visitor);
                     });
                     walk_body(this, visitor);
@@ -35354,11 +35263,11 @@ require = (function() {
                   value:
                     "[AST_Node?] the value returned or thrown by this statement; could be null for AST_Return"
                 },
-                _walk: function(visitor) {
+                _walk: function (visitor) {
                   return visitor._visit(
                     this,
                     this.value &&
-                      function() {
+                      function () {
                         this.value._walk(visitor);
                       }
                   );
@@ -35387,11 +35296,11 @@ require = (function() {
                 $propdoc: {
                   label: "[AST_LabelRef?] the label, or null if none"
                 },
-                _walk: function(visitor) {
+                _walk: function (visitor) {
                   return visitor._visit(
                     this,
                     this.label &&
-                      function() {
+                      function () {
                         this.label._walk(visitor);
                       }
                   );
@@ -35421,8 +35330,8 @@ require = (function() {
                   alternative:
                     "[AST_Statement?] the `else` part, or null if not present"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.condition._walk(visitor);
                     this.body._walk(visitor);
                     if (this.alternative) this.alternative._walk(visitor);
@@ -35439,8 +35348,8 @@ require = (function() {
                 $propdoc: {
                   expression: "[AST_Node] the `switch` “discriminant”"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.expression._walk(visitor);
                     walk_body(this, visitor);
                   });
@@ -35466,8 +35375,8 @@ require = (function() {
               {
                 $documentation: "A `case` switch branch",
                 $propdoc: { expression: "[AST_Node] the `case` expression" },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.expression._walk(visitor);
                     walk_body(this, visitor);
                   });
@@ -35486,8 +35395,8 @@ require = (function() {
                   bfinally:
                     "[AST_Finally?] the finally block, or null if not present"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     walk_body(this, visitor);
                     if (this.bcatch) this.bcatch._walk(visitor);
                     if (this.bfinally) this.bfinally._walk(visitor);
@@ -35505,8 +35414,8 @@ require = (function() {
                 $propdoc: {
                   argname: "[AST_SymbolCatch] symbol for the exception"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.argname._walk(visitor);
                     walk_body(this, visitor);
                   });
@@ -35532,9 +35441,9 @@ require = (function() {
                 $propdoc: {
                   definitions: "[AST_VarDef*] array of variable definitions"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
-                    this.definitions.forEach(function(defn) {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
+                    this.definitions.forEach(function (defn) {
                       defn._walk(visitor);
                     });
                   });
@@ -35556,8 +35465,8 @@ require = (function() {
                 value:
                   "[AST_Node?] initializer, or null of there's no initializer"
               },
-              _walk: function(visitor) {
-                return visitor._visit(this, function() {
+              _walk: function (visitor) {
+                return visitor._visit(this, function () {
                   this.name._walk(visitor);
                   if (this.value) this.value._walk(visitor);
                 });
@@ -35569,10 +35478,10 @@ require = (function() {
                 expression: "[AST_Node] expression to invoke as function",
                 args: "[AST_Node*] array of arguments"
               },
-              _walk: function(visitor) {
-                return visitor._visit(this, function() {
+              _walk: function (visitor) {
+                return visitor._visit(this, function () {
                   this.expression._walk(visitor);
-                  this.args.forEach(function(node) {
+                  this.args.forEach(function (node) {
                     node._walk(visitor);
                   });
                 });
@@ -35593,9 +35502,9 @@ require = (function() {
               $propdoc: {
                 expressions: "[AST_Node*] array of expressions (at least two)"
               },
-              _walk: function(visitor) {
-                return visitor._visit(this, function() {
-                  this.expressions.forEach(function(node) {
+              _walk: function (visitor) {
+                return visitor._visit(this, function () {
+                  this.expressions.forEach(function (node) {
                     node._walk(visitor);
                   });
                 });
@@ -35615,8 +35524,8 @@ require = (function() {
               null,
               {
                 $documentation: "A dotted property access expression",
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.expression._walk(visitor);
                   });
                 }
@@ -35628,8 +35537,8 @@ require = (function() {
               null,
               {
                 $documentation: 'Index-style property access, i.e. `a["foo"]`',
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.expression._walk(visitor);
                     this.property._walk(visitor);
                   });
@@ -35644,8 +35553,8 @@ require = (function() {
                 expression:
                   "[AST_Node] expression that this unary operator applies to"
               },
-              _walk: function(visitor) {
-                return visitor._visit(this, function() {
+              _walk: function (visitor) {
+                return visitor._visit(this, function () {
                   this.expression._walk(visitor);
                 });
               }
@@ -35672,8 +35581,8 @@ require = (function() {
                 operator: "[string] the operator",
                 right: "[AST_Node] right-hand side expression"
               },
-              _walk: function(visitor) {
-                return visitor._visit(this, function() {
+              _walk: function (visitor) {
+                return visitor._visit(this, function () {
                   this.left._walk(visitor);
                   this.right._walk(visitor);
                 });
@@ -35690,8 +35599,8 @@ require = (function() {
                   consequent: "[AST_Node]",
                   alternative: "[AST_Node]"
                 },
-                _walk: function(visitor) {
-                  return visitor._visit(this, function() {
+                _walk: function (visitor) {
+                  return visitor._visit(this, function () {
                     this.condition._walk(visitor);
                     this.consequent._walk(visitor);
                     this.alternative._walk(visitor);
@@ -35708,9 +35617,9 @@ require = (function() {
             var AST_Array = DEFNODE("Array", "elements", {
               $documentation: "An array literal",
               $propdoc: { elements: "[AST_Node*] array of elements" },
-              _walk: function(visitor) {
-                return visitor._visit(this, function() {
-                  this.elements.forEach(function(element) {
+              _walk: function (visitor) {
+                return visitor._visit(this, function () {
+                  this.elements.forEach(function (element) {
                     element._walk(visitor);
                   });
                 });
@@ -35721,9 +35630,9 @@ require = (function() {
               $propdoc: {
                 properties: "[AST_ObjectProperty*] array of properties"
               },
-              _walk: function(visitor) {
-                return visitor._visit(this, function() {
-                  this.properties.forEach(function(prop) {
+              _walk: function (visitor) {
+                return visitor._visit(this, function () {
+                  this.properties.forEach(function (prop) {
                     prop._walk(visitor);
                   });
                 });
@@ -35732,13 +35641,12 @@ require = (function() {
             var AST_ObjectProperty = DEFNODE("ObjectProperty", "key value", {
               $documentation: "Base class for literal object properties",
               $propdoc: {
-                key:
-                  "[string|AST_SymbolAccessor] property name. For ObjectKeyVal this is a string. For getters and setters this is an AST_SymbolAccessor.",
+                key: "[string|AST_SymbolAccessor] property name. For ObjectKeyVal this is a string. For getters and setters this is an AST_SymbolAccessor.",
                 value:
                   "[AST_Node] property value.  For getters and setters this is an AST_Accessor."
               },
-              _walk: function(visitor) {
-                return visitor._visit(this, function() {
+              _walk: function (visitor) {
+                return visitor._visit(this, function () {
                   this.value._walk(visitor);
                 });
               }
@@ -35830,7 +35738,7 @@ require = (function() {
                   references:
                     "[AST_LoopControl*] a list of nodes referring to this label"
                 },
-                initialize: function() {
+                initialize: function () {
                   this.references = [];
                   this.thedef = this;
                 }
@@ -35860,7 +35768,7 @@ require = (function() {
             );
             var AST_Constant = DEFNODE("Constant", null, {
               $documentation: "Base class for all constants",
-              getValue: function() {
+              getValue: function () {
                 return this.value;
               }
             });
@@ -35920,7 +35828,7 @@ require = (function() {
               null,
               {
                 $documentation: "The `undefined` value",
-                value: (function() {})()
+                value: (function () {})()
               },
               AST_Atom
             );
@@ -35929,7 +35837,7 @@ require = (function() {
               null,
               {
                 $documentation: "A hole in an array",
-                value: (function() {})()
+                value: (function () {})()
               },
               AST_Atom
             );
@@ -35963,12 +35871,12 @@ require = (function() {
               this.directives = Object.create(null);
             }
             TreeWalker.prototype = {
-              _visit: function(node, descend) {
+              _visit: function (node, descend) {
                 this.push(node);
                 var ret = this.visit(
                   node,
                   descend
-                    ? function() {
+                    ? function () {
                         descend.call(node);
                       }
                     : noop
@@ -35979,10 +35887,10 @@ require = (function() {
                 this.pop();
                 return ret;
               },
-              parent: function(n) {
+              parent: function (n) {
                 return this.stack[this.stack.length - 2 - (n || 0)];
               },
-              push: function(node) {
+              push: function (node) {
                 if (node instanceof AST_Lambda) {
                   this.directives = Object.create(this.directives);
                 } else if (
@@ -35993,22 +35901,22 @@ require = (function() {
                 }
                 this.stack.push(node);
               },
-              pop: function() {
+              pop: function () {
                 if (this.stack.pop() instanceof AST_Lambda) {
                   this.directives = Object.getPrototypeOf(this.directives);
                 }
               },
-              self: function() {
+              self: function () {
                 return this.stack[this.stack.length - 1];
               },
-              find_parent: function(type) {
+              find_parent: function (type) {
                 var stack = this.stack;
                 for (var i = stack.length; --i >= 0; ) {
                   var x = stack[i];
                   if (x instanceof type) return x;
                 }
               },
-              has_directive: function(type) {
+              has_directive: function (type) {
                 var dir = this.directives[type];
                 if (dir) return dir;
                 var node = this.stack[this.stack.length - 1];
@@ -36020,7 +35928,7 @@ require = (function() {
                   }
                 }
               },
-              loopcontrol_target: function(node) {
+              loopcontrol_target: function (node) {
                 var stack = this.stack;
                 if (node.label)
                   for (var i = stack.length; --i >= 0; ) {
@@ -36041,7 +35949,7 @@ require = (function() {
                       return x;
                   }
               },
-              in_boolean_context: function() {
+              in_boolean_context: function () {
                 var self = this.self();
                 for (var i = 0, p; (p = this.parent(i)); i++) {
                   if (
@@ -36353,7 +36261,7 @@ require = (function() {
                   after_e = false,
                   has_x = false,
                   has_dot = prefix == ".";
-                var num = read_while(function(ch, i) {
+                var num = read_while(function (ch, i) {
                   var code = ch.charCodeAt(0);
                   switch (code) {
                     case 120:
@@ -36450,7 +36358,7 @@ require = (function() {
               }
               var read_string = with_eof_error(
                 "Unterminated string constant",
-                function(quote_char) {
+                function (quote_char) {
                   var quote = next(),
                     ret = "";
                   for (;;) {
@@ -36484,7 +36392,7 @@ require = (function() {
               }
               var skip_multiline_comment = with_eof_error(
                 "Unterminated multiline comment",
-                function() {
+                function () {
                   var regex_allowed = S.regex_allowed;
                   var i = find("*/", true);
                   var text = S.text
@@ -36522,10 +36430,7 @@ require = (function() {
                   }
                 }
                 if (KEYWORDS[name] && escaped) {
-                  hex = name
-                    .charCodeAt(0)
-                    .toString(16)
-                    .toUpperCase();
+                  hex = name.charCodeAt(0).toString(16).toUpperCase();
                   name =
                     "\\u" + "0000".substr(hex.length) + hex + name.slice(1);
                 }
@@ -36533,7 +36438,7 @@ require = (function() {
               }
               var read_regexp = with_eof_error(
                 "Unterminated regular expression",
-                function(source) {
+                function (source) {
                   var prev_backslash = false,
                     ch,
                     in_class = false;
@@ -36609,7 +36514,7 @@ require = (function() {
                   : token("keyword", word);
               }
               function with_eof_error(eof_error, cont) {
-                return function(x) {
+                return function (x) {
                   try {
                     return cont(x);
                   } catch (ex) {
@@ -36664,11 +36569,11 @@ require = (function() {
                 }
                 parse_error("Unexpected character '" + ch + "'");
               }
-              next_token.context = function(nc) {
+              next_token.context = function (nc) {
                 if (nc) S = nc;
                 return S;
               };
-              next_token.add_directive = function(directive) {
+              next_token.add_directive = function (directive) {
                 S.directive_stack[S.directive_stack.length - 1].push(directive);
                 if (S.directives[directive] === undefined) {
                   S.directives[directive] = 1;
@@ -36676,10 +36581,10 @@ require = (function() {
                   S.directives[directive]++;
                 }
               };
-              next_token.push_directives_stack = function() {
+              next_token.push_directives_stack = function () {
                 S.directive_stack.push([]);
               };
-              next_token.pop_directives_stack = function() {
+              next_token.pop_directives_stack = function () {
                 var directives =
                   S.directive_stack[S.directive_stack.length - 1];
                 for (var i = 0; i < directives.length; i++) {
@@ -36687,7 +36592,7 @@ require = (function() {
                 }
                 S.directive_stack.pop();
               };
-              next_token.has_directive = function(directive) {
+              next_token.has_directive = function (directive) {
                 return S.directives[directive] > 0;
               };
               return next_token;
@@ -36718,7 +36623,7 @@ require = (function() {
               "^=",
               "&="
             ]);
-            var PRECEDENCE = (function(a, ret) {
+            var PRECEDENCE = (function (a, ret) {
               for (var i = 0; i < a.length; ++i) {
                 var b = a[i];
                 for (var j = 0; j < b.length; ++j) {
@@ -36845,7 +36750,7 @@ require = (function() {
               function has_newline_before(token) {
                 return (
                   token.nlb ||
-                  !all(token.comments_before, function(comment) {
+                  !all(token.comments_before, function (comment) {
                     return !comment.nlb;
                   })
                 );
@@ -36868,7 +36773,7 @@ require = (function() {
                 return exp;
               }
               function embed_tokens(parser) {
-                return function() {
+                return function () {
                   var start = S.token;
                   var expr = parser.apply(null, arguments);
                   var end = prev();
@@ -36883,7 +36788,7 @@ require = (function() {
                   S.token = S.input(S.token.value.substr(1));
                 }
               }
-              var statement = embed_tokens(function(strict_defun) {
+              var statement = embed_tokens(function (strict_defun) {
                 handle_regexp();
                 switch (S.token.type) {
                   case "string":
@@ -37022,7 +36927,7 @@ require = (function() {
               function labeled_statement() {
                 var label = as_symbol(AST_Label);
                 if (
-                  !all(S.labels, function(l) {
+                  !all(S.labels, function (l) {
                     return l.name != label.name;
                   })
                 ) {
@@ -37033,7 +36938,7 @@ require = (function() {
                 var stat = statement();
                 S.labels.pop();
                 if (!(stat instanceof AST_IterationStatement)) {
-                  label.references.forEach(function(ref) {
+                  label.references.forEach(function (ref) {
                     if (ref instanceof AST_Continue) {
                       ref = ref.label.start;
                       croak(
@@ -37061,7 +36966,7 @@ require = (function() {
                   label = as_symbol(AST_LabelRef, true);
                 }
                 if (label != null) {
-                  ldef = find_if(function(l) {
+                  ldef = find_if(function (l) {
                     return l.name == label.name;
                   }, S.labels);
                   if (!ldef) croak("Undefined label " + label.name);
@@ -37125,7 +37030,7 @@ require = (function() {
                   body: in_loop(statement)
                 });
               }
-              var function_ = function(ctor) {
+              var function_ = function (ctor) {
                 var in_statement = ctor === AST_Defun;
                 var name = is("name")
                   ? as_symbol(in_statement ? AST_SymbolDefun : AST_SymbolLambda)
@@ -37273,14 +37178,14 @@ require = (function() {
                 }
                 return a;
               }
-              var var_ = function(no_in) {
+              var var_ = function (no_in) {
                 return new AST_Var({
                   start: prev(),
                   definitions: vardefs(no_in),
                   end: prev()
                 });
               };
-              var new_ = function(allow_calls) {
+              var new_ = function (allow_calls) {
                 var start = S.token;
                 expect_token("operator", "new");
                 var newexp = expr_atom(false),
@@ -37346,7 +37251,7 @@ require = (function() {
                 next();
                 return ret;
               }
-              var expr_atom = function(allow_calls) {
+              var expr_atom = function (allow_calls) {
                 if (is("operator", "new")) {
                   return new_(allow_calls);
                 }
@@ -37415,16 +37320,16 @@ require = (function() {
                 next();
                 return a;
               }
-              var array_ = embed_tokens(function() {
+              var array_ = embed_tokens(function () {
                 expect("[");
                 return new AST_Array({
                   elements: expr_list("]", !options.strict, true)
                 });
               });
-              var create_accessor = embed_tokens(function() {
+              var create_accessor = embed_tokens(function () {
                 return function_(AST_Accessor);
               });
-              var object_ = embed_tokens(function() {
+              var object_ = embed_tokens(function () {
                 expect("{");
                 var first = true,
                   a = [];
@@ -37546,7 +37451,7 @@ require = (function() {
                   }
                 }
               }
-              var subscripts = function(expr, allow_calls) {
+              var subscripts = function (expr, allow_calls) {
                 var start = expr.start;
                 if (is("punc", ".")) {
                   next();
@@ -37587,7 +37492,7 @@ require = (function() {
                 }
                 return expr;
               };
-              var maybe_unary = function(allow_calls) {
+              var maybe_unary = function (allow_calls) {
                 var start = S.token;
                 if (is("operator") && UNARY_PREFIX[start.value]) {
                   next();
@@ -37642,7 +37547,7 @@ require = (function() {
                 }
                 return new ctor({ operator: op, expression: expr });
               }
-              var expr_op = function(left, min_prec, no_in) {
+              var expr_op = function (left, min_prec, no_in) {
                 var op = is("operator") ? S.token.value : null;
                 if (op == "in" && no_in) op = null;
                 var prec = op != null ? PRECEDENCE[op] : null;
@@ -37666,7 +37571,7 @@ require = (function() {
               function expr_ops(no_in) {
                 return expr_op(maybe_unary(true), 0, no_in);
               }
-              var maybe_conditional = function(no_in) {
+              var maybe_conditional = function (no_in) {
                 var start = S.token;
                 var expr = expr_ops(no_in);
                 if (is("operator", "?")) {
@@ -37689,7 +37594,7 @@ require = (function() {
                   expr instanceof AST_SymbolRef
                 );
               }
-              var maybe_assign = function(no_in) {
+              var maybe_assign = function (no_in) {
                 var start = S.token;
                 var left = maybe_conditional(no_in),
                   val = S.token.value;
@@ -37708,7 +37613,7 @@ require = (function() {
                 }
                 return left;
               };
-              var expression = function(commas, no_in) {
+              var expression = function (commas, no_in) {
                 var start = S.token;
                 var exprs = [];
                 while (true) {
@@ -37735,7 +37640,7 @@ require = (function() {
                 handle_regexp();
                 return expression(true);
               }
-              return (function() {
+              return (function () {
                 var start = S.token;
                 var body = [];
                 S.input.push_directives_stack();
@@ -37763,125 +37668,125 @@ require = (function() {
               this.after = after;
             }
             TreeTransformer.prototype = new TreeWalker();
-            (function(DEF) {
+            (function (DEF) {
               function do_list(list, tw) {
-                return MAP(list, function(node) {
+                return MAP(list, function (node) {
                   return node.transform(tw, true);
                 });
               }
               DEF(AST_Node, noop);
-              DEF(AST_LabeledStatement, function(self, tw) {
+              DEF(AST_LabeledStatement, function (self, tw) {
                 self.label = self.label.transform(tw);
                 self.body = self.body.transform(tw);
               });
-              DEF(AST_SimpleStatement, function(self, tw) {
+              DEF(AST_SimpleStatement, function (self, tw) {
                 self.body = self.body.transform(tw);
               });
-              DEF(AST_Block, function(self, tw) {
+              DEF(AST_Block, function (self, tw) {
                 self.body = do_list(self.body, tw);
               });
-              DEF(AST_Do, function(self, tw) {
+              DEF(AST_Do, function (self, tw) {
                 self.body = self.body.transform(tw);
                 self.condition = self.condition.transform(tw);
               });
-              DEF(AST_While, function(self, tw) {
+              DEF(AST_While, function (self, tw) {
                 self.condition = self.condition.transform(tw);
                 self.body = self.body.transform(tw);
               });
-              DEF(AST_For, function(self, tw) {
+              DEF(AST_For, function (self, tw) {
                 if (self.init) self.init = self.init.transform(tw);
                 if (self.condition)
                   self.condition = self.condition.transform(tw);
                 if (self.step) self.step = self.step.transform(tw);
                 self.body = self.body.transform(tw);
               });
-              DEF(AST_ForIn, function(self, tw) {
+              DEF(AST_ForIn, function (self, tw) {
                 self.init = self.init.transform(tw);
                 self.object = self.object.transform(tw);
                 self.body = self.body.transform(tw);
               });
-              DEF(AST_With, function(self, tw) {
+              DEF(AST_With, function (self, tw) {
                 self.expression = self.expression.transform(tw);
                 self.body = self.body.transform(tw);
               });
-              DEF(AST_Exit, function(self, tw) {
+              DEF(AST_Exit, function (self, tw) {
                 if (self.value) self.value = self.value.transform(tw);
               });
-              DEF(AST_LoopControl, function(self, tw) {
+              DEF(AST_LoopControl, function (self, tw) {
                 if (self.label) self.label = self.label.transform(tw);
               });
-              DEF(AST_If, function(self, tw) {
+              DEF(AST_If, function (self, tw) {
                 self.condition = self.condition.transform(tw);
                 self.body = self.body.transform(tw);
                 if (self.alternative)
                   self.alternative = self.alternative.transform(tw);
               });
-              DEF(AST_Switch, function(self, tw) {
+              DEF(AST_Switch, function (self, tw) {
                 self.expression = self.expression.transform(tw);
                 self.body = do_list(self.body, tw);
               });
-              DEF(AST_Case, function(self, tw) {
+              DEF(AST_Case, function (self, tw) {
                 self.expression = self.expression.transform(tw);
                 self.body = do_list(self.body, tw);
               });
-              DEF(AST_Try, function(self, tw) {
+              DEF(AST_Try, function (self, tw) {
                 self.body = do_list(self.body, tw);
                 if (self.bcatch) self.bcatch = self.bcatch.transform(tw);
                 if (self.bfinally) self.bfinally = self.bfinally.transform(tw);
               });
-              DEF(AST_Catch, function(self, tw) {
+              DEF(AST_Catch, function (self, tw) {
                 self.argname = self.argname.transform(tw);
                 self.body = do_list(self.body, tw);
               });
-              DEF(AST_Definitions, function(self, tw) {
+              DEF(AST_Definitions, function (self, tw) {
                 self.definitions = do_list(self.definitions, tw);
               });
-              DEF(AST_VarDef, function(self, tw) {
+              DEF(AST_VarDef, function (self, tw) {
                 self.name = self.name.transform(tw);
                 if (self.value) self.value = self.value.transform(tw);
               });
-              DEF(AST_Lambda, function(self, tw) {
+              DEF(AST_Lambda, function (self, tw) {
                 if (self.name) self.name = self.name.transform(tw);
                 self.argnames = do_list(self.argnames, tw);
                 self.body = do_list(self.body, tw);
               });
-              DEF(AST_Call, function(self, tw) {
+              DEF(AST_Call, function (self, tw) {
                 self.expression = self.expression.transform(tw);
                 self.args = do_list(self.args, tw);
               });
-              DEF(AST_Sequence, function(self, tw) {
+              DEF(AST_Sequence, function (self, tw) {
                 self.expressions = do_list(self.expressions, tw);
               });
-              DEF(AST_Dot, function(self, tw) {
+              DEF(AST_Dot, function (self, tw) {
                 self.expression = self.expression.transform(tw);
               });
-              DEF(AST_Sub, function(self, tw) {
+              DEF(AST_Sub, function (self, tw) {
                 self.expression = self.expression.transform(tw);
                 self.property = self.property.transform(tw);
               });
-              DEF(AST_Unary, function(self, tw) {
+              DEF(AST_Unary, function (self, tw) {
                 self.expression = self.expression.transform(tw);
               });
-              DEF(AST_Binary, function(self, tw) {
+              DEF(AST_Binary, function (self, tw) {
                 self.left = self.left.transform(tw);
                 self.right = self.right.transform(tw);
               });
-              DEF(AST_Conditional, function(self, tw) {
+              DEF(AST_Conditional, function (self, tw) {
                 self.condition = self.condition.transform(tw);
                 self.consequent = self.consequent.transform(tw);
                 self.alternative = self.alternative.transform(tw);
               });
-              DEF(AST_Array, function(self, tw) {
+              DEF(AST_Array, function (self, tw) {
                 self.elements = do_list(self.elements, tw);
               });
-              DEF(AST_Object, function(self, tw) {
+              DEF(AST_Object, function (self, tw) {
                 self.properties = do_list(self.properties, tw);
               });
-              DEF(AST_ObjectProperty, function(self, tw) {
+              DEF(AST_ObjectProperty, function (self, tw) {
                 self.value = self.value.transform(tw);
               });
-            })(function(node, descend) {
-              node.DEFMETHOD("transform", function(tw, in_list) {
+            })(function (node, descend) {
+              node.DEFMETHOD("transform", function (tw, in_list) {
                 var x, y;
                 tw.push(this);
                 if (tw.before) x = tw.before(this, descend, in_list);
@@ -37913,7 +37818,7 @@ require = (function() {
             }
             SymbolDef.next_id = 1;
             SymbolDef.prototype = {
-              unmangleable: function(options) {
+              unmangleable: function (options) {
                 if (!options) options = {};
                 return (
                   (this.global && !options.toplevel) ||
@@ -37924,7 +37829,7 @@ require = (function() {
                       this.orig[0] instanceof AST_SymbolDefun))
                 );
               },
-              mangle: function(options) {
+              mangle: function (options) {
                 var cache = options.cache && options.cache.props;
                 if (this.global && cache && cache.has(this.name)) {
                   this.mangled_name = cache.get(this.name);
@@ -37944,16 +37849,16 @@ require = (function() {
                   }
                 }
               },
-              redefined: function() {
+              redefined: function () {
                 return this.defun && this.defun.variables.get(this.name);
               }
             };
-            AST_Toplevel.DEFMETHOD("figure_out_scope", function(options) {
+            AST_Toplevel.DEFMETHOD("figure_out_scope", function (options) {
               options = defaults(options, { cache: null, ie8: false });
               var self = this;
               var scope = (self.parent_scope = null);
               var defun = null;
-              var tw = new TreeWalker(function(node, descend) {
+              var tw = new TreeWalker(function (node, descend) {
                 if (node instanceof AST_Catch) {
                   var save_scope = scope;
                   scope = new AST_Scope(node);
@@ -38013,7 +37918,7 @@ require = (function() {
               });
               self.walk(tw);
               self.globals = new Dictionary();
-              var tw = new TreeWalker(function(node) {
+              var tw = new TreeWalker(function (node) {
                 if (node instanceof AST_LoopControl) {
                   if (node.label) node.label.thedef.references.push(node);
                   return true;
@@ -38055,7 +37960,7 @@ require = (function() {
               self.walk(tw);
               if (options.ie8)
                 self.walk(
-                  new TreeWalker(function(node) {
+                  new TreeWalker(function (node) {
                     if (node instanceof AST_SymbolCatch) {
                       redefine(node, node.thedef.defun);
                       return true;
@@ -38075,13 +37980,15 @@ require = (function() {
                   scope.find_variable(name) ||
                   self.globals.get(name) ||
                   scope.def_variable(node);
-                old_def.orig.concat(old_def.references).forEach(function(node) {
-                  node.thedef = new_def;
-                  node.reference(options);
-                });
+                old_def.orig
+                  .concat(old_def.references)
+                  .forEach(function (node) {
+                    node.thedef = new_def;
+                    node.reference(options);
+                  });
               }
             });
-            AST_Toplevel.DEFMETHOD("def_global", function(node) {
+            AST_Toplevel.DEFMETHOD("def_global", function (node) {
               var globals = this.globals,
                 name = node.name;
               if (globals.has(name)) {
@@ -38094,7 +38001,7 @@ require = (function() {
                 return g;
               }
             });
-            AST_Scope.DEFMETHOD("init_scope_vars", function(parent_scope) {
+            AST_Scope.DEFMETHOD("init_scope_vars", function (parent_scope) {
               this.variables = new Dictionary();
               this.functions = new Dictionary();
               this.uses_with = false;
@@ -38103,7 +38010,7 @@ require = (function() {
               this.enclosed = [];
               this.cname = -1;
             });
-            AST_Lambda.DEFMETHOD("init_scope_vars", function() {
+            AST_Lambda.DEFMETHOD("init_scope_vars", function () {
               AST_Scope.prototype.init_scope_vars.apply(this, arguments);
               this.uses_arguments = false;
               this.def_variable(
@@ -38114,36 +38021,36 @@ require = (function() {
                 })
               );
             });
-            AST_Symbol.DEFMETHOD("mark_enclosed", function(options) {
+            AST_Symbol.DEFMETHOD("mark_enclosed", function (options) {
               var def = this.definition();
               for (var s = this.scope; s; s = s.parent_scope) {
                 push_uniq(s.enclosed, def);
                 if (options.keep_fnames) {
-                  s.functions.each(function(d) {
+                  s.functions.each(function (d) {
                     push_uniq(def.scope.enclosed, d);
                   });
                 }
                 if (s === def.scope) break;
               }
             });
-            AST_Symbol.DEFMETHOD("reference", function(options) {
+            AST_Symbol.DEFMETHOD("reference", function (options) {
               this.definition().references.push(this);
               this.mark_enclosed(options);
             });
-            AST_Scope.DEFMETHOD("find_variable", function(name) {
+            AST_Scope.DEFMETHOD("find_variable", function (name) {
               if (name instanceof AST_Symbol) name = name.name;
               return (
                 this.variables.get(name) ||
                 (this.parent_scope && this.parent_scope.find_variable(name))
               );
             });
-            AST_Scope.DEFMETHOD("def_function", function(symbol, init) {
+            AST_Scope.DEFMETHOD("def_function", function (symbol, init) {
               var def = this.def_variable(symbol, init);
               if (!def.init || def.init instanceof AST_Defun) def.init = init;
               this.functions.set(symbol.name, def);
               return def;
             });
-            AST_Scope.DEFMETHOD("def_variable", function(symbol, init) {
+            AST_Scope.DEFMETHOD("def_variable", function (symbol, init) {
               var def = this.variables.get(symbol.name);
               if (def) {
                 def.orig.push(symbol);
@@ -38162,7 +38069,7 @@ require = (function() {
               return (symbol.thedef = def);
             });
             AST_Lambda.DEFMETHOD("resolve", return_this);
-            AST_Scope.DEFMETHOD("resolve", function() {
+            AST_Scope.DEFMETHOD("resolve", function () {
               return this.parent_scope;
             });
             AST_Toplevel.DEFMETHOD("resolve", return_this);
@@ -38174,7 +38081,7 @@ require = (function() {
                 );
                 scope.cname_holes = [];
                 var cache = options.cache && options.cache.props;
-                scope.enclosed.forEach(function(def) {
+                scope.enclosed.forEach(function (def) {
                   if (def.unmangleable(options)) names[def.name] = true;
                   if (def.global && cache && cache.has(def.name)) {
                     names[cache.get(def.name)] = true;
@@ -38188,7 +38095,7 @@ require = (function() {
               var holes = scope.cname_holes;
               var names = Object.create(null);
               var scopes = [scope];
-              def.references.forEach(function(sym) {
+              def.references.forEach(function (sym) {
                 var scope = sym.scope;
                 do {
                   if (scopes.indexOf(scope) < 0) {
@@ -38221,20 +38128,20 @@ require = (function() {
               scope.names_in_use[name] = true;
               return name;
             }
-            AST_Symbol.DEFMETHOD("unmangleable", function(options) {
+            AST_Symbol.DEFMETHOD("unmangleable", function (options) {
               var def = this.definition();
               return !def || def.unmangleable(options);
             });
             AST_Label.DEFMETHOD("unmangleable", return_false);
-            AST_Symbol.DEFMETHOD("unreferenced", function() {
+            AST_Symbol.DEFMETHOD("unreferenced", function () {
               return (
                 !this.definition().references.length && !this.scope.pinned()
               );
             });
-            AST_Symbol.DEFMETHOD("definition", function() {
+            AST_Symbol.DEFMETHOD("definition", function () {
               return this.thedef;
             });
-            AST_Symbol.DEFMETHOD("global", function() {
+            AST_Symbol.DEFMETHOD("global", function () {
               return this.definition().global;
             });
             function _default_mangler_options(options) {
@@ -38250,17 +38157,17 @@ require = (function() {
               options.reserved.has = makePredicate(options.reserved);
               return options;
             }
-            AST_Toplevel.DEFMETHOD("mangle_names", function(options) {
+            AST_Toplevel.DEFMETHOD("mangle_names", function (options) {
               options = _default_mangler_options(options);
               var lname = -1;
               if (options.cache && options.cache.props) {
                 var mangled_names = (this.mangled_names = Object.create(null));
-                options.cache.props.each(function(mangled_name) {
+                options.cache.props.each(function (mangled_name) {
                   mangled_names[mangled_name] = true;
                 });
               }
               var redefined = [];
-              var tw = new TreeWalker(function(node, descend) {
+              var tw = new TreeWalker(function (node, descend) {
                 if (node instanceof AST_LabeledStatement) {
                   var save_nesting = lname;
                   descend();
@@ -38308,13 +38215,13 @@ require = (function() {
                 def.mangle(options);
               }
             });
-            AST_Toplevel.DEFMETHOD("find_colliding_names", function(options) {
+            AST_Toplevel.DEFMETHOD("find_colliding_names", function (options) {
               var cache = options.cache && options.cache.props;
               var avoid = Object.create(null);
               options.reserved.forEach(to_avoid);
               this.globals.each(add_def);
               this.walk(
-                new TreeWalker(function(node) {
+                new TreeWalker(function (node) {
                   if (node instanceof AST_Scope) node.variables.each(add_def);
                   if (node instanceof AST_SymbolCatch)
                     add_def(node.definition());
@@ -38332,7 +38239,7 @@ require = (function() {
                 to_avoid(name);
               }
             });
-            AST_Toplevel.DEFMETHOD("expand_names", function(options) {
+            AST_Toplevel.DEFMETHOD("expand_names", function (options) {
               base54.reset();
               base54.sort();
               options = _default_mangler_options(options);
@@ -38340,7 +38247,7 @@ require = (function() {
               var cname = 0;
               this.globals.each(rename);
               this.walk(
-                new TreeWalker(function(node) {
+                new TreeWalker(function (node) {
                   if (node instanceof AST_Scope) node.variables.each(rename);
                   if (node instanceof AST_SymbolCatch)
                     rename(node.definition());
@@ -38359,54 +38266,57 @@ require = (function() {
                 if (options.reserved.has[def.name]) return;
                 var d = def.redefined();
                 def.name = d ? d.name : next_name();
-                def.orig.forEach(function(sym) {
+                def.orig.forEach(function (sym) {
                   sym.name = def.name;
                 });
-                def.references.forEach(function(sym) {
+                def.references.forEach(function (sym) {
                   sym.name = def.name;
                 });
               }
             });
             AST_Node.DEFMETHOD("tail_node", return_this);
-            AST_Sequence.DEFMETHOD("tail_node", function() {
+            AST_Sequence.DEFMETHOD("tail_node", function () {
               return this.expressions[this.expressions.length - 1];
             });
-            AST_Toplevel.DEFMETHOD("compute_char_frequency", function(options) {
-              options = _default_mangler_options(options);
-              base54.reset();
-              try {
-                AST_Node.prototype.print = function(stream, force_parens) {
-                  this._print(stream, force_parens);
-                  if (
-                    this instanceof AST_Symbol &&
-                    !this.unmangleable(options)
-                  ) {
-                    base54.consider(this.name, -1);
-                  } else if (options.properties) {
-                    if (this instanceof AST_Dot) {
-                      base54.consider(this.property, -1);
-                    } else if (this instanceof AST_Sub) {
-                      skip_string(this.property);
+            AST_Toplevel.DEFMETHOD(
+              "compute_char_frequency",
+              function (options) {
+                options = _default_mangler_options(options);
+                base54.reset();
+                try {
+                  AST_Node.prototype.print = function (stream, force_parens) {
+                    this._print(stream, force_parens);
+                    if (
+                      this instanceof AST_Symbol &&
+                      !this.unmangleable(options)
+                    ) {
+                      base54.consider(this.name, -1);
+                    } else if (options.properties) {
+                      if (this instanceof AST_Dot) {
+                        base54.consider(this.property, -1);
+                      } else if (this instanceof AST_Sub) {
+                        skip_string(this.property);
+                      }
                     }
+                  };
+                  base54.consider(this.print_to_string(), 1);
+                } finally {
+                  AST_Node.prototype.print = AST_Node.prototype._print;
+                }
+                base54.sort();
+                function skip_string(node) {
+                  if (node instanceof AST_String) {
+                    base54.consider(node.value, -1);
+                  } else if (node instanceof AST_Conditional) {
+                    skip_string(node.consequent);
+                    skip_string(node.alternative);
+                  } else if (node instanceof AST_Sequence) {
+                    skip_string(node.tail_node());
                   }
-                };
-                base54.consider(this.print_to_string(), 1);
-              } finally {
-                AST_Node.prototype.print = AST_Node.prototype._print;
-              }
-              base54.sort();
-              function skip_string(node) {
-                if (node instanceof AST_String) {
-                  base54.consider(node.value, -1);
-                } else if (node instanceof AST_Conditional) {
-                  skip_string(node.consequent);
-                  skip_string(node.alternative);
-                } else if (node instanceof AST_Sequence) {
-                  skip_string(node.tail_node());
                 }
               }
-            });
-            var base54 = (function() {
+            );
+            var base54 = (function () {
               var freq = Object.create(null);
               function init(chars) {
                 var array = [];
@@ -38425,7 +38335,7 @@ require = (function() {
               function reset() {
                 frequency = Object.create(freq);
               }
-              base54.consider = function(str, delta) {
+              base54.consider = function (str, delta) {
                 for (var i = str.length; --i >= 0; ) {
                   frequency[str[i]] += delta;
                 }
@@ -38433,7 +38343,7 @@ require = (function() {
               function compare(a, b) {
                 return frequency[b] - frequency[a];
               }
-              base54.sort = function() {
+              base54.sort = function () {
                 chars = leading.sort(compare).concat(digits.sort(compare));
               };
               base54.reset = reset;
@@ -38502,13 +38412,13 @@ require = (function() {
                   );
                 }
                 if (comments instanceof RegExp) {
-                  comment_filter = function(comment) {
+                  comment_filter = function (comment) {
                     return (
                       comment.type != "comment5" && comments.test(comment.value)
                     );
                   };
                 } else if (typeof comments === "function") {
-                  comment_filter = function(comment) {
+                  comment_filter = function (comment) {
                     return (
                       comment.type != "comment5" && comments(this, comment)
                     );
@@ -38525,10 +38435,10 @@ require = (function() {
               var current_pos = 0;
               var OUTPUT = "";
               var to_utf8 = options.ascii_only
-                ? function(str, identifier) {
+                ? function (str, identifier) {
                     return str.replace(
                       /[\u0000-\u001f\u007f-\uffff]/g,
-                      function(ch) {
+                      function (ch) {
                         var code = ch.charCodeAt(0).toString(16);
                         if (code.length <= 2 && !identifier) {
                           while (code.length < 2) code = "0" + code;
@@ -38540,7 +38450,7 @@ require = (function() {
                       }
                     );
                   }
-                : function(str) {
+                : function (str) {
                     var s = "";
                     for (var i = 0, len = str.length; i < len; i++) {
                       if (
@@ -38561,7 +38471,7 @@ require = (function() {
                   sq = 0;
                 str = str.replace(
                   /[\\\b\f\n\r\v\t\x22\x27\u2028\u2029\0\ufeff]/g,
-                  function(s, i) {
+                  function (s, i) {
                     switch (s) {
                       case '"':
                         ++dq;
@@ -38653,16 +38563,16 @@ require = (function() {
                 mapping_name,
                 mappings = options.source_map && [];
               var adjust_mappings = mappings
-                ? function(line, col) {
-                    mappings.forEach(function(mapping) {
+                ? function (line, col) {
+                    mappings.forEach(function (mapping) {
                       mapping.line += line;
                       mapping.col += col;
                     });
                   }
                 : noop;
               var flush_mappings = mappings
-                ? function() {
-                    mappings.forEach(function(mapping) {
+                ? function () {
+                    mappings.forEach(function (mapping) {
                       try {
                         options.source_map.add(
                           mapping.token.file,
@@ -38705,7 +38615,7 @@ require = (function() {
                 OUTPUT += right;
               }
               var fix_line = options.max_line_len
-                ? function() {
+                ? function () {
                     if (line_fixed) {
                       if (current_col > options.max_line_len) {
                         AST_Node.warn(
@@ -38799,21 +38709,21 @@ require = (function() {
                 last = str;
               }
               var space = options.beautify
-                ? function() {
+                ? function () {
                     print(" ");
                   }
-                : function() {
+                : function () {
                     might_need_space = true;
                   };
               var indent = options.beautify
-                ? function(half) {
+                ? function (half) {
                     if (options.beautify) {
                       print(make_indent(half ? 0.5 : 0));
                     }
                   }
                 : noop;
               var with_indent = options.beautify
-                ? function(col, cont) {
+                ? function (col, cont) {
                     if (col === true) col = next_indent();
                     var save_indentation = indentation;
                     indentation = col;
@@ -38821,19 +38731,19 @@ require = (function() {
                     indentation = save_indentation;
                     return ret;
                   }
-                : function(col, cont) {
+                : function (col, cont) {
                     return cont();
                   };
               var may_add_newline =
                 options.max_line_len || options.preserve_line
-                  ? function() {
+                  ? function () {
                       fix_line();
                       line_end = OUTPUT.length;
                       line_fixed = false;
                     }
                   : noop;
               var newline = options.beautify
-                ? function() {
+                ? function () {
                     if (newline_insert < 0) return print("\n");
                     if (OUTPUT[newline_insert] != "\n") {
                       OUTPUT =
@@ -38847,10 +38757,10 @@ require = (function() {
                   }
                 : may_add_newline;
               var semicolon = options.beautify
-                ? function() {
+                ? function () {
                     print(";");
                   }
-                : function() {
+                : function () {
                     might_need_semicolon = true;
                   };
               function force_semicolon() {
@@ -38864,7 +38774,7 @@ require = (function() {
                 var ret;
                 print("{");
                 newline();
-                with_indent(next_indent(), function() {
+                with_indent(next_indent(), function () {
                   ret = cont();
                 });
                 indent();
@@ -38898,7 +38808,7 @@ require = (function() {
                 space();
               }
               var add_mapping = mappings
-                ? function(token, name) {
+                ? function (token, name) {
                     mapping_token = token;
                     mapping_name = name;
                   }
@@ -38926,7 +38836,7 @@ require = (function() {
                 }
                 comments._dumped = self;
                 if (node instanceof AST_Exit && node.value) {
-                  var tw = new TreeWalker(function(node) {
+                  var tw = new TreeWalker(function (node) {
                     var parent = tw.parent();
                     if (
                       parent instanceof AST_Exit ||
@@ -38973,7 +38883,7 @@ require = (function() {
                 comments = comments.filter(comment_filter, node);
                 if (comments.length == 0) return;
                 var last_nlb = has_nlb();
-                comments.forEach(function(c, i) {
+                comments.forEach(function (c, i) {
                   if (!last_nlb) {
                     if (c.nlb) {
                       print("\n");
@@ -39011,7 +38921,7 @@ require = (function() {
                 if (
                   !(
                     node instanceof AST_Statement ||
-                    all(comments, function(c) {
+                    all(comments, function (c) {
                       return !/comment[134]/.test(c.type);
                     })
                   )
@@ -39019,7 +38929,7 @@ require = (function() {
                   return;
                 comments._dumped = self;
                 var insert = OUTPUT.length;
-                comments.filter(comment_filter, node).forEach(function(c, i) {
+                comments.filter(comment_filter, node).forEach(function (c, i) {
                   need_space = false;
                   if (need_newline_indented) {
                     print("\n");
@@ -39046,16 +38956,16 @@ require = (function() {
                 get: get,
                 toString: get,
                 indent: indent,
-                indentation: function() {
+                indentation: function () {
                   return indentation;
                 },
-                current_width: function() {
+                current_width: function () {
                   return current_col - indentation;
                 },
-                should_break: function() {
+                should_break: function () {
                   return options.width && this.current_width() >= options.width;
                 },
-                has_parens: function() {
+                has_parens: function () {
                   return has_parens;
                 },
                 newline: newline,
@@ -39063,16 +38973,16 @@ require = (function() {
                 space: space,
                 comma: comma,
                 colon: colon,
-                last: function() {
+                last: function () {
                   return last;
                 },
                 semicolon: semicolon,
                 force_semicolon: force_semicolon,
                 to_utf8: to_utf8,
-                print_name: function(name) {
+                print_name: function (name) {
                   print(make_name(name));
                 },
-                print_string: function(str, quote, escape_directive) {
+                print_string: function (str, quote, escape_directive) {
                   var encoded = encode_string(str, quote);
                   if (
                     escape_directive === true &&
@@ -39092,7 +39002,7 @@ require = (function() {
                 with_parens: with_parens,
                 with_square: with_square,
                 add_mapping: add_mapping,
-                option: function(opt) {
+                option: function (opt) {
                   return options[opt];
                 },
                 prepend_comments: readonly ? noop : prepend_comments,
@@ -39100,41 +39010,41 @@ require = (function() {
                   readonly || comment_filter === return_false
                     ? noop
                     : append_comments,
-                line: function() {
+                line: function () {
                   return current_line;
                 },
-                col: function() {
+                col: function () {
                   return current_col;
                 },
-                pos: function() {
+                pos: function () {
                   return current_pos;
                 },
-                push_node: function(node) {
+                push_node: function (node) {
                   stack.push(node);
                 },
                 pop_node: options.preserve_line
-                  ? function() {
+                  ? function () {
                       var node = stack.pop();
                       if (node.start && node.start.line > current_line) {
                         insert_newlines(node.start.line - current_line);
                       }
                     }
-                  : function() {
+                  : function () {
                       stack.pop();
                     },
-                parent: function(n) {
+                parent: function (n) {
                   return stack[stack.length - 2 - (n || 0)];
                 }
               };
             }
-            (function() {
+            (function () {
               function DEFPRINT(nodetype, generator) {
                 nodetype.DEFMETHOD("_codegen", generator);
               }
               var in_directive = false;
               var active_scope = null;
               var use_asm = null;
-              AST_Node.DEFMETHOD("print", function(stream, force_parens) {
+              AST_Node.DEFMETHOD("print", function (stream, force_parens) {
                 var self = this,
                   generator = self._codegen;
                 if (self instanceof AST_Scope) {
@@ -39164,14 +39074,14 @@ require = (function() {
                 }
               });
               AST_Node.DEFMETHOD("_print", AST_Node.prototype.print);
-              AST_Node.DEFMETHOD("print_to_string", function(options) {
+              AST_Node.DEFMETHOD("print_to_string", function (options) {
                 var s = OutputStream(options);
                 this.print(s);
                 return s.get();
               });
               function PARENS(nodetype, func) {
                 if (Array.isArray(nodetype)) {
-                  nodetype.forEach(function(nodetype) {
+                  nodetype.forEach(function (nodetype) {
                     PARENS(nodetype, func);
                   });
                 } else {
@@ -39179,7 +39089,7 @@ require = (function() {
                 }
               }
               PARENS(AST_Node, return_false);
-              PARENS(AST_Function, function(output) {
+              PARENS(AST_Function, function (output) {
                 if (!output.has_parens() && first_in_statement(output))
                   return true;
                 if (output.option("webkit")) {
@@ -39193,17 +39103,17 @@ require = (function() {
                     return true;
                 }
               });
-              PARENS(AST_Object, function(output) {
+              PARENS(AST_Object, function (output) {
                 return !output.has_parens() && first_in_statement(output);
               });
-              PARENS(AST_Unary, function(output) {
+              PARENS(AST_Unary, function (output) {
                 var p = output.parent();
                 return (
                   (p instanceof AST_PropAccess && p.expression === this) ||
                   (p instanceof AST_Call && p.expression === this)
                 );
               });
-              PARENS(AST_Sequence, function(output) {
+              PARENS(AST_Sequence, function (output) {
                 var p = output.parent();
                 return (
                   p instanceof AST_Call ||
@@ -39216,7 +39126,7 @@ require = (function() {
                   p instanceof AST_Conditional
                 );
               });
-              PARENS(AST_Binary, function(output) {
+              PARENS(AST_Binary, function (output) {
                 var p = output.parent();
                 if (p instanceof AST_Call && p.expression === this) return true;
                 if (p instanceof AST_Unary) return true;
@@ -39232,12 +39142,12 @@ require = (function() {
                   }
                 }
               });
-              PARENS(AST_PropAccess, function(output) {
+              PARENS(AST_PropAccess, function (output) {
                 var p = output.parent();
                 if (p instanceof AST_New && p.expression === this) {
                   var parens = false;
                   this.walk(
-                    new TreeWalker(function(node) {
+                    new TreeWalker(function (node) {
                       if (parens || node instanceof AST_Scope) return true;
                       if (node instanceof AST_Call) {
                         parens = true;
@@ -39248,7 +39158,7 @@ require = (function() {
                   return parens;
                 }
               });
-              PARENS(AST_Call, function(output) {
+              PARENS(AST_Call, function (output) {
                 var p = output.parent();
                 if (p instanceof AST_New && p.expression === this) return true;
                 if (output.option("webkit")) {
@@ -39262,7 +39172,7 @@ require = (function() {
                   );
                 }
               });
-              PARENS(AST_New, function(output) {
+              PARENS(AST_New, function (output) {
                 var p = output.parent();
                 if (
                   !need_constructor_parens(this, output) &&
@@ -39271,7 +39181,7 @@ require = (function() {
                 )
                   return true;
               });
-              PARENS(AST_Number, function(output) {
+              PARENS(AST_Number, function (output) {
                 var p = output.parent();
                 if (p instanceof AST_PropAccess && p.expression === this) {
                   var value = this.getValue();
@@ -39280,7 +39190,7 @@ require = (function() {
                   }
                 }
               });
-              PARENS([AST_Assign, AST_Conditional], function(output) {
+              PARENS([AST_Assign, AST_Conditional], function (output) {
                 var p = output.parent();
                 if (p instanceof AST_Unary) return true;
                 if (p instanceof AST_Binary && !(p instanceof AST_Assign))
@@ -39291,11 +39201,11 @@ require = (function() {
                 if (p instanceof AST_PropAccess && p.expression === this)
                   return true;
               });
-              DEFPRINT(AST_Directive, function(self, output) {
+              DEFPRINT(AST_Directive, function (self, output) {
                 output.print_string(self.value, self.quote);
                 output.semicolon();
               });
-              DEFPRINT(AST_Debugger, function(self, output) {
+              DEFPRINT(AST_Debugger, function (self, output) {
                 output.print("debugger");
                 output.semicolon();
               });
@@ -39307,7 +39217,7 @@ require = (function() {
               ) {
                 var last = body.length - 1;
                 in_directive = allow_directives;
-                body.forEach(function(stmt, i) {
+                body.forEach(function (stmt, i) {
                   if (
                     in_directive === true &&
                     !(
@@ -39337,73 +39247,74 @@ require = (function() {
                 });
                 in_directive = false;
               }
-              AST_StatementWithBody.DEFMETHOD("_do_print_body", function(
-                output
-              ) {
-                force_statement(this.body, output);
-              });
-              DEFPRINT(AST_Statement, function(self, output) {
+              AST_StatementWithBody.DEFMETHOD(
+                "_do_print_body",
+                function (output) {
+                  force_statement(this.body, output);
+                }
+              );
+              DEFPRINT(AST_Statement, function (self, output) {
                 self.body.print(output);
                 output.semicolon();
               });
-              DEFPRINT(AST_Toplevel, function(self, output) {
+              DEFPRINT(AST_Toplevel, function (self, output) {
                 display_body(self.body, true, output, true);
                 output.print("");
               });
-              DEFPRINT(AST_LabeledStatement, function(self, output) {
+              DEFPRINT(AST_LabeledStatement, function (self, output) {
                 self.label.print(output);
                 output.colon();
                 self.body.print(output);
               });
-              DEFPRINT(AST_SimpleStatement, function(self, output) {
+              DEFPRINT(AST_SimpleStatement, function (self, output) {
                 self.body.print(output);
                 output.semicolon();
               });
               function print_braced_empty(self, output) {
                 output.print("{");
-                output.with_indent(output.next_indent(), function() {
+                output.with_indent(output.next_indent(), function () {
                   output.append_comments(self, true);
                 });
                 output.print("}");
               }
               function print_braced(self, output, allow_directives) {
                 if (self.body.length > 0) {
-                  output.with_block(function() {
+                  output.with_block(function () {
                     display_body(self.body, false, output, allow_directives);
                   });
                 } else print_braced_empty(self, output);
               }
-              DEFPRINT(AST_BlockStatement, function(self, output) {
+              DEFPRINT(AST_BlockStatement, function (self, output) {
                 print_braced(self, output);
               });
-              DEFPRINT(AST_EmptyStatement, function(self, output) {
+              DEFPRINT(AST_EmptyStatement, function (self, output) {
                 output.semicolon();
               });
-              DEFPRINT(AST_Do, function(self, output) {
+              DEFPRINT(AST_Do, function (self, output) {
                 output.print("do");
                 output.space();
                 make_block(self.body, output);
                 output.space();
                 output.print("while");
                 output.space();
-                output.with_parens(function() {
+                output.with_parens(function () {
                   self.condition.print(output);
                 });
                 output.semicolon();
               });
-              DEFPRINT(AST_While, function(self, output) {
+              DEFPRINT(AST_While, function (self, output) {
                 output.print("while");
                 output.space();
-                output.with_parens(function() {
+                output.with_parens(function () {
                   self.condition.print(output);
                 });
                 output.space();
                 self._do_print_body(output);
               });
-              DEFPRINT(AST_For, function(self, output) {
+              DEFPRINT(AST_For, function (self, output) {
                 output.print("for");
                 output.space();
-                output.with_parens(function() {
+                output.with_parens(function () {
                   if (self.init) {
                     if (self.init instanceof AST_Definitions) {
                       self.init.print(output);
@@ -39429,10 +39340,10 @@ require = (function() {
                 output.space();
                 self._do_print_body(output);
               });
-              DEFPRINT(AST_ForIn, function(self, output) {
+              DEFPRINT(AST_ForIn, function (self, output) {
                 output.print("for");
                 output.space();
-                output.with_parens(function() {
+                output.with_parens(function () {
                   self.init.print(output);
                   output.space();
                   output.print("in");
@@ -39442,16 +39353,16 @@ require = (function() {
                 output.space();
                 self._do_print_body(output);
               });
-              DEFPRINT(AST_With, function(self, output) {
+              DEFPRINT(AST_With, function (self, output) {
                 output.print("with");
                 output.space();
-                output.with_parens(function() {
+                output.with_parens(function () {
                   self.expression.print(output);
                 });
                 output.space();
                 self._do_print_body(output);
               });
-              AST_Lambda.DEFMETHOD("_do_print", function(output, nokeyword) {
+              AST_Lambda.DEFMETHOD("_do_print", function (output, nokeyword) {
                 var self = this;
                 if (!nokeyword) {
                   output.print("function");
@@ -39460,8 +39371,8 @@ require = (function() {
                   output.space();
                   self.name.print(output);
                 }
-                output.with_parens(function() {
-                  self.argnames.forEach(function(arg, i) {
+                output.with_parens(function () {
+                  self.argnames.forEach(function (arg, i) {
                     if (i) output.comma();
                     arg.print(output);
                   });
@@ -39469,7 +39380,7 @@ require = (function() {
                 output.space();
                 print_braced(self, output, true);
               });
-              DEFPRINT(AST_Lambda, function(self, output) {
+              DEFPRINT(AST_Lambda, function (self, output) {
                 self._do_print(output);
               });
               function print_jump(output, kind, target) {
@@ -39480,16 +39391,16 @@ require = (function() {
                 }
                 output.semicolon();
               }
-              DEFPRINT(AST_Return, function(self, output) {
+              DEFPRINT(AST_Return, function (self, output) {
                 print_jump(output, "return", self.value);
               });
-              DEFPRINT(AST_Throw, function(self, output) {
+              DEFPRINT(AST_Throw, function (self, output) {
                 print_jump(output, "throw", self.value);
               });
-              DEFPRINT(AST_Break, function(self, output) {
+              DEFPRINT(AST_Break, function (self, output) {
                 print_jump(output, "break", self.label);
               });
-              DEFPRINT(AST_Continue, function(self, output) {
+              DEFPRINT(AST_Continue, function (self, output) {
                 print_jump(output, "continue", self.label);
               });
               function make_then(self, output) {
@@ -39513,10 +39424,10 @@ require = (function() {
                 }
                 force_statement(self.body, output);
               }
-              DEFPRINT(AST_If, function(self, output) {
+              DEFPRINT(AST_If, function (self, output) {
                 output.print("if");
                 output.space();
-                output.with_parens(function() {
+                output.with_parens(function () {
                   self.condition.print(output);
                 });
                 output.space();
@@ -39532,44 +39443,44 @@ require = (function() {
                   self._do_print_body(output);
                 }
               });
-              DEFPRINT(AST_Switch, function(self, output) {
+              DEFPRINT(AST_Switch, function (self, output) {
                 output.print("switch");
                 output.space();
-                output.with_parens(function() {
+                output.with_parens(function () {
                   self.expression.print(output);
                 });
                 output.space();
                 var last = self.body.length - 1;
                 if (last < 0) print_braced_empty(self, output);
                 else
-                  output.with_block(function() {
-                    self.body.forEach(function(branch, i) {
+                  output.with_block(function () {
+                    self.body.forEach(function (branch, i) {
                       output.indent(true);
                       branch.print(output);
                       if (i < last && branch.body.length > 0) output.newline();
                     });
                   });
               });
-              AST_SwitchBranch.DEFMETHOD("_do_print_body", function(output) {
+              AST_SwitchBranch.DEFMETHOD("_do_print_body", function (output) {
                 output.newline();
-                this.body.forEach(function(stmt) {
+                this.body.forEach(function (stmt) {
                   output.indent();
                   stmt.print(output);
                   output.newline();
                 });
               });
-              DEFPRINT(AST_Default, function(self, output) {
+              DEFPRINT(AST_Default, function (self, output) {
                 output.print("default:");
                 self._do_print_body(output);
               });
-              DEFPRINT(AST_Case, function(self, output) {
+              DEFPRINT(AST_Case, function (self, output) {
                 output.print("case");
                 output.space();
                 self.expression.print(output);
                 output.print(":");
                 self._do_print_body(output);
               });
-              DEFPRINT(AST_Try, function(self, output) {
+              DEFPRINT(AST_Try, function (self, output) {
                 output.print("try");
                 output.space();
                 print_braced(self, output);
@@ -39582,24 +39493,24 @@ require = (function() {
                   self.bfinally.print(output);
                 }
               });
-              DEFPRINT(AST_Catch, function(self, output) {
+              DEFPRINT(AST_Catch, function (self, output) {
                 output.print("catch");
                 output.space();
-                output.with_parens(function() {
+                output.with_parens(function () {
                   self.argname.print(output);
                 });
                 output.space();
                 print_braced(self, output);
               });
-              DEFPRINT(AST_Finally, function(self, output) {
+              DEFPRINT(AST_Finally, function (self, output) {
                 output.print("finally");
                 output.space();
                 print_braced(self, output);
               });
-              DEFPRINT(AST_Var, function(self, output) {
+              DEFPRINT(AST_Var, function (self, output) {
                 output.print("var");
                 output.space();
-                self.definitions.forEach(function(def, i) {
+                self.definitions.forEach(function (def, i) {
                   if (i) output.comma();
                   def.print(output);
                 });
@@ -39614,7 +39525,7 @@ require = (function() {
                 var parens = false;
                 if (noin)
                   node.walk(
-                    new TreeWalker(function(node) {
+                    new TreeWalker(function (node) {
                       if (parens || node instanceof AST_Scope) return true;
                       if (node instanceof AST_Binary && node.operator == "in") {
                         parens = true;
@@ -39624,7 +39535,7 @@ require = (function() {
                   );
                 node.print(output, parens);
               }
-              DEFPRINT(AST_VarDef, function(self, output) {
+              DEFPRINT(AST_VarDef, function (self, output) {
                 self.name.print(output);
                 if (self.value) {
                   output.space();
@@ -39635,7 +39546,7 @@ require = (function() {
                   parenthesize_for_noin(self.value, output, noin);
                 }
               });
-              DEFPRINT(AST_Call, function(self, output) {
+              DEFPRINT(AST_Call, function (self, output) {
                 self.expression.print(output);
                 if (
                   self instanceof AST_New &&
@@ -39648,20 +39559,20 @@ require = (function() {
                 ) {
                   output.add_mapping(self.start);
                 }
-                output.with_parens(function() {
-                  self.args.forEach(function(expr, i) {
+                output.with_parens(function () {
+                  self.args.forEach(function (expr, i) {
                     if (i) output.comma();
                     expr.print(output);
                   });
                 });
               });
-              DEFPRINT(AST_New, function(self, output) {
+              DEFPRINT(AST_New, function (self, output) {
                 output.print("new");
                 output.space();
                 AST_Call.prototype._codegen(self, output);
               });
-              DEFPRINT(AST_Sequence, function(self, output) {
-                self.expressions.forEach(function(node, index) {
+              DEFPRINT(AST_Sequence, function (self, output) {
+                self.expressions.forEach(function (node, index) {
                   if (index > 0) {
                     output.comma();
                     if (output.should_break()) {
@@ -39672,7 +39583,7 @@ require = (function() {
                   node.print(output);
                 });
               });
-              DEFPRINT(AST_Dot, function(self, output) {
+              DEFPRINT(AST_Dot, function (self, output) {
                 var expr = self.expression;
                 expr.print(output);
                 var prop = self.property;
@@ -39692,13 +39603,13 @@ require = (function() {
                   output.print_name(prop);
                 }
               });
-              DEFPRINT(AST_Sub, function(self, output) {
+              DEFPRINT(AST_Sub, function (self, output) {
                 self.expression.print(output);
                 output.print("[");
                 self.property.print(output);
                 output.print("]");
               });
-              DEFPRINT(AST_UnaryPrefix, function(self, output) {
+              DEFPRINT(AST_UnaryPrefix, function (self, output) {
                 var op = self.operator;
                 output.print(op);
                 if (
@@ -39711,11 +39622,11 @@ require = (function() {
                 }
                 self.expression.print(output);
               });
-              DEFPRINT(AST_UnaryPostfix, function(self, output) {
+              DEFPRINT(AST_UnaryPostfix, function (self, output) {
                 self.expression.print(output);
                 output.print(self.operator);
               });
-              DEFPRINT(AST_Binary, function(self, output) {
+              DEFPRINT(AST_Binary, function (self, output) {
                 var op = self.operator;
                 self.left.print(output);
                 if (
@@ -39741,7 +39652,7 @@ require = (function() {
                 }
                 self.right.print(output);
               });
-              DEFPRINT(AST_Conditional, function(self, output) {
+              DEFPRINT(AST_Conditional, function (self, output) {
                 self.condition.print(output);
                 output.space();
                 output.print("?");
@@ -39751,12 +39662,12 @@ require = (function() {
                 output.colon();
                 self.alternative.print(output);
               });
-              DEFPRINT(AST_Array, function(self, output) {
-                output.with_square(function() {
+              DEFPRINT(AST_Array, function (self, output) {
+                output.with_square(function () {
                   var a = self.elements,
                     len = a.length;
                   if (len > 0) output.space();
-                  a.forEach(function(exp, i) {
+                  a.forEach(function (exp, i) {
                     if (i) output.comma();
                     exp.print(output);
                     if (i === len - 1 && exp instanceof AST_Hole)
@@ -39765,10 +39676,10 @@ require = (function() {
                   if (len > 0) output.space();
                 });
               });
-              DEFPRINT(AST_Object, function(self, output) {
+              DEFPRINT(AST_Object, function (self, output) {
                 if (self.properties.length > 0)
-                  output.with_block(function() {
-                    self.properties.forEach(function(prop, i) {
+                  output.with_block(function () {
+                    self.properties.forEach(function (prop, i) {
                       if (i) {
                         output.print(",");
                         output.newline();
@@ -39799,50 +39710,50 @@ require = (function() {
                   output.print_string(key, quote);
                 }
               }
-              DEFPRINT(AST_ObjectKeyVal, function(self, output) {
+              DEFPRINT(AST_ObjectKeyVal, function (self, output) {
                 print_property_name(self.key, self.quote, output);
                 output.colon();
                 self.value.print(output);
               });
-              AST_ObjectProperty.DEFMETHOD("_print_getter_setter", function(
-                type,
-                output
-              ) {
-                output.print(type);
-                output.space();
-                print_property_name(this.key.name, this.quote, output);
-                this.value._do_print(output, true);
-              });
-              DEFPRINT(AST_ObjectSetter, function(self, output) {
+              AST_ObjectProperty.DEFMETHOD(
+                "_print_getter_setter",
+                function (type, output) {
+                  output.print(type);
+                  output.space();
+                  print_property_name(this.key.name, this.quote, output);
+                  this.value._do_print(output, true);
+                }
+              );
+              DEFPRINT(AST_ObjectSetter, function (self, output) {
                 self._print_getter_setter("set", output);
               });
-              DEFPRINT(AST_ObjectGetter, function(self, output) {
+              DEFPRINT(AST_ObjectGetter, function (self, output) {
                 self._print_getter_setter("get", output);
               });
-              DEFPRINT(AST_Symbol, function(self, output) {
+              DEFPRINT(AST_Symbol, function (self, output) {
                 var def = self.definition();
                 output.print_name(
                   def ? def.mangled_name || def.name : self.name
                 );
               });
               DEFPRINT(AST_Hole, noop);
-              DEFPRINT(AST_This, function(self, output) {
+              DEFPRINT(AST_This, function (self, output) {
                 output.print("this");
               });
-              DEFPRINT(AST_Constant, function(self, output) {
+              DEFPRINT(AST_Constant, function (self, output) {
                 output.print(self.getValue());
               });
-              DEFPRINT(AST_String, function(self, output) {
+              DEFPRINT(AST_String, function (self, output) {
                 output.print_string(self.getValue(), self.quote, in_directive);
               });
-              DEFPRINT(AST_Number, function(self, output) {
+              DEFPRINT(AST_Number, function (self, output) {
                 if (use_asm && self.start && self.start.raw != null) {
                   output.print(self.start.raw);
                 } else {
                   output.print(make_num(self.getValue()));
                 }
               });
-              DEFPRINT(AST_RegExp, function(self, output) {
+              DEFPRINT(AST_RegExp, function (self, output) {
                 var regexp = self.getValue();
                 var str = regexp.toString();
                 if (regexp.raw_source) {
@@ -39916,14 +39827,14 @@ require = (function() {
                   output.print("{}");
                 else if (stmt instanceof AST_BlockStatement) stmt.print(output);
                 else
-                  output.with_block(function() {
+                  output.with_block(function () {
                     output.indent();
                     stmt.print(output);
                     output.newline();
                   });
               }
               function DEFMAP(nodetype, generator) {
-                nodetype.forEach(function(nodetype) {
+                nodetype.forEach(function (nodetype) {
                   nodetype.DEFMETHOD("add_source_map", generator);
                 });
               }
@@ -39948,14 +39859,14 @@ require = (function() {
                   AST_SwitchBranch,
                   AST_Try
                 ],
-                function(output) {
+                function (output) {
                   output.add_mapping(this.start);
                 }
               );
-              DEFMAP([AST_ObjectGetter, AST_ObjectSetter], function(output) {
+              DEFMAP([AST_ObjectGetter, AST_ObjectSetter], function (output) {
                 output.add_mapping(this.start, this.key.name);
               });
-              DEFMAP([AST_ObjectProperty], function(output) {
+              DEFMAP([AST_ObjectProperty], function (output) {
                 output.add_mapping(this.start, this.key);
               });
             })();
@@ -40030,11 +39941,11 @@ require = (function() {
               if (typeof pure_funcs == "function") {
                 this.pure_funcs = pure_funcs;
               } else if (typeof pure_funcs == "string") {
-                this.pure_funcs = function(node) {
+                this.pure_funcs = function (node) {
                   return pure_funcs !== node.expression.print_to_string();
                 };
               } else if (Array.isArray(pure_funcs)) {
-                this.pure_funcs = function(node) {
+                this.pure_funcs = function (node) {
                   return (
                     pure_funcs.indexOf(node.expression.print_to_string()) < 0
                   );
@@ -40044,7 +39955,7 @@ require = (function() {
               }
               var top_retain = this.options["top_retain"];
               if (top_retain instanceof RegExp) {
-                this.top_retain = function(def) {
+                this.top_retain = function (def) {
                   return top_retain.test(def.name);
                 };
               } else if (typeof top_retain == "function") {
@@ -40053,7 +39964,7 @@ require = (function() {
                 if (typeof top_retain == "string") {
                   top_retain = top_retain.split(/,/);
                 }
-                this.top_retain = function(def) {
+                this.top_retain = function (def) {
                   return top_retain.indexOf(def.name) >= 0;
                 };
               }
@@ -40071,10 +39982,10 @@ require = (function() {
             }
             Compressor.prototype = new TreeTransformer();
             merge(Compressor.prototype, {
-              option: function(key) {
+              option: function (key) {
                 return this.options[key];
               },
-              exposed: function(def) {
+              exposed: function (def) {
                 if (def.global)
                   for (var i = 0, len = def.orig.length; i < len; i++)
                     if (
@@ -40087,7 +39998,7 @@ require = (function() {
                       return true;
                 return false;
               },
-              compress: function(node) {
+              compress: function (node) {
                 node = node.resolve_defines(this);
                 if (this.option("expression")) {
                   node.process_expression(true);
@@ -40104,7 +40015,7 @@ require = (function() {
                   if (passes > 1) {
                     var count = 0;
                     node.walk(
-                      new TreeWalker(function() {
+                      new TreeWalker(function () {
                         count++;
                       })
                     );
@@ -40131,12 +40042,12 @@ require = (function() {
                 }
                 return node;
               },
-              info: function() {
+              info: function () {
                 if (this.options.warnings == "verbose") {
                   AST_Node.warn.apply(AST_Node, arguments);
                 }
               },
-              warn: function(text, props) {
+              warn: function (text, props) {
                 if (this.options.warnings) {
                   var message = string_template(text, props);
                   if (!(message in this.warnings_produced)) {
@@ -40145,10 +40056,10 @@ require = (function() {
                   }
                 }
               },
-              clear_warnings: function() {
+              clear_warnings: function () {
                 this.warnings_produced = {};
               },
-              before: function(node, descend, in_list) {
+              before: function (node, descend, in_list) {
                 if (node._squeezed) return node;
                 var is_scope = node instanceof AST_Scope;
                 if (is_scope) {
@@ -40166,63 +40077,67 @@ require = (function() {
                 return opt;
               }
             });
-            (function(OPT) {
-              OPT(AST_Node, function(self, compressor) {
+            (function (OPT) {
+              OPT(AST_Node, function (self, compressor) {
                 return self;
               });
-              AST_Node.DEFMETHOD("equivalent_to", function(node) {
+              AST_Node.DEFMETHOD("equivalent_to", function (node) {
                 return (
                   this.TYPE == node.TYPE &&
                   this.print_to_string() == node.print_to_string()
                 );
               });
-              AST_Scope.DEFMETHOD("process_expression", function(
-                insert,
-                compressor
-              ) {
-                var self = this;
-                var tt = new TreeTransformer(function(node) {
-                  if (insert && node instanceof AST_SimpleStatement) {
-                    return make_node(AST_Return, node, { value: node.body });
-                  }
-                  if (!insert && node instanceof AST_Return) {
-                    if (compressor) {
-                      var value =
-                        node.value &&
-                        node.value.drop_side_effect_free(compressor, true);
-                      return value
-                        ? make_node(AST_SimpleStatement, node, { body: value })
-                        : make_node(AST_EmptyStatement, node);
+              AST_Scope.DEFMETHOD(
+                "process_expression",
+                function (insert, compressor) {
+                  var self = this;
+                  var tt = new TreeTransformer(function (node) {
+                    if (insert && node instanceof AST_SimpleStatement) {
+                      return make_node(AST_Return, node, { value: node.body });
                     }
-                    return make_node(AST_SimpleStatement, node, {
-                      body:
-                        node.value ||
-                        make_node(AST_UnaryPrefix, node, {
-                          operator: "void",
-                          expression: make_node(AST_Number, node, { value: 0 })
-                        })
-                    });
-                  }
-                  if (node instanceof AST_Lambda && node !== self) {
+                    if (!insert && node instanceof AST_Return) {
+                      if (compressor) {
+                        var value =
+                          node.value &&
+                          node.value.drop_side_effect_free(compressor, true);
+                        return value
+                          ? make_node(AST_SimpleStatement, node, {
+                              body: value
+                            })
+                          : make_node(AST_EmptyStatement, node);
+                      }
+                      return make_node(AST_SimpleStatement, node, {
+                        body:
+                          node.value ||
+                          make_node(AST_UnaryPrefix, node, {
+                            operator: "void",
+                            expression: make_node(AST_Number, node, {
+                              value: 0
+                            })
+                          })
+                      });
+                    }
+                    if (node instanceof AST_Lambda && node !== self) {
+                      return node;
+                    }
+                    if (node instanceof AST_Block) {
+                      var index = node.body.length - 1;
+                      if (index >= 0) {
+                        node.body[index] = node.body[index].transform(tt);
+                      }
+                    } else if (node instanceof AST_If) {
+                      node.body = node.body.transform(tt);
+                      if (node.alternative) {
+                        node.alternative = node.alternative.transform(tt);
+                      }
+                    } else if (node instanceof AST_With) {
+                      node.body = node.body.transform(tt);
+                    }
                     return node;
-                  }
-                  if (node instanceof AST_Block) {
-                    var index = node.body.length - 1;
-                    if (index >= 0) {
-                      node.body[index] = node.body[index].transform(tt);
-                    }
-                  } else if (node instanceof AST_If) {
-                    node.body = node.body.transform(tt);
-                    if (node.alternative) {
-                      node.alternative = node.alternative.transform(tt);
-                    }
-                  } else if (node instanceof AST_With) {
-                    node.body = node.body.transform(tt);
-                  }
-                  return node;
-                });
-                self.transform(tt);
-              });
+                  });
+                  self.transform(tt);
+                }
+              );
               function read_property(obj, key) {
                 key = get_value(key);
                 if (key instanceof AST_Node) return;
@@ -40289,7 +40204,7 @@ require = (function() {
                   );
                 }
               }
-              (function(def) {
+              (function (def) {
                 def(AST_Node, noop);
                 function reset_def(tw, compressor, def) {
                   def.assignments = 0;
@@ -40305,11 +40220,14 @@ require = (function() {
                     def.init;
                   if (
                     def.fixed instanceof AST_Defun &&
-                    !all(def.references, function(ref) {
+                    !all(def.references, function (ref) {
                       var scope = ref.scope;
                       do {
                         if (def.scope === scope) return true;
-                      } while (scope instanceof AST_Function && (scope = scope.parent_scope));
+                      } while (
+                        scope instanceof AST_Function &&
+                        (scope = scope.parent_scope)
+                      );
                     })
                   ) {
                     tw.defun_ids[def.id] = false;
@@ -40320,7 +40238,7 @@ require = (function() {
                   def.single_use = undefined;
                 }
                 function reset_variables(tw, compressor, scope) {
-                  scope.variables.each(function(def) {
+                  scope.variables.each(function (def) {
                     reset_def(tw, compressor, def);
                     if (def.fixed === null) {
                       def.safe_ids = tw.safe_ids;
@@ -40330,10 +40248,10 @@ require = (function() {
                       mark(tw, def, true);
                     }
                   });
-                  scope.may_call_this = function() {
+                  scope.may_call_this = function () {
                     scope.may_call_this = noop;
                     if (!scope.contains_this()) return;
-                    scope.functions.each(function(def) {
+                    scope.functions.each(function (def) {
                       if (
                         def.init instanceof AST_Defun &&
                         !(def.id in tw.defun_ids)
@@ -40351,7 +40269,7 @@ require = (function() {
                     if (marker === tw.safe_ids) {
                       if (!visited) return def.fixed;
                     } else if (visited) {
-                      def.init.enclosed.forEach(function(d) {
+                      def.init.enclosed.forEach(function (d) {
                         if (def.init.variables.get(d.name) === d) return;
                         if (!safe_to_read(tw, d)) d.fixed = false;
                       });
@@ -40367,7 +40285,7 @@ require = (function() {
                   }
                 }
                 function walk_defuns(tw, scope) {
-                  scope.functions.each(function(def) {
+                  scope.functions.each(function (def) {
                     if (
                       def.init instanceof AST_Defun &&
                       !tw.defun_visited[def.id]
@@ -40423,7 +40341,7 @@ require = (function() {
                       def.fixed.parent_scope === scope
                     );
                   }
-                  return all(def.orig, function(sym) {
+                  return all(def.orig, function (sym) {
                     return !(
                       sym instanceof AST_SymbolDefun ||
                       sym instanceof AST_SymbolLambda
@@ -40529,14 +40447,14 @@ require = (function() {
                     expr.definition().reassigned = true;
                   }
                 }
-                var suppressor = new TreeWalker(function(node) {
+                var suppressor = new TreeWalker(function (node) {
                   if (!(node instanceof AST_Symbol)) return;
                   var d = node.definition();
                   if (!d) return;
                   if (node instanceof AST_SymbolRef) d.references.push(node);
                   d.fixed = false;
                 });
-                def(AST_Accessor, function(tw, descend, compressor) {
+                def(AST_Accessor, function (tw, descend, compressor) {
                   push(tw);
                   reset_variables(tw, compressor, this);
                   descend();
@@ -40544,7 +40462,7 @@ require = (function() {
                   walk_defuns(tw, this);
                   return true;
                 });
-                def(AST_Assign, function(tw, descend, compressor) {
+                def(AST_Assign, function (tw, descend, compressor) {
                   var node = this;
                   var sym = node.left;
                   if (!(sym instanceof AST_SymbolRef)) {
@@ -40561,10 +40479,10 @@ require = (function() {
                   if (is_modified(compressor, tw, node, value, 0)) return;
                   if (!eq) d.chained = true;
                   d.fixed = eq
-                    ? function() {
+                    ? function () {
                         return node.right;
                       }
-                    : function() {
+                    : function () {
                         return make_node(AST_Binary, node, {
                           operator: node.operator.slice(0, -1),
                           left: fixed instanceof AST_Node ? fixed : fixed(),
@@ -40579,7 +40497,7 @@ require = (function() {
                   mark_escaped(tw, d, sym.scope, node, value, 0, 1);
                   return true;
                 });
-                def(AST_Binary, function(tw) {
+                def(AST_Binary, function (tw) {
                   if (!lazy_op[this.operator]) return;
                   this.left.walk(tw);
                   push(tw);
@@ -40587,7 +40505,7 @@ require = (function() {
                   pop(tw);
                   return true;
                 });
-                def(AST_Call, function(tw, descend) {
+                def(AST_Call, function (tw, descend) {
                   tw.find_parent(AST_Scope).may_call_this();
                   var exp = this.expression;
                   if (!(exp instanceof AST_SymbolRef)) return;
@@ -40599,7 +40517,7 @@ require = (function() {
                   defun.walk(tw);
                   return true;
                 });
-                def(AST_Case, function(tw) {
+                def(AST_Case, function (tw) {
                   push(tw);
                   this.expression.walk(tw);
                   pop(tw);
@@ -40608,7 +40526,7 @@ require = (function() {
                   pop(tw);
                   return true;
                 });
-                def(AST_Conditional, function(tw) {
+                def(AST_Conditional, function (tw) {
                   this.condition.walk(tw);
                   push(tw);
                   this.consequent.walk(tw);
@@ -40618,13 +40536,13 @@ require = (function() {
                   pop(tw);
                   return true;
                 });
-                def(AST_Default, function(tw, descend) {
+                def(AST_Default, function (tw, descend) {
                   push(tw);
                   descend();
                   pop(tw);
                   return true;
                 });
-                def(AST_Defun, function(tw, descend, compressor) {
+                def(AST_Defun, function (tw, descend, compressor) {
                   var id = this.name.definition().id;
                   if (tw.defun_visited[id]) return true;
                   if (tw.defun_ids[id] !== tw.safe_ids) return true;
@@ -40637,7 +40555,7 @@ require = (function() {
                   walk_defuns(tw, this);
                   return true;
                 });
-                def(AST_Do, function(tw) {
+                def(AST_Do, function (tw) {
                   var saved_loop = tw.in_loop;
                   tw.in_loop = this;
                   push(tw);
@@ -40651,7 +40569,7 @@ require = (function() {
                   tw.in_loop = saved_loop;
                   return true;
                 });
-                def(AST_For, function(tw) {
+                def(AST_For, function (tw) {
                   if (this.init) this.init.walk(tw);
                   var saved_loop = tw.in_loop;
                   tw.in_loop = this;
@@ -40669,7 +40587,7 @@ require = (function() {
                   tw.in_loop = saved_loop;
                   return true;
                 });
-                def(AST_ForIn, function(tw) {
+                def(AST_ForIn, function (tw) {
                   this.init.walk(suppressor);
                   this.object.walk(tw);
                   var saved_loop = tw.in_loop;
@@ -40680,7 +40598,7 @@ require = (function() {
                   tw.in_loop = saved_loop;
                   return true;
                 });
-                def(AST_Function, function(tw, descend, compressor) {
+                def(AST_Function, function (tw, descend, compressor) {
                   var node = this;
                   node.inlined = false;
                   push(tw);
@@ -40691,13 +40609,13 @@ require = (function() {
                     (iife = tw.parent()) instanceof AST_Call &&
                     iife.expression === node
                   ) {
-                    node.argnames.forEach(function(arg, i) {
+                    node.argnames.forEach(function (arg, i) {
                       var d = arg.definition();
                       if (
                         d.fixed === undefined &&
                         (!node.uses_arguments || tw.has_directive("use strict"))
                       ) {
-                        d.fixed = function() {
+                        d.fixed = function () {
                           return iife.args[i] || make_node(AST_Undefined, iife);
                         };
                         tw.loop_ids[d.id] = tw.in_loop;
@@ -40712,7 +40630,7 @@ require = (function() {
                   walk_defuns(tw, node);
                   return true;
                 });
-                def(AST_If, function(tw) {
+                def(AST_If, function (tw) {
                   this.condition.walk(tw);
                   push(tw);
                   this.body.walk(tw);
@@ -40724,16 +40642,16 @@ require = (function() {
                   }
                   return true;
                 });
-                def(AST_LabeledStatement, function(tw) {
+                def(AST_LabeledStatement, function (tw) {
                   push(tw);
                   this.body.walk(tw);
                   pop(tw);
                   return true;
                 });
-                def(AST_SymbolCatch, function() {
+                def(AST_SymbolCatch, function () {
                   this.definition().fixed = false;
                 });
-                def(AST_SymbolRef, function(tw, descend, compressor) {
+                def(AST_SymbolRef, function (tw, descend, compressor) {
                   var d = this.definition();
                   d.references.push(this);
                   if (
@@ -40788,8 +40706,8 @@ require = (function() {
                     if (defun) defun.walk(tw);
                   }
                 });
-                def(AST_Toplevel, function(tw, descend, compressor) {
-                  this.globals.each(function(def) {
+                def(AST_Toplevel, function (tw, descend, compressor) {
+                  this.globals.each(function (def) {
                     reset_def(tw, compressor, def);
                   });
                   push(tw);
@@ -40799,7 +40717,7 @@ require = (function() {
                   walk_defuns(tw, this);
                   return true;
                 });
-                def(AST_Try, function(tw) {
+                def(AST_Try, function (tw) {
                   push(tw);
                   walk_body(this, tw);
                   pop(tw);
@@ -40811,7 +40729,7 @@ require = (function() {
                   if (this.bfinally) this.bfinally.walk(tw);
                   return true;
                 });
-                def(AST_Unary, function(tw, descend) {
+                def(AST_Unary, function (tw, descend) {
                   var node = this;
                   if (node.operator != "++" && node.operator != "--") return;
                   var exp = node.expression;
@@ -40825,7 +40743,7 @@ require = (function() {
                   var fixed = d.fixed;
                   if (!fixed) return;
                   d.chained = true;
-                  d.fixed = function() {
+                  d.fixed = function () {
                     return make_node(AST_Binary, node, {
                       operator: node.operator.slice(0, -1),
                       left: make_node(AST_UnaryPrefix, node, {
@@ -40840,12 +40758,12 @@ require = (function() {
                   mark(tw, d, true);
                   return true;
                 });
-                def(AST_VarDef, function(tw, descend) {
+                def(AST_VarDef, function (tw, descend) {
                   var node = this;
                   var d = node.name.definition();
                   if (node.value) {
                     if (safe_to_assign(tw, d, node.name.scope, node.value)) {
-                      d.fixed = function() {
+                      d.fixed = function () {
                         return node.value;
                       };
                       tw.loop_ids[d.id] = tw.in_loop;
@@ -40858,7 +40776,7 @@ require = (function() {
                     }
                   }
                 });
-                def(AST_While, function(tw, descend) {
+                def(AST_While, function (tw, descend) {
                   var saved_loop = tw.in_loop;
                   tw.in_loop = this;
                   push(tw);
@@ -40867,18 +40785,18 @@ require = (function() {
                   tw.in_loop = saved_loop;
                   return true;
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("reduce_vars", func);
               });
-              AST_Toplevel.DEFMETHOD("reset_opt_flags", function(compressor) {
+              AST_Toplevel.DEFMETHOD("reset_opt_flags", function (compressor) {
                 var tw = new TreeWalker(
                   compressor.option("reduce_vars")
-                    ? function(node, descend) {
+                    ? function (node, descend) {
                         node._squeezed = false;
                         node._optimized = false;
                         return node.reduce_vars(tw, descend, compressor);
                       }
-                    : function(node) {
+                    : function (node) {
                         node._squeezed = false;
                         node._optimized = false;
                       }
@@ -40890,12 +40808,12 @@ require = (function() {
                 tw.safe_ids = Object.create(null);
                 this.walk(tw);
               });
-              AST_Symbol.DEFMETHOD("fixed_value", function() {
+              AST_Symbol.DEFMETHOD("fixed_value", function () {
                 var fixed = this.definition().fixed;
                 if (!fixed || fixed instanceof AST_Node) return fixed;
                 return fixed();
               });
-              AST_SymbolRef.DEFMETHOD("is_immutable", function() {
+              AST_SymbolRef.DEFMETHOD("is_immutable", function () {
                 var orig = this.definition().orig;
                 return orig.length == 1 && orig[0] instanceof AST_SymbolLambda;
               });
@@ -41051,7 +40969,7 @@ require = (function() {
               var global_names = makePredicate(
                 "Array Boolean clearInterval clearTimeout console Date decodeURI decodeURIComponent encodeURI encodeURIComponent Error escape eval EvalError Function isFinite isNaN JSON Math Number parseFloat parseInt RangeError ReferenceError RegExp Object setInterval setTimeout String SyntaxError TypeError unescape URIError"
               );
-              AST_SymbolRef.DEFMETHOD("is_declared", function(compressor) {
+              AST_SymbolRef.DEFMETHOD("is_declared", function (compressor) {
                 return (
                   !this.definition().undeclared ||
                   (compressor.option("unsafe") && global_names[this.name])
@@ -41115,7 +41033,7 @@ require = (function() {
                   var candidates = [];
                   var stat_index = statements.length;
                   var scanner = new TreeTransformer(
-                    function(node) {
+                    function (node) {
                       if (abort) return node;
                       if (!hit) {
                         if (node !== hit_stack[hit_index]) return node;
@@ -41208,13 +41126,13 @@ require = (function() {
                       }
                       return handle_custom_scan_order(node);
                     },
-                    function(node) {
+                    function (node) {
                       if (abort) return;
                       if (stop_after === node) abort = true;
                       if (stop_if_hit === node) stop_if_hit = null;
                     }
                   );
-                  var multi_replacer = new TreeTransformer(function(node) {
+                  var multi_replacer = new TreeTransformer(function (node) {
                     if (abort) return node;
                     if (!hit) {
                       if (node !== hit_stack[hit_index]) return node;
@@ -41265,7 +41183,7 @@ require = (function() {
                       var replace_all = replace_all_symbols();
                       var may_throw = candidate.may_throw(compressor)
                         ? in_try
-                          ? function(node) {
+                          ? function (node) {
                               return node.has_side_effects(compressor);
                             }
                           : side_effects_external
@@ -41335,9 +41253,8 @@ require = (function() {
                             if (branch !== hit_stack[hit_index]) continue;
                             hit_index++;
                           }
-                          branch.expression = branch.expression.transform(
-                            scanner
-                          );
+                          branch.expression =
+                            branch.expression.transform(scanner);
                           if (!replace_all) break;
                         }
                       }
@@ -41457,7 +41374,7 @@ require = (function() {
                           arg = null;
                         } else {
                           arg.walk(
-                            new TreeWalker(function(node) {
+                            new TreeWalker(function (node) {
                               if (!arg) return true;
                               if (
                                 node instanceof AST_SymbolRef &&
@@ -41706,7 +41623,7 @@ require = (function() {
                     var circular;
                     var def = lhs.definition();
                     expr.walk(
-                      new TreeWalker(function(node) {
+                      new TreeWalker(function (node) {
                         if (circular) return true;
                         if (
                           node instanceof AST_SymbolRef &&
@@ -41722,7 +41639,7 @@ require = (function() {
                     }
                   }
                   function rhs_fuzzy_match(value, fallback) {
-                    return function(node, tw) {
+                    return function (node, tw) {
                       if (tw.in_boolean_context()) {
                         if (
                           value &&
@@ -41743,7 +41660,7 @@ require = (function() {
                     if (candidate instanceof AST_VarDef) {
                       lvalues[candidate.name.name] = lhs;
                     }
-                    var tw = new TreeWalker(function(node) {
+                    var tw = new TreeWalker(function (node) {
                       var sym = root_expr(node);
                       if (
                         sym instanceof AST_SymbolRef ||
@@ -41770,7 +41687,7 @@ require = (function() {
                     var found = false;
                     return statements[stat_index].transform(
                       new TreeTransformer(
-                        function(node, descend, in_list) {
+                        function (node, descend, in_list) {
                           if (found) return node;
                           if (node !== expr && node.body !== expr) return;
                           if (node instanceof AST_VarDef) {
@@ -41787,7 +41704,7 @@ require = (function() {
                             return null;
                           }
                         },
-                        function(node) {
+                        function (node) {
                           if (node instanceof AST_Sequence)
                             switch (node.expressions.length) {
                               case 0:
@@ -41848,7 +41765,7 @@ require = (function() {
                     )
                       return false;
                     if (def.scope !== scope) return true;
-                    return !all(def.references, function(ref) {
+                    return !all(def.references, function (ref) {
                       return ref.scope.resolve() === scope;
                     });
                   }
@@ -42096,7 +42013,7 @@ require = (function() {
                   function extract_functions() {
                     var tail = statements.slice(i + 1);
                     statements.length = i + 1;
-                    return tail.filter(function(stat) {
+                    return tail.filter(function (stat) {
                       if (stat instanceof AST_Defun) {
                         statements.push(stat);
                         return false;
@@ -42173,7 +42090,7 @@ require = (function() {
                   statements.length = n;
                   CHANGED = n != len;
                   if (has_quit)
-                    has_quit.forEach(function(stat) {
+                    has_quit.forEach(function (stat) {
                       extract_declarations_from_unreachable_code(
                         compressor,
                         stat,
@@ -42182,7 +42099,7 @@ require = (function() {
                     });
                 }
                 function declarations_only(node) {
-                  return all(node.definitions, function(var_def) {
+                  return all(node.definitions, function (var_def) {
                     return !var_def.value;
                   });
                 }
@@ -42259,7 +42176,7 @@ require = (function() {
                         if (!(stat.init instanceof AST_Definitions)) {
                           var abort = false;
                           prev.body.walk(
-                            new TreeWalker(function(node) {
+                            new TreeWalker(function (node) {
                               if (abort || node instanceof AST_Scope)
                                 return true;
                               if (
@@ -42362,10 +42279,10 @@ require = (function() {
                     if (prop instanceof AST_Node) break;
                     prop = "" + prop;
                     var diff = compressor.has_directive("use strict")
-                      ? function(node) {
+                      ? function (node) {
                           return node.key != prop && node.key.name != prop;
                         }
-                      : function(node) {
+                      : function (node) {
                           return node.key.name != prop;
                         };
                     if (!all(value.properties, diff)) break;
@@ -42489,7 +42406,7 @@ require = (function() {
                   );
                 }
                 stat.walk(
-                  new TreeWalker(function(node) {
+                  new TreeWalker(function (node) {
                     if (node instanceof AST_Definitions) {
                       compressor.warn(
                         "Declarations in unreachable code! [{file}:{line},{col}]",
@@ -42531,19 +42448,19 @@ require = (function() {
                     !node.expression.has_side_effects(compressor))
                 );
               }
-              (function(def) {
+              (function (def) {
                 def(AST_Node, return_false);
                 def(AST_Array, return_true);
-                def(AST_Assign, function() {
+                def(AST_Assign, function () {
                   return this.operator == "=" && this.right.is_truthy();
                 });
                 def(AST_Lambda, return_true);
                 def(AST_Object, return_true);
                 def(AST_RegExp, return_true);
-                def(AST_Sequence, function() {
+                def(AST_Sequence, function () {
                   return this.tail_node().is_truthy();
                 });
-                def(AST_SymbolRef, function() {
+                def(AST_SymbolRef, function () {
                   var fixed = this.fixed_value();
                   if (!fixed) return false;
                   this.is_truthy = return_false;
@@ -42551,41 +42468,44 @@ require = (function() {
                   delete this.is_truthy;
                   return result;
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("is_truthy", func);
               });
-              (function(def) {
-                AST_Node.DEFMETHOD("may_throw_on_access", function(compressor) {
-                  return (
-                    !compressor.option("pure_getters") ||
-                    this._dot_throw(compressor)
-                  );
-                });
+              (function (def) {
+                AST_Node.DEFMETHOD(
+                  "may_throw_on_access",
+                  function (compressor) {
+                    return (
+                      !compressor.option("pure_getters") ||
+                      this._dot_throw(compressor)
+                    );
+                  }
+                );
                 function is_strict(compressor) {
                   return /strict/.test(compressor.option("pure_getters"));
                 }
                 def(AST_Node, is_strict);
                 def(AST_Array, return_false);
-                def(AST_Assign, function(compressor) {
+                def(AST_Assign, function (compressor) {
                   return (
                     this.operator == "=" && this.right._dot_throw(compressor)
                   );
                 });
-                def(AST_Binary, function(compressor) {
+                def(AST_Binary, function (compressor) {
                   return (
                     (this.operator == "&&" || this.operator == "||") &&
                     (this.left._dot_throw(compressor) ||
                       this.right._dot_throw(compressor))
                   );
                 });
-                def(AST_Conditional, function(compressor) {
+                def(AST_Conditional, function (compressor) {
                   return (
                     this.consequent._dot_throw(compressor) ||
                     this.alternative._dot_throw(compressor)
                   );
                 });
                 def(AST_Constant, return_false);
-                def(AST_Dot, function(compressor) {
+                def(AST_Dot, function (compressor) {
                   if (!is_strict(compressor)) return false;
                   var exp = this.expression;
                   if (exp instanceof AST_SymbolRef) exp = exp.fixed_value();
@@ -42595,17 +42515,17 @@ require = (function() {
                 });
                 def(AST_Lambda, return_false);
                 def(AST_Null, return_true);
-                def(AST_Object, function(compressor) {
+                def(AST_Object, function (compressor) {
                   if (!is_strict(compressor)) return false;
                   for (var i = this.properties.length; --i >= 0; )
                     if (this.properties[i].value instanceof AST_Accessor)
                       return true;
                   return false;
                 });
-                def(AST_Sequence, function(compressor) {
+                def(AST_Sequence, function (compressor) {
                   return this.tail_node()._dot_throw(compressor);
                 });
-                def(AST_SymbolRef, function(compressor) {
+                def(AST_SymbolRef, function (compressor) {
                   if (this.is_undefined) return true;
                   if (!is_strict(compressor)) return false;
                   if (is_undeclared_ref(this) && this.is_declared(compressor))
@@ -42618,17 +42538,17 @@ require = (function() {
                   delete this._dot_throw;
                   return result;
                 });
-                def(AST_UnaryPrefix, function() {
+                def(AST_UnaryPrefix, function () {
                   return this.operator == "void";
                 });
                 def(AST_UnaryPostfix, return_false);
                 def(AST_Undefined, return_true);
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("_dot_throw", func);
               });
-              (function(def) {
+              (function (def) {
                 def(AST_Node, return_false);
-                def(AST_Assign, function(compressor) {
+                def(AST_Assign, function (compressor) {
                   return (
                     this.operator == "=" && this.right.is_boolean(compressor)
                   );
@@ -42636,7 +42556,7 @@ require = (function() {
                 var binary = makePredicate(
                   "in instanceof == != === !== < <= >= >"
                 );
-                def(AST_Binary, function(compressor) {
+                def(AST_Binary, function (compressor) {
                   return (
                     binary[this.operator] ||
                     (lazy_op[this.operator] &&
@@ -42648,7 +42568,7 @@ require = (function() {
                 var fn = makePredicate(
                   "every hasOwnProperty isPrototypeOf propertyIsEnumerable some"
                 );
-                def(AST_Call, function(compressor) {
+                def(AST_Call, function (compressor) {
                   if (!compressor.option("unsafe")) return false;
                   var exp = this.expression;
                   return (
@@ -42658,17 +42578,17 @@ require = (function() {
                         exp.expression instanceof AST_RegExp))
                   );
                 });
-                def(AST_Conditional, function(compressor) {
+                def(AST_Conditional, function (compressor) {
                   return (
                     this.consequent.is_boolean(compressor) &&
                     this.alternative.is_boolean(compressor)
                   );
                 });
                 def(AST_New, return_false);
-                def(AST_Sequence, function(compressor) {
+                def(AST_Sequence, function (compressor) {
                   return this.tail_node().is_boolean(compressor);
                 });
-                def(AST_SymbolRef, function(compressor) {
+                def(AST_SymbolRef, function (compressor) {
                   var fixed = this.fixed_value();
                   if (!fixed) return false;
                   this.is_boolean = return_false;
@@ -42677,22 +42597,22 @@ require = (function() {
                   return result;
                 });
                 var unary = makePredicate("! delete");
-                def(AST_UnaryPrefix, function() {
+                def(AST_UnaryPrefix, function () {
                   return unary[this.operator];
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("is_boolean", func);
               });
-              (function(def) {
+              (function (def) {
                 def(AST_Node, return_false);
                 var binary = makePredicate("- * / % & | ^ << >> >>>");
-                def(AST_Assign, function(compressor) {
+                def(AST_Assign, function (compressor) {
                   return (
                     binary[this.operator.slice(0, -1)] ||
                     (this.operator == "=" && this.right.is_number(compressor))
                   );
                 });
-                def(AST_Binary, function(compressor) {
+                def(AST_Binary, function (compressor) {
                   return (
                     binary[this.operator] ||
                     (this.operator == "+" &&
@@ -42746,7 +42666,7 @@ require = (function() {
                   "toFixed",
                   "toPrecision"
                 ]);
-                def(AST_Call, function(compressor) {
+                def(AST_Call, function (compressor) {
                   if (!compressor.option("unsafe")) return false;
                   var exp = this.expression;
                   return (
@@ -42756,7 +42676,7 @@ require = (function() {
                         exp.expression.name == "Math"))
                   );
                 });
-                def(AST_Conditional, function(compressor) {
+                def(AST_Conditional, function (compressor) {
                   return (
                     this.consequent.is_number(compressor) &&
                     this.alternative.is_number(compressor)
@@ -42764,10 +42684,10 @@ require = (function() {
                 });
                 def(AST_New, return_false);
                 def(AST_Number, return_true);
-                def(AST_Sequence, function(compressor) {
+                def(AST_Sequence, function (compressor) {
                   return this.tail_node().is_number(compressor);
                 });
-                def(AST_SymbolRef, function(compressor) {
+                def(AST_SymbolRef, function (compressor) {
                   var fixed = this.fixed_value();
                   if (!fixed) return false;
                   this.is_number = return_false;
@@ -42776,38 +42696,38 @@ require = (function() {
                   return result;
                 });
                 var unary = makePredicate("+ - ~ ++ --");
-                def(AST_Unary, function() {
+                def(AST_Unary, function () {
                   return unary[this.operator];
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("is_number", func);
               });
-              (function(def) {
+              (function (def) {
                 def(AST_Node, return_false);
-                def(AST_Assign, function(compressor) {
+                def(AST_Assign, function (compressor) {
                   return (
                     (this.operator == "=" || this.operator == "+=") &&
                     this.right.is_string(compressor)
                   );
                 });
-                def(AST_Binary, function(compressor) {
+                def(AST_Binary, function (compressor) {
                   return (
                     this.operator == "+" &&
                     (this.left.is_string(compressor) ||
                       this.right.is_string(compressor))
                   );
                 });
-                def(AST_Conditional, function(compressor) {
+                def(AST_Conditional, function (compressor) {
                   return (
                     this.consequent.is_string(compressor) &&
                     this.alternative.is_string(compressor)
                   );
                 });
-                def(AST_Sequence, function(compressor) {
+                def(AST_Sequence, function (compressor) {
                   return this.tail_node().is_string(compressor);
                 });
                 def(AST_String, return_true);
-                def(AST_SymbolRef, function(compressor) {
+                def(AST_SymbolRef, function (compressor) {
                   var fixed = this.fixed_value();
                   if (!fixed) return false;
                   this.is_string = return_false;
@@ -42815,10 +42735,10 @@ require = (function() {
                   delete this.is_string;
                   return result;
                 });
-                def(AST_UnaryPrefix, function() {
+                def(AST_UnaryPrefix, function () {
                   return this.operator == "typeof";
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("is_string", func);
               });
               var lazy_op = makePredicate("&& ||");
@@ -42832,13 +42752,13 @@ require = (function() {
                 if (parent instanceof AST_Assign && parent.left === node)
                   return node;
               }
-              (function(def) {
+              (function (def) {
                 function to_node(value, orig) {
                   if (value instanceof AST_Node)
                     return make_node(value.CTOR, orig, value);
                   if (Array.isArray(value))
                     return make_node(AST_Array, orig, {
-                      elements: value.map(function(value) {
+                      elements: value.map(function (value) {
                         return to_node(value, orig);
                       })
                     });
@@ -42865,48 +42785,51 @@ require = (function() {
                     node.start
                   );
                 }
-                AST_Toplevel.DEFMETHOD("resolve_defines", function(compressor) {
-                  if (!compressor.option("global_defs")) return this;
-                  this.figure_out_scope({ ie8: compressor.option("ie8") });
-                  return this.transform(
-                    new TreeTransformer(function(node) {
-                      var def = node._find_defs(compressor, "");
-                      if (!def) return;
-                      var level = 0,
-                        child = node,
-                        parent;
-                      while ((parent = this.parent(level++))) {
-                        if (!(parent instanceof AST_PropAccess)) break;
-                        if (parent.expression !== child) break;
-                        child = parent;
-                      }
-                      if (is_lhs(child, parent)) {
-                        warn(compressor, node);
-                        return;
-                      }
-                      return def;
-                    })
-                  );
-                });
+                AST_Toplevel.DEFMETHOD(
+                  "resolve_defines",
+                  function (compressor) {
+                    if (!compressor.option("global_defs")) return this;
+                    this.figure_out_scope({ ie8: compressor.option("ie8") });
+                    return this.transform(
+                      new TreeTransformer(function (node) {
+                        var def = node._find_defs(compressor, "");
+                        if (!def) return;
+                        var level = 0,
+                          child = node,
+                          parent;
+                        while ((parent = this.parent(level++))) {
+                          if (!(parent instanceof AST_PropAccess)) break;
+                          if (parent.expression !== child) break;
+                          child = parent;
+                        }
+                        if (is_lhs(child, parent)) {
+                          warn(compressor, node);
+                          return;
+                        }
+                        return def;
+                      })
+                    );
+                  }
+                );
                 def(AST_Node, noop);
-                def(AST_Dot, function(compressor, suffix) {
+                def(AST_Dot, function (compressor, suffix) {
                   return this.expression._find_defs(
                     compressor,
                     "." + this.property + suffix
                   );
                 });
-                def(AST_SymbolDeclaration, function(compressor) {
+                def(AST_SymbolDeclaration, function (compressor) {
                   if (!this.global()) return;
                   if (HOP(compressor.option("global_defs"), this.name))
                     warn(compressor, this);
                 });
-                def(AST_SymbolRef, function(compressor, suffix) {
+                def(AST_SymbolRef, function (compressor, suffix) {
                   if (!this.global()) return;
                   var defines = compressor.option("global_defs");
                   var name = this.name + suffix;
                   if (HOP(defines, name)) return to_node(defines[name], this);
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("_find_defs", func);
               });
               function best_of_expression(ast1, ast2) {
@@ -42922,9 +42845,11 @@ require = (function() {
                 ).body;
               }
               function best_of(compressor, ast1, ast2) {
-                return (first_in_statement(compressor)
-                  ? best_of_statement
-                  : best_of_expression)(ast1, ast2);
+                return (
+                  first_in_statement(compressor)
+                    ? best_of_statement
+                    : best_of_expression
+                )(ast1, ast2);
               }
               function convert_to_predicate(obj) {
                 for (var key in obj) {
@@ -42998,12 +42923,12 @@ require = (function() {
                 String: ["fromCharCode"]
               };
               convert_to_predicate(static_fns);
-              (function(def) {
-                AST_Node.DEFMETHOD("evaluate", function(compressor) {
+              (function (def) {
+                AST_Node.DEFMETHOD("evaluate", function (compressor) {
                   if (!compressor.option("evaluate")) return this;
                   var cached = [];
                   var val = this._eval(compressor, cached, 1);
-                  cached.forEach(function(node) {
+                  cached.forEach(function (node) {
                     delete node._eval;
                   });
                   if (!val || val instanceof RegExp) return val;
@@ -43012,7 +42937,7 @@ require = (function() {
                   return val;
                 });
                 var unaryPrefix = makePredicate("! ~ - + void");
-                AST_Node.DEFMETHOD("is_constant", function() {
+                AST_Node.DEFMETHOD("is_constant", function () {
                   if (this instanceof AST_Constant) {
                     return !(this instanceof AST_RegExp);
                   } else {
@@ -43023,7 +42948,7 @@ require = (function() {
                     );
                   }
                 });
-                def(AST_Statement, function() {
+                def(AST_Statement, function () {
                   throw new Error(
                     string_template(
                       "Cannot evaluate a statement [{file}:{line},{col}]",
@@ -43033,21 +42958,21 @@ require = (function() {
                 });
                 def(AST_Lambda, return_this);
                 def(AST_Node, return_this);
-                def(AST_Constant, function() {
+                def(AST_Constant, function () {
                   return this.getValue();
                 });
-                def(AST_Function, function(compressor) {
+                def(AST_Function, function (compressor) {
                   if (compressor.option("unsafe")) {
-                    var fn = function() {};
+                    var fn = function () {};
                     fn.node = this;
-                    fn.toString = function() {
+                    fn.toString = function () {
                       return "function(){}";
                     };
                     return fn;
                   }
                   return this;
                 });
-                def(AST_Array, function(compressor, cached, depth) {
+                def(AST_Array, function (compressor, cached, depth) {
                   if (compressor.option("unsafe")) {
                     var elements = [];
                     for (var i = 0, len = this.elements.length; i < len; i++) {
@@ -43060,7 +42985,7 @@ require = (function() {
                   }
                   return this;
                 });
-                def(AST_Object, function(compressor, cached, depth) {
+                def(AST_Object, function (compressor, cached, depth) {
                   if (compressor.option("unsafe")) {
                     var val = {};
                     for (
@@ -43088,7 +43013,7 @@ require = (function() {
                   return this;
                 });
                 var non_converting_unary = makePredicate("! typeof void");
-                def(AST_UnaryPrefix, function(compressor, cached, depth) {
+                def(AST_UnaryPrefix, function (compressor, cached, depth) {
                   var e = this.expression;
                   if (
                     compressor.option("typeofs") &&
@@ -43097,7 +43022,7 @@ require = (function() {
                       (e instanceof AST_SymbolRef &&
                         e.fixed_value() instanceof AST_Lambda))
                   ) {
-                    return typeof function() {};
+                    return typeof function () {};
                   }
                   if (!non_converting_unary[this.operator]) depth++;
                   var v = e._eval(compressor, cached, depth);
@@ -43126,7 +43051,7 @@ require = (function() {
                   return this;
                 });
                 var non_converting_binary = makePredicate("&& || === !==");
-                def(AST_Binary, function(compressor, cached, depth) {
+                def(AST_Binary, function (compressor, cached, depth) {
                   if (!non_converting_binary[this.operator]) depth++;
                   var left = this.left._eval(compressor, cached, depth);
                   if (left === this.left) return this;
@@ -43204,7 +43129,7 @@ require = (function() {
                     ? this
                     : result;
                 });
-                def(AST_Conditional, function(compressor, cached, depth) {
+                def(AST_Conditional, function (compressor, cached, depth) {
                   var condition = this.condition._eval(
                     compressor,
                     cached,
@@ -43215,7 +43140,7 @@ require = (function() {
                   var value = node._eval(compressor, cached, depth);
                   return value === node ? this : value;
                 });
-                def(AST_SymbolRef, function(compressor, cached, depth) {
+                def(AST_SymbolRef, function (compressor, cached, depth) {
                   var fixed = this.fixed_value();
                   if (!fixed) return this;
                   var value;
@@ -43226,7 +43151,7 @@ require = (function() {
                     value = fixed._eval(compressor, cached, depth);
                     delete this._eval;
                     if (value === fixed) return this;
-                    fixed._eval = function() {
+                    fixed._eval = function () {
                       return value;
                     };
                     cached.push(fixed);
@@ -43264,7 +43189,7 @@ require = (function() {
                   ]
                 };
                 convert_to_predicate(static_values);
-                def(AST_PropAccess, function(compressor, cached, depth) {
+                def(AST_PropAccess, function (compressor, cached, depth) {
                   if (compressor.option("unsafe")) {
                     var key = this.property;
                     if (key instanceof AST_Node) {
@@ -43294,7 +43219,7 @@ require = (function() {
                   }
                   return this;
                 });
-                def(AST_Call, function(compressor, cached, depth) {
+                def(AST_Call, function (compressor, cached, depth) {
                   var exp = this.expression;
                   if (
                     compressor.option("unsafe") &&
@@ -43341,10 +43266,10 @@ require = (function() {
                   return this;
                 });
                 def(AST_New, return_this);
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("_eval", func);
               });
-              (function(def) {
+              (function (def) {
                 function basic_negation(exp) {
                   return make_node(AST_UnaryPrefix, exp, {
                     operator: "!",
@@ -43363,31 +43288,31 @@ require = (function() {
                   }
                   return best_of_expression(negated, alt);
                 }
-                def(AST_Node, function() {
+                def(AST_Node, function () {
                   return basic_negation(this);
                 });
-                def(AST_Statement, function() {
+                def(AST_Statement, function () {
                   throw new Error("Cannot negate a statement");
                 });
-                def(AST_Function, function() {
+                def(AST_Function, function () {
                   return basic_negation(this);
                 });
-                def(AST_UnaryPrefix, function() {
+                def(AST_UnaryPrefix, function () {
                   if (this.operator == "!") return this.expression;
                   return basic_negation(this);
                 });
-                def(AST_Sequence, function(compressor) {
+                def(AST_Sequence, function (compressor) {
                   var expressions = this.expressions.slice();
                   expressions.push(expressions.pop().negate(compressor));
                   return make_sequence(this, expressions);
                 });
-                def(AST_Conditional, function(compressor, first_in_statement) {
+                def(AST_Conditional, function (compressor, first_in_statement) {
                   var self = this.clone();
                   self.consequent = self.consequent.negate(compressor);
                   self.alternative = self.alternative.negate(compressor);
                   return best(this, self, first_in_statement);
                 });
-                def(AST_Binary, function(compressor, first_in_statement) {
+                def(AST_Binary, function (compressor, first_in_statement) {
                   var self = this.clone(),
                     op = this.operator;
                   if (compressor.option("unsafe_comps")) {
@@ -43438,18 +43363,18 @@ require = (function() {
                   }
                   return basic_negation(this);
                 });
-              })(function(node, func) {
-                node.DEFMETHOD("negate", function(
-                  compressor,
-                  first_in_statement
-                ) {
-                  return func.call(this, compressor, first_in_statement);
-                });
+              })(function (node, func) {
+                node.DEFMETHOD(
+                  "negate",
+                  function (compressor, first_in_statement) {
+                    return func.call(this, compressor, first_in_statement);
+                  }
+                );
               });
               var global_pure_fns = makePredicate(
                 "Boolean decodeURI decodeURIComponent Date encodeURI encodeURIComponent Error escape EvalError isFinite isNaN Number Object parseFloat parseInt RangeError ReferenceError String SyntaxError TypeError unescape URIError"
               );
-              AST_Call.DEFMETHOD("is_expr_pure", function(compressor) {
+              AST_Call.DEFMETHOD("is_expr_pure", function (compressor) {
                 if (compressor.option("unsafe")) {
                   var expr = this.expression;
                   if (is_undeclared_ref(expr) && global_pure_fns[expr.name])
@@ -43465,7 +43390,7 @@ require = (function() {
                 return this.pure || !compressor.pure_funcs(this);
               });
               AST_Node.DEFMETHOD("is_call_pure", return_false);
-              AST_Dot.DEFMETHOD("is_call_pure", function(compressor) {
+              AST_Dot.DEFMETHOD("is_call_pure", function (compressor) {
                 if (!compressor.option("unsafe")) return;
                 var expr = this.expression;
                 var map;
@@ -43484,27 +43409,27 @@ require = (function() {
                 }
                 return map && map[this.property];
               });
-              (function(def) {
+              (function (def) {
                 function any(list, compressor) {
                   for (var i = list.length; --i >= 0; )
                     if (list[i].has_side_effects(compressor)) return true;
                   return false;
                 }
                 def(AST_Node, return_true);
-                def(AST_Array, function(compressor) {
+                def(AST_Array, function (compressor) {
                   return any(this.elements, compressor);
                 });
                 def(AST_Assign, return_true);
-                def(AST_Binary, function(compressor) {
+                def(AST_Binary, function (compressor) {
                   return (
                     this.left.has_side_effects(compressor) ||
                     this.right.has_side_effects(compressor)
                   );
                 });
-                def(AST_Block, function(compressor) {
+                def(AST_Block, function (compressor) {
                   return any(this.body, compressor);
                 });
-                def(AST_Call, function(compressor) {
+                def(AST_Call, function (compressor) {
                   if (
                     !this.is_expr_pure(compressor) &&
                     (!this.expression.is_call_pure(compressor) ||
@@ -43514,13 +43439,13 @@ require = (function() {
                   }
                   return any(this.args, compressor);
                 });
-                def(AST_Case, function(compressor) {
+                def(AST_Case, function (compressor) {
                   return (
                     this.expression.has_side_effects(compressor) ||
                     any(this.body, compressor)
                   );
                 });
-                def(AST_Conditional, function(compressor) {
+                def(AST_Conditional, function (compressor) {
                   return (
                     this.condition.has_side_effects(compressor) ||
                     this.consequent.has_side_effects(compressor) ||
@@ -43528,17 +43453,17 @@ require = (function() {
                   );
                 });
                 def(AST_Constant, return_false);
-                def(AST_Definitions, function(compressor) {
+                def(AST_Definitions, function (compressor) {
                   return any(this.definitions, compressor);
                 });
-                def(AST_Dot, function(compressor) {
+                def(AST_Dot, function (compressor) {
                   return (
                     this.expression.may_throw_on_access(compressor) ||
                     this.expression.has_side_effects(compressor)
                   );
                 });
                 def(AST_EmptyStatement, return_false);
-                def(AST_If, function(compressor) {
+                def(AST_If, function (compressor) {
                   return (
                     this.condition.has_side_effects(compressor) ||
                     (this.body && this.body.has_side_effects(compressor)) ||
@@ -43546,41 +43471,41 @@ require = (function() {
                       this.alternative.has_side_effects(compressor))
                   );
                 });
-                def(AST_LabeledStatement, function(compressor) {
+                def(AST_LabeledStatement, function (compressor) {
                   return this.body.has_side_effects(compressor);
                 });
                 def(AST_Lambda, return_false);
-                def(AST_Object, function(compressor) {
+                def(AST_Object, function (compressor) {
                   return any(this.properties, compressor);
                 });
-                def(AST_ObjectProperty, function(compressor) {
+                def(AST_ObjectProperty, function (compressor) {
                   return this.value.has_side_effects(compressor);
                 });
-                def(AST_Sub, function(compressor) {
+                def(AST_Sub, function (compressor) {
                   return (
                     this.expression.may_throw_on_access(compressor) ||
                     this.expression.has_side_effects(compressor) ||
                     this.property.has_side_effects(compressor)
                   );
                 });
-                def(AST_Sequence, function(compressor) {
+                def(AST_Sequence, function (compressor) {
                   return any(this.expressions, compressor);
                 });
-                def(AST_SimpleStatement, function(compressor) {
+                def(AST_SimpleStatement, function (compressor) {
                   return this.body.has_side_effects(compressor);
                 });
-                def(AST_Switch, function(compressor) {
+                def(AST_Switch, function (compressor) {
                   return (
                     this.expression.has_side_effects(compressor) ||
                     any(this.body, compressor)
                   );
                 });
                 def(AST_SymbolDeclaration, return_false);
-                def(AST_SymbolRef, function(compressor) {
+                def(AST_SymbolRef, function (compressor) {
                   return !this.is_declared(compressor);
                 });
                 def(AST_This, return_false);
-                def(AST_Try, function(compressor) {
+                def(AST_Try, function (compressor) {
                   return (
                     any(this.body, compressor) ||
                     (this.bcatch && this.bcatch.has_side_effects(compressor)) ||
@@ -43588,19 +43513,19 @@ require = (function() {
                       this.bfinally.has_side_effects(compressor))
                   );
                 });
-                def(AST_Unary, function(compressor) {
+                def(AST_Unary, function (compressor) {
                   return (
                     unary_side_effects[this.operator] ||
                     this.expression.has_side_effects(compressor)
                   );
                 });
-                def(AST_VarDef, function(compressor) {
+                def(AST_VarDef, function (compressor) {
                   return this.value;
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("has_side_effects", func);
               });
-              (function(def) {
+              (function (def) {
                 def(AST_Node, return_true);
                 def(AST_Constant, return_false);
                 def(AST_EmptyStatement, return_false);
@@ -43612,10 +43537,10 @@ require = (function() {
                     if (list[i].may_throw(compressor)) return true;
                   return false;
                 }
-                def(AST_Array, function(compressor) {
+                def(AST_Array, function (compressor) {
                   return any(this.elements, compressor);
                 });
-                def(AST_Assign, function(compressor) {
+                def(AST_Assign, function (compressor) {
                   if (this.right.may_throw(compressor)) return true;
                   if (
                     !compressor.has_directive("use strict") &&
@@ -43626,16 +43551,16 @@ require = (function() {
                   }
                   return this.left.may_throw(compressor);
                 });
-                def(AST_Binary, function(compressor) {
+                def(AST_Binary, function (compressor) {
                   return (
                     this.left.may_throw(compressor) ||
                     this.right.may_throw(compressor)
                   );
                 });
-                def(AST_Block, function(compressor) {
+                def(AST_Block, function (compressor) {
                   return any(this.body, compressor);
                 });
-                def(AST_Call, function(compressor) {
+                def(AST_Call, function (compressor) {
                   if (any(this.args, compressor)) return true;
                   if (this.is_expr_pure(compressor)) return false;
                   if (this.expression.may_throw(compressor)) return true;
@@ -43644,76 +43569,76 @@ require = (function() {
                     any(this.expression.body, compressor)
                   );
                 });
-                def(AST_Case, function(compressor) {
+                def(AST_Case, function (compressor) {
                   return (
                     this.expression.may_throw(compressor) ||
                     any(this.body, compressor)
                   );
                 });
-                def(AST_Conditional, function(compressor) {
+                def(AST_Conditional, function (compressor) {
                   return (
                     this.condition.may_throw(compressor) ||
                     this.consequent.may_throw(compressor) ||
                     this.alternative.may_throw(compressor)
                   );
                 });
-                def(AST_Definitions, function(compressor) {
+                def(AST_Definitions, function (compressor) {
                   return any(this.definitions, compressor);
                 });
-                def(AST_Dot, function(compressor) {
+                def(AST_Dot, function (compressor) {
                   return (
                     this.expression.may_throw_on_access(compressor) ||
                     this.expression.may_throw(compressor)
                   );
                 });
-                def(AST_If, function(compressor) {
+                def(AST_If, function (compressor) {
                   return (
                     this.condition.may_throw(compressor) ||
                     (this.body && this.body.may_throw(compressor)) ||
                     (this.alternative && this.alternative.may_throw(compressor))
                   );
                 });
-                def(AST_LabeledStatement, function(compressor) {
+                def(AST_LabeledStatement, function (compressor) {
                   return this.body.may_throw(compressor);
                 });
-                def(AST_Object, function(compressor) {
+                def(AST_Object, function (compressor) {
                   return any(this.properties, compressor);
                 });
-                def(AST_ObjectProperty, function(compressor) {
+                def(AST_ObjectProperty, function (compressor) {
                   return this.value.may_throw(compressor);
                 });
-                def(AST_Return, function(compressor) {
+                def(AST_Return, function (compressor) {
                   return this.value && this.value.may_throw(compressor);
                 });
-                def(AST_Sequence, function(compressor) {
+                def(AST_Sequence, function (compressor) {
                   return any(this.expressions, compressor);
                 });
-                def(AST_SimpleStatement, function(compressor) {
+                def(AST_SimpleStatement, function (compressor) {
                   return this.body.may_throw(compressor);
                 });
-                def(AST_Sub, function(compressor) {
+                def(AST_Sub, function (compressor) {
                   return (
                     this.expression.may_throw_on_access(compressor) ||
                     this.expression.may_throw(compressor) ||
                     this.property.may_throw(compressor)
                   );
                 });
-                def(AST_Switch, function(compressor) {
+                def(AST_Switch, function (compressor) {
                   return (
                     this.expression.may_throw(compressor) ||
                     any(this.body, compressor)
                   );
                 });
-                def(AST_SymbolRef, function(compressor) {
+                def(AST_SymbolRef, function (compressor) {
                   return !this.is_declared(compressor);
                 });
-                def(AST_Try, function(compressor) {
+                def(AST_Try, function (compressor) {
                   return this.bcatch
                     ? this.bcatch.may_throw(compressor)
                     : any(this.body, compressor) ||
                         (this.bfinally && this.bfinally.may_throw(compressor));
                 });
-                def(AST_Unary, function(compressor) {
+                def(AST_Unary, function (compressor) {
                   if (
                     this.operator == "typeof" &&
                     this.expression instanceof AST_SymbolRef
@@ -43721,35 +43646,35 @@ require = (function() {
                     return false;
                   return this.expression.may_throw(compressor);
                 });
-                def(AST_VarDef, function(compressor) {
+                def(AST_VarDef, function (compressor) {
                   if (!this.value) return false;
                   return this.value.may_throw(compressor);
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("may_throw", func);
               });
-              (function(def) {
+              (function (def) {
                 function all(list) {
                   for (var i = list.length; --i >= 0; )
                     if (!list[i].is_constant_expression()) return false;
                   return true;
                 }
                 def(AST_Node, return_false);
-                def(AST_Array, function() {
+                def(AST_Array, function () {
                   return all(this.elements);
                 });
-                def(AST_Binary, function() {
+                def(AST_Binary, function () {
                   return (
                     this.left.is_constant_expression() &&
                     this.right.is_constant_expression()
                   );
                 });
                 def(AST_Constant, return_true);
-                def(AST_Lambda, function(scope) {
+                def(AST_Lambda, function (scope) {
                   var self = this;
                   var result = true;
                   self.walk(
-                    new TreeWalker(function(node) {
+                    new TreeWalker(function (node) {
                       if (!result) return true;
                       if (node instanceof AST_SymbolRef) {
                         if (self.inlined) {
@@ -43778,22 +43703,22 @@ require = (function() {
                   );
                   return result;
                 });
-                def(AST_Object, function() {
+                def(AST_Object, function () {
                   return all(this.properties);
                 });
-                def(AST_ObjectProperty, function() {
+                def(AST_ObjectProperty, function () {
                   return this.value.is_constant_expression();
                 });
-                def(AST_Unary, function() {
+                def(AST_Unary, function () {
                   return this.expression.is_constant_expression();
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("is_constant_expression", func);
               });
               function aborts(thing) {
                 return thing && thing.aborts();
               }
-              (function(def) {
+              (function (def) {
                 def(AST_Statement, return_null);
                 def(AST_Jump, return_this);
                 function block_aborts() {
@@ -43802,7 +43727,7 @@ require = (function() {
                 }
                 def(AST_BlockStatement, block_aborts);
                 def(AST_SwitchBranch, block_aborts);
-                def(AST_If, function() {
+                def(AST_If, function () {
                   return (
                     this.alternative &&
                     aborts(this.body) &&
@@ -43810,11 +43735,11 @@ require = (function() {
                     this
                   );
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("aborts", func);
               });
               var directives = makePredicate(["use asm", "use strict"]);
-              OPT(AST_Directive, function(self, compressor) {
+              OPT(AST_Directive, function (self, compressor) {
                 if (
                   compressor.option("directives") &&
                   (!directives[self.value] ||
@@ -43824,12 +43749,12 @@ require = (function() {
                 }
                 return self;
               });
-              OPT(AST_Debugger, function(self, compressor) {
+              OPT(AST_Debugger, function (self, compressor) {
                 if (compressor.option("drop_debugger"))
                   return make_node(AST_EmptyStatement, self);
                 return self;
               });
-              OPT(AST_LabeledStatement, function(self, compressor) {
+              OPT(AST_LabeledStatement, function (self, compressor) {
                 if (
                   self.body instanceof AST_Break &&
                   compressor.loopcontrol_target(self.body) === self.body
@@ -43838,11 +43763,11 @@ require = (function() {
                 }
                 return self.label.references.length == 0 ? self.body : self;
               });
-              OPT(AST_Block, function(self, compressor) {
+              OPT(AST_Block, function (self, compressor) {
                 tighten_body(self.body, compressor);
                 return self;
               });
-              OPT(AST_BlockStatement, function(self, compressor) {
+              OPT(AST_BlockStatement, function (self, compressor) {
                 tighten_body(self.body, compressor);
                 switch (self.body.length) {
                   case 1:
@@ -43852,7 +43777,7 @@ require = (function() {
                 }
                 return self;
               });
-              OPT(AST_Lambda, function(self, compressor) {
+              OPT(AST_Lambda, function (self, compressor) {
                 tighten_body(self.body, compressor);
                 if (
                   compressor.option("side_effects") &&
@@ -43863,7 +43788,7 @@ require = (function() {
                 }
                 return self;
               });
-              AST_Scope.DEFMETHOD("drop_unused", function(compressor) {
+              AST_Scope.DEFMETHOD("drop_unused", function (compressor) {
                 if (!compressor.option("unused")) return;
                 if (compressor.has_directive("use asm")) return;
                 var self = this;
@@ -43876,7 +43801,7 @@ require = (function() {
                   compressor.option("unused")
                 )
                   ? return_false
-                  : function(node, props) {
+                  : function (node, props) {
                       var sym;
                       if (
                         node instanceof AST_Assign &&
@@ -43897,7 +43822,7 @@ require = (function() {
                       }
                       return (
                         sym instanceof AST_SymbolRef &&
-                        all(sym.definition().orig, function(sym) {
+                        all(sym.definition().orig, function (sym) {
                           return !(sym instanceof AST_SymbolLambda);
                         }) &&
                         sym
@@ -43909,7 +43834,7 @@ require = (function() {
                 var value_read = Object.create(null);
                 var value_modified = Object.create(null);
                 if (self instanceof AST_Toplevel && compressor.top_retain) {
-                  self.variables.each(function(def) {
+                  self.variables.each(function (def) {
                     if (compressor.top_retain(def) && !(def.id in in_use_ids)) {
                       in_use_ids[def.id] = true;
                       in_use.push(def);
@@ -43919,13 +43844,13 @@ require = (function() {
                 var var_defs_by_id = new Dictionary();
                 var initializations = new Dictionary();
                 var scope = this;
-                var tw = new TreeWalker(function(node, descend) {
+                var tw = new TreeWalker(function (node, descend) {
                   if (
                     node instanceof AST_Lambda &&
                     node.uses_arguments &&
                     !tw.has_directive("use strict")
                   ) {
-                    node.argnames.forEach(function(argname) {
+                    node.argnames.forEach(function (argname) {
                       var def = argname.definition();
                       if (!(def.id in in_use_ids)) {
                         in_use_ids[def.id] = true;
@@ -43949,7 +43874,7 @@ require = (function() {
                     var_defs_by_id.add(node.definition().id, node);
                   }
                   if (node instanceof AST_Definitions && scope === self) {
-                    node.definitions.forEach(function(def) {
+                    node.definitions.forEach(function (def) {
                       var node_def = def.name.definition();
                       if (def.name instanceof AST_SymbolVar) {
                         var_defs_by_id.add(node_def.id, def);
@@ -43982,20 +43907,20 @@ require = (function() {
                 for (var i = 0; i < in_use.length; i++) {
                   var init = initializations.get(in_use[i].id);
                   if (init)
-                    init.forEach(function(init) {
+                    init.forEach(function (init) {
                       init.walk(tw);
                     });
                 }
                 var drop_fn_name = compressor.option("keep_fnames")
                   ? return_false
                   : compressor.option("ie8")
-                  ? function(def) {
+                  ? function (def) {
                       return !compressor.exposed(def) && !def.references.length;
                     }
-                  : function(def) {
+                  : function (def) {
                       return !(def.id in in_use_ids) || def.orig.length > 1;
                     };
-                var tt = new TreeTransformer(function(node, descend, in_list) {
+                var tt = new TreeTransformer(function (node, descend, in_list) {
                   var parent = tt.parent();
                   if (drop_vars) {
                     var props = [],
@@ -44024,7 +43949,7 @@ require = (function() {
                           node,
                           make_sequence(
                             node,
-                            props.map(function(prop) {
+                            props.map(function (prop) {
                               return prop.transform(tt);
                             })
                           )
@@ -44084,7 +44009,7 @@ require = (function() {
                       head = [],
                       tail = [];
                     var side_effects = [];
-                    node.definitions.forEach(function(def) {
+                    node.definitions.forEach(function (def) {
                       if (def.value) def.value = def.value.transform(tt);
                       var sym = def.name.definition();
                       if (!drop_vars || sym.id in in_use_ids) {
@@ -44093,9 +44018,8 @@ require = (function() {
                           sym.id in fixed_ids &&
                           fixed_ids[sym.id] !== def
                         ) {
-                          def.value = def.value.drop_side_effect_free(
-                            compressor
-                          );
+                          def.value =
+                            def.value.drop_side_effect_free(compressor);
                         }
                         if (def.name instanceof AST_SymbolVar) {
                           var var_defs = var_defs_by_id.get(sym.id);
@@ -44269,7 +44193,7 @@ require = (function() {
                     self.variables.get(sym.name) ===
                       (node_def = sym.definition())
                   ) {
-                    props.forEach(function(prop) {
+                    props.forEach(function (prop) {
                       prop.walk(tw);
                     });
                     if (node instanceof AST_Assign) {
@@ -44318,7 +44242,7 @@ require = (function() {
                   }
                 }
               });
-              AST_Scope.DEFMETHOD("hoist_declarations", function(compressor) {
+              AST_Scope.DEFMETHOD("hoist_declarations", function (compressor) {
                 if (compressor.has_directive("use asm")) return;
                 var hoist_funs = compressor.option("hoist_funs");
                 var hoist_vars = compressor.option("hoist_vars");
@@ -44326,7 +44250,7 @@ require = (function() {
                 if (hoist_vars) {
                   var var_decl = 0;
                   self.walk(
-                    new TreeWalker(function(node) {
+                    new TreeWalker(function (node) {
                       if (var_decl > 1) return true;
                       if (node instanceof AST_Scope && node !== self)
                         return true;
@@ -44343,7 +44267,7 @@ require = (function() {
                 var hoisted = [];
                 var vars = new Dictionary(),
                   vars_found = 0;
-                var tt = new TreeTransformer(function(node) {
+                var tt = new TreeTransformer(function (node) {
                   if (node === self) return;
                   if (node instanceof AST_Directive) {
                     dirs.push(node);
@@ -44359,7 +44283,7 @@ require = (function() {
                     return make_node(AST_EmptyStatement, node);
                   }
                   if (hoist_vars && node instanceof AST_Var) {
-                    node.definitions.forEach(function(def) {
+                    node.definitions.forEach(function (def) {
                       vars.set(def.name.name, def);
                       ++vars_found;
                     });
@@ -44379,10 +44303,10 @@ require = (function() {
                 self.transform(tt);
                 if (vars_found > 0) {
                   var defs = [];
-                  vars.each(function(def, name) {
+                  vars.each(function (def, name) {
                     if (
                       self instanceof AST_Lambda &&
-                      !all(self.argnames, function(argname) {
+                      !all(self.argnames, function (argname) {
                         return argname.name != name;
                       })
                     ) {
@@ -44451,20 +44375,20 @@ require = (function() {
                 }
                 self.body = dirs.concat(hoisted, self.body);
               });
-              AST_Scope.DEFMETHOD("var_names", function() {
+              AST_Scope.DEFMETHOD("var_names", function () {
                 var var_names = this._var_names;
                 if (!var_names) {
                   this._var_names = var_names = Object.create(null);
-                  this.enclosed.forEach(function(def) {
+                  this.enclosed.forEach(function (def) {
                     var_names[def.name] = true;
                   });
-                  this.variables.each(function(def, name) {
+                  this.variables.each(function (def, name) {
                     var_names[name] = true;
                   });
                 }
                 return var_names;
               });
-              AST_Scope.DEFMETHOD("make_var_name", function(prefix) {
+              AST_Scope.DEFMETHOD("make_var_name", function (prefix) {
                 var var_names = this.var_names();
                 prefix = prefix.replace(/(?:^[^a-z_$]|[^a-z0-9_$])/gi, "_");
                 var name = prefix;
@@ -44472,7 +44396,7 @@ require = (function() {
                 var_names[name] = true;
                 return name;
               });
-              AST_Scope.DEFMETHOD("hoist_properties", function(compressor) {
+              AST_Scope.DEFMETHOD("hoist_properties", function (compressor) {
                 if (
                   !compressor.option("hoist_props") ||
                   compressor.has_directive("use asm")
@@ -44484,7 +44408,7 @@ require = (function() {
                   return_false;
                 var defs_by_id = Object.create(null);
                 self.transform(
-                  new TreeTransformer(function(node, descend) {
+                  new TreeTransformer(function (node, descend) {
                     if (
                       node instanceof AST_Assign &&
                       node.operator == "=" &&
@@ -44495,7 +44419,7 @@ require = (function() {
                       var defs = new Dictionary();
                       var assignments = [];
                       var decls = [];
-                      node.right.properties.forEach(function(prop) {
+                      node.right.properties.forEach(function (prop) {
                         var decl = make_sym(node.left, prop.key);
                         decls.push(
                           make_node(AST_VarDef, node, {
@@ -44532,7 +44456,7 @@ require = (function() {
                       descend(node, this);
                       var defs = new Dictionary();
                       var var_defs = [];
-                      node.value.properties.forEach(function(prop) {
+                      node.value.properties.forEach(function (prop) {
                         var_defs.push(
                           make_node(AST_VarDef, node, {
                             name: make_sym(node.name, prop.key),
@@ -44584,7 +44508,7 @@ require = (function() {
                   })
                 );
               });
-              (function(def) {
+              (function (def) {
                 function trim(nodes, compressor, first_in_statement) {
                   var len = nodes.length;
                   if (!len) return null;
@@ -44605,7 +44529,7 @@ require = (function() {
                 }
                 def(AST_Node, return_this);
                 def(AST_Accessor, return_null);
-                def(AST_Array, function(compressor, first_in_statement) {
+                def(AST_Array, function (compressor, first_in_statement) {
                   var values = trim(
                     this.elements,
                     compressor,
@@ -44613,7 +44537,7 @@ require = (function() {
                   );
                   return values && make_sequence(this, values);
                 });
-                def(AST_Assign, function(compressor) {
+                def(AST_Assign, function (compressor) {
                   var left = this.left;
                   if (
                     left.has_side_effects(compressor) ||
@@ -44633,7 +44557,7 @@ require = (function() {
                   }
                   return this;
                 });
-                def(AST_Binary, function(compressor, first_in_statement) {
+                def(AST_Binary, function (compressor, first_in_statement) {
                   var right = this.right.drop_side_effect_free(
                     compressor,
                     first_in_statement
@@ -44660,7 +44584,7 @@ require = (function() {
                     ]);
                   }
                 });
-                def(AST_Call, function(compressor, first_in_statement) {
+                def(AST_Call, function (compressor, first_in_statement) {
                   if (!this.is_expr_pure(compressor)) {
                     if (this.expression.is_call_pure(compressor)) {
                       var exprs = this.args.slice();
@@ -44677,11 +44601,10 @@ require = (function() {
                       var exp = node.expression;
                       exp.process_expression(false, compressor);
                       exp.walk(
-                        new TreeWalker(function(node) {
+                        new TreeWalker(function (node) {
                           if (node instanceof AST_Return && node.value) {
-                            node.value = node.value.drop_side_effect_free(
-                              compressor
-                            );
+                            node.value =
+                              node.value.drop_side_effect_free(compressor);
                             return true;
                           }
                           if (node instanceof AST_Scope && node !== exp)
@@ -44701,13 +44624,11 @@ require = (function() {
                   var args = trim(this.args, compressor, first_in_statement);
                   return args && make_sequence(this, args);
                 });
-                def(AST_Conditional, function(compressor) {
-                  var consequent = this.consequent.drop_side_effect_free(
-                    compressor
-                  );
-                  var alternative = this.alternative.drop_side_effect_free(
-                    compressor
-                  );
+                def(AST_Conditional, function (compressor) {
+                  var consequent =
+                    this.consequent.drop_side_effect_free(compressor);
+                  var alternative =
+                    this.alternative.drop_side_effect_free(compressor);
                   if (
                     consequent === this.consequent &&
                     alternative === this.alternative
@@ -44733,7 +44654,7 @@ require = (function() {
                   return node;
                 });
                 def(AST_Constant, return_null);
-                def(AST_Dot, function(compressor, first_in_statement) {
+                def(AST_Dot, function (compressor, first_in_statement) {
                   if (this.expression.may_throw_on_access(compressor))
                     return this;
                   return this.expression.drop_side_effect_free(
@@ -44741,10 +44662,10 @@ require = (function() {
                     first_in_statement
                   );
                 });
-                def(AST_Function, function(compressor) {
+                def(AST_Function, function (compressor) {
                   return this.name && compressor.option("ie8") ? this : null;
                 });
-                def(AST_Object, function(compressor, first_in_statement) {
+                def(AST_Object, function (compressor, first_in_statement) {
                   var values = trim(
                     this.properties,
                     compressor,
@@ -44752,16 +44673,16 @@ require = (function() {
                   );
                   return values && make_sequence(this, values);
                 });
-                def(AST_ObjectProperty, function(
-                  compressor,
-                  first_in_statement
-                ) {
-                  return this.value.drop_side_effect_free(
-                    compressor,
-                    first_in_statement
-                  );
-                });
-                def(AST_Sequence, function(compressor, first_in_statement) {
+                def(
+                  AST_ObjectProperty,
+                  function (compressor, first_in_statement) {
+                    return this.value.drop_side_effect_free(
+                      compressor,
+                      first_in_statement
+                    );
+                  }
+                );
+                def(AST_Sequence, function (compressor, first_in_statement) {
                   var expressions = trim(
                     this.expressions,
                     compressor,
@@ -44771,7 +44692,7 @@ require = (function() {
                   if (!expressions) return null;
                   return make_sequence(this, expressions);
                 });
-                def(AST_Sub, function(compressor, first_in_statement) {
+                def(AST_Sub, function (compressor, first_in_statement) {
                   if (this.expression.may_throw_on_access(compressor))
                     return this;
                   var expression = this.expression.drop_side_effect_free(
@@ -44783,23 +44704,21 @@ require = (function() {
                       compressor,
                       first_in_statement
                     );
-                  var property = this.property.drop_side_effect_free(
-                    compressor
-                  );
+                  var property =
+                    this.property.drop_side_effect_free(compressor);
                   if (!property) return expression;
                   return make_sequence(this, [expression, property]);
                 });
-                def(AST_SymbolRef, function(compressor) {
+                def(AST_SymbolRef, function (compressor) {
                   if (!this.is_declared(compressor)) return this;
                   this.definition().replaced++;
                   return null;
                 });
                 def(AST_This, return_null);
-                def(AST_Unary, function(compressor, first_in_statement) {
+                def(AST_Unary, function (compressor, first_in_statement) {
                   if (unary_side_effects[this.operator]) {
-                    this.write_only = !this.expression.has_side_effects(
-                      compressor
-                    );
+                    this.write_only =
+                      !this.expression.has_side_effects(compressor);
                     return this;
                   }
                   if (
@@ -44824,10 +44743,10 @@ require = (function() {
                   }
                   return expression;
                 });
-              })(function(node, func) {
+              })(function (node, func) {
                 node.DEFMETHOD("drop_side_effect_free", func);
               });
-              OPT(AST_SimpleStatement, function(self, compressor) {
+              OPT(AST_SimpleStatement, function (self, compressor) {
                 if (compressor.option("side_effects")) {
                   var body = self.body;
                   var node = body.drop_side_effect_free(compressor, true);
@@ -44844,14 +44763,14 @@ require = (function() {
                 }
                 return self;
               });
-              OPT(AST_While, function(self, compressor) {
+              OPT(AST_While, function (self, compressor) {
                 return compressor.option("loops")
                   ? make_node(AST_For, self, self).optimize(compressor)
                   : self;
               });
               function has_break_or_continue(loop, parent) {
                 var found = false;
-                var tw = new TreeWalker(function(node) {
+                var tw = new TreeWalker(function (node) {
                   if (found || node instanceof AST_Scope) return true;
                   if (
                     node instanceof AST_LoopControl &&
@@ -44865,7 +44784,7 @@ require = (function() {
                 loop.body.walk(tw);
                 return found;
               }
-              OPT(AST_Do, function(self, compressor) {
+              OPT(AST_Do, function (self, compressor) {
                 if (!compressor.option("loops")) return self;
                 var cond =
                   self.condition.is_truthy() ||
@@ -44979,7 +44898,7 @@ require = (function() {
                   self = if_break_in_loop(self, compressor);
                 }
               }
-              OPT(AST_For, function(self, compressor) {
+              OPT(AST_For, function (self, compressor) {
                 if (!compressor.option("loops")) return self;
                 if (compressor.option("side_effects") && self.init) {
                   self.init = self.init.drop_side_effect_free(compressor);
@@ -45045,7 +44964,7 @@ require = (function() {
                 }
                 return if_break_in_loop(self, compressor);
               });
-              OPT(AST_If, function(self, compressor) {
+              OPT(AST_If, function (self, compressor) {
                 if (is_empty(self.alternative)) self.alternative = null;
                 if (!compressor.option("conditionals")) return self;
                 var cond = self.condition.evaluate(compressor);
@@ -45111,8 +45030,8 @@ require = (function() {
                   }
                 }
                 var negated = self.condition.negate(compressor);
-                var self_condition_length = self.condition.print_to_string()
-                  .length;
+                var self_condition_length =
+                  self.condition.print_to_string().length;
                 var negated_length = negated.print_to_string().length;
                 var negated_is_best = negated_length < self_condition_length;
                 if (self.alternative && negated_is_best) {
@@ -45233,7 +45152,7 @@ require = (function() {
                 }
                 return self;
               });
-              OPT(AST_Switch, function(self, compressor) {
+              OPT(AST_Switch, function (self, compressor) {
                 if (!compressor.option("switches")) return self;
                 var branch;
                 var value = self.expression.evaluate(compressor);
@@ -45336,7 +45255,7 @@ require = (function() {
                   (body[0] === exact_match || body[0] === default_branch)
                 ) {
                   var has_break = false;
-                  var tw = new TreeWalker(function(node) {
+                  var tw = new TreeWalker(function (node) {
                     if (
                       has_break ||
                       node instanceof AST_Lambda ||
@@ -45380,7 +45299,7 @@ require = (function() {
                   }
                 }
               });
-              OPT(AST_Try, function(self, compressor) {
+              OPT(AST_Try, function (self, compressor) {
                 tighten_body(self.body, compressor);
                 if (
                   self.bcatch &&
@@ -45399,9 +45318,9 @@ require = (function() {
                       self.bcatch,
                       body
                     );
-                    body.forEach(function(stat) {
+                    body.forEach(function (stat) {
                       if (!(stat instanceof AST_Definitions)) return;
-                      stat.definitions.forEach(function(var_def) {
+                      stat.definitions.forEach(function (var_def) {
                         var def = var_def.name.definition().redefined();
                         if (!def) return;
                         var_def.name = var_def.name.clone();
@@ -45416,39 +45335,42 @@ require = (function() {
                 }
                 return self;
               });
-              AST_Definitions.DEFMETHOD("remove_initializers", function() {
-                this.definitions.forEach(function(def) {
+              AST_Definitions.DEFMETHOD("remove_initializers", function () {
+                this.definitions.forEach(function (def) {
                   def.value = null;
                 });
               });
-              AST_Definitions.DEFMETHOD("to_assignments", function(compressor) {
-                var reduce_vars = compressor.option("reduce_vars");
-                var assignments = this.definitions.reduce(function(a, def) {
-                  if (def.value) {
-                    var name = make_node(AST_SymbolRef, def.name, def.name);
-                    a.push(
-                      make_node(AST_Assign, def, {
-                        operator: "=",
-                        left: name,
-                        right: def.value
-                      })
-                    );
-                    if (reduce_vars) name.definition().fixed = false;
-                  }
-                  def = def.name.definition();
-                  def.eliminated++;
-                  def.replaced--;
-                  return a;
-                }, []);
-                if (assignments.length == 0) return null;
-                return make_sequence(this, assignments);
-              });
-              OPT(AST_Definitions, function(self, compressor) {
+              AST_Definitions.DEFMETHOD(
+                "to_assignments",
+                function (compressor) {
+                  var reduce_vars = compressor.option("reduce_vars");
+                  var assignments = this.definitions.reduce(function (a, def) {
+                    if (def.value) {
+                      var name = make_node(AST_SymbolRef, def.name, def.name);
+                      a.push(
+                        make_node(AST_Assign, def, {
+                          operator: "=",
+                          left: name,
+                          right: def.value
+                        })
+                      );
+                      if (reduce_vars) name.definition().fixed = false;
+                    }
+                    def = def.name.definition();
+                    def.eliminated++;
+                    def.replaced--;
+                    return a;
+                  }, []);
+                  if (assignments.length == 0) return null;
+                  return make_sequence(this, assignments);
+                }
+              );
+              OPT(AST_Definitions, function (self, compressor) {
                 return self.definitions.length
                   ? self
                   : make_node(AST_EmptyStatement, self);
               });
-              AST_Call.DEFMETHOD("lift_sequences", function(compressor) {
+              AST_Call.DEFMETHOD("lift_sequences", function (compressor) {
                 if (!compressor.option("sequences")) return this;
                 var exp = this.expression;
                 if (!(exp instanceof AST_Sequence)) return this;
@@ -45464,7 +45386,7 @@ require = (function() {
                 expressions.push(node);
                 return make_sequence(this, expressions).optimize(compressor);
               });
-              OPT(AST_Call, function(self, compressor) {
+              OPT(AST_Call, function (self, compressor) {
                 var seq = self.lift_sequences(compressor);
                 if (seq !== self) {
                   return seq;
@@ -45582,7 +45504,7 @@ require = (function() {
                       case "RegExp":
                         var params = [];
                         if (
-                          all(self.args, function(arg) {
+                          all(self.args, function (arg) {
                             var value = arg.evaluate(compressor);
                             params.unshift(value);
                             return arg !== value;
@@ -45634,7 +45556,7 @@ require = (function() {
                             }
                             var elements = [];
                             var consts = [];
-                            exp.expression.elements.forEach(function(el) {
+                            exp.expression.elements.forEach(function (el) {
                               var value = el.evaluate(compressor);
                               if (value !== el) {
                                 consts.push(value);
@@ -45684,7 +45606,7 @@ require = (function() {
                                 });
                               }
                               return elements
-                                .reduce(function(prev, el) {
+                                .reduce(function (prev, el) {
                                   return make_node(AST_Binary, el, {
                                     operator: "+",
                                     left: prev,
@@ -45695,7 +45617,8 @@ require = (function() {
                             }
                             var node = self.clone();
                             node.expression = node.expression.clone();
-                            node.expression.expression = node.expression.expression.clone();
+                            node.expression.expression =
+                              node.expression.expression.clone();
                             node.expression.expression.elements = elements;
                             return best_of(compressor, self, node);
                           }
@@ -45740,18 +45663,19 @@ require = (function() {
                           func instanceof AST_Lambda &&
                           !func.contains_this()
                         ) {
-                          return (self.args.length
-                            ? make_sequence(this, [
-                                self.args[0],
-                                make_node(AST_Call, self, {
+                          return (
+                            self.args.length
+                              ? make_sequence(this, [
+                                  self.args[0],
+                                  make_node(AST_Call, self, {
+                                    expression: exp.expression,
+                                    args: self.args.slice(1)
+                                  })
+                                ])
+                              : make_node(AST_Call, self, {
                                   expression: exp.expression,
-                                  args: self.args.slice(1)
+                                  args: []
                                 })
-                              ])
-                            : make_node(AST_Call, self, {
-                                expression: exp.expression,
-                                args: []
-                              })
                           ).optimize(compressor);
                         }
                         break;
@@ -45768,7 +45692,7 @@ require = (function() {
                       body: []
                     });
                   if (
-                    all(self.args, function(x) {
+                    all(self.args, function (x) {
                       return x instanceof AST_String;
                     })
                   ) {
@@ -45777,7 +45701,7 @@ require = (function() {
                         "n(function(" +
                         self.args
                           .slice(0, -1)
-                          .map(function(arg) {
+                          .map(function (arg) {
                             return arg.value;
                           })
                           .join(",") +
@@ -45794,7 +45718,7 @@ require = (function() {
                       ast.mangle_names(mangle);
                       var fun;
                       ast.walk(
-                        new TreeWalker(function(node) {
+                        new TreeWalker(function (node) {
                           if (fun) return true;
                           if (node instanceof AST_Lambda) {
                             fun = node;
@@ -45811,7 +45735,7 @@ require = (function() {
                       self.args = [
                         make_node(AST_String, self, {
                           value: fun.argnames
-                            .map(function(arg) {
+                            .map(function (arg) {
                               return arg.print_to_string();
                             })
                             .join(",")
@@ -45933,7 +45857,7 @@ require = (function() {
                     if (line instanceof AST_Var) {
                       if (
                         stat &&
-                        !all(line.definitions, function(var_def) {
+                        !all(line.definitions, function (var_def) {
                           return !var_def.value;
                         })
                       ) {
@@ -46075,7 +45999,7 @@ require = (function() {
                       append_var(decls, expressions, name, var_def.value);
                       if (
                         in_loop &&
-                        all(fn.argnames, function(argname) {
+                        all(fn.argnames, function (argname) {
                           return argname.name != name.name;
                         })
                       ) {
@@ -46112,7 +46036,7 @@ require = (function() {
                   return expressions;
                 }
               });
-              OPT(AST_New, function(self, compressor) {
+              OPT(AST_New, function (self, compressor) {
                 var seq = self.lift_sequences(compressor);
                 if (seq !== self) {
                   return seq;
@@ -46134,7 +46058,7 @@ require = (function() {
                 }
                 return self;
               });
-              OPT(AST_Sequence, function(self, compressor) {
+              OPT(AST_Sequence, function (self, compressor) {
                 if (!compressor.option("side_effects")) return self;
                 var expressions = [];
                 filter_for_side_effects();
@@ -46156,7 +46080,7 @@ require = (function() {
                 function filter_for_side_effects() {
                   var first = first_in_statement(compressor);
                   var last = self.expressions.length - 1;
-                  self.expressions.forEach(function(expr, index) {
+                  self.expressions.forEach(function (expr, index) {
                     if (index < last)
                       expr = expr.drop_side_effect_free(compressor, first);
                     if (expr) {
@@ -46177,7 +46101,7 @@ require = (function() {
                   }
                 }
               });
-              AST_Unary.DEFMETHOD("lift_sequences", function(compressor) {
+              AST_Unary.DEFMETHOD("lift_sequences", function (compressor) {
                 if (
                   compressor.option("sequences") &&
                   this.expression instanceof AST_Sequence
@@ -46190,10 +46114,10 @@ require = (function() {
                 }
                 return this;
               });
-              OPT(AST_UnaryPostfix, function(self, compressor) {
+              OPT(AST_UnaryPostfix, function (self, compressor) {
                 return self.lift_sequences(compressor);
               });
-              OPT(AST_UnaryPrefix, function(self, compressor) {
+              OPT(AST_UnaryPrefix, function (self, compressor) {
                 var e = self.expression;
                 if (
                   self.operator == "delete" &&
@@ -46254,9 +46178,13 @@ require = (function() {
                           "Boolean expression always true [{file}:{line},{col}]",
                           self.start
                         );
-                        return (e instanceof AST_SymbolRef
-                          ? make_node(AST_True, self)
-                          : make_sequence(self, [e, make_node(AST_True, self)])
+                        return (
+                          e instanceof AST_SymbolRef
+                            ? make_node(AST_True, self)
+                            : make_sequence(self, [
+                                e,
+                                make_node(AST_True, self)
+                              ])
                         ).optimize(compressor);
                     }
                 }
@@ -46289,7 +46217,7 @@ require = (function() {
                 }
                 return self;
               });
-              AST_Binary.DEFMETHOD("lift_sequences", function(compressor) {
+              AST_Binary.DEFMETHOD("lift_sequences", function (compressor) {
                 if (compressor.option("sequences")) {
                   if (this.left instanceof AST_Sequence) {
                     var x = this.left.expressions.slice();
@@ -46335,7 +46263,7 @@ require = (function() {
                   node instanceof AST_Object
                 );
               }
-              OPT(AST_Binary, function(self, compressor) {
+              OPT(AST_Binary, function (self, compressor) {
                 function reversible() {
                   return (
                     self.left.is_constant() ||
@@ -46908,7 +46836,7 @@ require = (function() {
                 }
                 return node;
               }
-              OPT(AST_SymbolRef, function(self, compressor) {
+              OPT(AST_SymbolRef, function (self, compressor) {
                 if (
                   !compressor.option("ie8") &&
                   is_undeclared_ref(self) &&
@@ -46994,7 +46922,7 @@ require = (function() {
                         lambda_def = value.def_function(name);
                       }
                       value.walk(
-                        new TreeWalker(function(node) {
+                        new TreeWalker(function (node) {
                           if (!(node instanceof AST_SymbolRef)) return;
                           var def = node.definition();
                           if (def === defun_def) {
@@ -47031,7 +46959,7 @@ require = (function() {
                     if (fixed instanceof AST_This) {
                       if (
                         !(def.orig[0] instanceof AST_SymbolFunarg) &&
-                        all(def.references, function(ref) {
+                        all(def.references, function (ref) {
                           return def.scope === ref.scope;
                         })
                       ) {
@@ -47053,7 +46981,7 @@ require = (function() {
                         .print_to_string().length;
                       var fn;
                       if (has_symbol_ref(fixed)) {
-                        fn = function() {
+                        fn = function () {
                           var result = init.optimize(compressor);
                           return result === init ? result.clone(true) : result;
                         };
@@ -47062,7 +46990,7 @@ require = (function() {
                           value_length,
                           fixed.print_to_string().length
                         );
-                        fn = function() {
+                        fn = function () {
                           var result = best_of_expression(
                             init.optimize(compressor),
                             fixed
@@ -47098,7 +47026,7 @@ require = (function() {
                 function has_symbol_ref(value) {
                   var found;
                   value.walk(
-                    new TreeWalker(function(node) {
+                    new TreeWalker(function (node) {
                       if (node instanceof AST_SymbolRef) found = true;
                       if (found) return true;
                     })
@@ -47109,7 +47037,7 @@ require = (function() {
               function is_atomic(lhs, self) {
                 return lhs instanceof AST_SymbolRef || lhs.TYPE === self.TYPE;
               }
-              OPT(AST_Undefined, function(self, compressor) {
+              OPT(AST_Undefined, function (self, compressor) {
                 if (compressor.option("unsafe_undefined")) {
                   var undef = find_variable(compressor, "undefined");
                   if (undef) {
@@ -47129,7 +47057,7 @@ require = (function() {
                   expression: make_node(AST_Number, self, { value: 0 })
                 });
               });
-              OPT(AST_Infinity, function(self, compressor) {
+              OPT(AST_Infinity, function (self, compressor) {
                 var lhs = is_lhs(compressor.self(), compressor.parent());
                 if (lhs && is_atomic(lhs, self)) return self;
                 if (
@@ -47144,7 +47072,7 @@ require = (function() {
                   right: make_node(AST_Number, self, { value: 0 })
                 });
               });
-              OPT(AST_NaN, function(self, compressor) {
+              OPT(AST_NaN, function (self, compressor) {
                 var lhs = is_lhs(compressor.self(), compressor.parent());
                 if (
                   (lhs && !is_atomic(lhs, self)) ||
@@ -47160,7 +47088,7 @@ require = (function() {
               });
               function is_reachable(self, defs) {
                 var reachable = false;
-                var find_ref = new TreeWalker(function(node) {
+                var find_ref = new TreeWalker(function (node) {
                   if (reachable) return true;
                   if (
                     node instanceof AST_SymbolRef &&
@@ -47169,7 +47097,7 @@ require = (function() {
                     return (reachable = true);
                   }
                 });
-                var scan_scope = new TreeWalker(function(node) {
+                var scan_scope = new TreeWalker(function (node) {
                   if (reachable) return true;
                   if (node instanceof AST_Scope && node !== self) {
                     var parent = scan_scope.parent();
@@ -47187,7 +47115,7 @@ require = (function() {
               }
               var ASSIGN_OPS = makePredicate("+ - / * % >> << >>> | ^ &");
               var ASSIGN_OPS_COMMUTATIVE = makePredicate("* | ^ &");
-              OPT(AST_Assign, function(self, compressor) {
+              OPT(AST_Assign, function (self, compressor) {
                 var def;
                 if (
                   compressor.option("dead_code") &&
@@ -47270,7 +47198,7 @@ require = (function() {
                   }
                 }
               });
-              OPT(AST_Conditional, function(self, compressor) {
+              OPT(AST_Conditional, function (self, compressor) {
                 if (!compressor.option("conditionals")) return self;
                 if (self.condition instanceof AST_Sequence) {
                   var expressions = self.condition.expressions.slice();
@@ -47526,7 +47454,7 @@ require = (function() {
                   return make_sequence(node, node.expressions.slice(0, -1));
                 }
               });
-              OPT(AST_Boolean, function(self, compressor) {
+              OPT(AST_Boolean, function (self, compressor) {
                 if (!compressor.option("booleans")) return self;
                 if (compressor.in_boolean_context())
                   return make_node(AST_Number, self, { value: +self.value });
@@ -47565,7 +47493,7 @@ require = (function() {
                   !value.contains_this()
                 );
               }
-              OPT(AST_Sub, function(self, compressor) {
+              OPT(AST_Sub, function (self, compressor) {
                 var expr = self.expression;
                 var prop = self.property;
                 if (compressor.option("properties")) {
@@ -47636,7 +47564,7 @@ require = (function() {
                   }
                   if (
                     argname &&
-                    find_if(function(node) {
+                    find_if(function (node) {
                       return node.name === argname.name;
                     }, fn.argnames) === argname
                   ) {
@@ -47703,11 +47631,11 @@ require = (function() {
                 }
                 return self;
               });
-              AST_Scope.DEFMETHOD("contains_this", function() {
+              AST_Scope.DEFMETHOD("contains_this", function () {
                 var result;
                 var self = this;
                 self.walk(
-                  new TreeWalker(function(node) {
+                  new TreeWalker(function (node) {
                     if (result) return true;
                     if (node instanceof AST_This) return (result = true);
                     if (node !== self && node instanceof AST_Scope) return true;
@@ -47715,37 +47643,37 @@ require = (function() {
                 );
                 return result;
               });
-              AST_PropAccess.DEFMETHOD("flatten_object", function(
-                key,
-                compressor
-              ) {
-                if (!compressor.option("properties")) return;
-                var expr = this.expression;
-                if (expr instanceof AST_Object) {
-                  var props = expr.properties;
-                  for (var i = props.length; --i >= 0; ) {
-                    var prop = props[i];
-                    if ("" + prop.key == key) {
-                      if (
-                        !all(props, function(prop) {
-                          return prop instanceof AST_ObjectKeyVal;
-                        })
-                      )
-                        break;
-                      if (!safe_to_flatten(prop.value, compressor)) break;
-                      return make_node(AST_Sub, this, {
-                        expression: make_node(AST_Array, expr, {
-                          elements: props.map(function(prop) {
-                            return prop.value;
+              AST_PropAccess.DEFMETHOD(
+                "flatten_object",
+                function (key, compressor) {
+                  if (!compressor.option("properties")) return;
+                  var expr = this.expression;
+                  if (expr instanceof AST_Object) {
+                    var props = expr.properties;
+                    for (var i = props.length; --i >= 0; ) {
+                      var prop = props[i];
+                      if ("" + prop.key == key) {
+                        if (
+                          !all(props, function (prop) {
+                            return prop instanceof AST_ObjectKeyVal;
                           })
-                        }),
-                        property: make_node(AST_Number, this, { value: i })
-                      });
+                        )
+                          break;
+                        if (!safe_to_flatten(prop.value, compressor)) break;
+                        return make_node(AST_Sub, this, {
+                          expression: make_node(AST_Array, expr, {
+                            elements: props.map(function (prop) {
+                              return prop.value;
+                            })
+                          }),
+                          property: make_node(AST_Number, this, { value: i })
+                        });
+                      }
                     }
                   }
                 }
-              });
-              OPT(AST_Dot, function(self, compressor) {
+              );
+              OPT(AST_Dot, function (self, compressor) {
                 if (self.property == "arguments" || self.property == "caller") {
                   compressor.warn(
                     "Function.prototype.{prop} not supported [{file}:{line},{col}]",
@@ -47819,14 +47747,14 @@ require = (function() {
                 }
                 return self;
               });
-              OPT(AST_Return, function(self, compressor) {
+              OPT(AST_Return, function (self, compressor) {
                 if (self.value && is_undefined(self.value, compressor)) {
                   self.value = null;
                 }
                 return self;
               });
-            })(function(node, optimizer) {
-              node.DEFMETHOD("optimize", function(compressor) {
+            })(function (node, optimizer) {
+              node.DEFMETHOD("optimize", function (compressor) {
                 var self = this;
                 if (self._optimized) return self;
                 if (compressor.has_directive("use asm")) return self;
@@ -47859,7 +47787,7 @@ require = (function() {
                     options.orig[source]
                   );
                   if (Array.isArray(options.orig[source].sources)) {
-                    map._sources.toArray().forEach(function(source) {
+                    map._sources.toArray().forEach(function (source) {
                       var sourceContent = map.sourceContentFor(source, true);
                       if (sourceContent)
                         generator.setSourceContent(source, sourceContent);
@@ -47868,7 +47796,7 @@ require = (function() {
                   maps[source] = map;
                 }
               return {
-                add: function(
+                add: function (
                   source,
                   gen_line,
                   gen_col,
@@ -47901,16 +47829,16 @@ require = (function() {
                     }
                   });
                 },
-                get: function() {
+                get: function () {
                   return generator;
                 },
-                toString: function() {
+                toString: function () {
                   return JSON.stringify(generator.toJSON());
                 }
               };
             }
             ("use strict");
-            (function() {
+            (function () {
               function normalize_directives(body) {
                 var in_directive = true;
                 for (var i = 0; i < body.length; i++) {
@@ -47937,14 +47865,14 @@ require = (function() {
                 return body;
               }
               var MOZ_TO_ME = {
-                Program: function(M) {
+                Program: function (M) {
                   return new AST_Toplevel({
                     start: my_start_token(M),
                     end: my_end_token(M),
                     body: normalize_directives(M.body.map(from_moz))
                   });
                 },
-                FunctionDeclaration: function(M) {
+                FunctionDeclaration: function (M) {
                   return new AST_Defun({
                     start: my_start_token(M),
                     end: my_end_token(M),
@@ -47953,7 +47881,7 @@ require = (function() {
                     body: normalize_directives(from_moz(M.body).body)
                   });
                 },
-                FunctionExpression: function(M) {
+                FunctionExpression: function (M) {
                   return new AST_Function({
                     start: my_start_token(M),
                     end: my_end_token(M),
@@ -47962,14 +47890,14 @@ require = (function() {
                     body: normalize_directives(from_moz(M.body).body)
                   });
                 },
-                ExpressionStatement: function(M) {
+                ExpressionStatement: function (M) {
                   return new AST_SimpleStatement({
                     start: my_start_token(M),
                     end: my_end_token(M),
                     body: from_moz(M.expression)
                   });
                 },
-                TryStatement: function(M) {
+                TryStatement: function (M) {
                   var handlers = M.handlers || [M.handler];
                   if (
                     handlers.length > 1 ||
@@ -47989,7 +47917,7 @@ require = (function() {
                       : null
                   });
                 },
-                Property: function(M) {
+                Property: function (M) {
                   var key = M.key;
                   var args = {
                     start: my_start_token(key),
@@ -48003,33 +47931,33 @@ require = (function() {
                   if (M.kind == "get") return new AST_ObjectGetter(args);
                   if (M.kind == "set") return new AST_ObjectSetter(args);
                 },
-                ArrayExpression: function(M) {
+                ArrayExpression: function (M) {
                   return new AST_Array({
                     start: my_start_token(M),
                     end: my_end_token(M),
-                    elements: M.elements.map(function(elem) {
+                    elements: M.elements.map(function (elem) {
                       return elem === null ? new AST_Hole() : from_moz(elem);
                     })
                   });
                 },
-                ObjectExpression: function(M) {
+                ObjectExpression: function (M) {
                   return new AST_Object({
                     start: my_start_token(M),
                     end: my_end_token(M),
-                    properties: M.properties.map(function(prop) {
+                    properties: M.properties.map(function (prop) {
                       prop.type = "Property";
                       return from_moz(prop);
                     })
                   });
                 },
-                SequenceExpression: function(M) {
+                SequenceExpression: function (M) {
                   return new AST_Sequence({
                     start: my_start_token(M),
                     end: my_end_token(M),
                     expressions: M.expressions.map(from_moz)
                   });
                 },
-                MemberExpression: function(M) {
+                MemberExpression: function (M) {
                   return new (M.computed ? AST_Sub : AST_Dot)({
                     start: my_start_token(M),
                     end: my_end_token(M),
@@ -48039,7 +47967,7 @@ require = (function() {
                     expression: from_moz(M.object)
                   });
                 },
-                SwitchCase: function(M) {
+                SwitchCase: function (M) {
                   return new (M.test ? AST_Case : AST_Default)({
                     start: my_start_token(M),
                     end: my_end_token(M),
@@ -48047,14 +47975,14 @@ require = (function() {
                     body: M.consequent.map(from_moz)
                   });
                 },
-                VariableDeclaration: function(M) {
+                VariableDeclaration: function (M) {
                   return new AST_Var({
                     start: my_start_token(M),
                     end: my_end_token(M),
                     definitions: M.declarations.map(from_moz)
                   });
                 },
-                Literal: function(M) {
+                Literal: function (M) {
                   var val = M.value,
                     args = { start: my_start_token(M), end: my_end_token(M) };
                   if (val === null) return new AST_Null(args);
@@ -48078,48 +48006,49 @@ require = (function() {
                       return new (val ? AST_True : AST_False)(args);
                   }
                 },
-                Identifier: function(M) {
+                Identifier: function (M) {
                   var p = FROM_MOZ_STACK[FROM_MOZ_STACK.length - 2];
-                  return new (p.type == "LabeledStatement"
-                    ? AST_Label
-                    : p.type == "VariableDeclarator" && p.id === M
-                    ? AST_SymbolVar
-                    : p.type == "FunctionExpression"
-                    ? p.id === M
-                      ? AST_SymbolLambda
-                      : AST_SymbolFunarg
-                    : p.type == "FunctionDeclaration"
-                    ? p.id === M
-                      ? AST_SymbolDefun
-                      : AST_SymbolFunarg
-                    : p.type == "CatchClause"
-                    ? AST_SymbolCatch
-                    : p.type == "BreakStatement" ||
-                      p.type == "ContinueStatement"
-                    ? AST_LabelRef
-                    : AST_SymbolRef)({
+                  return new (
+                    p.type == "LabeledStatement"
+                      ? AST_Label
+                      : p.type == "VariableDeclarator" && p.id === M
+                      ? AST_SymbolVar
+                      : p.type == "FunctionExpression"
+                      ? p.id === M
+                        ? AST_SymbolLambda
+                        : AST_SymbolFunarg
+                      : p.type == "FunctionDeclaration"
+                      ? p.id === M
+                        ? AST_SymbolDefun
+                        : AST_SymbolFunarg
+                      : p.type == "CatchClause"
+                      ? AST_SymbolCatch
+                      : p.type == "BreakStatement" ||
+                        p.type == "ContinueStatement"
+                      ? AST_LabelRef
+                      : AST_SymbolRef
+                  )({
                     start: my_start_token(M),
                     end: my_end_token(M),
                     name: M.name
                   });
                 }
               };
-              MOZ_TO_ME.UpdateExpression = MOZ_TO_ME.UnaryExpression = function To_Moz_Unary(
-                M
-              ) {
-                var prefix =
-                  "prefix" in M
-                    ? M.prefix
-                    : M.type == "UnaryExpression"
-                    ? true
-                    : false;
-                return new (prefix ? AST_UnaryPrefix : AST_UnaryPostfix)({
-                  start: my_start_token(M),
-                  end: my_end_token(M),
-                  operator: M.operator,
-                  expression: from_moz(M.argument)
-                });
-              };
+              MOZ_TO_ME.UpdateExpression = MOZ_TO_ME.UnaryExpression =
+                function To_Moz_Unary(M) {
+                  var prefix =
+                    "prefix" in M
+                      ? M.prefix
+                      : M.type == "UnaryExpression"
+                      ? true
+                      : false;
+                  return new (prefix ? AST_UnaryPrefix : AST_UnaryPostfix)({
+                    start: my_start_token(M),
+                    end: my_end_token(M),
+                    operator: M.operator,
+                    expression: from_moz(M.argument)
+                  });
+                };
               map("EmptyStatement", AST_EmptyStatement);
               map("BlockStatement", AST_BlockStatement, "body@body");
               map(
@@ -48246,15 +48175,16 @@ require = (function() {
                   body: to_moz_block(M)
                 };
               });
-              def_to_moz(AST_Definitions, function To_Moz_VariableDeclaration(
-                M
-              ) {
-                return {
-                  type: "VariableDeclaration",
-                  kind: "var",
-                  declarations: M.definitions.map(to_moz)
-                };
-              });
+              def_to_moz(
+                AST_Definitions,
+                function To_Moz_VariableDeclaration(M) {
+                  return {
+                    type: "VariableDeclaration",
+                    kind: "var",
+                    declarations: M.definitions.map(to_moz)
+                  };
+                }
+              );
               def_to_moz(AST_Sequence, function To_Moz_SequenceExpression(M) {
                 return {
                   type: "SequenceExpression",
@@ -48431,7 +48361,7 @@ require = (function() {
                 var me_to_moz = "function To_Moz_" + moztype + "(M){\n";
                 me_to_moz += "return {\n" + "type: " + JSON.stringify(moztype);
                 if (propmap)
-                  propmap.split(/\s*,\s*/).forEach(function(prop) {
+                  propmap.split(/\s*,\s*/).forEach(function (prop) {
                     var m = /([a-z0-9$_]+)(=|@|>|%)([a-z0-9$_]+)/i.exec(prop);
                     if (!m)
                       throw new Error("Can't understand property map: " + prop);
@@ -48488,13 +48418,13 @@ require = (function() {
                 FROM_MOZ_STACK.pop();
                 return ret;
               }
-              AST_Node.from_mozilla_ast = function(node) {
+              AST_Node.from_mozilla_ast = function (node) {
                 var save_stack = FROM_MOZ_STACK;
                 FROM_MOZ_STACK = [];
                 var ast = from_moz(node);
                 FROM_MOZ_STACK = save_stack;
                 ast.walk(
-                  new TreeWalker(function(node) {
+                  new TreeWalker(function (node) {
                     if (node instanceof AST_LabelRef) {
                       for (
                         var level = 0, parent;
@@ -48545,7 +48475,7 @@ require = (function() {
                 return moznode;
               }
               function def_to_moz(mytype, handler) {
-                mytype.DEFMETHOD("to_mozilla_ast", function() {
+                mytype.DEFMETHOD("to_mozilla_ast", function () {
                   return set_moz_loc(this, handler(this));
                 });
               }
@@ -48587,7 +48517,7 @@ require = (function() {
                 Object,
                 RegExp,
                 String
-              ].forEach(function(ctor) {
+              ].forEach(function (ctor) {
                 Object.getOwnPropertyNames(ctor).map(add);
                 if (ctor.prototype) {
                   Object.getOwnPropertyNames(ctor.prototype).map(add);
@@ -48599,7 +48529,7 @@ require = (function() {
             }
             function reserve_quoted_keys(ast, reserved) {
               ast.walk(
-                new TreeWalker(function(node) {
+                new TreeWalker(function (node) {
                   if (node instanceof AST_ObjectKeyVal && node.quote) {
                     add(node.key);
                   } else if (node instanceof AST_Sub) {
@@ -48613,7 +48543,7 @@ require = (function() {
             }
             function addStrings(node, add) {
               node.walk(
-                new TreeWalker(function(node) {
+                new TreeWalker(function (node) {
                   if (node instanceof AST_Sequence) {
                     addStrings(node.tail_node(), add);
                   } else if (node instanceof AST_String) {
@@ -48647,7 +48577,7 @@ require = (function() {
               var cache;
               if (options.cache) {
                 cache = options.cache.props;
-                cache.each(function(mangled_name) {
+                cache.each(function (mangled_name) {
                   push_uniq(reserved, mangled_name);
                 });
               } else {
@@ -48661,7 +48591,7 @@ require = (function() {
               var names_to_mangle = [];
               var unmangleable = [];
               ast.walk(
-                new TreeWalker(function(node) {
+                new TreeWalker(function (node) {
                   if (node instanceof AST_ObjectKeyVal) {
                     add(node.key);
                   } else if (node instanceof AST_ObjectProperty) {
@@ -48679,7 +48609,7 @@ require = (function() {
                 })
               );
               return ast.transform(
-                new TreeTransformer(function(node) {
+                new TreeTransformer(function (node) {
                   if (node instanceof AST_ObjectKeyVal) {
                     node.key = mangle(node.key);
                   } else if (node instanceof AST_ObjectProperty) {
@@ -48733,7 +48663,7 @@ require = (function() {
               }
               function mangleStrings(node) {
                 return node.transform(
-                  new TreeTransformer(function(node) {
+                  new TreeTransformer(function (node) {
                     if (node instanceof AST_Sequence) {
                       var last = node.expressions.length - 1;
                       node.expressions[last] = mangleStrings(
@@ -48753,20 +48683,21 @@ require = (function() {
             ("use strict");
             var to_ascii =
               typeof atob == "undefined"
-                ? function(b64) {
+                ? function (b64) {
                     return new Buffer(b64, "base64").toString();
                   }
                 : atob;
             var to_base64 =
               typeof btoa == "undefined"
-                ? function(str) {
+                ? function (str) {
                     return new Buffer(str).toString("base64");
                   }
                 : btoa;
             function read_source_map(name, code) {
-              var match = /\n\/\/# sourceMappingURL=data:application\/json(;.*?)?;base64,(.*)/.exec(
-                code
-              );
+              var match =
+                /\n\/\/# sourceMappingURL=data:application\/json(;.*?)?;base64,(.*)/.exec(
+                  code
+                );
               if (!match) {
                 AST_Node.warn("inline source map not found: " + name);
                 return null;
@@ -48782,7 +48713,7 @@ require = (function() {
             }
             function set_shorthand(name, options, keys) {
               if (options[name]) {
-                keys.forEach(function(key) {
+                keys.forEach(function (key) {
                   if (options[key]) {
                     if (typeof options[key] != "object") options[key] = {};
                     if (!(name in options[key]))
@@ -48884,7 +48815,7 @@ require = (function() {
                 }
                 var warnings = [];
                 if (options.warnings && !AST_Node.warn_function) {
-                  AST_Node.warn_function = function(warning) {
+                  AST_Node.warn_function = function (warning) {
                     warnings.push(warning);
                   };
                 }
@@ -48921,9 +48852,8 @@ require = (function() {
                             files[name]
                           );
                           if (inlined_content) {
-                            source_maps[name] = parse_source_map(
-                              inlined_content
-                            );
+                            source_maps[name] =
+                              parse_source_map(inlined_content);
                           }
                         } else {
                           source_maps[name] = source_map_content;
@@ -49050,7 +48980,7 @@ require = (function() {
             exports["TreeTransformer"] = TreeTransformer;
             exports["TreeWalker"] = TreeWalker;
           })(typeof exports == "undefined" ? (exports = {}) : exports);
-        }.call(this, require("buffer").Buffer));
+        }).call(this, require("buffer").Buffer);
       },
       { buffer: 4 }
     ]
