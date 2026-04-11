@@ -10,6 +10,11 @@
     "format": "prettier --write '**/*.ts' '**/*.tsx'",
     "build": "NODE_OPTIONS=\"--openssl-legacy-provider\" next build",
     "now-build": "NODE_OPTIONS=\"--openssl-legacy-provider\" next build",
+    "indexnow": "node ./scripts/submit-indexnow.mjs",
+    "indexnow:dry": "node ./scripts/submit-indexnow.mjs --dry-run",
+    "indexnow:verbose": "node ./scripts/submit-indexnow.mjs --verbose",
+    "indexnow:dry-verbose": "node ./scripts/submit-indexnow.mjs --dry-run --verbose",
+    "indexnow:help": "node ./scripts/submit-indexnow.mjs --help",
     "postinstall": "patch-package",
     "build:analyze": "ANALYZE=true yarn build"
   },
