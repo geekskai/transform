@@ -17,8 +17,13 @@ const SITE = (
   "https://folioify.com"
 ).replace(/\/$/, "");
 const DEFAULT_SITEMAP = `${SITE}/sitemap.xml`;
-const ENDPOINT =
-  process.env.INDEXNOW_ENDPOINT || "https://api.indexnow.org/indexnow";
+const ENDPOINTS = process.env.INDEXNOW_ENDPOINT
+  ? [process.env.INDEXNOW_ENDPOINT]
+  : [
+      "https://api.indexnow.org/indexnow",
+      "https://yandex.com/indexnow",
+      "https://www.bing.com/indexnow"
+    ];
 const BATCH_SIZE = Math.min(
   Number.parseInt(process.env.INDEXNOW_BATCH_SIZE || "200", 10) || 200,
   10_000
@@ -83,8 +88,8 @@ function findKey(publicDir) {
   return null;
 }
 
-async function postOnce(body) {
-  const res = await fetch(ENDPOINT, {
+async function postOnce(body, endpoint) {
+  const res = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json; charset=utf-8" },
     body: JSON.stringify(body)
@@ -98,11 +103,11 @@ async function postOnce(body) {
   return text;
 }
 
-async function postWithRetry(payload, retries = 3) {
+async function postWithRetry(payload, endpoint, retries = 3) {
   let last;
   for (let i = 0; i <= retries; i += 1) {
     try {
-      return await postOnce(payload);
+      return await postOnce(payload, endpoint);
     } catch (e) {
       last = e;
       const st = e.status;
@@ -155,7 +160,7 @@ async function main() {
     batches.push(urls.slice(i, i + BATCH_SIZE));
   }
 
-  console.log(`提交 ${urls.length} 条，${batches.length} 批 → ${ENDPOINT}`);
+  console.log(`提交 ${urls.length} 条，${batches.length} 批`);
   for (let i = 0; i < batches.length; i += 1) {
     const n = i + 1;
     const body = {
@@ -164,11 +169,27 @@ async function main() {
       keyLocation,
       urlList: batches[i]
     };
-    const resp = await postWithRetry(body);
-    console.log(
-      `ok [${n}/${batches.length}] ${batches[i].length} urls`,
-      resp || ""
-    );
+
+    let success = false;
+    let lastErr;
+    for (const ep of ENDPOINTS) {
+      try {
+        const resp = await postWithRetry(body, ep);
+        console.log(
+          `ok [${n}/${batches.length}] ${batches[i].length} urls → ${ep}`,
+          resp || ""
+        );
+        success = true;
+        break; // break out of endpoint loop on success
+      } catch (e) {
+        lastErr = e;
+        console.log(`x [${n}/${batches.length}] 失败 ${ep}: ${e.message}`);
+      }
+    }
+
+    if (!success) {
+      throw lastErr;
+    }
   }
   console.log("完成");
 }
