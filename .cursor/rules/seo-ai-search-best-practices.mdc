@@ -1,109 +1,41 @@
 ---
-description: SEO best practices for AI search era - content optimization, structured data, and brand building
+description: 
 alwaysApply: true
 ---
 
-# SEO Best Practices for AI Search Era
+# SEO And AI Search Standards
 
-## Core Principles
+- Treat SEO as a revenue and trust channel, not a traffic vanity metric.
+- Keep site sections tightly focused by topic and intent; avoid mixing unrelated themes on the same page.
 
-1. **Brand is the competitive advantage** - In the LLM search era, brand matters more than content, links, or technical SEO
-2. **Information Retrieval Score** - If AI can't extract your content chunks and facts, you won't appear in LLM search results
-3. **Content freshness is the strongest AI ranking signal** - Content updated within 30-90 days performs best
-4. **Topical authority = Knowledge Graph + Information Graph** - Build complete topic coverage
-5. **Site Focus** - Google evaluates your vector center point; scattered topics = weaker AI visibility
+## Content Rules
 
-## Content Chunking for AI
+- Make core facts easy to extract in short blocks: what the page/tool is, who it is for, pricing, key features, outputs, limits, and update date.
+- Use one clear primary keyword plus natural secondary variants; write for humans first and avoid keyword stuffing.
+- Use `<strong>` around critical facts that users and AI systems should reliably capture.
+- Preserve heading hierarchy with one `h1`, then ordered `h2`/`h3` sections.
+- Add FAQ-style content when it matches real user questions or objections.
 
-```tsx
-// ✅ GOOD: Clear content block structure
-<article>
-  <section className="fact-chunk">
-    <h2>Core Features</h2>
-    <ul>
-      <li><strong>Feature Name</strong>: Description</li>
-      <li><strong>Pricing</strong>: Free to use</li>
-      <li><strong>Target Users</strong>: Students, developers, designers</li>
-    </ul>
-  </section>
-</article>
-```
+## Metadata And Schema
 
-## Use `<strong>` Tags for Key Facts
+- Give each indexable page a unique title, description, canonical URL, and Open Graph/Twitter metadata.
+- Add applicable schema such as `WebApplication`, `Organization`, `FAQPage`, and `BreadcrumbList`.
+- Keep brand facts consistent across metadata and page copy: organization name, offer, target users, and trust/contact signals.
 
-```tsx
-// ✅ Highlight key information with <strong> tags
-<p>
-  Our tool provides <strong>free</strong> online conversion,
-  supports <strong>PDF, DOCX, TXT</strong> formats,
-  with processing speed <strong>under 5 seconds</strong>.
-</p>
-```
+## Freshness, Links, And Performance
 
-## Content Freshness
+- Refresh important SEO pages every 30-90 days when possible and surface `last-modified` data where useful.
+- Use descriptive internal links to related tools, articles, and comparison pages to strengthen topical authority.
+- Protect Core Web Vitals: target `TTFB < 200ms`, `LCP < 2.5s`, and `CLS < 0.1`; optimize images, preload critical assets, and lazy-load non-critical content.
 
-- Update content within 30-90 days
-- Add `last-modified` metadata
-- Display freshness badges on content
-- Auto-detect stale content (>90 days)
-
-## Structured Data (Schema.org)
-
-```typescript
-// WebApplication Schema
-{
-  "@context": "https://schema.org",
-  "@type": "WebApplication",
-  name: tool.name,
-  description: tool.description,
-  applicationCategory: "UtilityApplication",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-  provider: { "@type": "Organization", name: "GeeksKai" }
-}
-```
-
-**Required schemas:**
-- WebApplication for tools
-- Organization for brand identity
-- FAQ for common questions
-- Breadcrumb for navigation
-
-## Technical SEO Checklist
-
-- [ ] TTFB < 200ms
-- [ ] LCP < 2.5s, FID < 100ms, CLS < 0.1
-- [ ] Images optimized (WebP/AVIF)
-- [ ] CDN and caching enabled
-- [ ] Preload critical resources
-
-## Brand Building
-
-1. **Entity signals** - Real founder info, contact details, media mentions
-2. **Core facts must be extractable** - Pricing, features, positioning, target users
-3. **Organization schema** - Legal name, founding date, contact points
-
-## Page Structure
+## Example
 
 ```tsx
-// ✅ Correct heading hierarchy
-<article>
-  <h1>Main Title - Include Core Keywords</h1>
-  <section>
-    <h2>Main Section</h2>
-    <h3>Subsection</h3>
-    <h4>Detailed Topic</h4>
-  </section>
-</article>
+<section>
+  <h2>Core Facts</h2>
+  <p><strong>Free</strong> SVG to JSX converter for <strong>React</strong> and <strong>TypeScript</strong>.</p>
+  <ul><li><strong>Input</strong>: SVG markup</li><li><strong>Output</strong>: JSX component</li></ul>
+</section>
 ```
 
-## Key Metrics
-
-| Metric | Target |
-|--------|--------|
-| Content freshness | < 90 days |
-| TTFB | < 200ms |
-| LCP | < 2.5s |
-| Information retrieval | Core facts extractable |
-| Topic coverage | Complete coverage |
-
-**Remember**: SEO is a tool. The real goal is revenue, not traffic. Always focus on conversion and user value.
+- Favor clarity, factual density, and brand consistency over clever copy.
