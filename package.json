@@ -41,6 +41,7 @@
     "@iarna/toml": "^3.0.0",
     "@khanacademy/flow-to-ts": "^0.5.2",
     "@lemonneko/easi-gen": "^0.0.36",
+    "@microsoft/clarity": "^1.0.2",
     "@monaco-editor/react": "^4.2.1",
     "@openapi-contrib/json-schema-to-openapi-schema": "^2.0.0",
     "@radix-ui/react-dialog": "^1.1.15",
