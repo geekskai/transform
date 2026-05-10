@@ -48,8 +48,7 @@ export const categorizedRoutes = [
         packageName: "@svgr/core",
         packageUrl: "https://github.com/smooth-code/svgr",
         title: "SVG to JSX Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert SVG to React JSX components. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert SVG to React JSX components. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "SVG to JSX",
           "SVG to React",
@@ -66,8 +65,7 @@ export const categorizedRoutes = [
         packageName: "@svgr/core",
         packageUrl: "https://github.com/smooth-code/svgr",
         title: "SVG to React Native Converter | Free Online Tool | Folioify",
-        desc:
-          "SVG to React Native: convert SVGs to RN components with inline styles. Free, no signup, runs in browser. By Folioify.",
+        desc: "SVG to React Native: convert SVGs to RN components with inline styles. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "SVG to React Native",
           "SVG to RN",
@@ -87,8 +85,7 @@ export const categorizedRoutes = [
         label: "to JSX",
         path: "/tools/html-to-jsx",
         title: "HTML to JSX Converter | Free Online Tool | Folioify",
-        desc:
-          "Paste HTML, get React JSX. Free, no signup, runs in browser. By Folioify.",
+        desc: "Paste HTML, get React JSX. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "HTML to JSX",
           "HTML to React",
@@ -105,8 +102,7 @@ export const categorizedRoutes = [
         packageName: "html2pug",
         packageUrl: "https://github.com/izolate/html2pug",
         title: "HTML to Pug Converter | Free Online | Folioify",
-        desc:
-          "Convert HTML to Pug (Jade) template syntax. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert HTML to Pug (Jade) template syntax. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "HTML to Pug",
           "HTML to Jade",
@@ -126,8 +122,7 @@ export const categorizedRoutes = [
         label: "to React PropTypes",
         path: "/tools/json-to-proptypes",
         title: "Folioify | All important transforms at one place.",
-        desc:
-          "Generate React PropTypes from JSON sample. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate React PropTypes from JSON sample. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to PropTypes",
           "React PropTypes",
@@ -142,8 +137,7 @@ export const categorizedRoutes = [
         label: "to Flow",
         path: "/tools/json-to-flow",
         title: "JSON to Flow Converter | Free Online Tool | Folioify",
-        desc:
-          "Generate Flow type definitions from JSON. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate Flow type definitions from JSON. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to Flow",
           "Flow types",
@@ -161,8 +155,7 @@ export const categorizedRoutes = [
         packageUrl:
           "https://github.com/walmartlabs/json-to-simple-graphql-schema",
         title: "JSON to GraphQL Schema Converter | Free Online | Folioify",
-        desc:
-          "Convert JSON sample to GraphQL schema. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert JSON sample to GraphQL schema. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to GraphQL",
           "GraphQL schema",
@@ -178,8 +171,7 @@ export const categorizedRoutes = [
         packageUrl: "https://www.npmjs.com/package/json_typegen_wasm",
         packageName: "json_typegen_wasm",
         title: "JSON to TypeScript Converter | Free Online Tool | Folioify",
-        desc:
-          "Generate TypeScript types from JSON. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate TypeScript types from JSON. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to TypeScript",
           "JSON to TS",
@@ -194,8 +186,7 @@ export const categorizedRoutes = [
         label: "to MobX-State-Tree Model",
         path: "/tools/json-to-mobx-state-tree",
         title: "JSON to MobX-State-Tree Converter | Free Online | Folioify",
-        desc:
-          "Convert JSON to MobX-State-Tree (MST) model. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert JSON to MobX-State-Tree (MST) model. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to MobX-State-Tree",
           "MST",
@@ -212,8 +203,7 @@ export const categorizedRoutes = [
         packageName: "transform-json-types",
         packageUrl: "https://github.com/transform-it/transform-json-types",
         title: "JSON to Sarcastic Converter | Free Online Tool | Folioify",
-        desc:
-          "Generate Sarcastic runtime types from JSON. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate Sarcastic runtime types from JSON. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to Sarcastic",
           "Sarcastic types",
@@ -229,8 +219,7 @@ export const categorizedRoutes = [
         packageName: "transform-json-types",
         packageUrl: "https://github.com/transform-it/transform-json-types",
         title: "JSON to io-ts Converter | Free Online | Folioify",
-        desc:
-          "Generate io-ts codec types from JSON. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate io-ts codec types from JSON. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to io-ts",
           "io-ts",
@@ -245,8 +234,7 @@ export const categorizedRoutes = [
         label: "to Rust Serde",
         path: "/tools/json-to-rust-serde",
         title: "JSON to Rust Serde Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert JSON to Rust Serde structs. Free REPL, no signup, runs in browser. By Folioify.",
+        desc: "Convert JSON to Rust Serde structs. Free REPL, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to Rust Serde",
           "Rust Serde",
@@ -263,8 +251,7 @@ export const categorizedRoutes = [
         packageName: "generate-schema",
         packageUrl: "https://github.com/nijikokun/generate-schema",
         title: "JSON to Mongoose Schema Converter | Free Online | Folioify",
-        desc:
-          "Convert JSON to Mongoose schema for Node.js. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert JSON to Mongoose schema for Node.js. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to Mongoose",
           "Mongoose schema",
@@ -280,8 +267,7 @@ export const categorizedRoutes = [
         packageName: "generate-schema",
         packageUrl: "https://github.com/nijikokun/generate-schema",
         title: "JSON to BigQuery Schema Converter | Free Online | Folioify",
-        desc:
-          "Generate BigQuery table schema from JSON. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate BigQuery table schema from JSON. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to Big Query",
           "BigQuery schema",
@@ -297,8 +283,7 @@ export const categorizedRoutes = [
         packageName: "generate-schema",
         packageUrl: "https://github.com/nijikokun/generate-schema",
         title: "JSON to MySQL Schema Converter | Free Online | Folioify",
-        desc:
-          "Convert JSON to MySQL CREATE TABLE schema. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert JSON to MySQL CREATE TABLE schema. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to MySQL",
           "MySQL schema",
@@ -312,8 +297,7 @@ export const categorizedRoutes = [
         label: "to Scala Case Class",
         path: "/tools/json-to-scala-case-class",
         title: "JSON to Scala Case Class Converter | Free Online | Folioify",
-        desc:
-          "Generate Scala case class from JSON. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate Scala case class from JSON. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to Scala",
           "Scala case class",
@@ -330,8 +314,7 @@ export const categorizedRoutes = [
         packageName: "json-to-go",
         packageUrl: "https://github.com/mholt/json-to-go",
         title: "JSON to Go Struct Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert JSON to Go struct. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert JSON to Go struct. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to Go",
           "Go struct",
@@ -346,8 +329,7 @@ export const categorizedRoutes = [
         label: "to Go Bson",
         path: "/tools/json-to-go-bson",
         title: "JSON to Go BSON Converter | Free Online | Folioify",
-        desc:
-          "Generate Go BSON struct tags from JSON. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate Go BSON struct tags from JSON. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to Go BSON",
           "Go BSON",
@@ -363,8 +345,7 @@ export const categorizedRoutes = [
         packageName: "json2yaml",
         packageUrl: "https://github.com/jeffsu/json2yaml",
         title: "JSON to YAML Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert JSON to YAML. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert JSON to YAML. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to YAML",
           "YAML converter",
@@ -378,8 +359,7 @@ export const categorizedRoutes = [
         label: "to JSDoc",
         path: "/tools/json-to-jsdoc",
         title: "JSON to JSDoc Converter | Free Online | Folioify",
-        desc:
-          "Generate JSDoc type comments from JSON. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate JSDoc type comments from JSON. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to JSDoc",
           "JSDoc",
@@ -396,8 +376,7 @@ export const categorizedRoutes = [
         packageUrl: "https://www.npmjs.com/package/json_typegen_wasm",
         packageName: "json_typegen_wasm",
         title: "JSON to Kotlin Converter | Free Online Tool | Folioify",
-        desc:
-          "Generate Kotlin data class from JSON. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate Kotlin data class from JSON. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to Kotlin",
           "Kotlin data class",
@@ -413,8 +392,7 @@ export const categorizedRoutes = [
         packageUrl: "https://www.npmjs.com/package/json_typegen_wasm",
         packageName: "json_typegen_wasm",
         title: "JSON to Java Converter | Free Online Tool | Folioify",
-        desc:
-          "Generate Java class from JSON. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate Java class from JSON. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to Java",
           "Java class",
@@ -431,8 +409,7 @@ export const categorizedRoutes = [
         packageUrl: "https://www.npmjs.com/package/json_typegen_wasm",
         packageName: "json_typegen_wasm",
         title: "JSON to JSON Schema Converter | Free Online | Folioify",
-        desc:
-          "Infer JSON Schema from JSON sample. Free, no signup, runs in browser. By Folioify.",
+        desc: "Infer JSON Schema from JSON sample. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to JSON Schema",
           "JSON Schema",
@@ -448,8 +425,7 @@ export const categorizedRoutes = [
         packageUrl: "https://www.npmjs.com/package/@iarna/toml",
         packageName: "@iarna/toml",
         title: "JSON to TOML Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert JSON to TOML config format. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert JSON to TOML config format. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON to TOML",
           "TOML converter",
@@ -465,8 +441,7 @@ export const categorizedRoutes = [
         packageUrl: "https://www.npmjs.com/package/json-to-zod",
         packageName: "json-to-zod",
         title: "JSON to Zod Converter | Free Online Tool | Folioify",
-        desc:
-          "Generate Zod schema from JSON. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate Zod schema from JSON. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON to Zod",
           "Zod schema",
@@ -488,8 +463,7 @@ export const categorizedRoutes = [
         packageName: "json-schema-to-typescript",
         packageUrl: "https://github.com/bcherny/json-schema-to-typescript",
         title: "JSON Schema to TypeScript Converter | Free Online | Folioify",
-        desc:
-          "Generate TypeScript types from JSON Schema. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate TypeScript types from JSON Schema. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON Schema to TypeScript",
           "JSON Schema",
@@ -506,8 +480,7 @@ export const categorizedRoutes = [
         packageUrl:
           "https://github.com/openapi-contrib/json-schema-to-openapi-schema",
         title: "JSON Schema to OpenAPI Converter | Free Online | Folioify",
-        desc:
-          "Convert JSON Schema to OpenAPI 3.x schema. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert JSON Schema to OpenAPI 3.x schema. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON Schema to OpenAPI",
           "OpenAPI",
@@ -523,8 +496,7 @@ export const categorizedRoutes = [
         packageName: "jsonschema-protobuf",
         packageUrl: "https://github.com/okdistribute/jsonschema-protobuf",
         title: "JSON Schema to Protobuf Converter | Free Online | Folioify",
-        desc:
-          "Convert JSON Schema to Protocol Buffers. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert JSON Schema to Protocol Buffers. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON Schema to Protobuf",
           "Protobuf",
@@ -540,8 +512,7 @@ export const categorizedRoutes = [
         packageName: "json-schema-to-zod",
         packageUrl: "https://www.npmjs.com/package/json-schema-to-zod",
         title: "JSON Schema to Zod Converter | Free Online | Folioify",
-        desc:
-          "Generate Zod schema from JSON Schema. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate Zod schema from JSON Schema. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON Schema to Zod",
           "Zod",
@@ -563,8 +534,7 @@ export const categorizedRoutes = [
         packageName: "transform-css-to-js",
         packageUrl: "https://github.com/transform-it/transform-css-to-js",
         title: "CSS to JS Objects Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert CSS to JavaScript style objects. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert CSS to JavaScript style objects. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "CSS to JS",
           "CSS to JavaScript",
@@ -582,8 +552,7 @@ export const categorizedRoutes = [
         packageName: "babel-plugin-object-styles-to-template",
         title:
           "Object Styles to Template Literal Converter | Free Online | Folioify",
-        desc:
-          "Convert object styles to styled-components template literal. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert object styles to styled-components template literal. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "object styles to template",
           "CSS-in-JS",
@@ -599,8 +568,7 @@ export const categorizedRoutes = [
         packageUrl: "https://github.com/Jackardios/css-to-tailwindcss",
         packageName: "css-to-tailwindcss",
         title: "CSS to Tailwind Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert CSS to TailwindCSS utility classes. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert CSS to TailwindCSS utility classes. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "CSS to Tailwind",
           "TailwindCSS",
@@ -619,8 +587,7 @@ export const categorizedRoutes = [
         label: "to JSON",
         path: "/tools/js-object-to-json",
         title: "JS Object to JSON Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert JS object to JSON in browser REPL. Free, no signup. By Folioify.",
+        desc: "Convert JS object to JSON in browser REPL. Free, no signup. By Folioify.",
         keywords: [
           "JS to JSON",
           "JavaScript to JSON",
@@ -634,8 +601,7 @@ export const categorizedRoutes = [
         label: "to Typescript",
         path: "/tools/js-object-to-typescript",
         title: "JS Object to TypeScript Converter | Free Online | Folioify",
-        desc:
-          "Convert JS object to TypeScript types in browser REPL. Free, no signup. By Folioify.",
+        desc: "Convert JS object to TypeScript types in browser REPL. Free, no signup. By Folioify.",
         keywords: [
           "JS to TypeScript",
           "JavaScript to TypeScript",
@@ -654,8 +620,7 @@ export const categorizedRoutes = [
         label: "to TypeScript",
         path: "/tools/graphql-to-typescript",
         title: "GraphQL to TypeScript Converter | Free Online Tool | Folioify",
-        desc:
-          "Generate TypeScript types from GraphQL schema. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate TypeScript types from GraphQL schema. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "GraphQL to TypeScript",
           "GraphQL types",
@@ -669,8 +634,7 @@ export const categorizedRoutes = [
         label: "to Flow",
         path: "/tools/graphql-to-flow",
         title: "GraphQL to Flow Converter | Free Online | Folioify",
-        desc:
-          "Generate Flow types from GraphQL schema. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate Flow types from GraphQL schema. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "GraphQL to Flow",
           "Flow types",
@@ -684,8 +648,7 @@ export const categorizedRoutes = [
         label: "to JAVA",
         path: "/tools/graphql-to-java",
         title: "GraphQL to Java Converter | Free Online | Folioify",
-        desc:
-          "Generate Java types from GraphQL schema. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate Java types from GraphQL schema. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "GraphQL to Java",
           "GraphQL Java",
@@ -699,8 +662,7 @@ export const categorizedRoutes = [
         label: "to Resolvers Signature",
         path: "/tools/graphql-to-resolvers-signature",
         title: "GraphQL Resolvers Signature Generator | Free Online | Folioify",
-        desc:
-          "Generate GraphQL resolvers type signatures. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate GraphQL resolvers type signatures. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "GraphQL resolvers",
           "resolvers signature",
@@ -715,8 +677,7 @@ export const categorizedRoutes = [
         path: "/tools/graphql-to-introspection-json",
         title:
           "GraphQL to Introspection JSON Converter | Free Online | Folioify",
-        desc:
-          "Convert GraphQL schema to introspection JSON. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert GraphQL schema to introspection JSON. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "GraphQL introspection",
           "introspection JSON",
@@ -730,8 +691,7 @@ export const categorizedRoutes = [
         label: "to Schema AST",
         path: "/tools/graphql-to-schema-ast",
         title: "GraphQL to Schema AST Converter | Free Online | Folioify",
-        desc:
-          "Convert GraphQL to schema AST. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert GraphQL to schema AST. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "GraphQL schema AST",
           "GraphQL AST",
@@ -745,8 +705,7 @@ export const categorizedRoutes = [
         label: "to Fragment Matcher",
         path: "/tools/graphql-to-fragment-matcher",
         title: "GraphQL Fragment Matcher Generator | Free Online | Folioify",
-        desc:
-          "Generate GraphQL fragment matcher for Apollo. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate GraphQL fragment matcher for Apollo. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "GraphQL fragment matcher",
           "Apollo fragment",
@@ -760,8 +719,7 @@ export const categorizedRoutes = [
         label: "to Components",
         path: "/tools/graphql-to-components",
         title: "GraphQL to Components Converter | Free Online | Folioify",
-        desc:
-          "Convert GraphQL queries to React components. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert GraphQL queries to React components. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "GraphQL to components",
           "GraphQL React",
@@ -776,8 +734,7 @@ export const categorizedRoutes = [
         path: "/tools/graphql-to-typescript-mongodb",
         title:
           "GraphQL to TypeScript MongoDB Converter | Free Online | Folioify",
-        desc:
-          "Generate TypeScript MongoDB types from GraphQL. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate TypeScript MongoDB types from GraphQL. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "GraphQL to TypeScript MongoDB",
           "GraphQL MongoDB",
@@ -800,8 +757,7 @@ export const categorizedRoutes = [
         label: "to N-Quads",
         path: "/tools/jsonld-to-nquads",
         title: "JSON-LD to N-Quads Converter | Free Online | Folioify",
-        desc:
-          "Convert JSON-LD to RDF N-Quads. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert JSON-LD to RDF N-Quads. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON-LD to N-Quads",
           "N-Quads",
@@ -816,8 +772,7 @@ export const categorizedRoutes = [
         label: "to Expanded",
         path: "/tools/jsonld-to-expanded",
         title: "JSON-LD to Expanded Form Converter | Free Online | Folioify",
-        desc:
-          "Expand JSON-LD to full IRI form. Free, in-browser, no signup. By Folioify.",
+        desc: "Expand JSON-LD to full IRI form. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON-LD expanded",
           "JSON-LD expand",
@@ -831,8 +786,7 @@ export const categorizedRoutes = [
         label: "to Compacted",
         path: "/tools/jsonld-to-compacted",
         title: "JSON-LD to Compacted Form Converter | Free Online | Folioify",
-        desc:
-          "Compact JSON-LD with context. Free, no signup, runs in browser. By Folioify.",
+        desc: "Compact JSON-LD with context. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON-LD compacted",
           "JSON-LD compact",
@@ -846,8 +800,7 @@ export const categorizedRoutes = [
         label: "to Flattened",
         path: "/tools/jsonld-to-flattened",
         title: "JSON-LD to Flattened Form Converter | Free Online | Folioify",
-        desc:
-          "Flatten JSON-LD graph. Free, in-browser, no signup. By Folioify.",
+        desc: "Flatten JSON-LD graph. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON-LD flattened",
           "JSON-LD flatten",
@@ -861,8 +814,7 @@ export const categorizedRoutes = [
         label: "to Framed",
         path: "/tools/jsonld-to-framed",
         title: "JSON-LD to Framed Form Converter | Free Online | Folioify",
-        desc:
-          "Frame JSON-LD with frame document. Free, no signup, runs in browser. By Folioify.",
+        desc: "Frame JSON-LD with frame document. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "JSON-LD framed",
           "JSON-LD frame",
@@ -876,8 +828,7 @@ export const categorizedRoutes = [
         label: "to Normalized",
         path: "/tools/jsonld-to-normalized",
         title: "JSON-LD to Normalized Form Converter | Free Online | Folioify",
-        desc:
-          "Normalize JSON-LD (RDF dataset). Free, in-browser, no signup. By Folioify.",
+        desc: "Normalize JSON-LD (RDF dataset). Free, in-browser, no signup. By Folioify.",
         keywords: [
           "JSON-LD normalized",
           "JSON-LD normalize",
@@ -902,8 +853,7 @@ export const categorizedRoutes = [
         packageName: "flowgen",
         packageUrl: "https://github.com/joarwilk/flowgen",
         title: "TypeScript to Flow Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert TypeScript to Flow type annotations. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert TypeScript to Flow type annotations. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "TypeScript to Flow",
           "TS to Flow",
@@ -917,8 +867,7 @@ export const categorizedRoutes = [
         label: "to TypeScript Declaration",
         path: "/tools/typescript-to-typescript-declaration",
         title: "TypeScript Declaration Generator | Free Online | Folioify",
-        desc:
-          "Generate .d.ts declaration files from TypeScript. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate .d.ts declaration files from TypeScript. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "TypeScript declaration",
           "d.ts",
@@ -934,8 +883,7 @@ export const categorizedRoutes = [
         packageName: "ts-json-schema-generator",
         packageUrl: "https://github.com/vega/ts-json-schema-generator",
         title: "TypeScript to JSON Schema Converter | Free Online | Folioify",
-        desc:
-          "Generate JSON Schema from TypeScript types. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate JSON Schema from TypeScript types. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "TypeScript to JSON Schema",
           "TS to JSON Schema",
@@ -950,8 +898,7 @@ export const categorizedRoutes = [
         path: "/tools/typescript-to-javascript",
         title:
           "TypeScript to JavaScript Converter | Free Online Tool | Folioify",
-        desc:
-          "Compile TypeScript to plain JavaScript. Free, in-browser, no signup. By Folioify.",
+        desc: "Compile TypeScript to plain JavaScript. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "TypeScript to JavaScript",
           "TS to JS",
@@ -967,8 +914,7 @@ export const categorizedRoutes = [
         packageName: "ts-to-zod",
         packageUrl: "https://www.npmjs.com/package/ts-to-zod",
         title: "TypeScript to Zod Converter | Free Online Tool | Folioify",
-        desc:
-          "Generate Zod schema from TypeScript types. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate Zod schema from TypeScript types. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "TypeScript to Zod",
           "TS to Zod",
@@ -988,8 +934,7 @@ export const categorizedRoutes = [
         label: "to TypeScript",
         path: "/tools/flow-to-typescript",
         title: "Flow to TypeScript Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert Flow to TypeScript. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert Flow to TypeScript. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "Flow to TypeScript",
           "Flow to TS",
@@ -1004,8 +949,7 @@ export const categorizedRoutes = [
         path: "/tools/flow-to-typescript-declaration",
         title:
           "Flow to TypeScript Declaration Converter | Free Online | Folioify",
-        desc:
-          "Generate TypeScript .d.ts from Flow. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate TypeScript .d.ts from Flow. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "Flow to TypeScript declaration",
           "Flow d.ts",
@@ -1019,8 +963,7 @@ export const categorizedRoutes = [
         label: "to plain JavaScript",
         path: "/tools/flow-to-javascript",
         title: "Flow to JavaScript Converter | Free Online | Folioify",
-        desc:
-          "Strip Flow annotations to plain JavaScript. Free, no signup, runs in browser. By Folioify.",
+        desc: "Strip Flow annotations to plain JavaScript. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "Flow to JavaScript",
           "Flow to JS",
@@ -1037,13 +980,31 @@ export const categorizedRoutes = [
     iconName: "",
     content: [
       {
+        label: "JSX Viewer",
+        path: "/tools/jsx-viewer",
+        packageName: "@babel/standalone",
+        packageUrl: "https://babeljs.io/docs/babel-standalone",
+        title: "Online JSX Viewer - Instant React Preview & Formatter",
+        desc: "The fastest online JSX viewer. Paste your React code to format, lint, and preview UI components instantly. No setup required. Supports Tailwind CSS.",
+        keywords: [
+          "JSX viewer",
+          "react playground online",
+          "JSX syntax checker",
+          "live react preview",
+          "JSX parser",
+          "JSX to JavaScript",
+          "JSX file viewer",
+          "folioify"
+        ],
+        lastModified: "2026-05-10"
+      },
+      {
         label: "XML to JSON",
         path: "/tools/xml-to-json",
         packageName: "xml-js",
         packageUrl: "https://github.com/nashwaan/xml-js",
         title: "XML to JSON Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert XML to JSON. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert XML to JSON. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "XML to JSON",
           "XML converter",
@@ -1073,8 +1034,7 @@ export const categorizedRoutes = [
         label: "YAML to TOML",
         path: "/tools/yaml-to-toml",
         title: "YAML to TOML Converter | Free Online | Folioify",
-        desc:
-          "Convert YAML to TOML config format. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert YAML to TOML config format. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "YAML to TOML",
           "YAML converter",
@@ -1090,8 +1050,7 @@ export const categorizedRoutes = [
         packageName: "markdown",
         packageUrl: "https://github.com/evilstreak/markdown-js",
         title: "Markdown to HTML Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert Markdown to HTML. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert Markdown to HTML. Free, in-browser, no signup. By Folioify.",
         keywords: [
           "Markdown to HTML",
           "Markdown converter",
@@ -1102,13 +1061,29 @@ export const categorizedRoutes = [
         lastModified: "2026-02-01"
       },
       {
+        label: "Markdown to JSX",
+        path: "/tools/markdown-to-jsx",
+        packageName: "markdown + htmltojsx",
+        packageUrl: "https://github.com/evilstreak/markdown-js",
+        title: "Markdown to JSX Converter | MD to React Component | Folioify",
+        desc: "Convert Markdown to production-ready JSX components with visual preview, component mapping, and frontmatter support. Free and browser-based.",
+        keywords: [
+          "Markdown to JSX",
+          "MD to React component",
+          "MDX generator",
+          "convert markdown to jsx online",
+          "markdown code snippet converter",
+          "folioify"
+        ],
+        lastModified: "2026-05-10"
+      },
+      {
         label: "TOML Syntax Checker",
         path: "/tools/check-toml",
         packageUrl: "https://www.npmjs.com/package/@iarna/toml",
         packageName: "@iarna/toml",
         title: "TOML Syntax Checker | Free Online Tool | Folioify",
-        desc:
-          "Validate TOML syntax instantly with clear error messages. Free, no signup, runs in browser. By Folioify.",
+        desc: "Validate TOML syntax instantly with clear error messages. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "TOML syntax checker",
           "TOML validator",
@@ -1126,8 +1101,7 @@ export const categorizedRoutes = [
         packageUrl: "https://www.npmjs.com/package/@iarna/toml",
         packageName: "@iarna/toml",
         title: "TOML Formatter | TOML Format | Folioify",
-        desc:
-          "Format TOML config files with consistent spacing and structure. Free, no signup, runs in browser.",
+        desc: "Format TOML config files with consistent spacing and structure. Free, no signup, runs in browser.",
         keywords: [
           "TOML formatter",
           "format TOML",
@@ -1145,8 +1119,7 @@ export const categorizedRoutes = [
         packageUrl: "https://www.npmjs.com/package/@iarna/toml",
         packageName: "@iarna/toml",
         title: "TOML to JSON Converter | Free Online Tool | Folioify",
-        desc:
-          "Convert TOML to JSON. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert TOML to JSON. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "TOML to JSON",
           "TOML converter",
@@ -1174,8 +1147,7 @@ export const categorizedRoutes = [
         label: "Cadence to Go",
         path: "/tools/cadence-to-go",
         title: "Cadence to Go Converter | Free Online | Folioify",
-        desc:
-          "Convert Cadence smart contract to Go. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert Cadence smart contract to Go. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "Cadence to Go",
           "Cadence",

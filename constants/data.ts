@@ -222,7 +222,7 @@ Numbered list:
   2. rinse
   3. repeat
 A [link](http://example.com).
-![Image](https://via.placeholder.com/150)
+![Image](https://placehold.co/150x150/png)
 > Markdown uses email-style > characters for blockquoting.
 `;
 
