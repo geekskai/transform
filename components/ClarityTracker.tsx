@@ -10,7 +10,7 @@ declare global {
 }
 
 const clarityProjectId =
-  process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "wnxbbj9uvo";
+  process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || "wa2k5yaq57";
 
 export default function ClarityTracker() {
   useEffect(() => {
