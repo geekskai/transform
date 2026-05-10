@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { getToolMeta, SITE_CONFIG } from "../lib/seo";
 import { Meta } from "@components/Meta";
 import { JsonLd } from "@components/JsonLd";
+import ClarityTracker from "@components/ClarityTracker";
 
 export default function App(props) {
   const router = useRouter();
@@ -64,6 +65,7 @@ export default function App(props) {
         />
       )}
       <JsonLd pathname={router.pathname || "/"} />
+      <ClarityTracker />
 
       <div className="app-root light">
         <header

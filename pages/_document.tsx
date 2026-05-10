@@ -1,6 +1,5 @@
 import React from "react";
 import Document, { Head, Main, NextScript, Html } from "next/document";
-import ClarityTracker from "@components/ClarityTracker";
 
 interface DocumentProps {
   hydrationScript?: React.ReactChild;
@@ -28,7 +27,6 @@ export default class MyDocument extends Document<DocumentProps> {
         </Head>
 
         <body>
-          <ClarityTracker />
           <Main />
           <NextScript />
         </body>
