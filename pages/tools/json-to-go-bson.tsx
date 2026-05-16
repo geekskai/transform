@@ -4,6 +4,9 @@ import { useCallback } from "react";
 
 export default function JsonToGoBson() {
   const transformer = useCallback<Transformer>(async ({ value }) => {
+    console.log(
+      `json-to-go-bson date: ${new Date().toISOString()} value: ${value}`
+    );
     return JSON.stringify(JSON.parse(value || "{}"), null, 2)
       .replace(/\{/gm, "bson.M{")
       .replace(/\[/gm, "bson.A{")

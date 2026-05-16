@@ -162,7 +162,7 @@ ${safeCompiledRuntimeCode
 
 export default function JsxViewer() {
   const [value, setValue] = useData("jsx");
-  const [transpiledCode, setTranspiledCode] = useState("");
+  // const [transpiledCode, setTranspiledCode] = useState("");
   const [previewRuntimeCode, setPreviewRuntimeCode] = useState("");
   const [buildError, setBuildError] = useState("");
   const [enableTailwindPreview, setEnableTailwindPreview] = useState(true);
@@ -177,7 +177,7 @@ export default function JsxViewer() {
     const input = value || "";
     const timer = setTimeout(() => {
       if (!input.trim()) {
-        setTranspiledCode("");
+        // setTranspiledCode("");
         setPreviewRuntimeCode("");
         setBuildError("");
         return;
@@ -185,11 +185,14 @@ export default function JsxViewer() {
 
       try {
         const normalizedInput = normalizePreviewSource(input);
-        const transformed = Babel.transform(normalizedInput, {
-          presets: ["react"],
-          sourceType: "module",
-          filename: "input.jsx"
-        });
+
+        console.log(`date: ${new Date().toISOString()} normalizedInput: 
+        ${normalizedInput}`);
+        // const transformed = Babel.transform(normalizedInput, {
+        //   presets: ["react"],
+        //   sourceType: "module",
+        //   filename: "input.jsx"
+        // });
         const previewRuntime = Babel.transform(
           buildPreviewRuntime(normalizedInput),
           {
@@ -199,7 +202,7 @@ export default function JsxViewer() {
           }
         );
 
-        setTranspiledCode(transformed.code || "");
+        // setTranspiledCode(transformed.code || "");
         setPreviewRuntimeCode(previewRuntime.code || "");
         setBuildError("");
       } catch (error) {
@@ -263,21 +266,21 @@ export default function JsxViewer() {
         </div>
 
         <div className="flex flex-1 flex-col overflow-hidden">
-          <div className="h-1/2 min-h-[260px] border-b">
-            <div className="flex h-11 items-center border-b px-3">
-              <h3 className="text-lg font-medium text-gray-900 m-0">
-                Live React Preview
-              </h3>
-            </div>
-            <iframe
-              title="JSX live preview"
-              className="h-[calc(100%-44px)] w-full bg-white"
-              sandbox="allow-scripts"
-              srcDoc={previewDoc}
-            />
+          {/* <div className="h-1/2 min-h-[260px] border-b"> */}
+          <div className="flex h-11 items-center border-b px-3">
+            <h3 className="text-lg font-medium text-gray-900 m-0">
+              Live React Preview
+            </h3>
           </div>
+          <iframe
+            title="JSX live preview"
+            className="h-[calc(100%-44px)] w-full bg-white"
+            sandbox="allow-scripts"
+            srcDoc={previewDoc}
+          />
+          {/* </div> */}
 
-          <div className="h-1/2 min-h-[260px]">
+          {/* <div className="h-1/2 min-h-[260px]">
             <EditorPanel
               id="jsx-viewer-transpiled"
               title="Transpiled JavaScript"
@@ -288,7 +291,7 @@ export default function JsxViewer() {
               hasLoad={false}
               hasClear={false}
             />
-          </div>
+          </div> */}
         </div>
       </div>
 

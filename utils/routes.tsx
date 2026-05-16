@@ -112,6 +112,25 @@ export const categorizedRoutes = [
           "folioify"
         ],
         lastModified: "2026-02-01"
+      },
+      {
+        label: "Viewer",
+        path: "/tools/html-viewer",
+        packageName: "prettier",
+        packageUrl: "https://prettier.io/",
+        title:
+          "Online HTML Viewer | Live HTML Previewer & Formatter | Folioify",
+        desc: "Paste, edit, and render HTML online with sandboxed live preview, responsive device presets, inspect mode, and beautify/minify formatting.",
+        keywords: [
+          "online HTML viewer",
+          "HTML previewer",
+          "live HTML editor",
+          "HTML formatter",
+          "render HTML online",
+          "email template viewer",
+          "folioify"
+        ],
+        lastModified: "2026-05-10"
       }
     ]
   },
