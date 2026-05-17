@@ -131,19 +131,6 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <a
-          href="https://sellwithboost.com"
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://sellwithboost.com/badge/listing.svg"
-            alt="Listed on Sell With boost"
-            style={{ height: "40px", width: "auto" }}
-          />
-        </a>
-
         <div className="mt-8 flex flex-col gap-3 border-t border-gray-100 pt-6 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between">
           <span>
             © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights
