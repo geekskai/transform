@@ -21,6 +21,10 @@ export default class MyDocument extends Document<DocumentProps> {
             content="58567D271AD7C1B504E10F5DC587BD0B"
           />
           <meta
+            name="google-adsense-account"
+            content="ca-pub-2108246014001009"
+          />
+          <meta
             name="google-site-verification"
             content="bjJSOEahdert-7mwVScrwTTUVR3nSe0bEj5YjevUNn0"
           />
