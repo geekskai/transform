@@ -23,7 +23,7 @@ const formFields = [
 ];
 
 export default function HtmlToJsxComponent() {
-  const name = "HTML to JSX";
+  const name = "convert html to jsx code";
 
   const [settings, setSettings] = useSettings(name, {
     createFunction: false
@@ -53,7 +53,7 @@ export default function HtmlToJsxComponent() {
     ({ open, toggle }) => {
       return (
         <Form<Settings>
-          title="HTML to JSX"
+          title="convert html to jsx code"
           onSubmit={setSettings}
           open={open}
           toggle={toggle}
@@ -88,9 +88,7 @@ export default function HtmlToJsxComponent() {
                 </a>
               </AlertTitle>
             </Alert>
-          ) : (
-            undefined
-          )
+          ) : undefined
       }}
     />
   );

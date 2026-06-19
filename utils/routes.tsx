@@ -84,10 +84,10 @@ export const categorizedRoutes = [
       {
         label: "to JSX",
         path: "/tools/html-to-jsx",
-        title: "HTML to JSX Converter | Free Online Tool | Folioify",
+        title: "convert html to jsx code | Free Online Tool | Folioify",
         desc: "Paste HTML, get React JSX. Free, no signup, runs in browser. By Folioify.",
         keywords: [
-          "HTML to JSX",
+          "convert html to jsx code",
           "HTML to React",
           "JSX converter",
           "React JSX",

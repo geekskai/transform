@@ -112,11 +112,11 @@ export default function ToolPageLayout({
           <div className="mx-auto max-w-7xl text-center">
             <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-brand-500 to-brand-400 px-3 py-1.5 text-xs font-semibold text-white shadow-lg shadow-brand-500/25 sm:mb-4 sm:px-4 sm:py-2 sm:text-sm">
               <ToolIcon />
-              Free {searchTerm} Tool
+              Free {searchTerm}
             </span>
 
             <h1 className="mb-3 bg-gradient-to-r from-brand-700 via-brand-500 to-brand-700 bg-clip-text text-2xl font-bold leading-tight text-transparent sm:text-3xl md:mb-4 md:text-4xl lg:text-5xl">
-              {searchTerm} Tool (2026) ✨
+              {searchTerm} (2026) ✨
             </h1>
 
             <p className="mx-auto mb-5 max-w-3xl text-sm leading-relaxed text-gray-600 sm:text-base md:mb-6 md:text-lg">
