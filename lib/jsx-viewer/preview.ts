@@ -1,3 +1,5 @@
+import type { ComponentType, ReactElement } from "react";
+
 export const PREVIEW_COMPONENT_ERROR =
   "No previewable React component found. Define App/Preview/Component, declare a PascalCase component, or paste a JSX fragment.";
 
@@ -117,7 +119,7 @@ function stripModuleSyntax(source: string) {
     .replace(/export\s+(const|function|class)\s+/g, "$1 ");
 }
 
-function buildPreviewRuntime(source: string) {
+function buildPreviewResolver(source: string) {
   const normalizedSource = normalizePreviewSource(source);
   const previewCandidateNames = getPreviewCandidateNames(normalizedSource);
 
@@ -138,14 +140,34 @@ for (const __name of __previewCandidateNames) {
 
 if (!__PreviewComponent) {
   throw new Error(${JSON.stringify(PREVIEW_COMPONENT_ERROR)});
+}`;
 }
 
+const PREVIEW_MOUNT_SCRIPT = `
 const __root = ReactDOM.createRoot(document.getElementById("root"));
 __root.render(
   React.isValidElement(__PreviewComponent)
     ? __PreviewComponent
     : React.createElement(__PreviewComponent)
 );`;
+
+function buildPreviewRuntime(source: string) {
+  return `${buildPreviewResolver(source)}${PREVIEW_MOUNT_SCRIPT}`;
+}
+
+export type PreviewComponent = ComponentType<unknown> | ReactElement;
+
+export function runPreviewResolver(
+  compiledResolverCode: string,
+  ReactNs: typeof import("react")
+): PreviewComponent {
+  const runner = new Function(
+    "React",
+    "ReactDOM",
+    `${compiledResolverCode}\nreturn __PreviewComponent;`
+  ) as (react: typeof import("react"), reactDom: unknown) => PreviewComponent;
+
+  return runner(ReactNs, null);
 }
 
 function sanitizeScriptContent(value: string) {
@@ -153,10 +175,12 @@ function sanitizeScriptContent(value: string) {
 }
 
 export function buildPreviewDocument(
-  compiledRuntimeCode: string,
+  compiledResolverCode: string,
   includeTailwind: boolean
 ) {
-  const safeCompiledRuntimeCode = sanitizeScriptContent(compiledRuntimeCode);
+  const safeCompiledRuntimeCode = sanitizeScriptContent(
+    `${compiledResolverCode}${PREVIEW_MOUNT_SCRIPT}`
+  );
 
   const tailwindScript = includeTailwind
     ? `<script src="https://cdn.tailwindcss.com"></script>`
@@ -243,7 +267,7 @@ export function compileJsxInput(
 
   try {
     const normalizedInput = normalizePreviewSource(input);
-    const previewRuntime = transform(buildPreviewRuntime(normalizedInput), {
+    const previewRuntime = transform(buildPreviewResolver(normalizedInput), {
       presets: ["react"],
       sourceType: "script",
       filename: "preview.jsx"

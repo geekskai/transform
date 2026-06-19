@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import * as Babel from "@babel/standalone";
 import { useData } from "@hooks/useData";
 import { Switch } from "@/components/ui/switch";
@@ -7,12 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Loader2, RefreshCw, TriangleAlert } from "lucide-react";
 import JsxEditorPanel from "@components/jsx-viewer/JsxEditorPanel";
+import JsxPreviewPanel from "@components/jsx-viewer/JsxPreviewPanel";
 import ResizableSplit from "@components/jsx-viewer/ResizableSplit";
-import {
-  SAMPLE_JSX,
-  buildPreviewDocument,
-  compileJsxInput
-} from "@/lib/jsx-viewer/preview";
+import { SAMPLE_JSX, compileJsxInput } from "@/lib/jsx-viewer/preview";
 
 type CompileStatus = "idle" | "compiling" | "ready" | "error";
 
@@ -61,11 +58,6 @@ export default function JsxViewer() {
 
     return () => clearTimeout(timer);
   }, [value]);
-
-  const previewDoc = useMemo(
-    () => buildPreviewDocument(previewRuntimeCode, enableTailwindPreview),
-    [previewRuntimeCode, enableTailwindPreview]
-  );
 
   const statusLabel =
     compileStatus === "compiling"
@@ -156,12 +148,10 @@ export default function JsxViewer() {
                   </Button>
                 </div>
               </div>
-              <iframe
-                key={previewKey}
-                title="JSX live preview"
-                className="h-[calc(100%-44px)] w-full bg-white"
-                sandbox="allow-scripts"
-                srcDoc={previewDoc}
+              <JsxPreviewPanel
+                previewRuntimeCode={previewRuntimeCode}
+                enableTailwindPreview={enableTailwindPreview}
+                refreshKey={previewKey}
               />
             </div>
           }
