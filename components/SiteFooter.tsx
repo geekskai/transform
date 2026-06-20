@@ -109,10 +109,10 @@ export default function SiteFooter() {
             <ul className="mt-3 space-y-2 text-sm text-gray-600">
               <li>
                 <a
-                  href="mailto:hello@folioify.com"
+                  href="mailto:geeks.kai@gmail.com"
                   className="transition-colors hover:text-brand-700"
                 >
-                  hello@folioify.com
+                  geeks.kai@gmail.com
                 </a>
               </li>
               {socials.map(social => (

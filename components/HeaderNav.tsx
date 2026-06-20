@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { categorizedRoutes, Route } from "@utils/routes";
 import SearchBox from "@components/Searchbox";
-import { SITE_CONFIG } from "../lib/seo";
+import { getCategorySlug, SITE_CONFIG } from "../lib/seo";
 
 const DROPDOWN_Z_INDEX = 9999;
 const GAP = 12;
@@ -114,7 +114,12 @@ function MegaMenuPane({
             className="mega-menu-column mb-6 md:mb-8"
           >
             <h3 className="mega-menu-category-title mb-2 text-xs font-bold uppercase tracking-wider text-brand-700 md:mb-3 md:text-sm">
-              {categoryGroup.category}
+              <Link
+                className="hover:text-brand-800"
+                href={`/tools/${getCategorySlug(categoryGroup.category)}`}
+              >
+                {categoryGroup.category}
+              </Link>
             </h3>
             <ul className="mega-menu-list gap-1 md:gap-2">
               {categoryGroup.content.map(route => (

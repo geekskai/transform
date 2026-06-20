@@ -245,8 +245,8 @@ export default function ToolPageLayout({
                   <strong> free, browser-based converter</strong> that runs
                   locally in your device for privacy. It is designed for
                   developers and creators who need{" "}
-                  <strong>fast, accurate transformations</strong> without
-                  signups or uploads.
+                  <strong>fast, accurate transformations</strong> without signup
+                  or upload.
                 </>
               )}
             </p>

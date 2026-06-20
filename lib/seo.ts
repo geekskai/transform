@@ -5,7 +5,13 @@
  */
 
 import { activeRouteData, categorizedRoutes, routes } from "@utils/routes";
-import { getToolPageContent, getToolPageFAQs } from "./tool-page-content";
+import {
+  getCategoryPageContent,
+  getToolPageContent,
+  getToolPageFAQs,
+  INDEXING_CONTENT_LAST_MODIFIED,
+  isPriorityIndexingToolPath
+} from "./tool-page-content";
 
 type Route = NonNullable<ReturnType<typeof activeRouteData>>;
 
@@ -131,13 +137,20 @@ export function getToolMeta(pathname: string): ToolMeta | null {
       tool => tool.category === category.category
     );
     const categoryName = category.category;
-    const lastModified =
-      getLatestDate(categoryTools.map(tool => tool.lastModified)) ||
-      HOME_META.lastModified;
+    const categorySlug = getCategorySlug(categoryName);
+    const pageContent = getCategoryPageContent(categorySlug);
+    const lastModified = pageContent
+      ? INDEXING_CONTENT_LAST_MODIFIED
+      : getLatestDate(categoryTools.map(tool => tool.lastModified)) ||
+        HOME_META.lastModified;
 
     return {
-      title: `${categoryName} Developer Tools | Free Online Converters | ${SITE_CONFIG.name}`,
-      description: `Browse free online ${categoryName} developer tools from Folioify. Convert, format, validate, and generate code locally in your browser with no signup.`,
+      title: pageContent
+        ? `${pageContent.title} | Free Online Tools | ${SITE_CONFIG.name}`
+        : `${categoryName} Developer Tools | Free Online Converters | ${SITE_CONFIG.name}`,
+      description:
+        pageContent?.description ||
+        `Browse free online ${categoryName} developer tools from Folioify. Convert, format, validate, and generate code locally in your browser with no signup.`,
       canonical: `${baseUrl}/tools/${getCategorySlug(categoryName)}`,
       keywords: [
         `${categoryName} tools`,
@@ -197,7 +210,9 @@ export function getToolMeta(pathname: string): ToolMeta | null {
     path: route.path,
     kind: "tool",
     noindex: route.noindex,
-    lastModified: route.lastModified,
+    lastModified: isPriorityIndexingToolPath(route.path)
+      ? INDEXING_CONTENT_LAST_MODIFIED
+      : route.lastModified,
     datePublished: route.datePublished
   };
 }

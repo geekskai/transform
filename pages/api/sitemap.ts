@@ -1,6 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { getAllPosts } from "../../lib/blog";
 import { getCategorySlug, SITE_CONFIG } from "../../lib/seo";
+import {
+  getCategoryPageContent,
+  INDEXING_CONTENT_LAST_MODIFIED,
+  isPriorityIndexingToolPath
+} from "../../lib/tool-page-content";
 import { categorizedRoutes, routes } from "@utils/routes";
 
 const BASE = (SITE_CONFIG.baseUrl || "").replace(/\/$/, "");
@@ -55,21 +60,31 @@ function buildSitemapXml(): string {
       const categoryTools = routes.filter(
         route => route.category === category.category
       );
+      const categorySlug = getCategorySlug(category.category);
+      const hasCategoryContent = Boolean(getCategoryPageContent(categorySlug));
 
       return {
-        loc: `${BASE}/tools/${getCategorySlug(category.category)}`,
-        lastmod: getLatestDate(categoryTools.map(tool => tool.lastModified)),
-        changefreq: "weekly" as const,
-        priority: "0.7"
+        loc: `${BASE}/tools/${categorySlug}`,
+        lastmod: hasCategoryContent
+          ? INDEXING_CONTENT_LAST_MODIFIED
+          : getLatestDate(categoryTools.map(tool => tool.lastModified)),
+        changefreq: hasCategoryContent
+          ? ("daily" as const)
+          : ("weekly" as const),
+        priority: hasCategoryContent ? "0.85" : "0.7"
       };
     }),
     ...routes
       .filter(route => route.path && route.path !== "/")
       .map(route => ({
         loc: BASE + route.path,
-        lastmod: route.lastModified,
-        changefreq: "weekly" as const,
-        priority: "0.8"
+        lastmod: isPriorityIndexingToolPath(route.path)
+          ? INDEXING_CONTENT_LAST_MODIFIED
+          : route.lastModified,
+        changefreq: isPriorityIndexingToolPath(route.path)
+          ? ("daily" as const)
+          : ("weekly" as const),
+        priority: isPriorityIndexingToolPath(route.path) ? "0.9" : "0.8"
       })),
     ...posts.map(post => ({
       loc: `${BASE}/blog/${post.slug}`,

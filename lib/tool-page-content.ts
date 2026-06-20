@@ -20,6 +20,538 @@ export type ToolPageContent = {
   faqs: ToolFAQ[];
 };
 
+export type CategoryPageContent = {
+  title: string;
+  description: string;
+  highlights: string[];
+  useCases: string[];
+  faqs: ToolFAQ[];
+};
+
+const PRIORITY_INDEXING_TOOL_PATHS = new Set([
+  "/tools/toml-to-yaml",
+  "/tools/check-toml",
+  "/tools/markdown-to-jsx",
+  "/tools/yaml-to-toml",
+  "/tools/xml-to-json",
+  "/tools/flow-to-javascript",
+  "/tools/typescript-to-zod",
+  "/tools/typescript-to-json-schema",
+  "/tools/typescript-to-flow",
+  "/tools/jsonld-to-expanded",
+  "/tools/graphql-to-typescript-mongodb",
+  "/tools/graphql-to-components",
+  "/tools/graphql-to-fragment-matcher",
+  "/tools/graphql-to-introspection-json",
+  "/tools/graphql-to-resolvers-signature",
+  "/tools/graphql-to-java",
+  "/tools/graphql-to-flow",
+  "/tools/js-object-to-json",
+  "/tools/css-to-tailwind",
+  "/tools/object-styles-to-template-literal",
+  "/tools/json-schema-to-typescript",
+  "/tools/json-to-zod",
+  "/tools/json-to-kotlin",
+  "/tools/json-to-yaml",
+  "/tools/json-to-big-query",
+  "/tools/json-to-mongoose",
+  "/tools/json-to-sarcastic",
+  "/tools/json-to-mobx-state-tree",
+  "/tools/json-to-graphql",
+  "/tools/html-viewer"
+]);
+
+export const INDEXING_CONTENT_LAST_MODIFIED = "2026-06-20";
+
+export function isPriorityIndexingToolPath(path: string): boolean {
+  return PRIORITY_INDEXING_TOOL_PATHS.has(path);
+}
+
+const tokenLabels: Record<string, string> = {
+  api: "API",
+  big: "Big",
+  bson: "BSON",
+  css: "CSS",
+  flow: "Flow",
+  fragment: "Fragment",
+  graphql: "GraphQL",
+  html: "HTML",
+  introspection: "Introspection",
+  java: "Java",
+  javascript: "JavaScript",
+  js: "JS",
+  json: "JSON",
+  jsonld: "JSON-LD",
+  jsx: "JSX",
+  kotlin: "Kotlin",
+  markdown: "Markdown",
+  mobx: "MobX",
+  mongodb: "MongoDB",
+  mongoose: "Mongoose",
+  object: "Object",
+  resolvers: "Resolvers",
+  sarcastic: "Sarcastic",
+  schema: "Schema",
+  tailwind: "Tailwind",
+  template: "Template",
+  toml: "TOML",
+  typescript: "TypeScript",
+  xml: "XML",
+  yaml: "YAML",
+  zod: "Zod"
+};
+
+const categoryContent: Record<string, CategoryPageContent> = {
+  svg: {
+    title: "SVG Developer Tools",
+    description:
+      "Convert SVG assets into framework-ready components for React, JSX, and React Native projects without uploading icon source files.",
+    highlights: [
+      "Best for design-system icons, app illustrations, and exported vector assets.",
+      "Keeps viewBox and path data visible so developers can review the generated component.",
+      "Useful when moving SVG files from design tools into production UI code."
+    ],
+    useCases: [
+      "Prepare SVG icons for React component libraries.",
+      "Convert SVG artwork for React Native mobile screens.",
+      "Clean SVG snippets before sharing them in documentation."
+    ],
+    faqs: [
+      {
+        question: "Are SVG conversions private?",
+        answer:
+          "Yes. SVG conversion runs in the browser, so pasted markup is not uploaded to Folioify servers."
+      },
+      {
+        question: "Should I review generated SVG components?",
+        answer:
+          "Yes. Review accessibility labels, colors, and sizing before using generated components in production."
+      }
+    ]
+  },
+  html: {
+    title: "HTML Developer Tools",
+    description:
+      "Preview, convert, and adapt HTML snippets for React, JSX, Pug, and browser-based debugging workflows.",
+    highlights: [
+      "Useful for migrating static markup into component-based applications.",
+      "Helps test copied HTML examples before adding them to a codebase.",
+      "Supports quick template conversion without creating a local project."
+    ],
+    useCases: [
+      "Convert HTML into JSX for React components.",
+      "Preview HTML snippets or email fragments in the browser.",
+      "Convert legacy HTML templates into Pug syntax."
+    ],
+    faqs: [
+      {
+        question: "Can these tools replace browser testing?",
+        answer:
+          "No. They speed up conversion and preview work, but production HTML should still be tested in target browsers."
+      },
+      {
+        question: "Do HTML tools upload my markup?",
+        answer:
+          "No. Folioify is designed for client-side processing whenever possible."
+      }
+    ]
+  },
+  json: {
+    title: "JSON Developer Tools",
+    description:
+      "Generate types, schemas, database models, and framework-specific code from JSON examples for API and data workflows.",
+    highlights: [
+      "Best for turning API payload samples into typed code or schema drafts.",
+      "Supports many target languages and validation libraries.",
+      "Helps document data structures during implementation and debugging."
+    ],
+    useCases: [
+      "Generate TypeScript, Zod, Kotlin, or GraphQL drafts from JSON samples.",
+      "Prepare database or analytics schema drafts from event payloads.",
+      "Convert JSON into YAML, TOML, or other exchange formats."
+    ],
+    faqs: [
+      {
+        question: "Can one JSON sample describe every production field?",
+        answer:
+          "No. Use representative samples and review optional, nullable, and repeated fields manually."
+      },
+      {
+        question: "Is generated code production-ready?",
+        answer:
+          "Generated output is a strong starting point, but it should be reviewed and tested in your project."
+      }
+    ]
+  },
+  "json-schema": {
+    title: "JSON Schema Developer Tools",
+    description:
+      "Convert JSON Schema into TypeScript, Zod, OpenAPI-compatible schema, and other formats used in validation and API design.",
+    highlights: [
+      "Useful for API contracts, validation libraries, and shared model definitions.",
+      "Keeps schema structure visible for review before adoption.",
+      "Helps teams move between schema-first and type-first workflows."
+    ],
+    useCases: [
+      "Generate TypeScript definitions from JSON Schema.",
+      "Create Zod schemas for runtime validation.",
+      "Adapt JSON Schema for OpenAPI documentation."
+    ],
+    faqs: [
+      {
+        question: "Does conversion preserve every JSON Schema feature?",
+        answer:
+          "Most common structures convert well, but advanced keywords may require manual review."
+      },
+      {
+        question: "Should I validate the generated schema?",
+        answer:
+          "Yes. Run it through your target validator or compiler before publishing it."
+      }
+    ]
+  },
+  css: {
+    title: "CSS Developer Tools",
+    description:
+      "Convert CSS into JavaScript style objects, Tailwind utility classes, and component-friendly styling formats.",
+    highlights: [
+      "Useful when migrating stylesheet snippets into component code.",
+      "Helps prototype inline styles and utility-class alternatives.",
+      "Keeps style transformations quick and copyable."
+    ],
+    useCases: [
+      "Convert CSS declarations into React style objects.",
+      "Translate CSS snippets into Tailwind classes.",
+      "Prepare style examples for docs and component libraries."
+    ],
+    faqs: [
+      {
+        question: "Can CSS tools convert every selector?",
+        answer:
+          "Simple declarations convert best. Complex selectors, media queries, and pseudo states may need manual work."
+      },
+      {
+        question: "Is Tailwind conversion exact?",
+        answer:
+          "It creates a practical utility-class draft. Review spacing, colors, and responsive behavior."
+      }
+    ]
+  },
+  javascript: {
+    title: "JavaScript Developer Tools",
+    description:
+      "Convert JavaScript object and style snippets into strict JSON, TypeScript types, and component-ready formats.",
+    highlights: [
+      "Useful for cleaning copied console data and object literals.",
+      "Helps migrate loose JavaScript snippets into typed or structured output.",
+      "Designed for quick debugging and documentation workflows."
+    ],
+    useCases: [
+      "Convert JS object literals into valid JSON.",
+      "Generate TypeScript shapes from object examples.",
+      "Adapt object styles into template-friendly strings."
+    ],
+    faqs: [
+      {
+        question: "Is a JS object the same as JSON?",
+        answer:
+          "No. JSON is a strict data format; JavaScript object literals are language syntax."
+      },
+      {
+        question: "Can functions be converted to JSON?",
+        answer:
+          "No. JSON does not support functions, undefined, symbols, or class instances."
+      }
+    ]
+  },
+  graphql: {
+    title: "GraphQL Developer Tools",
+    description:
+      "Convert GraphQL schemas and documents into types, resolver signatures, introspection JSON, and client-ready artifacts.",
+    highlights: [
+      "Useful for schema-first API development and client code generation.",
+      "Helps inspect GraphQL SDL before wiring it into tooling.",
+      "Supports multiple GraphQL output targets for migration and documentation."
+    ],
+    useCases: [
+      "Generate TypeScript or Flow types from GraphQL schema input.",
+      "Create introspection JSON for documentation and client tooling.",
+      "Draft resolver signatures or component bindings from GraphQL definitions."
+    ],
+    faqs: [
+      {
+        question: "Do GraphQL tools call my API endpoint?",
+        answer:
+          "No. These tools work with pasted schema or document text in the browser."
+      },
+      {
+        question: "Can generated GraphQL code be used directly?",
+        answer:
+          "Use it as a starting point and run it through your project compiler or GraphQL codegen setup."
+      }
+    ]
+  },
+  "json-ld": {
+    title: "JSON-LD Developer Tools",
+    description:
+      "Expand, compact, flatten, frame, and normalize JSON-LD data for linked-data debugging and structured-data workflows.",
+    highlights: [
+      "Useful when debugging schema.org, linked data, and semantic JSON documents.",
+      "Helps inspect how context expansion changes JSON-LD output.",
+      "Keeps transformations visible for validation and documentation."
+    ],
+    useCases: [
+      "Expand JSON-LD before validating structured data.",
+      "Normalize linked-data examples for comparison.",
+      "Debug context and framing behavior in JSON-LD documents."
+    ],
+    faqs: [
+      {
+        question: "Is JSON-LD the same as JSON?",
+        answer:
+          "JSON-LD is JSON with linked-data context and semantics. It can be transformed into expanded or normalized forms."
+      },
+      {
+        question: "Do JSON-LD tools validate rich results?",
+        answer:
+          "No. Use Google rich result tools for eligibility checks after transforming and reviewing the data."
+      }
+    ]
+  },
+  typescript: {
+    title: "TypeScript Developer Tools",
+    description:
+      "Convert TypeScript into Flow, JavaScript, JSON Schema, Zod, and declaration outputs for migration and validation workflows.",
+    highlights: [
+      "Useful for teams moving between type systems and runtime validators.",
+      "Helps generate schema or declaration drafts from typed source.",
+      "Speeds up TypeScript modernization and API contract work."
+    ],
+    useCases: [
+      "Generate Zod or JSON Schema from TypeScript definitions.",
+      "Convert TypeScript into JavaScript for compatibility checks.",
+      "Create Flow or declaration outputs during migration work."
+    ],
+    faqs: [
+      {
+        question: "Can TypeScript conversion understand runtime behavior?",
+        answer:
+          "No. These tools focus on source and type transformations, not runtime analysis."
+      },
+      {
+        question: "Should generated schemas be reviewed?",
+        answer:
+          "Yes. Validate generated output against your compiler, validator, and real API samples."
+      }
+    ]
+  },
+  flow: {
+    title: "Flow Developer Tools",
+    description:
+      "Convert Flow annotations and files into JavaScript, TypeScript, and TypeScript declaration outputs for legacy code migration.",
+    highlights: [
+      "Useful for maintaining or migrating older Flow codebases.",
+      "Helps estimate migration effort before changing a repository.",
+      "Creates reviewable output for TypeScript modernization."
+    ],
+    useCases: [
+      "Convert Flow source to JavaScript while removing annotations.",
+      "Translate Flow types into TypeScript syntax.",
+      "Generate migration drafts for code review."
+    ],
+    faqs: [
+      {
+        question: "Can these tools migrate a whole Flow repo?",
+        answer:
+          "No. They convert snippets and files. Repository migration still needs build, lint, and test work."
+      },
+      {
+        question: "Are Flow and TypeScript semantics identical?",
+        answer:
+          "No. Exact object types, variance, and utility types often need manual review."
+      }
+    ]
+  },
+  others: {
+    title: "Other Developer Tools",
+    description:
+      "Find format validators, Markdown converters, XML utilities, and config helpers that do not fit a single language category.",
+    highlights: [
+      "Useful for quick config, markup, and documentation transformations.",
+      "Groups practical utilities that developers need during daily debugging.",
+      "Provides direct links to smaller tools that are easy to miss from search."
+    ],
+    useCases: [
+      "Validate TOML configuration.",
+      "Convert Markdown, XML, YAML, and TOML snippets.",
+      "Prepare docs or config examples for code reviews."
+    ],
+    faqs: [
+      {
+        question: "Why are these tools grouped as Others?",
+        answer:
+          "They solve useful developer tasks that span configuration, markup, and documentation instead of one programming language."
+      },
+      {
+        question: "Are these utilities still maintained?",
+        answer:
+          "Yes. They share the same Folioify tool layout, SEO metadata, and browser-first processing model."
+      }
+    ]
+  }
+};
+
+function titleCaseToken(token: string): string {
+  return tokenLabels[token] || token.charAt(0).toUpperCase() + token.slice(1);
+}
+
+function labelFromSlug(slug: string): string {
+  return slug.split("-").map(titleCaseToken).join(" ");
+}
+
+function parseToolName(path: string) {
+  const slug = path.replace(/^\/tools\//, "");
+  const parts = slug.split("-to-");
+
+  if (slug === "check-toml") {
+    return {
+      label: "TOML Syntax Checker",
+      source: "TOML",
+      target: "validation result",
+      kind: "checker" as const
+    };
+  }
+
+  if (slug.endsWith("-viewer")) {
+    const source = labelFromSlug(slug.replace(/-viewer$/, ""));
+    return {
+      label: `${source} Viewer`,
+      source,
+      target: "live preview",
+      kind: "viewer" as const
+    };
+  }
+
+  if (slug === "object-styles-to-template-literal") {
+    return {
+      label: "Object Styles to Template Literal",
+      source: "JavaScript style objects",
+      target: "template literal CSS",
+      kind: "converter" as const
+    };
+  }
+
+  if (parts.length === 2) {
+    return {
+      label: `${labelFromSlug(parts[0])} to ${labelFromSlug(parts[1])}`,
+      source: labelFromSlug(parts[0]),
+      target: labelFromSlug(parts[1]),
+      kind: "converter" as const
+    };
+  }
+
+  return {
+    label: labelFromSlug(slug),
+    source: labelFromSlug(slug),
+    target: "developer-ready output",
+    kind: "converter" as const
+  };
+}
+
+function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
+  if (!PRIORITY_INDEXING_TOOL_PATHS.has(path)) return undefined;
+
+  const tool = parseToolName(path);
+  const action =
+    tool.kind === "checker"
+      ? `validate ${tool.source} syntax`
+      : tool.kind === "viewer"
+      ? `preview ${tool.source} snippets`
+      : `convert ${tool.source} into ${tool.target}`;
+  const output =
+    tool.kind === "checker"
+      ? "clear validation status and parse errors"
+      : tool.kind === "viewer"
+      ? `${tool.source} rendered preview`
+      : `${tool.target} output`;
+
+  return {
+    metaTitle: `${tool.label} Online | Free Browser Tool | Folioify`,
+    metaDescription: `Use this free ${tool.label} online tool to ${action} in your browser with copy-ready output, no signup, and no file upload.`,
+    keywords: [
+      tool.label,
+      `${tool.label} online`,
+      `free ${tool.label}`,
+      `${tool.source} tool`,
+      `${tool.target} generator`,
+      "developer tool"
+    ],
+    summary: `The ${tool.label} page is built for developers who need to ${action} quickly while keeping source snippets local in the browser.`,
+    whatIs: `${tool.label} is a focused browser-based utility that takes ${tool.source} input and produces ${output}. It is designed for quick debugging, migration, documentation, and implementation workflows.`,
+    capabilities: [
+      `Process ${tool.source} input without creating a local project.`,
+      `Produce ${output} that can be copied into code, docs, or tooling.`,
+      "Keep conversion work fast with an editor-driven workflow.",
+      "Avoid account creation and server-side file uploads."
+    ],
+    howItWorks: [
+      `Paste representative ${tool.source} input into the editor.`,
+      "The tool parses the input and applies the matching transformation.",
+      `Review the generated ${output} and copy it into your workflow.`
+    ],
+    useCases: [
+      `Debug ${tool.source} snippets before adding them to a project.`,
+      `Prepare ${tool.target} examples for documentation or code review.`,
+      "Move copied examples into a cleaner developer-ready format.",
+      "Compare generated output before choosing a manual implementation."
+    ],
+    inputExample:
+      tool.kind === "checker"
+        ? `[package]\nname = "folioify"\nversion = "1.0.0"`
+        : tool.kind === "viewer"
+        ? `<div class="preview">Hello Folioify</div>`
+        : `${tool.source} input goes here`,
+    outputExample:
+      tool.kind === "checker"
+        ? "Valid TOML, or a parser error that points to the invalid syntax."
+        : tool.kind === "viewer"
+        ? `A browser-rendered ${tool.source} preview.`
+        : `Copy-ready ${tool.target} output.`,
+    options: [
+      "Input quality: use complete, representative snippets for better output.",
+      "Manual review: check generated names, optional fields, and edge cases before production use.",
+      "Copy workflow: copy only the final output after reviewing parser errors."
+    ],
+    commonErrors: [
+      `Invalid ${tool.source} syntax can prevent conversion.`,
+      "Incomplete examples can lead to overly narrow generated output.",
+      "Project-specific rules may require manual cleanup after generation."
+    ],
+    limitations: [
+      "Generated output is a practical starting point, not a full project migration.",
+      "Runtime behavior and business rules are not inferred from snippets.",
+      "Large inputs can take longer because processing happens in the browser."
+    ],
+    faqs: [
+      {
+        question: `Is ${tool.label} free?`,
+        answer:
+          "Yes. The tool is free to use with no signup, subscription, or usage limit."
+      },
+      {
+        question: `Does ${tool.label} upload my code?`,
+        answer:
+          "No. Folioify tools are designed to run in the browser whenever possible, so pasted snippets stay on your device."
+      },
+      {
+        question: `Can I use the ${tool.target} output in production?`,
+        answer:
+          "Use the output as a strong starting point, then review it with your project compiler, tests, or validator before shipping."
+      }
+    ]
+  };
+}
+
 export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
   "/tools/jsx-viewer": {
     metaTitle: "Online JSX Viewer | Live React Preview & Formatter | Folioify",
@@ -775,9 +1307,15 @@ enabled = true`,
 };
 
 export function getToolPageContent(path: string): ToolPageContent | undefined {
-  return TOOL_PAGE_CONTENT[path];
+  return TOOL_PAGE_CONTENT[path] || buildGeneratedToolContent(path);
 }
 
 export function getToolPageFAQs(path: string): ToolFAQ[] | undefined {
-  return TOOL_PAGE_CONTENT[path]?.faqs;
+  return getToolPageContent(path)?.faqs;
+}
+
+export function getCategoryPageContent(
+  slug: string
+): CategoryPageContent | undefined {
+  return categoryContent[slug];
 }

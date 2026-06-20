@@ -3,6 +3,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { categorizedRoutes, routes } from "@utils/routes";
 import type { FAQItem } from "@components/FAQ";
+import { getCategorySlug } from "../lib/seo";
 
 // Icons for value propositions
 const FreeIcon = () => (
@@ -417,6 +418,22 @@ export default function HomePage() {
             </div>
           </div>
         </header>
+
+        <nav
+          id="tool-categories"
+          aria-label="Tool category pages"
+          className="mx-auto flex max-w-7xl flex-wrap justify-center gap-2 text-sm"
+        >
+          {categorizedRoutes.map(category => (
+            <Link
+              key={category.category}
+              href={`/tools/${getCategorySlug(category.category)}`}
+              className="rounded-full border border-brand-200 bg-white px-3 py-1.5 font-semibold text-brand-700 no-underline transition-colors hover:border-brand-400 hover:bg-brand-50"
+            >
+              {category.category} tools
+            </Link>
+          ))}
+        </nav>
 
         {/* Search and Filters */}
         <div

@@ -2,6 +2,10 @@ import Link from "next/link";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import { categorizedRoutes, routes } from "@utils/routes";
 import { getCategorySlug } from "../../lib/seo";
+import {
+  getCategoryPageContent,
+  type CategoryPageContent
+} from "../../lib/tool-page-content";
 
 type CategoryTool = {
   path: string;
@@ -12,13 +16,22 @@ type CategoryTool = {
 
 type CategoryPageProps = {
   category: string;
+  categorySlug: string;
   tools: CategoryTool[];
+  content: CategoryPageContent | null;
 };
 
 export default function ToolCategoryPage({
   category,
-  tools
+  categorySlug,
+  tools,
+  content
 }: CategoryPageProps) {
+  const title = content?.title || `${category} Developer Tools`;
+  const description =
+    content?.description ||
+    `Convert, format, validate, and generate ${category} code directly in your browser. Folioify tools are free, require no signup, and are designed for fast local developer workflows.`;
+
   return (
     <article className="min-h-screen bg-brand-100 px-4 py-8 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
@@ -45,14 +58,37 @@ export default function ToolCategoryPage({
             {tools.length} free tools
           </p>
           <h1 className="mb-3 text-3xl font-extrabold text-gray-900 md:text-4xl">
-            {category} Developer Tools
+            {title}
           </h1>
           <p className="max-w-3xl text-base leading-relaxed text-gray-600 md:text-lg">
-            Convert, format, validate, and generate {category} code directly in
-            your browser. Folioify tools are free, require no signup, and are
-            designed for fast local developer workflows.
+            {description}
           </p>
         </header>
+
+        {content && (
+          <section className="mb-8 grid gap-4 md:grid-cols-2">
+            <div className="rounded-xl border border-gray-200 bg-white p-5">
+              <h2 className="mb-3 text-xl font-bold text-gray-900">
+                What this {category} collection covers
+              </h2>
+              <ul className="space-y-2 text-sm leading-relaxed text-gray-600">
+                {content.highlights.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-white p-5">
+              <h2 className="mb-3 text-xl font-bold text-gray-900">
+                Common workflows
+              </h2>
+              <ul className="space-y-2 text-sm leading-relaxed text-gray-600">
+                {content.useCases.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
 
         <section className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {tools.map(tool => (
@@ -95,6 +131,41 @@ export default function ToolCategoryPage({
             </p>
           </div>
         </section>
+
+        {content?.faqs?.length ? (
+          <section className="mt-8 rounded-xl border border-gray-200 bg-white p-5">
+            <h2 className="mb-4 text-xl font-bold text-gray-900">
+              {category} tools FAQ
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {content.faqs.map(item => (
+                <div key={item.question}>
+                  <h3 className="font-semibold text-gray-900">
+                    {item.question}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        <nav className="mt-8 text-sm text-gray-600" aria-label="Tool category">
+          <Link href="/#tool-categories" className="hover:text-brand-700">
+            View all tool categories
+          </Link>
+          <span className="mx-2" aria-hidden="true">
+            /
+          </span>
+          <Link
+            href={`/tools/${categorySlug}`}
+            className="font-semibold text-brand-700"
+          >
+            {title}
+          </Link>
+        </nav>
       </div>
     </article>
   );
@@ -122,6 +193,7 @@ export const getStaticProps: GetStaticProps<CategoryPageProps> = async ({
   return {
     props: {
       category: category.category,
+      categorySlug: slug,
       tools: routes
         .filter(tool => tool.category === category.category)
         .map(tool => ({
@@ -129,7 +201,8 @@ export const getStaticProps: GetStaticProps<CategoryPageProps> = async ({
           searchTerm: tool.searchTerm,
           desc: tool.desc,
           lastModified: tool.lastModified
-        }))
+        })),
+      content: getCategoryPageContent(slug) || null
     }
   };
 };
