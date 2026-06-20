@@ -1,11 +1,8 @@
 import * as React from "react";
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import Head from "next/head";
 import { categorizedRoutes, routes } from "@utils/routes";
-import { GeoSection } from "@components/GeoSection";
-import { FAQ, FAQItem } from "@components/FAQ";
-import { SITE_CONFIG } from "../lib/seo";
+import type { FAQItem } from "@components/FAQ";
 
 // Icons for value propositions
 const FreeIcon = () => (
@@ -253,7 +250,6 @@ const ToolCategoryIcon = ({ category }: { category: string }) => {
 export default function HomePage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const lastUpdated = "2026-02-07";
 
   // Get all categories
   const categories = useMemo(() => {
@@ -326,54 +322,6 @@ export default function HomePage() {
 
   return (
     <>
-      <Head>
-        <title>
-          Free Online Developer Tools (2026) | Converters, Formatters &
-          Generators - Folioify
-        </title>
-        <meta
-          name="description"
-          content="The ultimate collection of free online developer tools. Convert SVG to JSX, JSON to TypeScript, HTML to Pug, and more. Secure client-side execution, no data uploads."
-        />
-        <meta
-          name="keywords"
-          content="developer tools, online converter, SVG to JSX, JSON to TypeScript, code converter, free tools, Folioify, secure conversions"
-        />
-        <link rel="canonical" href={SITE_CONFIG.baseUrl} />
-        <meta name="last-modified" content={lastUpdated} />
-        <meta
-          property="og:title"
-          content="Free Online Developer Tools (2026) | Folioify"
-        />
-        <meta
-          property="og:description"
-          content="Secure, fast, and free developer tools running entirely in your browser."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={SITE_CONFIG.baseUrl} />
-        <meta property="og:site_name" content={SITE_CONFIG.name} />
-        <meta
-          property="og:image"
-          content={`${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultOgImage}`}
-        />
-        <meta property="og:locale" content={SITE_CONFIG.locale} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content={SITE_CONFIG.twitterHandle} />
-        <meta name="twitter:creator" content={SITE_CONFIG.twitterHandle} />
-        <meta
-          name="twitter:title"
-          content="Free Online Developer Tools (2026) | Folioify"
-        />
-        <meta
-          name="twitter:description"
-          content="Secure, fast, and free developer tools running entirely in your browser."
-        />
-        <meta
-          name="twitter:image"
-          content={`${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultOgImage}`}
-        />
-      </Head>
-
       <article className="min-h-screen flex flex-col gap-4 md:gap-6 bg-brand-100">
         {/* GEO: Core Facts Chunk for AI Extraction */}
         <section className="sr-only" aria-hidden="false">

@@ -7,7 +7,9 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Loader2, RefreshCw, TriangleAlert } from "lucide-react";
 import JsxEditorPanel from "@components/jsx-viewer/JsxEditorPanel";
-import JsxPreviewPanel from "@components/jsx-viewer/JsxPreviewPanel";
+import JsxPreviewPanel, {
+  type PreviewRenderStatus
+} from "@components/jsx-viewer/JsxPreviewPanel";
 import ResizableSplit from "@components/jsx-viewer/ResizableSplit";
 import { SAMPLE_JSX, compileJsxInput } from "@/lib/jsx-viewer/preview";
 
@@ -24,6 +26,8 @@ export default function JsxViewer() {
   } | null>(null);
   const [enableTailwindPreview, setEnableTailwindPreview] = useState(true);
   const [previewKey, setPreviewKey] = useState(0);
+  const [previewStatus, setPreviewStatus] =
+    useState<PreviewRenderStatus>("idle");
 
   useEffect(() => {
     if (!value || !value.trim()) {
@@ -33,6 +37,14 @@ export default function JsxViewer() {
 
   useEffect(() => {
     const input = value || "";
+
+    if (!input.trim()) {
+      setPreviewRuntimeCode("");
+      setDiagnostic(null);
+      setCompileStatus("idle");
+      return;
+    }
+
     setCompileStatus("compiling");
 
     const timer = setTimeout(() => {
@@ -53,19 +65,26 @@ export default function JsxViewer() {
 
       setPreviewRuntimeCode(result.previewRuntimeCode);
       setDiagnostic(null);
-      setCompileStatus(input.trim() ? "ready" : "idle");
+      setCompileStatus("ready");
     }, 300);
 
     return () => clearTimeout(timer);
   }, [value]);
 
+  const hasStatusError = compileStatus === "error" || previewStatus === "error";
+  const isPreviewBusy =
+    compileStatus === "compiling" || previewStatus === "rendering";
   const statusLabel =
-    compileStatus === "compiling"
-      ? "Updating preview…"
-      : compileStatus === "ready"
-      ? "Preview ready"
-      : compileStatus === "error"
+    compileStatus === "error"
       ? "Fix errors to preview"
+      : previewStatus === "error"
+      ? "Preview error"
+      : compileStatus === "compiling"
+      ? "Updating preview…"
+      : previewStatus === "rendering"
+      ? "Rendering preview…"
+      : compileStatus === "ready" && previewStatus === "ready"
+      ? "Preview ready"
       : "Waiting for input";
 
   return (
@@ -119,22 +138,20 @@ export default function JsxViewer() {
                 <div className="flex items-center gap-2">
                   <span
                     className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium ${
-                      compileStatus === "error"
+                      hasStatusError
                         ? "bg-red-50 text-red-700"
-                        : compileStatus === "ready"
+                        : compileStatus === "ready" && previewStatus === "ready"
                         ? "bg-emerald-50 text-emerald-700"
                         : "bg-slate-100 text-slate-600"
                     }`}
                   >
-                    {compileStatus === "compiling" && (
+                    {isPreviewBusy && (
                       <Loader2 className="h-3 w-3 animate-spin" />
                     )}
-                    {compileStatus === "ready" && (
+                    {compileStatus === "ready" && previewStatus === "ready" && (
                       <CheckCircle2 className="h-3 w-3" />
                     )}
-                    {compileStatus === "error" && (
-                      <TriangleAlert className="h-3 w-3" />
-                    )}
+                    {hasStatusError && <TriangleAlert className="h-3 w-3" />}
                     {statusLabel}
                   </span>
                   <Button
@@ -152,6 +169,8 @@ export default function JsxViewer() {
                 previewRuntimeCode={previewRuntimeCode}
                 enableTailwindPreview={enableTailwindPreview}
                 refreshKey={previewKey}
+                isCompiling={compileStatus === "compiling"}
+                onRenderStatusChange={setPreviewStatus}
               />
             </div>
           }

@@ -8,6 +8,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { activeRouteData, routes } from "@utils/routes";
+import { getToolPageContent } from "../lib/tool-page-content";
 
 // Icons for feature badges (inline SVG for performance)
 const LightningIcon = () => (
@@ -72,6 +73,68 @@ export default function ToolPageLayout({
 
   const searchTerm = route.searchTerm || route.label;
   const description = route.desc || "";
+  const pageContent = getToolPageContent(route.path);
+  const capabilities = pageContent?.capabilities || [
+    "Convert inputs into clean, structured output.",
+    "Preview results instantly before copying.",
+    "Export outputs in a developer-friendly format."
+  ];
+  const howItWorks = pageContent?.howItWorks || [
+    "Paste your input in the editor below.",
+    "Adjust any options if available.",
+    "Copy the output once it updates."
+  ];
+  const useCases = pageContent?.useCases || [
+    "Convert formats while coding or debugging.",
+    "Generate clean output for docs or examples.",
+    "Validate data and structures quickly.",
+    "Explore how conversions are structured."
+  ];
+  const faqItems =
+    pageContent?.faqs && pageContent.faqs.length > 0
+      ? pageContent.faqs
+      : [
+          {
+            question: `Is ${searchTerm} free to use?`,
+            answer:
+              "Yes. This tool is completely free with no signup or payment required. You can use it as often as you need."
+          },
+          {
+            question: "Does my data leave the browser?",
+            answer:
+              "No. Processing happens locally in your browser. Your input is not uploaded or stored on our servers."
+          },
+          {
+            question: "What formats does it support?",
+            answer:
+              "The tool supports the input and output formats described above. If a format is not listed, it may not be supported yet."
+          },
+          {
+            question: "Is the output production-ready?",
+            answer:
+              "Output is designed to be clean and accurate, but always review results before using in production."
+          },
+          {
+            question: `Can I use ${searchTerm} offline?`,
+            answer:
+              "Once the page is loaded, many conversions work without an active connection, depending on the tool."
+          },
+          {
+            question: "Are there usage limits?",
+            answer:
+              "No usage limits are enforced. The tool is available for unlimited conversions."
+          },
+          {
+            question: "Is this an official tool?",
+            answer:
+              "This is a third-party utility by Folioify, built for speed and accessibility. It is not affiliated with any official standard body."
+          },
+          {
+            question: "How often is the tool updated?",
+            answer:
+              "We maintain tools on a regular cadence. See the last updated date below for freshness."
+          }
+        ];
   // const lastModified = route.lastModified;
   const relatedTools = routes
     .filter(
@@ -170,21 +233,52 @@ export default function ToolPageLayout({
           </div>
         </section>
         {/* TL;DR */}
-        <div className="mx-auto max-w-7xl rounded-2xl border border-brand-200 bg-white p-4 text-left shadow-lg shadow-brand-500/10 sm:p-6 md:p-8">
-          <h2 className="mb-2 text-lg font-semibold text-gray-900 sm:mb-3 sm:text-xl">
-            TL;DR ⚡
-          </h2>
-          <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
-            The <strong>{searchTerm}</strong> tool is a
-            <strong> free, browser-based converter</strong> that runs locally in
-            your device for privacy. It is designed for developers and creators
-            who need <strong>fast, accurate transformations</strong> without
-            signups or uploads. Use it to convert formats instantly, verify
-            output in real time, and export clean results in seconds. This page
-            explains what the tool does, what it cannot do, and how to use it
-            effectively, with a visible update timestamp for freshness.
-          </p>
-        </div>
+        <section className="px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl rounded-2xl border border-brand-200 bg-white p-4 text-left shadow-lg shadow-brand-500/10 sm:p-6 md:p-8">
+            <h2 className="mb-2 text-lg font-semibold text-gray-900 sm:mb-3 sm:text-xl">
+              TL;DR ⚡
+            </h2>
+            <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
+              {pageContent?.summary || (
+                <>
+                  The <strong>{searchTerm}</strong> tool is a
+                  <strong> free, browser-based converter</strong> that runs
+                  locally in your device for privacy. It is designed for
+                  developers and creators who need{" "}
+                  <strong>fast, accurate transformations</strong> without
+                  signups or uploads.
+                </>
+              )}
+            </p>
+          </div>
+        </section>
+
+        {(pageContent?.inputExample || pageContent?.outputExample) && (
+          <section className="px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto grid max-w-7xl gap-4 sm:gap-6 md:grid-cols-2">
+              {pageContent.inputExample && (
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
+                  <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:text-xl">
+                    Example Input
+                  </h2>
+                  <pre className="overflow-auto rounded-xl bg-gray-950 p-4 text-xs leading-relaxed text-gray-100">
+                    <code>{pageContent.inputExample}</code>
+                  </pre>
+                </div>
+              )}
+              {pageContent.outputExample && (
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
+                  <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:text-xl">
+                    Expected Output
+                  </h2>
+                  <pre className="overflow-auto rounded-xl bg-gray-950 p-4 text-xs leading-relaxed text-gray-100">
+                    <code>{pageContent.outputExample}</code>
+                  </pre>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
 
         {/* Core Information (Fact Chunk) */}
         <section className="px-4 sm:px-6 lg:px-8">
@@ -237,10 +331,14 @@ export default function ToolPageLayout({
                 What is {searchTerm}? 🧭
               </h2>
               <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
-                <strong>{searchTerm}</strong> is a focused online converter
-                designed to transform inputs into accurate outputs with minimal
-                steps. It runs entirely in your browser, which means no file
-                uploads and no server-side processing.
+                {pageContent?.whatIs || (
+                  <>
+                    <strong>{searchTerm}</strong> is a focused online converter
+                    designed to transform inputs into accurate outputs with
+                    minimal steps. It runs entirely in your browser, which means
+                    no file uploads and no server-side processing.
+                  </>
+                )}
               </p>
             </div>
             <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
@@ -248,16 +346,9 @@ export default function ToolPageLayout({
                 What can it do? ✅
               </h2>
               <ul className="space-y-2 text-sm text-gray-600 sm:text-base">
-                <li>
-                  <strong>Convert</strong> inputs into clean, structured output.
-                </li>
-                <li>
-                  <strong>Preview</strong> results instantly before copying.
-                </li>
-                <li>
-                  <strong>Export</strong> outputs in a developer-friendly
-                  format.
-                </li>
+                {capabilities.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
               </ul>
             </div>
           </div>
@@ -270,18 +361,59 @@ export default function ToolPageLayout({
               How {searchTerm} works (Step-by-Step) 🪄
             </h2>
             <ol className="space-y-3 text-sm text-gray-600 sm:text-base">
-              <li>
-                <strong>Step 1:</strong> Paste your input in the editor below.
-              </li>
-              <li>
-                <strong>Step 2:</strong> Adjust any options if available.
-              </li>
-              <li>
-                <strong>Step 3:</strong> Copy the output once it updates.
-              </li>
+              {howItWorks.map((step, index) => (
+                <li key={step}>
+                  <strong>Step {index + 1}:</strong> {step}
+                </li>
+              ))}
             </ol>
           </div>
         </section>
+
+        {(pageContent?.options?.length ||
+          pageContent?.commonErrors?.length ||
+          pageContent?.limitations?.length) && (
+          <section className="px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto grid max-w-7xl gap-4 sm:gap-6 md:grid-cols-3">
+              {pageContent.options?.length ? (
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
+                  <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:text-xl">
+                    Options Explained
+                  </h2>
+                  <ul className="space-y-2 text-sm text-gray-600 sm:text-base">
+                    {pageContent.options.map(item => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              {pageContent.commonErrors?.length ? (
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
+                  <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:text-xl">
+                    Common Errors
+                  </h2>
+                  <ul className="space-y-2 text-sm text-gray-600 sm:text-base">
+                    {pageContent.commonErrors.map(item => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              {pageContent.limitations?.length ? (
+                <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
+                  <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:text-xl">
+                    Limitations
+                  </h2>
+                  <ul className="space-y-2 text-sm text-gray-600 sm:text-base">
+                    {pageContent.limitations.map(item => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+            </div>
+          </section>
+        )}
 
         {/* Free vs Paid / Official vs Third-Party */}
         <section className="px-4 sm:px-6 lg:px-8">
@@ -316,22 +448,9 @@ export default function ToolPageLayout({
               Use Cases 💡
             </h2>
             <ul className="grid gap-3 text-sm text-gray-600 sm:text-base md:grid-cols-2">
-              <li>
-                <strong>Development:</strong> Convert formats while coding or
-                debugging.
-              </li>
-              <li>
-                <strong>Documentation:</strong> Generate clean output for docs
-                or examples.
-              </li>
-              <li>
-                <strong>Prototyping:</strong> Validate data and structures
-                quickly.
-              </li>
-              <li>
-                <strong>Learning:</strong> Explore how conversions are
-                structured.
-              </li>
+              {useCases.map(item => (
+                <li key={item}>{item}</li>
+              ))}
             </ul>
           </div>
         </section>
@@ -343,79 +462,14 @@ export default function ToolPageLayout({
               Frequently Asked Questions ❓
             </h2>
             <div className="space-y-4 text-sm text-gray-600 sm:text-base">
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  Is {searchTerm} free to use?
-                </h3>
-                <p className="mt-1 leading-relaxed">
-                  Yes. This tool is completely free with no signup or payment
-                  required. You can use it as often as you need.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  Does my data leave the browser?
-                </h3>
-                <p className="mt-1 leading-relaxed">
-                  No. Processing happens locally in your browser. Your input is
-                  not uploaded or stored on our servers.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  What formats does it support?
-                </h3>
-                <p className="mt-1 leading-relaxed">
-                  The tool supports the input and output formats described
-                  above. If a format is not listed, it may not be supported yet.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  Is the output production-ready?
-                </h3>
-                <p className="mt-1 leading-relaxed">
-                  Output is designed to be clean and accurate, but always review
-                  results before using in production.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  Can I use {searchTerm} offline?
-                </h3>
-                <p className="mt-1 leading-relaxed">
-                  Once the page is loaded, many conversions work without an
-                  active connection, depending on the tool.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  Are there usage limits?
-                </h3>
-                <p className="mt-1 leading-relaxed">
-                  No usage limits are enforced. The tool is available for
-                  unlimited conversions.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  Is this an official tool?
-                </h3>
-                <p className="mt-1 leading-relaxed">
-                  This is a third-party utility by Folioify, built for speed and
-                  accessibility. It is not affiliated with any official standard
-                  body.
-                </p>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">
-                  How often is the tool updated?
-                </h3>
-                <p className="mt-1 leading-relaxed">
-                  We maintain tools on a regular cadence. See the last updated
-                  date below for freshness.
-                </p>
-              </div>
+              {faqItems.map(item => (
+                <div key={item.question}>
+                  <h3 className="font-semibold text-gray-900">
+                    {item.question}
+                  </h3>
+                  <p className="mt-1 leading-relaxed">{item.answer}</p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

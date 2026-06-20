@@ -8,6 +8,9 @@ import Head from "next/head";
 import {
   getToolMeta,
   buildWebApplicationSchema,
+  buildSoftwareApplicationSchema,
+  buildToolFAQSchema,
+  buildCollectionPageSchema,
   buildOrganizationSchema,
   buildBreadcrumbSchema
 } from "../lib/seo";
@@ -25,7 +28,18 @@ export function JsonLd({ pathname }: JsonLdProps) {
   const organization = buildOrganizationSchema();
   const breadcrumb = buildBreadcrumbSchema(pathname, toolMeta.searchTerm);
 
-  const graph = [webApp, organization, breadcrumb];
+  const graph =
+    toolMeta.kind === "tool"
+      ? [
+          webApp,
+          buildSoftwareApplicationSchema(toolMeta),
+          buildToolFAQSchema(toolMeta),
+          organization,
+          breadcrumb
+        ]
+      : toolMeta.kind === "category"
+      ? [buildCollectionPageSchema(toolMeta), organization, breadcrumb]
+      : [webApp, organization, breadcrumb];
 
   return (
     <Head>

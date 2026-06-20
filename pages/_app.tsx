@@ -41,7 +41,9 @@ export default function App(props) {
   }, [router.events]);
 
   const { Component, pageProps } = props;
-  const toolMeta = getToolMeta(router.pathname || "/");
+  const currentPath =
+    (router.asPath || router.pathname || "/").split(/[?#]/)[0] || "/";
+  const toolMeta = getToolMeta(currentPath);
 
   return (
     <>
@@ -60,11 +62,11 @@ export default function App(props) {
       ) : (
         <Meta
           title={SITE_CONFIG.name}
-          description="A polyglot web converter that's going to save you a lot of time."
+          description="The ultimate collection of free online developer tools. Convert, format, validate, and generate code locally in your browser."
           canonical={`${SITE_CONFIG.baseUrl.replace(/\/$/, "")}/`}
         />
       )}
-      <JsonLd pathname={router.pathname || "/"} />
+      <JsonLd pathname={currentPath} />
       <ClarityTracker />
 
       <div className="app-root light">

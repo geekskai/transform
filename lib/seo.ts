@@ -4,7 +4,8 @@
  * @see docs/SEO-METADATA-DESIGN.md
  */
 
-import { activeRouteData } from "@utils/routes";
+import { activeRouteData, categorizedRoutes, routes } from "@utils/routes";
+import { getToolPageContent, getToolPageFAQs } from "./tool-page-content";
 
 type Route = NonNullable<ReturnType<typeof activeRouteData>>;
 
@@ -58,27 +59,52 @@ export interface ToolMeta {
   ogType: "website" | "article";
   searchTerm: string;
   path: string;
+  kind: "home" | "tool" | "category";
   noindex?: boolean;
   lastModified?: string;
   datePublished?: string;
 }
 
+export function getCategorySlug(category: string): string {
+  return category
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function getCategoryBySlug(slug: string) {
+  return categorizedRoutes.find(
+    category => getCategorySlug(category.category) === slug
+  );
+}
+
+function getLatestDate(dates: Array<string | undefined>): string | undefined {
+  return dates.filter(Boolean).sort().pop();
+}
+
 /** 首页固定 Meta */
 const HOME_META: ToolMeta = {
-  title: SITE_CONFIG.name,
+  title:
+    "Free Online Developer Tools (2026) | Converters, Formatters & Generators - Folioify",
   description:
-    "A polyglot web converter that's going to save you a lot of time.",
+    "The ultimate collection of free online developer tools. Convert SVG to JSX, JSON to TypeScript, HTML to Pug, and more. Secure client-side execution, no data uploads.",
   canonical: SITE_CONFIG.baseUrl + "/",
   keywords: [
-    "web converter",
+    "developer tools",
     "online converter",
-    "free tool",
+    "SVG to JSX",
+    "JSON to TypeScript",
+    "code converter",
+    "free tools",
+    "secure conversions",
     SITE_CONFIG.brand
   ],
   ogImage: `${SITE_CONFIG.baseUrl}${SITE_CONFIG.defaultOgImage}`,
   ogType: "website",
   searchTerm: SITE_CONFIG.name,
-  path: "/"
+  path: "/",
+  kind: "home",
+  lastModified: "2026-02-07"
 };
 
 /** 根据 pathname 生成完整工具页 Meta（单一数据源：routes） */
@@ -93,14 +119,53 @@ export function getToolMeta(pathname: string): ToolMeta | null {
   }
 
   const route: Route | undefined = activeRouteData(pathname);
-  if (!route) return null;
+  if (!route) {
+    const categoryMatch = pathname.match(/^\/tools\/([^/]+)$/);
+    const category = categoryMatch
+      ? getCategoryBySlug(categoryMatch[1])
+      : undefined;
+
+    if (!category) return null;
+
+    const categoryTools = routes.filter(
+      tool => tool.category === category.category
+    );
+    const categoryName = category.category;
+    const lastModified =
+      getLatestDate(categoryTools.map(tool => tool.lastModified)) ||
+      HOME_META.lastModified;
+
+    return {
+      title: `${categoryName} Developer Tools | Free Online Converters | ${SITE_CONFIG.name}`,
+      description: `Browse free online ${categoryName} developer tools from Folioify. Convert, format, validate, and generate code locally in your browser with no signup.`,
+      canonical: `${baseUrl}/tools/${getCategorySlug(categoryName)}`,
+      keywords: [
+        `${categoryName} tools`,
+        `${categoryName} converter`,
+        "online developer tools",
+        "free code tools",
+        SITE_CONFIG.brand
+      ],
+      ogImage: `${baseUrl}${SITE_CONFIG.defaultOgImage}`,
+      ogType: "website",
+      searchTerm: `${categoryName} Developer Tools`,
+      path: `/tools/${getCategorySlug(categoryName)}`,
+      kind: "category",
+      lastModified
+    };
+  }
 
   const searchTerm = route.searchTerm || route.label || pathname;
-  const title = route.title
+  const pageContent = getToolPageContent(route.path);
+  const title = pageContent?.metaTitle
+    ? pageContent.metaTitle
+    : route.title
     ? route.title
     : `${searchTerm} | ${SITE_CONFIG.name}`;
   let description =
-    route.desc && route.desc.trim()
+    pageContent?.metaDescription && pageContent.metaDescription.trim()
+      ? pageContent.metaDescription
+      : route.desc && route.desc.trim()
       ? route.desc
       : `An online playground to convert ${searchTerm}`;
   if (description.length > MAX_DESCRIPTION_LENGTH) {
@@ -108,7 +173,9 @@ export function getToolMeta(pathname: string): ToolMeta | null {
   }
 
   const keywords =
-    (route.keywords?.length ?? 0) > 0
+    (pageContent?.keywords?.length ?? 0) > 0
+      ? pageContent.keywords
+      : (route.keywords?.length ?? 0) > 0
       ? route.keywords
       : [searchTerm, "online converter", "free tool", SITE_CONFIG.brand];
 
@@ -128,6 +195,7 @@ export function getToolMeta(pathname: string): ToolMeta | null {
     ogType: route.ogType ?? "website",
     searchTerm,
     path: route.path,
+    kind: "tool",
     noindex: route.noindex,
     lastModified: route.lastModified,
     datePublished: route.datePublished
@@ -136,7 +204,6 @@ export function getToolMeta(pathname: string): ToolMeta | null {
 
 /** WebApplication JSON-LD（SEO/GEO §18 检索对齐） */
 export function buildWebApplicationSchema(meta: ToolMeta): object {
-  const baseUrl = SITE_CONFIG.baseUrl.replace(/\/$/, "");
   const schema: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -157,6 +224,85 @@ export function buildWebApplicationSchema(meta: ToolMeta): object {
   if (meta.datePublished) schema.datePublished = meta.datePublished;
   if (meta.lastModified) schema.dateModified = meta.lastModified;
   return schema;
+}
+
+/** SoftwareApplication JSON-LD for individual tool pages. */
+export function buildSoftwareApplicationSchema(meta: ToolMeta): object {
+  const schema: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: meta.searchTerm,
+    description: meta.description,
+    url: meta.canonical,
+    applicationCategory: "DeveloperApplication",
+    operatingSystem: "Any",
+    offers: {
+      "@type": "Offer",
+      price: "0",
+      priceCurrency: "USD"
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.baseUrl.replace(/\/$/, "") + "/"
+    }
+  };
+
+  if (meta.datePublished) schema.datePublished = meta.datePublished;
+  if (meta.lastModified) schema.dateModified = meta.lastModified;
+  return schema;
+}
+
+export function buildToolFAQSchema(meta: ToolMeta): object {
+  const contentFaqs = getToolPageFAQs(meta.path);
+  if (contentFaqs?.length) {
+    return buildFAQPageSchema(contentFaqs);
+  }
+
+  return buildFAQPageSchema([
+    {
+      question: `Is ${meta.searchTerm} free to use?`,
+      answer:
+        "Yes. This tool is completely free with no signup or payment required. You can use it as often as you need."
+    },
+    {
+      question: "Does my data leave the browser?",
+      answer:
+        "No. Processing happens locally in your browser. Your input is not uploaded or stored on our servers."
+    },
+    {
+      question: "Is the output production-ready?",
+      answer:
+        "Output is designed to be clean and accurate, but always review results before using in production."
+    },
+    {
+      question: `Can I use ${meta.searchTerm} offline?`,
+      answer:
+        "Once the page is loaded, many conversions work without an active connection, depending on the tool."
+    }
+  ]);
+}
+
+export function buildCollectionPageSchema(meta: ToolMeta): object {
+  const categoryName = meta.searchTerm.replace(/ Developer Tools$/, "");
+  const categoryTools = routes.filter(tool => tool.category === categoryName);
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: meta.searchTerm,
+    description: meta.description,
+    url: meta.canonical,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: categoryTools.map((tool, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: tool.searchTerm,
+        url: `${SITE_CONFIG.baseUrl.replace(/\/$/, "")}${tool.path}`
+      }))
+    }
+  };
 }
 
 /** Organization JSON-LD（站点级，GEO §14 实体信号） */

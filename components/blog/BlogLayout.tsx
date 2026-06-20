@@ -21,9 +21,13 @@ interface BlogLayoutProps {
 }
 
 export default function BlogLayout({ children, meta }: BlogLayoutProps) {
-  const canonical =
-    meta.canonicalUrl ||
-    `${SITE_CONFIG.baseUrl.replace(/\/$/, "")}/blog/${meta.slug}`;
+  const baseUrl = SITE_CONFIG.baseUrl.replace(/\/$/, "");
+  const canonical = meta.canonicalUrl || `${baseUrl}/blog/${meta.slug}`;
+  const ogImage = meta.coverImage
+    ? meta.coverImage.startsWith("http")
+      ? meta.coverImage
+      : `${baseUrl}${meta.coverImage}`
+    : undefined;
 
   return (
     <>
@@ -31,7 +35,7 @@ export default function BlogLayout({ children, meta }: BlogLayoutProps) {
         title={`${meta.title} | Folioify Blog`}
         description={meta.description}
         ogType="article"
-        ogImage={meta.coverImage}
+        ogImage={ogImage}
         datePublished={meta.date}
         lastModified={meta.lastmod}
         keywords={meta.tags}
