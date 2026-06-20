@@ -5,7 +5,7 @@ export default function Error404() {
     <svg
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
-      width="1074.392"
+      width="100%"
       height="200"
       viewBox="0 0 1074.392 584.231"
     >

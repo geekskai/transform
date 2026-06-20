@@ -44,10 +44,17 @@ export default function App(props) {
   const currentPath =
     (router.asPath || router.pathname || "/").split(/[?#]/)[0] || "/";
   const toolMeta = getToolMeta(currentPath);
+  const isNotFoundPage = router.pathname === "/404";
 
   return (
     <>
-      {toolMeta ? (
+      {isNotFoundPage ? (
+        <Meta
+          title={`Page Not Found | ${SITE_CONFIG.name}`}
+          description={`The page you requested could not be found. Browse ${SITE_CONFIG.name} developer tools or return to the homepage.`}
+          noindex
+        />
+      ) : toolMeta ? (
         <Meta
           title={toolMeta.title}
           description={toolMeta.description}
