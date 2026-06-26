@@ -159,6 +159,42 @@ function dependencyEntries(dependencies: Dependencies) {
   return Object.entries(dependencies).sort(([a], [b]) => a.localeCompare(b));
 }
 
+function areDependenciesEqual(a: Dependencies, b: Dependencies) {
+  const aEntries = dependencyEntries(a);
+  const bEntries = dependencyEntries(b);
+
+  if (aEntries.length !== bEntries.length) return false;
+
+  return aEntries.every(
+    ([name, version], index) =>
+      name === bEntries[index][0] && version === bEntries[index][1]
+  );
+}
+
+function useDebouncedValue<T>(value: T, delay: number) {
+  const [debouncedValue, setDebouncedValue] = React.useState(value);
+
+  React.useEffect(() => {
+    const timer = window.setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => window.clearTimeout(timer);
+  }, [delay, value]);
+
+  return debouncedValue;
+}
+
+function useStableDependencies(dependencies: Dependencies) {
+  const stableRef = React.useRef(dependencies);
+
+  if (!areDependenciesEqual(stableRef.current, dependencies)) {
+    stableRef.current = dependencies;
+  }
+
+  return stableRef.current;
+}
+
 function SandpackBridge({
   actionRef,
   onCodeChange
@@ -168,6 +204,7 @@ function SandpackBridge({
 }) {
   const { sandpack } = useSandpack();
   const activeCode = sandpack.files[APP_FILE]?.code || "";
+  const lastSyncedCodeRef = React.useRef("");
 
   React.useEffect(() => {
     actionRef.current = {
@@ -187,9 +224,16 @@ function SandpackBridge({
   }, [actionRef, onCodeChange, sandpack]);
 
   React.useEffect(() => {
-    if (activeCode) {
-      onCodeChange(activeCode);
+    if (!activeCode || activeCode === lastSyncedCodeRef.current) {
+      return;
     }
+
+    const timer = window.setTimeout(() => {
+      lastSyncedCodeRef.current = activeCode;
+      onCodeChange(activeCode);
+    }, 200);
+
+    return () => window.clearTimeout(timer);
   }, [activeCode, onCodeChange]);
 
   return null;
@@ -263,13 +307,35 @@ export default function SandpackJsxViewer() {
     }
   }, [setStoredCode, storedCode]);
 
+  const debouncedCode = useDebouncedValue(code, 400);
   const autoDependencies = React.useMemo(
-    () => getDetectedDependencies(code),
-    [code]
+    () => getDetectedDependencies(debouncedCode),
+    [debouncedCode]
   );
-  const effectiveDependencies = React.useMemo(
+  const rawEffectiveDependencies = React.useMemo(
     () => ({ ...autoDependencies, ...manualDependencies }),
     [autoDependencies, manualDependencies]
+  );
+  const effectiveDependencies = useStableDependencies(rawEffectiveDependencies);
+  const sandpackSetup = React.useMemo(
+    () => ({
+      entry: MAIN_FILE,
+      dependencies: effectiveDependencies
+    }),
+    [effectiveDependencies]
+  );
+  const sandpackOptions = React.useMemo(
+    () => ({
+      activeFile: APP_FILE,
+      visibleFiles: [APP_FILE],
+      externalResources: enableTailwindPreview
+        ? ["https://cdn.tailwindcss.com"]
+        : [],
+      initMode: "user-visible" as const,
+      recompileMode: "delayed" as const,
+      recompileDelay: 300
+    }),
+    [enableTailwindPreview]
   );
 
   const handleCodeChange = React.useCallback(
@@ -518,20 +584,8 @@ export default function SandpackJsxViewer() {
         <SandpackProvider
           template="react-ts"
           files={initialFilesRef.current}
-          customSetup={{
-            entry: MAIN_FILE,
-            dependencies: effectiveDependencies
-          }}
-          options={{
-            activeFile: APP_FILE,
-            visibleFiles: [APP_FILE],
-            externalResources: enableTailwindPreview
-              ? ["https://cdn.tailwindcss.com"]
-              : [],
-            initMode: "user-visible",
-            recompileMode: "delayed",
-            recompileDelay: 300
-          }}
+          customSetup={sandpackSetup}
+          options={sandpackOptions}
           theme="light"
         >
           <SandpackBridge
