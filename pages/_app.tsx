@@ -3,7 +3,6 @@ import HeaderNav from "@components/HeaderNav";
 import SiteFooter from "@components/SiteFooter";
 import ToolPageLayout from "@components/ToolPageLayout";
 import "@styles/main.css";
-
 import NProgress from "nprogress";
 import { useRouter } from "next/router";
 import { getToolMeta, SITE_CONFIG } from "../lib/seo";
