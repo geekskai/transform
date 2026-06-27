@@ -1,14 +1,15 @@
-export default function Error({ statusCode }) {
-  return (
-    <p>
-      {statusCode
-        ? `An error ${statusCode} occurred on server`
-        : "An error occurred on client"}
-    </p>
-  );
+import NextErrorComponent, { type ErrorProps } from "next/error";
+import type { NextPageContext } from "next";
+import * as Sentry from "@sentry/nextjs";
+
+function Error({ statusCode }: ErrorProps) {
+  return <NextErrorComponent statusCode={statusCode} />;
 }
 
-Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
-  return { statusCode };
+Error.getInitialProps = async (contextData: NextPageContext) => {
+  await Sentry.captureUnderscoreErrorException(contextData);
+
+  return NextErrorComponent.getInitialProps(contextData);
 };
+
+export default Error;

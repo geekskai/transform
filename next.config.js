@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const { withSentryConfig } = require("@sentry/nextjs");
 
 const config = {
   transpilePackages: ["lucide-react", "cmdk", "is-svg"],
@@ -75,4 +76,19 @@ const config = {
   }
 };
 
-module.exports = config;
+module.exports = withSentryConfig(config, {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+  webpack: {
+    reactComponentAnnotation: {
+      enabled: true
+    },
+    treeshake: {
+      removeDebugLogging: true
+    }
+  }
+});
