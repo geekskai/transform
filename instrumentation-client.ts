@@ -13,7 +13,12 @@ Sentry.init({
   replaysOnErrorSampleRate: Number(
     process.env.NEXT_PUBLIC_SENTRY_REPLAY_ERROR_SAMPLE_RATE ?? "1.0"
   ),
-  integrations: [Sentry.replayIntegration()],
+  integrations: [
+    Sentry.replayIntegration({
+      maskAllText: true,
+      maskAllInputs: true
+    })
+  ],
   tracePropagationTargets: [/^https:\/\/folioify\.com/]
 });
 
