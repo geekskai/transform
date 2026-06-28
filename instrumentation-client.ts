@@ -15,8 +15,8 @@ Sentry.init({
   ),
   integrations: [
     Sentry.replayIntegration({
-      maskAllText: true,
-      maskAllInputs: true
+      maskAllText: false,
+      maskAllInputs: false
     })
   ],
   tracePropagationTargets: [/^https:\/\/folioify\.com/]
