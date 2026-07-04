@@ -8,7 +8,10 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { activeRouteData, routes } from "@utils/routes";
-import { getToolPageContent } from "../lib/tool-page-content";
+import {
+  getToolPageContent,
+  getRouteLastModified
+} from "../lib/tool-page-content";
 
 // Icons for feature badges (inline SVG for performance)
 const LightningIcon = () => (
@@ -136,6 +139,15 @@ export default function ToolPageLayout({
           }
         ];
   // const lastModified = route.lastModified;
+  const lastModified = getRouteLastModified(route.path, route.lastModified);
+  const formattedLastModified = lastModified
+    ? new Date(`${lastModified}T00:00:00Z`).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        timeZone: "UTC"
+      })
+    : null;
   const relatedTools = routes
     .filter(
       tool => tool.category === route.category && tool.path !== route.path
@@ -502,6 +514,19 @@ export default function ToolPageLayout({
             </p>
           </div>
         </section>
+
+        {/* Last Updated */}
+        {formattedLastModified && (
+          <section className="px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl rounded-2xl border border-gray-200 bg-white p-4 text-sm text-gray-600 sm:p-6 sm:text-base">
+              <p>
+                <strong>Last updated:</strong> {formattedLastModified}. This
+                page is maintained regularly so tool details, examples, and FAQs
+                stay current for developers and AI search systems.
+              </p>
+            </div>
+          </section>
+        )}
 
         {/* Related Tools */}
         {relatedTools.length > 0 && (

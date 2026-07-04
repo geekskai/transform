@@ -3,6 +3,7 @@ import { getAllPosts } from "../../lib/blog";
 import { getCategorySlug, SITE_CONFIG } from "../../lib/seo";
 import {
   getCategoryPageContent,
+  getRouteLastModified,
   INDEXING_CONTENT_LAST_MODIFIED,
   isPriorityIndexingToolPath
 } from "../../lib/tool-page-content";
@@ -78,9 +79,7 @@ function buildSitemapXml(): string {
       .filter(route => route.path && route.path !== "/")
       .map(route => ({
         loc: BASE + route.path,
-        lastmod: isPriorityIndexingToolPath(route.path)
-          ? INDEXING_CONTENT_LAST_MODIFIED
-          : route.lastModified,
+        lastmod: getRouteLastModified(route.path, route.lastModified),
         changefreq: isPriorityIndexingToolPath(route.path)
           ? ("daily" as const)
           : ("weekly" as const),

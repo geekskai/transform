@@ -29,16 +29,36 @@ export type CategoryPageContent = {
 };
 
 const PRIORITY_INDEXING_TOOL_PATHS = new Set([
-  "/tools/toml-to-yaml",
-  "/tools/check-toml",
+  "/tools/svg-to-jsx",
+  "/tools/svg-to-react-native",
+  "/tools/html-to-jsx",
+  "/tools/html-to-pug",
+  "/tools/html-viewer",
+  "/tools/jsx-viewer",
+  "/tools/json-to-typescript",
+  "/tools/json-to-yaml",
+  "/tools/json-to-zod",
+  "/tools/json-to-mongoose",
+  "/tools/json-schema-to-typescript",
+  "/tools/css-to-js",
+  "/tools/css-to-tailwind",
   "/tools/markdown-to-jsx",
-  "/tools/yaml-to-toml",
-  "/tools/xml-to-json",
-  "/tools/flow-to-javascript",
+  "/tools/markdown-to-html",
   "/tools/typescript-to-zod",
   "/tools/typescript-to-json-schema",
   "/tools/typescript-to-flow",
+  "/tools/toml-to-yaml",
+  "/tools/check-toml",
+  "/tools/toml-formatter",
+  "/tools/yaml-to-toml",
+  "/tools/yaml-to-json",
+  "/tools/xml-to-json",
+  "/tools/flow-to-javascript",
+  "/tools/flow-to-typescript",
+  "/tools/js-object-to-json",
+  "/tools/js-object-to-typescript",
   "/tools/jsonld-to-expanded",
+  "/tools/graphql-to-typescript",
   "/tools/graphql-to-typescript-mongodb",
   "/tools/graphql-to-components",
   "/tools/graphql-to-fragment-matcher",
@@ -46,22 +66,46 @@ const PRIORITY_INDEXING_TOOL_PATHS = new Set([
   "/tools/graphql-to-resolvers-signature",
   "/tools/graphql-to-java",
   "/tools/graphql-to-flow",
-  "/tools/js-object-to-json",
-  "/tools/css-to-tailwind",
   "/tools/object-styles-to-template-literal",
-  "/tools/json-schema-to-typescript",
-  "/tools/json-to-zod",
   "/tools/json-to-kotlin",
-  "/tools/json-to-yaml",
   "/tools/json-to-big-query",
-  "/tools/json-to-mongoose",
   "/tools/json-to-sarcastic",
   "/tools/json-to-mobx-state-tree",
-  "/tools/json-to-graphql",
-  "/tools/html-viewer"
+  "/tools/json-to-graphql"
 ]);
 
-export const INDEXING_CONTENT_LAST_MODIFIED = "2026-06-20";
+export const INDEXING_CONTENT_LAST_MODIFIED = "2026-07-04";
+
+const STALE_LAST_MODIFIED_CUTOFF = "2026-04-05";
+
+/** Resolve last-modified for meta, schema, and sitemap (GEO §10 freshness). */
+export function getRouteLastModified(
+  path: string,
+  routeLastModified?: string
+): string {
+  if (
+    getToolPageContentWithoutGenerated(path) ||
+    isPriorityIndexingToolPath(path)
+  ) {
+    return INDEXING_CONTENT_LAST_MODIFIED;
+  }
+
+  if (buildGeneratedToolContent(path)) {
+    return INDEXING_CONTENT_LAST_MODIFIED;
+  }
+
+  if (!routeLastModified || routeLastModified <= STALE_LAST_MODIFIED_CUTOFF) {
+    return INDEXING_CONTENT_LAST_MODIFIED;
+  }
+
+  return routeLastModified;
+}
+
+function getToolPageContentWithoutGenerated(
+  path: string
+): ToolPageContent | undefined {
+  return TOOL_PAGE_CONTENT[path];
+}
 
 export function isPriorityIndexingToolPath(path: string): boolean {
   return PRIORITY_INDEXING_TOOL_PATHS.has(path);
@@ -459,7 +503,7 @@ function parseToolName(path: string) {
 }
 
 function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
-  if (!PRIORITY_INDEXING_TOOL_PATHS.has(path)) return undefined;
+  if (!path.startsWith("/tools/")) return undefined;
 
   const tool = parseToolName(path);
   const action =
@@ -553,6 +597,220 @@ function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
 }
 
 export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
+  "/tools/svg-to-jsx": {
+    metaTitle: "SVG to JSX Converter | Free React Component Tool | Folioify",
+    metaDescription:
+      "Convert SVG markup to React JSX components online. Preserves viewBox and paths, outputs copy-ready TSX with camelCase props. Free, no signup, runs in browser.",
+    keywords: [
+      "SVG to JSX",
+      "SVG to React",
+      "convert SVG to component",
+      "React icon converter",
+      "SVGR online",
+      "free SVG tool"
+    ],
+    summary:
+      "Convert exported SVG icons and illustrations into React JSX components you can paste directly into a design system or app codebase.",
+    whatIs:
+      "SVG to JSX is a browser-based converter that transforms SVG markup into React-friendly JSX. It normalizes attributes like class to className and produces component-ready output without uploading files.",
+    capabilities: [
+      "Convert inline SVG markup into React JSX or TSX.",
+      "Preserve viewBox, paths, and structural SVG elements.",
+      "Normalize SVG attributes to JSX prop names.",
+      "Copy output for icons, logos, and UI illustrations."
+    ],
+    howItWorks: [
+      "Paste SVG markup into the editor.",
+      "The converter parses the SVG and applies JSX transformations.",
+      "Review and copy the generated React component code."
+    ],
+    useCases: [
+      "Turn Figma or Illustrator SVG exports into React icon components.",
+      "Migrate web SVG assets into a React or Next.js codebase.",
+      "Clean SVG snippets before adding them to Storybook or docs.",
+      "Prepare icon components for a shared UI library."
+    ],
+    inputExample: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+</svg>`,
+    outputExample: `const SvgIcon = props => (
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <path d="M12 2L2 7l10 5 10-5-10-5z" />
+  </svg>
+);`,
+    commonErrors: [
+      "Invalid SVG syntax prevents conversion — check unclosed tags.",
+      "External xlink:href references may need manual cleanup.",
+      "Complex CSS inside SVG may not map cleanly to JSX."
+    ],
+    limitations: [
+      "Review accessibility props like aria-label and title manually.",
+      "Large SVGs with embedded images may need extra handling.",
+      "Generated components are a starting point, not a full design-system export."
+    ],
+    faqs: [
+      {
+        question: "Does SVG to JSX preserve viewBox?",
+        answer:
+          "Yes. viewBox and path data are kept so icons scale correctly in React layouts."
+      },
+      {
+        question: "Can I convert SVG files?",
+        answer:
+          "Paste the SVG markup directly. File upload is not required because processing runs locally in your browser."
+      },
+      {
+        question: "Is the output TypeScript compatible?",
+        answer:
+          "Yes. You can paste the JSX into .tsx files and add prop types as needed."
+      }
+    ]
+  },
+  "/tools/json-to-typescript": {
+    metaTitle: "JSON to TypeScript Converter | Generate TS Types | Folioify",
+    metaDescription:
+      "Generate TypeScript interfaces and type aliases from JSON online. Ideal for API responses, config files, and mock data. Free, no signup, runs in browser.",
+    keywords: [
+      "JSON to TypeScript",
+      "JSON to TS",
+      "generate TypeScript from JSON",
+      "JSON type generator",
+      "TypeScript interface generator",
+      "API types"
+    ],
+    summary:
+      "Turn JSON samples into TypeScript types so API payloads, config objects, and mock data become type-safe faster.",
+    whatIs:
+      "JSON to TypeScript infers structural types from JSON input and outputs interfaces or type aliases you can drop into frontend or backend TypeScript projects.",
+    capabilities: [
+      "Infer strings, numbers, booleans, arrays, and nested objects.",
+      "Generate TypeScript-friendly property names and nested shapes.",
+      "Use real API responses or config snippets as input.",
+      "Produce copy-ready types for interfaces and type aliases."
+    ],
+    howItWorks: [
+      "Paste valid JSON into the editor.",
+      "The converter reads the value shape and maps fields to TypeScript types.",
+      "Copy the generated interface or type alias into your project."
+    ],
+    useCases: [
+      "Create API response types from example payloads.",
+      "Type frontend state objects during refactors.",
+      "Document JSON configuration with strict TypeScript models.",
+      "Bootstrap types before OpenAPI or schema generation."
+    ],
+    inputExample: `{
+  "id": 42,
+  "name": "Folioify",
+  "tags": ["tools", "converter"],
+  "meta": { "version": 1 }
+}`,
+    outputExample: `interface Root {
+  id: number;
+  name: string;
+  tags: string[];
+  meta: {
+    version: number;
+  };
+}`,
+    commonErrors: [
+      "Invalid JSON syntax stops type generation.",
+      "A single sample may miss optional fields present in production data.",
+      "Mixed-type arrays can infer broad union types."
+    ],
+    limitations: [
+      "Generated types should be reviewed before production use.",
+      "Null-only samples may not reveal the intended non-null type.",
+      "Business rules and runtime validation are not inferred."
+    ],
+    faqs: [
+      {
+        question: "Does it support nested JSON?",
+        answer:
+          "Yes. Nested objects become nested TypeScript types with inferred property shapes."
+      },
+      {
+        question: "Can it handle optional fields?",
+        answer:
+          "Optional fields are inferred from the sample you provide. Use representative payloads with and without optional keys for better results."
+      },
+      {
+        question: "Is my JSON uploaded to a server?",
+        answer: "No. Conversion runs locally in your browser for privacy."
+      }
+    ]
+  },
+  "/tools/html-to-jsx": {
+    metaTitle: "HTML to JSX Converter | Free React Markup Tool | Folioify",
+    metaDescription:
+      "Convert HTML to React JSX online. Transforms class to className, self-closing tags, and inline attributes for copy-ready components. Free, no signup.",
+    keywords: [
+      "HTML to JSX",
+      "convert HTML to JSX",
+      "HTML to React",
+      "JSX converter",
+      "React markup converter",
+      "HTML to component"
+    ],
+    summary:
+      "Paste HTML snippets and get React-ready JSX with corrected attributes, self-closing tags, and JSX-safe syntax.",
+    whatIs:
+      "HTML to JSX converts standard HTML markup into JSX suitable for React components. It rewrites attributes like class and for, and normalizes void elements for JSX parsers.",
+    capabilities: [
+      "Convert HTML tags into JSX-compatible syntax.",
+      "Rewrite class, for, and other HTML attributes to JSX props.",
+      "Normalize self-closing tags such as img, input, and br.",
+      "Copy output into React, Next.js, or MDX files."
+    ],
+    howItWorks: [
+      "Paste HTML markup into the editor.",
+      "The converter parses the DOM-like structure and emits JSX.",
+      "Review attribute changes and copy the JSX into your component."
+    ],
+    useCases: [
+      "Migrate static HTML sections into React components.",
+      "Convert email or landing-page markup for frontend apps.",
+      "Turn design handoff HTML into JSX during prototyping.",
+      "Prepare HTML snippets for documentation examples."
+    ],
+    inputExample: `<div class="card">
+  <img src="/logo.png" alt="Logo">
+  <label for="email">Email</label>
+  <input id="email" type="email">
+</div>`,
+    outputExample: `<div className="card">
+  <img src="/logo.png" alt="Logo" />
+  <label htmlFor="email">Email</label>
+  <input id="email" type="email" />
+</div>`,
+    commonErrors: [
+      "Malformed HTML can produce unexpected JSX output.",
+      "Inline event handlers may need manual conversion to React handlers.",
+      "Custom data attributes usually pass through but should be reviewed."
+    ],
+    limitations: [
+      "Event attributes like onclick are not automatically converted to React handlers.",
+      "Server-only HTML features may need manual cleanup for React.",
+      "Large documents should be converted in smaller chunks for easier review."
+    ],
+    faqs: [
+      {
+        question: "Does HTML to JSX change class to className?",
+        answer:
+          "Yes. Common HTML attributes are rewritten to JSX-compatible prop names."
+      },
+      {
+        question: "Can I convert a full page?",
+        answer:
+          "Yes, but converting smaller sections makes review easier before adding the JSX to components."
+      },
+      {
+        question: "Does it work with Next.js?",
+        answer:
+          "Yes. The JSX output can be pasted into Next.js client or server components after any project-specific cleanup."
+      }
+    ]
+  },
   "/tools/jsx-viewer": {
     metaTitle: "Online JSX Viewer | Live React Preview & Formatter | Folioify",
     metaDescription:

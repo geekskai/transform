@@ -9,6 +9,7 @@ import {
   getCategoryPageContent,
   getToolPageContent,
   getToolPageFAQs,
+  getRouteLastModified,
   INDEXING_CONTENT_LAST_MODIFIED,
   isPriorityIndexingToolPath
 } from "./tool-page-content";
@@ -31,7 +32,7 @@ export const SITE_CONFIG = {
 export const SEO = {
   title: SITE_CONFIG.name,
   description:
-    "A polyglot web converter that's going to save you a lot of time.",
+    "Free online developer tools for converting SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more. Secure client-side execution with no signup.",
   openGraph: {
     type: "website",
     locale: "en_IE",
@@ -110,7 +111,7 @@ const HOME_META: ToolMeta = {
   searchTerm: SITE_CONFIG.name,
   path: "/",
   kind: "home",
-  lastModified: "2026-02-07"
+  lastModified: INDEXING_CONTENT_LAST_MODIFIED
 };
 
 /** 根据 pathname 生成完整工具页 Meta（单一数据源：routes） */
@@ -212,7 +213,7 @@ export function getToolMeta(pathname: string): ToolMeta | null {
     noindex: route.noindex,
     lastModified: isPriorityIndexingToolPath(route.path)
       ? INDEXING_CONTENT_LAST_MODIFIED
-      : route.lastModified,
+      : getRouteLastModified(route.path, route.lastModified),
     datePublished: route.datePublished
   };
 }
@@ -323,11 +324,17 @@ export function buildCollectionPageSchema(meta: ToolMeta): object {
 /** Organization JSON-LD（站点级，GEO §14 实体信号） */
 export function buildOrganizationSchema(): object {
   const baseUrl = SITE_CONFIG.baseUrl.replace(/\/$/, "");
+  const twitterHandle = SITE_CONFIG.twitterHandle.replace("@", "");
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: SITE_CONFIG.brand,
-    url: baseUrl + "/"
+    name: SITE_CONFIG.name,
+    alternateName: SITE_CONFIG.brand,
+    url: baseUrl + "/",
+    logo: `${baseUrl}/static/favicon.png`,
+    description:
+      "Free online developer tools for converting SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more. Client-side execution with no signup.",
+    sameAs: [`https://twitter.com/${twitterHandle}`]
   };
 }
 

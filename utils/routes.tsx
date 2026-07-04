@@ -26,7 +26,7 @@ export interface RouteSEO {
   datePublished?: string;
 }
 
-const DEFAULT_LAST_MODIFIED = "2026-02-07";
+const DEFAULT_LAST_MODIFIED = "2026-07-04";
 const buildDefaultTitle = (label: string) =>
   `${label} Converter | Free Online Tool | Folioify`;
 const buildDefaultDesc = (label: string) =>
@@ -84,7 +84,7 @@ export const categorizedRoutes = [
       {
         label: "to JSX",
         path: "/tools/html-to-jsx",
-        title: "convert html to jsx code | Free Online Tool | Folioify",
+        title: "HTML to JSX Converter | Free Online Tool | Folioify",
         desc: "Paste HTML, get React JSX. Free, no signup, runs in browser. By Folioify.",
         keywords: [
           "convert html to jsx code",
