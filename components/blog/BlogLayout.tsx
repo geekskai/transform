@@ -15,6 +15,7 @@ interface BlogLayoutProps {
     coverImage?: string;
     lastmod?: string;
     tags?: string[];
+    keywords?: string[];
     faqs?: { question: string; answer: string }[];
     canonicalUrl?: string;
   };
@@ -38,7 +39,11 @@ export default function BlogLayout({ children, meta }: BlogLayoutProps) {
         ogImage={ogImage}
         datePublished={meta.date}
         lastModified={meta.lastmod}
-        keywords={meta.tags}
+        keywords={
+          meta.keywords?.length
+            ? [...meta.keywords, ...(meta.tags || [])]
+            : meta.tags
+        }
         canonical={canonical}
       />
       <BlogJsonLd post={meta} />

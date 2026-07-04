@@ -101,17 +101,17 @@ export const categorizedRoutes = [
         path: "/tools/html-to-pug",
         packageName: "html2pug",
         packageUrl: "https://github.com/izolate/html2pug",
-        title: "HTML to Pug Converter | Free Online | Folioify",
-        desc: "Convert HTML to Pug (Jade) template syntax. Free, in-browser, no signup. By Folioify.",
+        title: "HTML to Pug Converter Online | Clean Pug Templates | Folioify",
+        desc: "Convert HTML to Pug online with readable indentation, nested template structure, and browser-based processing. Free, no signup.",
         keywords: [
-          "HTML to Pug",
-          "HTML to Jade",
-          "Pug converter",
-          "template converter",
-          "developer tool",
+          "HTML to Pug converter",
+          "HTML to Jade converter",
+          "convert HTML to Pug online",
+          "Pug template generator",
+          "HTML template converter",
           "folioify"
         ],
-        lastModified: "2026-02-01"
+        lastModified: "2026-07-04"
       },
       {
         label: "Viewer",
@@ -332,17 +332,17 @@ export const categorizedRoutes = [
         path: "/tools/json-to-go",
         packageName: "json-to-go",
         packageUrl: "https://github.com/mholt/json-to-go",
-        title: "JSON to Go Struct Converter | Free Online Tool | Folioify",
-        desc: "Convert JSON to Go struct. Free, no signup, runs in browser. By Folioify.",
+        title: "JSON to Go Struct Generator Online | Golang Tags | Folioify",
+        desc: "Generate Go structs from JSON online with nested fields and struct tags. Free browser-based JSON to Golang converter.",
         keywords: [
-          "JSON to Go",
-          "Go struct",
-          "golang struct",
-          "online converter",
-          "developer tool",
+          "JSON to Go struct",
+          "JSON to Golang struct",
+          "Go struct generator",
+          "generate Go structs from JSON",
+          "golang json tags",
           "folioify"
         ],
-        lastModified: "2026-02-01"
+        lastModified: "2026-07-04"
       },
       {
         label: "to Go Bson",
@@ -915,17 +915,17 @@ export const categorizedRoutes = [
       {
         label: "to plain JavaScript",
         path: "/tools/typescript-to-javascript",
-        title:
-          "TypeScript to JavaScript Converter | Free Online Tool | Folioify",
-        desc: "Compile TypeScript to plain JavaScript. Free, in-browser, no signup. By Folioify.",
+        title: "TypeScript to JavaScript Compiler Online | TS to JS | Folioify",
+        desc: "Compile TypeScript to JavaScript online for quick previews, demos, and migration checks. Free browser-based TS to JS tool.",
         keywords: [
           "TypeScript to JavaScript",
-          "TS to JS",
-          "TypeScript compiler",
-          "online converter",
+          "TS to JS compiler",
+          "compile TypeScript online",
+          "TypeScript transpiler",
+          "convert TypeScript to JavaScript",
           "folioify"
         ],
-        lastModified: "2026-02-01"
+        lastModified: "2026-07-04"
       },
       {
         label: "to Zod Schema",
@@ -1084,35 +1084,37 @@ export const categorizedRoutes = [
         path: "/tools/markdown-to-jsx",
         packageName: "markdown + htmltojsx",
         packageUrl: "https://github.com/evilstreak/markdown-js",
-        title: "Markdown to JSX Converter | MD to React Component | Folioify",
-        desc: "Convert Markdown to production-ready JSX components with visual preview, component mapping, and frontmatter support. Free and browser-based.",
+        title:
+          "Markdown to JSX Converter with Live Preview | React MD Tool | Folioify",
+        desc: "Convert Markdown to JSX with live preview, frontmatter support, and React-friendly output. Free browser-based Markdown to JSX tool.",
         keywords: [
           "Markdown to JSX",
-          "MD to React component",
-          "MDX generator",
+          "Markdown to React component",
+          "convert markdown to jsx",
           "convert markdown to jsx online",
-          "markdown code snippet converter",
+          "Markdown JSX live preview",
+          "React markdown converter",
           "folioify"
         ],
-        lastModified: "2026-05-10"
+        lastModified: "2026-07-04"
       },
       {
         label: "TOML Syntax Checker",
         path: "/tools/check-toml",
         packageUrl: "https://www.npmjs.com/package/@iarna/toml",
         packageName: "@iarna/toml",
-        title: "TOML Syntax Checker | Free Online Tool | Folioify",
-        desc: "Validate TOML syntax instantly with clear error messages. Free, no signup, runs in browser. By Folioify.",
+        title: "TOML Validator Online | Check TOML Syntax | Folioify",
+        desc: "Validate TOML syntax online for pyproject.toml, Cargo config, and app settings with clear parse errors. Free and browser-based.",
         keywords: [
           "TOML syntax checker",
           "TOML validator",
-          "validate TOML",
+          "check TOML",
+          "validate TOML online",
+          "pyproject.toml validator",
           "TOML lint",
-          "config checker",
-          "free tool",
           "folioify"
         ],
-        lastModified: "2026-02-08"
+        lastModified: "2026-07-04"
       },
       {
         label: "TOML Formatter",

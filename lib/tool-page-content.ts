@@ -1090,33 +1090,366 @@ type Product {
       }
     ]
   },
-  "/tools/check-toml": {
-    metaTitle: "TOML Syntax Checker | Validate TOML Online | Folioify",
+  "/tools/html-to-pug": {
+    metaTitle: "HTML to Pug Converter Online | Clean Pug Templates | Folioify",
     metaDescription:
-      "Validate TOML syntax online with clear parse errors for config files, package metadata, and application settings.",
+      "Convert HTML to Pug online with readable indentation, nested template structure, and browser-based processing. Free, no signup.",
+    keywords: [
+      "HTML to Pug converter",
+      "HTML to Jade converter",
+      "convert HTML to Pug online",
+      "Pug template generator",
+      "HTML template converter",
+      "folioify"
+    ],
+    summary:
+      "Convert HTML markup into clean Pug templates for Node, Express, static-site, and component prototyping workflows without installing a local converter.",
+    whatIs:
+      "HTML to Pug is a browser-based template converter that transforms standard HTML into indentation-based Pug syntax. It is useful when migrating existing markup into Pug/Jade templates or cleaning copied HTML examples for server-rendered views.",
+    capabilities: [
+      "Convert nested HTML elements into indentation-based Pug syntax.",
+      "Preserve text content, attributes, classes, and IDs in template-friendly form.",
+      "Speed up migration from static HTML snippets to Pug or Jade-style templates.",
+      "Run conversion in the browser without creating an Express or Node project."
+    ],
+    howItWorks: [
+      "Paste complete HTML markup into the input editor.",
+      "The converter parses element nesting, attributes, classes, IDs, and text nodes.",
+      "Review the generated Pug output and copy it into your template file."
+    ],
+    useCases: [
+      "Convert legacy HTML templates into Pug during Express app migration.",
+      "Turn copied HTML documentation examples into cleaner indentation-based templates.",
+      "Prototype server-rendered pages before wiring them into a framework.",
+      "Normalize small HTML snippets before adding them to a design-system example."
+    ],
+    inputExample: `<section class="hero">
+  <h1>Hello Folioify</h1>
+  <p>Convert HTML to Pug online.</p>
+</section>`,
+    outputExample: `section.hero
+  h1 Hello Folioify
+  p Convert HTML to Pug online.`,
+    options: [
+      "Use complete HTML fragments so nesting can be converted accurately.",
+      "Review class, ID, and boolean attributes before pasting output into a template.",
+      "Keep framework-specific directives separate if your target renderer needs custom syntax."
+    ],
+    commonErrors: [
+      "Unclosed tags or invalid nesting can produce confusing indentation.",
+      "Inline scripts and templating delimiters may need manual cleanup after conversion.",
+      "Whitespace-sensitive text blocks should be reviewed carefully in the generated Pug."
+    ],
+    limitations: [
+      "The converter handles markup syntax, not application routing or server variables.",
+      "Framework-specific template helpers may require manual edits.",
+      "Generated Pug should be checked in your target renderer before production use."
+    ],
+    faqs: [
+      {
+        question: "Is Pug the same as Jade?",
+        answer:
+          "Pug is the renamed version of Jade. Many older tutorials still say Jade, but modern packages and documentation use Pug."
+      },
+      {
+        question: "Can I convert a full HTML page to Pug?",
+        answer:
+          "Yes. Full pages can be converted, but large documents should be reviewed for scripts, inline styles, and framework-specific attributes."
+      },
+      {
+        question: "Does HTML to Pug upload my template?",
+        answer:
+          "No. The conversion is designed to run in the browser, so your pasted markup is not uploaded to Folioify servers."
+      },
+      {
+        question: "Will generated Pug work in Express?",
+        answer:
+          "It should work as a starting point for standard markup, but Express locals, includes, mixins, and layout blocks must be added manually."
+      }
+    ]
+  },
+  "/tools/json-to-go": {
+    metaTitle: "JSON to Go Struct Generator Online | Golang Tags | Folioify",
+    metaDescription:
+      "Generate Go structs from JSON online with nested fields and struct tags. Free browser-based JSON to Golang converter.",
+    keywords: [
+      "JSON to Go struct",
+      "JSON to Golang struct",
+      "Go struct generator",
+      "generate Go structs from JSON",
+      "golang json tags",
+      "folioify"
+    ],
+    summary:
+      "Generate Go struct definitions from JSON samples so API payloads, config files, and test fixtures can be mapped into typed Golang code faster.",
+    whatIs:
+      "JSON to Go Struct is an online generator that reads a JSON example and creates Go struct declarations with field names and JSON tags. It is useful for turning API responses into typed models before adding validation, methods, or custom unmarshalling logic.",
+    capabilities: [
+      "Infer Go struct fields from JSON object keys and values.",
+      "Generate nested structs for embedded objects and arrays.",
+      "Add JSON tags so generated fields map back to original payload keys.",
+      "Create copy-ready Go code without installing a local generator."
+    ],
+    howItWorks: [
+      "Paste a representative JSON response or request body.",
+      "The generator infers field names, primitive types, arrays, and nested objects.",
+      "Review the Go struct output, rename fields if needed, and paste it into your package."
+    ],
+    useCases: [
+      "Create Go models from REST API response examples.",
+      "Draft struct definitions for config files or webhook payloads.",
+      "Generate test fixture types before writing unmarshalling code.",
+      "Compare JSON shape changes during backend integration work."
+    ],
+    inputExample: `{
+  "id": 42,
+  "name": "Folioify",
+  "active": true,
+  "tags": ["tools", "go"]
+}`,
+    outputExample: `type AutoGenerated struct {
+  ID     int      \`json:"id"\`
+  Name   string   \`json:"name"\`
+  Active bool     \`json:"active"\`
+  Tags   []string \`json:"tags"\`
+}`,
+    options: [
+      "Use realistic JSON with optional and repeated fields represented.",
+      "Rename generated structs and fields to match your package conventions.",
+      "Run gofmt after copying output into your project."
+    ],
+    commonErrors: [
+      "A single JSON sample may miss nullable or optional fields that exist in production.",
+      "Mixed-type arrays can generate broad or imperfect Go types.",
+      "Numbers may need manual review when int, float64, or custom decimal types matter."
+    ],
+    limitations: [
+      "The generator cannot infer API semantics, validation rules, or custom unmarshalling behavior.",
+      "Generated structs are a starting point and should be reviewed with real payload samples.",
+      "Very large payloads can be harder to inspect manually after generation."
+    ],
+    faqs: [
+      {
+        question: "Does JSON to Go generate json tags?",
+        answer:
+          "Yes. The output includes JSON tags so Go fields can marshal and unmarshal using the original JSON key names."
+      },
+      {
+        question: "Can it handle nested JSON objects?",
+        answer:
+          "Yes. Nested objects and arrays are converted into nested Go struct shapes, but naming should be reviewed."
+      },
+      {
+        question: "Should I use one JSON sample or multiple samples?",
+        answer:
+          "Use the most representative sample you have. If production payloads vary, compare multiple samples and merge optional fields manually."
+      },
+      {
+        question: "Is the generated Go code production-ready?",
+        answer:
+          "It is a strong draft. Run gofmt, rename types, add validation, and test unmarshalling with real API payloads before shipping."
+      }
+    ]
+  },
+  "/tools/typescript-to-javascript": {
+    metaTitle: "TypeScript to JavaScript Compiler Online | TS to JS | Folioify",
+    metaDescription:
+      "Compile TypeScript to JavaScript online for quick previews, demos, and migration checks. Free browser-based TS to JS tool.",
+    keywords: [
+      "TypeScript to JavaScript",
+      "TS to JS compiler",
+      "compile TypeScript online",
+      "TypeScript transpiler",
+      "convert TypeScript to JavaScript",
+      "folioify"
+    ],
+    summary:
+      "Compile TypeScript snippets into plain JavaScript when you need to inspect emitted code, share examples, or test migration ideas without opening a local build pipeline.",
+    whatIs:
+      "TypeScript to JavaScript is a browser-based transpiler that removes type syntax and emits JavaScript output from TypeScript input. It helps developers understand what a small TS example becomes after compilation.",
+    capabilities: [
+      "Compile TypeScript syntax into plain JavaScript output.",
+      "Preview emitted code for functions, classes, interfaces, and type annotations.",
+      "Create shareable JavaScript examples from typed snippets.",
+      "Run quick TS to JS checks without installing TypeScript locally."
+    ],
+    howItWorks: [
+      "Paste a TypeScript snippet into the editor.",
+      "The compiler strips types and transforms supported syntax.",
+      "Copy the emitted JavaScript and test it in your target runtime."
+    ],
+    useCases: [
+      "Explain TypeScript examples in JavaScript documentation.",
+      "Check emitted JavaScript before migrating a small file.",
+      "Remove type annotations from copied snippets for demos.",
+      "Debug whether a syntax issue comes from TypeScript or runtime JavaScript."
+    ],
+    inputExample: `type User = {
+  id: number;
+  name: string;
+};
+
+const greet = (user: User) => \`Hello \${user.name}\`;`,
+    outputExample: `const greet = user => \`Hello \${user.name}\`;`,
+    options: [
+      "Use self-contained snippets for the clearest output.",
+      "Review imports and runtime dependencies after compilation.",
+      "Test emitted code in the browser or Node version you plan to support."
+    ],
+    commonErrors: [
+      "Type-only constructs do not exist at runtime and disappear from output.",
+      "Missing imported values can still break the emitted JavaScript.",
+      "Compiler output may differ from your project's tsconfig settings."
+    ],
+    limitations: [
+      "This page compiles snippets, not full multi-file TypeScript projects.",
+      "It does not run type checking across your whole repository.",
+      "Project-specific Babel, SWC, or tsconfig behavior may produce different output."
+    ],
+    faqs: [
+      {
+        question: "Does TypeScript to JavaScript run type checking?",
+        answer:
+          "This tool focuses on transpiling snippets to JavaScript. Use your project compiler for full type checking."
+      },
+      {
+        question: "Why did my interface disappear?",
+        answer:
+          "Interfaces and type aliases are TypeScript-only constructs. They are removed because JavaScript has no runtime equivalent."
+      },
+      {
+        question: "Can I compile React TSX here?",
+        answer:
+          "This page is best for TypeScript snippets. For JSX or TSX preview work, use the JSX Viewer page."
+      },
+      {
+        question: "Is the output safe to paste into production?",
+        answer:
+          "Review and test the output in your target runtime first, especially when imports, decorators, or newer syntax are involved."
+      }
+    ]
+  },
+  "/tools/markdown-to-jsx": {
+    metaTitle:
+      "Markdown to JSX Converter with Live Preview | React MD Tool | Folioify",
+    metaDescription:
+      "Convert Markdown to JSX with live preview, frontmatter support, and React-friendly output. Free browser-based Markdown to JSX tool.",
+    keywords: [
+      "Markdown to JSX",
+      "Markdown to React component",
+      "convert markdown to jsx",
+      "convert markdown to jsx online",
+      "Markdown JSX live preview",
+      "React markdown converter",
+      "folioify"
+    ],
+    summary:
+      "Convert Markdown documents into React-friendly JSX so docs, changelogs, landing-page copy, and content snippets can move into component code faster.",
+    whatIs:
+      "Markdown to JSX is a browser-based converter for turning Markdown content into JSX output. It is useful when you want Markdown authoring speed but need React components, previewable markup, or frontmatter-aware content handling.",
+    capabilities: [
+      "Convert headings, paragraphs, lists, links, code blocks, and emphasis into JSX.",
+      "Preview Markdown changes before copying generated component markup.",
+      "Handle frontmatter-oriented content workflows for docs and static pages.",
+      "Create React-friendly output without setting up MDX or a build step."
+    ],
+    howItWorks: [
+      "Paste Markdown into the editor, including frontmatter if your snippet uses it.",
+      "Preview the rendered content and inspect the generated JSX output.",
+      "Copy the JSX into a React component, docs page, or content pipeline."
+    ],
+    useCases: [
+      "Convert README sections into React documentation pages.",
+      "Move blog or changelog content into component-based layouts.",
+      "Prototype landing-page copy from Markdown drafts.",
+      "Prepare JSX snippets from Markdown examples during migration to React."
+    ],
+    inputExample: `---
+title: Folioify Docs
+---
+
+# Getting Started
+
+- Paste Markdown
+- Preview output
+- Copy JSX`,
+    outputExample: `<>
+  <h1>Getting Started</h1>
+  <ul>
+    <li>Paste Markdown</li>
+    <li>Preview output</li>
+    <li>Copy JSX</li>
+  </ul>
+</>`,
+    options: [
+      "Use frontmatter for document metadata when your workflow needs title or tags.",
+      "Review code blocks and embedded HTML before using the generated JSX.",
+      "Choose JSX output when you need component code instead of static HTML."
+    ],
+    commonErrors: [
+      "Unclosed inline HTML inside Markdown can produce invalid JSX.",
+      "Markdown tables and custom extensions may need manual cleanup.",
+      "Frontmatter fields are metadata and may not appear in the rendered JSX body."
+    ],
+    limitations: [
+      "This is not a full MDX runtime and does not execute imported React components.",
+      "Custom Markdown plugins from your app are not automatically applied.",
+      "Generated JSX should be reviewed for accessibility and design-system conventions."
+    ],
+    faqs: [
+      {
+        question: "Is Markdown to JSX the same as MDX?",
+        answer:
+          "No. MDX lets Markdown import and execute JSX components. This tool converts Markdown content into JSX output for review and copying."
+      },
+      {
+        question: "Can it convert frontmatter?",
+        answer:
+          "It can support frontmatter-oriented workflows, but metadata should be reviewed separately from the rendered JSX body."
+      },
+      {
+        question: "Does the converter upload my Markdown?",
+        answer:
+          "No. The conversion is designed for browser-based processing, so private drafts stay on your device."
+      },
+      {
+        question: "When should I use Markdown to HTML instead?",
+        answer:
+          "Use Markdown to HTML when you need static markup. Use Markdown to JSX when the output will live inside a React component."
+      }
+    ]
+  },
+  "/tools/check-toml": {
+    metaTitle: "TOML Validator Online | Check TOML Syntax | Folioify",
+    metaDescription:
+      "Validate TOML syntax online for pyproject.toml, Cargo config, and app settings with clear parse errors. Free and browser-based.",
     keywords: [
       "TOML syntax checker",
       "TOML validator",
-      "validate TOML",
-      "TOML lint"
+      "check TOML",
+      "validate TOML online",
+      "pyproject.toml validator",
+      "TOML lint",
+      "folioify"
     ],
     summary:
-      "Use the TOML Syntax Checker to catch invalid tables, arrays, strings, and duplicate keys before a TOML file breaks a build or deployment.",
+      "Validate TOML files before they break package metadata, app configuration, CI jobs, or deployment settings.",
     whatIs:
-      "The TOML Syntax Checker parses TOML configuration text and reports whether the structure is valid according to parser rules.",
+      "The TOML Validator is a browser-based syntax checker for TOML configuration files. It parses pasted TOML and reports whether tables, keys, arrays, strings, booleans, dates, and numbers are valid TOML syntax.",
     capabilities: [
       "Validate TOML tables, arrays, strings, numbers, and booleans.",
       "Catch duplicate keys and malformed table headers.",
-      "Check package, app, and infrastructure config snippets.",
-      "Run validation locally in the browser."
+      "Check pyproject.toml, Cargo config, app config, and infrastructure snippets.",
+      "Run validation locally in the browser without uploading config files."
     ],
     howItWorks: [
       "Paste TOML into the input editor.",
-      "The parser validates syntax and structure.",
-      "Review the success output or the parse error message."
+      "The parser checks TOML syntax and reports the first invalid structure it finds.",
+      "Review the success message or fix the parse error before copying the config."
     ],
     useCases: [
-      "Check pyproject.toml before committing changes.",
+      "Check pyproject.toml before publishing or committing Python package changes.",
+      "Validate Cargo, Netlify, Hugo, or application config files.",
       "Validate application config copied from documentation.",
       "Debug a deployment config that fails with a TOML parse error."
     ],
@@ -1127,20 +1460,26 @@ version = "1.0.0"
 [features]
 preview = true`,
     outputExample:
-      "A validation result or a parser error pointing to invalid TOML syntax.",
+      "Valid TOML, or a parse error that points to the invalid TOML syntax.",
+    options: [
+      "Paste the complete table when debugging duplicate keys.",
+      "Keep secrets out of examples; replace tokens with placeholder values.",
+      "Use the TOML Formatter after validation when you also need consistent spacing."
+    ],
     commonErrors: [
       "Duplicate keys inside the same table.",
       "Missing closing quotes in strings.",
-      "Incorrect table headers such as [package without a closing bracket."
+      "Incorrect table headers such as [package without a closing bracket.",
+      "Mixed array values where the target TOML parser expects consistent types."
     ],
     limitations: [
       "This checks TOML syntax, not whether your app understands every key.",
       "Semantic validation must still happen in the target tool.",
-      "Secrets should not be pasted into browser tools."
+      "Secrets should not be pasted into browser tools, even when processing is local."
     ],
     faqs: [
       {
-        question: "Does this checker format TOML?",
+        question: "Does this TOML validator format TOML?",
         answer:
           "No. This page validates TOML syntax. Use the TOML Formatter page when you want consistent formatting."
       },
@@ -1150,9 +1489,19 @@ preview = true`,
           "Yes, it can check TOML syntax in pyproject.toml, though package-specific rules still depend on Python tooling."
       },
       {
+        question: "Can it check Cargo.toml?",
+        answer:
+          "Yes. It can validate Cargo.toml syntax, but Rust package-specific semantics still need Cargo itself."
+      },
+      {
         question: "What does duplicate key mean in TOML?",
         answer:
           "A duplicate key means the same key is assigned more than once in the same TOML table."
+      },
+      {
+        question: "Is my TOML uploaded to a server?",
+        answer:
+          "No. The validator is designed to run in your browser, so pasted config snippets are not uploaded to Folioify servers."
       }
     ]
   },

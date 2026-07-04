@@ -54,6 +54,7 @@ export async function getStaticProps({ params }: { params: { slug: string } }) {
     "description",
     "tags",
     "keywords",
+    "summary",
     "lastmod",
     "faqs",
     "canonicalUrl",
