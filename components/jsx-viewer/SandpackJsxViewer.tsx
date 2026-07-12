@@ -332,6 +332,7 @@ export default function SandpackJsxViewer() {
   }, [setStoredCode, storedCode]);
 
   const debouncedCode = useDebouncedValue(code, 400);
+  const debouncedPersistedCode = useDebouncedValue(code, 200);
   const canonicalSourceCode = React.useMemo(
     () => buildAppFile(code || SAMPLE_JSX),
     [code]
@@ -370,13 +371,15 @@ export default function SandpackJsxViewer() {
     [enableTailwindPreview]
   );
 
-  const handleCodeChange = React.useCallback(
-    (nextCode: string) => {
-      setCode(nextCode);
-      setStoredCode(nextCode);
-    },
-    [setStoredCode]
-  );
+  const handleCodeChange = React.useCallback((nextCode: string) => {
+    setCode(nextCode);
+  }, []);
+
+  React.useEffect(() => {
+    if (debouncedPersistedCode !== storedCode) {
+      setStoredCode(debouncedPersistedCode);
+    }
+  }, [debouncedPersistedCode, setStoredCode, storedCode]);
 
   const addDependency = React.useCallback(() => {
     const name = packageName.trim();
