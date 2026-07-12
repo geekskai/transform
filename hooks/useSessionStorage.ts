@@ -5,6 +5,7 @@ const prefix = `transform:${pkg.version}:`;
 
 export function useSessionStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(initialValue);
+  const [isHydrated, setIsHydrated] = useState(false);
 
   useEffect(() => {
     try {
@@ -14,6 +15,8 @@ export function useSessionStorage(key, initialValue) {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsHydrated(true);
     }
   }, [key]);
 
@@ -36,5 +39,5 @@ export function useSessionStorage(key, initialValue) {
     }
   };
 
-  return [storedValue, setValue];
+  return [storedValue, setValue, isHydrated];
 }

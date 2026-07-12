@@ -215,7 +215,12 @@ function SandpackBridge({
 
   React.useEffect(() => {
     sourceCodeRef.current = sourceCode;
-  }, [sourceCode]);
+
+    if (sourceCode !== lastSyncedCodeRef.current) {
+      lastSyncedCodeRef.current = sourceCode;
+      sandpack.updateFile(APP_FILE, sourceCode, true);
+    }
+  }, [sandpack, sourceCode]);
 
   React.useEffect(() => {
     actionRef.current = {
@@ -297,7 +302,7 @@ function DependencyBadge({
 }
 
 export default function SandpackJsxViewer() {
-  const [storedCode, setStoredCode] = useData("jsx");
+  const [storedCode, setStoredCode, storageHydrated] = useData("jsx");
   const [code, setCode] = React.useState(storedCode || SAMPLE_JSX);
   const [enableTailwindPreview, setEnableTailwindPreview] =
     React.useState(true);
@@ -307,6 +312,7 @@ export default function SandpackJsxViewer() {
   const [packageVersion, setPackageVersion] = React.useState("latest");
   const sandpackActionsRef = React.useRef<SandpackAppActions | null>(null);
   const persistedCodeRef = React.useRef(code);
+  const hasEditedCodeRef = React.useRef(false);
   const initialFilesRef = React.useRef({
     [APP_FILE]: {
       code: buildAppFile(storedCode || SAMPLE_JSX),
@@ -327,10 +333,16 @@ export default function SandpackJsxViewer() {
   });
 
   React.useEffect(() => {
-    if (!storedCode?.trim()) {
+    if (storageHydrated && !storedCode?.trim()) {
       setStoredCode(SAMPLE_JSX);
     }
-  }, [setStoredCode, storedCode]);
+  }, [setStoredCode, storageHydrated, storedCode]);
+
+  React.useEffect(() => {
+    if (storageHydrated && !hasEditedCodeRef.current) {
+      setCode(storedCode || SAMPLE_JSX);
+    }
+  }, [storageHydrated, storedCode]);
 
   const debouncedCode = useDebouncedValue(code, 400);
   const canonicalSourceCode = React.useMemo(
@@ -372,6 +384,7 @@ export default function SandpackJsxViewer() {
   );
 
   const handleCodeChange = React.useCallback((nextCode: string) => {
+    hasEditedCodeRef.current = true;
     setCode(nextCode);
   }, []);
 
