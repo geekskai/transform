@@ -306,6 +306,7 @@ export default function SandpackJsxViewer() {
   const [packageName, setPackageName] = React.useState("");
   const [packageVersion, setPackageVersion] = React.useState("latest");
   const sandpackActionsRef = React.useRef<SandpackAppActions | null>(null);
+  const persistedCodeRef = React.useRef(code);
   const initialFilesRef = React.useRef({
     [APP_FILE]: {
       code: buildAppFile(storedCode || SAMPLE_JSX),
@@ -332,7 +333,6 @@ export default function SandpackJsxViewer() {
   }, [setStoredCode, storedCode]);
 
   const debouncedCode = useDebouncedValue(code, 400);
-  const debouncedPersistedCode = useDebouncedValue(code, 200);
   const canonicalSourceCode = React.useMemo(
     () => buildAppFile(code || SAMPLE_JSX),
     [code]
@@ -376,10 +376,17 @@ export default function SandpackJsxViewer() {
   }, []);
 
   React.useEffect(() => {
-    if (debouncedPersistedCode !== storedCode) {
-      setStoredCode(debouncedPersistedCode);
+    if (code === persistedCodeRef.current) {
+      return;
     }
-  }, [debouncedPersistedCode, setStoredCode, storedCode]);
+
+    const timer = window.setTimeout(() => {
+      persistedCodeRef.current = code;
+      setStoredCode(code);
+    }, 200);
+
+    return () => window.clearTimeout(timer);
+  }, [code, setStoredCode]);
 
   const addDependency = React.useCallback(() => {
     const name = packageName.trim();
