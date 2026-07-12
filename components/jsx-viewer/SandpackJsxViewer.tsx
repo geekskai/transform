@@ -197,19 +197,32 @@ function useStableDependencies(dependencies: Dependencies) {
 
 function SandpackBridge({
   actionRef,
+  sourceCode,
+  initialCode,
+  dependencyKey,
   onCodeChange
 }: {
   actionRef: React.MutableRefObject<SandpackAppActions | null>;
+  sourceCode: string;
+  initialCode: string;
+  dependencyKey: string;
   onCodeChange: (code: string) => void;
 }) {
   const { sandpack } = useSandpack();
   const activeCode = sandpack.files[APP_FILE]?.code || "";
-  const lastSyncedCodeRef = React.useRef("");
+  const sourceCodeRef = React.useRef(sourceCode);
+  const lastSyncedCodeRef = React.useRef(sourceCode);
+
+  React.useEffect(() => {
+    sourceCodeRef.current = sourceCode;
+  }, [sourceCode]);
 
   React.useEffect(() => {
     actionRef.current = {
       updateAppCode(source: string) {
         const nextCode = buildAppFile(source);
+        sourceCodeRef.current = nextCode;
+        lastSyncedCodeRef.current = nextCode;
         onCodeChange(nextCode);
         sandpack.updateFile(APP_FILE, nextCode, true);
       },
@@ -228,13 +241,24 @@ function SandpackBridge({
       return;
     }
 
-    const timer = window.setTimeout(() => {
-      lastSyncedCodeRef.current = activeCode;
-      onCodeChange(activeCode);
-    }, 200);
+    const wasSandboxReset =
+      activeCode === initialCode && sourceCodeRef.current !== initialCode;
 
-    return () => window.clearTimeout(timer);
-  }, [activeCode, onCodeChange]);
+    if (wasSandboxReset) {
+      lastSyncedCodeRef.current = sourceCodeRef.current;
+      sandpack.updateFile(APP_FILE, sourceCodeRef.current, true);
+      return;
+    }
+
+    lastSyncedCodeRef.current = activeCode;
+    sourceCodeRef.current = activeCode;
+    onCodeChange(activeCode);
+  }, [activeCode, initialCode, onCodeChange, sandpack]);
+
+  React.useEffect(() => {
+    sandpack.updateFile(APP_FILE, sourceCodeRef.current, true);
+    lastSyncedCodeRef.current = sourceCodeRef.current;
+  }, [dependencyKey, sandpack]);
 
   return null;
 }
@@ -308,6 +332,10 @@ export default function SandpackJsxViewer() {
   }, [setStoredCode, storedCode]);
 
   const debouncedCode = useDebouncedValue(code, 400);
+  const canonicalSourceCode = React.useMemo(
+    () => buildAppFile(code || SAMPLE_JSX),
+    [code]
+  );
   const autoDependencies = React.useMemo(
     () => getDetectedDependencies(debouncedCode),
     [debouncedCode]
@@ -317,6 +345,10 @@ export default function SandpackJsxViewer() {
     [autoDependencies, manualDependencies]
   );
   const effectiveDependencies = useStableDependencies(rawEffectiveDependencies);
+  const dependencyKey = React.useMemo(
+    () => JSON.stringify(dependencyEntries(effectiveDependencies)),
+    [effectiveDependencies]
+  );
   const sandpackSetup = React.useMemo(
     () => ({
       entry: MAIN_FILE,
@@ -590,6 +622,9 @@ export default function SandpackJsxViewer() {
         >
           <SandpackBridge
             actionRef={sandpackActionsRef}
+            sourceCode={canonicalSourceCode}
+            initialCode={initialFilesRef.current[APP_FILE].code}
+            dependencyKey={dependencyKey}
             onCodeChange={handleCodeChange}
           />
           <SandpackLayout className="min-h-[calc(100vh-260px)]">
