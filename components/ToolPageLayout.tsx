@@ -149,11 +149,16 @@ export default function ToolPageLayout({
         timeZone: "UTC"
       })
     : null;
-  const relatedTools = routes
-    .filter(
-      tool => tool.category === route.category && tool.path !== route.path
-    )
-    .slice(0, 6);
+  const contextualRelatedTools = (pageContent?.relatedPaths || [])
+    .map(path => routes.find(tool => tool.path === path))
+    .filter((tool): tool is (typeof routes)[number] => Boolean(tool));
+  const relatedTools = (
+    contextualRelatedTools.length
+      ? contextualRelatedTools
+      : routes.filter(
+          tool => tool.category === route.category && tool.path !== route.path
+        )
+  ).slice(0, 6);
 
   return (
     <>
@@ -291,6 +296,21 @@ export default function ToolPageLayout({
             </div>
           </section>
         )}
+
+        {pageContent?.behaviorNotes?.length ? (
+          <section className="px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl rounded-2xl border border-gray-200 bg-white p-4 sm:p-6 md:p-8">
+              <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:mb-4 sm:text-xl">
+                What to Expect
+              </h2>
+              <ul className="grid gap-3 text-sm text-gray-600 sm:text-base md:grid-cols-2">
+                {pageContent.behaviorNotes.map(item => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ) : null}
 
         {/* Core Information (Fact Chunk) */}
         <section className="px-4 sm:px-6 lg:px-8">

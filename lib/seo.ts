@@ -10,8 +10,7 @@ import {
   getToolPageContent,
   getToolPageFAQs,
   getRouteLastModified,
-  INDEXING_CONTENT_LAST_MODIFIED,
-  isPriorityIndexingToolPath
+  INDEXING_CONTENT_LAST_MODIFIED
 } from "./tool-page-content";
 import { shouldNoindexToolPage } from "./tool-indexing";
 import { getToolProcessingDetails } from "./tool-processing";
@@ -213,9 +212,7 @@ export function getToolMeta(pathname: string): ToolMeta | null {
     path: route.path,
     kind: "tool",
     noindex: shouldNoindexToolPage(route.path, route.noindex),
-    lastModified: isPriorityIndexingToolPath(route.path)
-      ? INDEXING_CONTENT_LAST_MODIFIED
-      : getRouteLastModified(route.path, route.lastModified),
+    lastModified: getRouteLastModified(route.path, route.lastModified),
     datePublished: route.datePublished
   };
 }

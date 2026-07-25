@@ -1,7 +1,7 @@
 import ConversionPanel from "@components/ConversionPanel";
 import * as React from "react";
 import { useCallback } from "react";
-import { parse } from "@iarna/toml";
+import { validateTomlSource } from "../../lib/toml-validation";
 
 const SAMPLE_TOML = `[database]
 server = "192.168.1.1"
@@ -11,14 +11,7 @@ enabled = true
 
 export default function CheckToml() {
   const transformer = useCallback(async ({ value }) => {
-    if (!value || !value.trim()) return "";
-
-    try {
-      parse(value);
-      return "✓ Valid TOML syntax";
-    } catch (error) {
-      return `✕ Invalid TOML\\n\\n${error instanceof Error ? error.message : "Invalid TOML syntax."}`;
-    }
+    return validateTomlSource(value || "");
   }, []);
 
   return (

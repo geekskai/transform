@@ -9,6 +9,7 @@ export type ToolPageContent = {
   metaTitle?: string;
   metaDescription?: string;
   keywords?: string[];
+  lastModified?: string;
   summary: string;
   whatIs: string;
   capabilities: string[];
@@ -16,6 +17,8 @@ export type ToolPageContent = {
   useCases: string[];
   inputExample?: string;
   outputExample?: string;
+  behaviorNotes?: string[];
+  relatedPaths?: string[];
   options?: string[];
   commonErrors?: string[];
   limitations?: string[];
@@ -79,33 +82,17 @@ const PRIORITY_INDEXING_TOOL_PATHS = new Set([
 
 export const INDEXING_CONTENT_LAST_MODIFIED = "2026-07-04";
 
-const STALE_LAST_MODIFIED_CUTOFF = "2026-04-05";
-
 /** Resolve last-modified for meta, schema, and sitemap (GEO §10 freshness). */
 export function getRouteLastModified(
   path: string,
   routeLastModified?: string
 ): string {
-  if (routeLastModified && routeLastModified > INDEXING_CONTENT_LAST_MODIFIED) {
-    return routeLastModified;
-  }
+  const pageContent = getToolPageContentWithoutGenerated(path);
 
-  if (
-    getToolPageContentWithoutGenerated(path) ||
-    isPriorityIndexingToolPath(path)
-  ) {
-    return INDEXING_CONTENT_LAST_MODIFIED;
-  }
+  if (pageContent?.lastModified) return pageContent.lastModified;
+  if (routeLastModified) return routeLastModified;
 
-  if (buildGeneratedToolContent(path)) {
-    return INDEXING_CONTENT_LAST_MODIFIED;
-  }
-
-  if (!routeLastModified || routeLastModified <= STALE_LAST_MODIFIED_CUTOFF) {
-    return INDEXING_CONTENT_LAST_MODIFIED;
-  }
-
-  return routeLastModified;
+  return INDEXING_CONTENT_LAST_MODIFIED;
 }
 
 function getToolPageContentWithoutGenerated(
@@ -819,75 +806,124 @@ export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
     ]
   },
   "/tools/jsx-viewer": {
-    metaTitle: "Online JSX Viewer | Live React Preview & Formatter | Folioify",
+    metaTitle: "JSX Viewer Online | Open & Preview JSX/TSX Files | Folioify",
     metaDescription:
-      "Preview JSX and TSX online with live React rendering, Babel validation, formatting, snippets, Tailwind support, and inline error diagnostics.",
+      "Open, edit, and preview JSX or TSX online. Run React components, detect npm imports, format code, inspect inline errors, and download App.tsx.",
     keywords: [
-      "online JSX viewer",
-      "React preview online",
+      "JSX viewer online",
+      "JSX file viewer",
+      "open JSX file online",
+      "preview JSX online",
+      "TSX viewer online",
+      "React component preview",
       "JSX syntax checker",
-      "TSX viewer",
-      "live React playground"
+      "live React playground",
+      "folioify"
     ],
+    lastModified: "2026-07-25",
     summary:
-      "Use the JSX Viewer when you need to paste a React component, validate the syntax, format the source, and see a live preview without creating a local project.",
+      "Open a JSX or TSX component, edit the source, and inspect the rendered React result in one browser workspace. Use it to reproduce a UI example, check an imported component, or diagnose a compile error before creating a local project.",
     whatIs:
-      "The JSX Viewer is a browser-based React preview tool. It transpiles JSX with Babel, finds a previewable component, and renders it directly in the page so you can inspect UI output quickly.",
+      "The JSX Viewer is a browser-based React and TypeScript workspace powered by Sandpack. It normalizes pasted JSX/TSX into an editable App.tsx, creates the hidden entry files needed for preview, detects package imports, and renders the component without sending it to a Folioify transformation API.",
     capabilities: [
-      "Preview App, Preview, Component, or a pasted JSX fragment.",
-      "Format JSX with Prettier and view syntax diagnostics inline.",
-      "Load snippets, local files, or remote JSX/TSX source.",
-      "Optionally include the Tailwind CDN for utility-class previews."
+      "Preview JSX fragments and components that default-export App or define a PascalCase component.",
+      "Edit JSX or TSX with line numbers and inline compile diagnostics.",
+      "Detect non-React npm imports and add an exact package version manually when needed.",
+      "Format with Prettier, copy the active App.tsx, or download it.",
+      "Load Tailwind from its CDN when utility-class styling is required."
     ],
     howItWorks: [
-      "Paste JSX or TSX into the editor.",
-      "The page transpiles the source with Babel and detects the preview component.",
-      "The preview panel renders the component and reports compile or runtime errors."
+      "Paste a self-contained JSX/TSX component or choose a starter snippet.",
+      "The viewer normalizes that text into App.tsx and detects imported npm packages after a short debounce.",
+      "Sandpack compiles the derived React workspace in the browser and updates the preview.",
+      "Use inline errors to correct the source, then copy or download the component."
     ],
     useCases: [
-      "Debug a copied React component before adding it to a codebase.",
-      "Preview Tailwind UI snippets without opening a full app.",
-      "Validate JSX syntax in documentation, bug reports, or examples.",
-      "Share a quick visual check with designers or frontend teammates."
+      "Open a downloaded .jsx or .tsx example when you do not have its original project.",
+      "Reproduce a React component from documentation or a bug report.",
+      "Check whether a component's state and event handlers render as expected.",
+      "Preview a Tailwind component before moving it into an application.",
+      "Isolate a package import or compile error from a larger codebase."
     ],
-    inputExample: `const App = () => (
-  <button className="rounded-lg bg-blue-600 px-4 py-2 text-white">
-    Save changes
-  </button>
-);`,
+    inputExample: `import { useState } from "react";
+
+export default function StatusCard() {
+  const [ready, setReady] = useState(true);
+
+  return (
+    <section style={{ fontFamily: "sans-serif", padding: 24 }}>
+      <h2>Deployment preview</h2>
+      <p>Status: {ready ? "Ready" : "Paused"}</p>
+      <button onClick={() => setReady(value => !value)}>
+        Toggle status
+      </button>
+    </section>
+  );
+}`,
     outputExample:
-      "A rendered React button plus inline diagnostics if the JSX is invalid.",
+      'A card titled "Deployment preview" showing "Status: Ready". Clicking "Toggle status" changes the text to "Status: Paused".',
+    behaviorNotes: [
+      "A bare JSX fragment is wrapped in an App component; an existing default export is kept.",
+      "React and ReactDOM come from the workspace template. Other dependencies are detected from package imports and use the latest version unless you add a manual version.",
+      "The active App.tsx is saved in browser storage, including any React import or default-export scaffolding added by the viewer. Hidden main, style, and HTML files provide the rest of the preview workspace.",
+      "The preview recompiles after a short delay; restarting the workspace resets component state without clearing the editor."
+    ],
+    relatedPaths: [
+      "/tools/html-to-jsx",
+      "/tools/svg-to-jsx",
+      "/tools/markdown-to-jsx"
+    ],
     options: [
-      "Tailwind CDN: enable utility classes in the preview panel.",
-      "Format: run Prettier against the current JSX source.",
-      "Refresh: remount the preview when component state needs a clean reset."
+      "Dependencies: inspect automatically detected imports or pin a package name and version manually.",
+      "Snippets: replace the editor with a known runnable React example.",
+      "Tailwind CDN: load Tailwind in the preview for utility-class examples.",
+      "Restart sandbox: remount the preview and reset component state.",
+      "Format: run Prettier with the Babel TypeScript parser."
     ],
     commonErrors: [
-      "No previewable component found: define App, Preview, Component, or use a JSX fragment.",
-      "Unexpected token: check unclosed tags, missing braces, or TypeScript-only syntax.",
-      "Runtime error: component code can compile but still throw while rendering."
+      "No default export: define a PascalCase component such as App or StatusCard so the viewer can derive an export.",
+      "Unexpected token: check unclosed tags, missing braces, malformed TypeScript props, or code pasted outside the component.",
+      "Module not found: wait for dependency detection or add the package and version from the Dependencies panel.",
+      "Blank preview: inspect inline errors and the preview console; code can compile but still return null or throw at runtime.",
+      "Styles missing: enable the Tailwind CDN for Tailwind classes or include ordinary styles in the component."
     ],
     limitations: [
-      "External npm imports are stripped, so paste self-contained examples.",
-      "Heavy components can take longer to compile and render in the browser.",
-      "The preview is for visual validation, not a replacement for app-level tests."
+      "The workspace previews one entry component, not a complete multi-route application.",
+      "Packages and the optional Tailwind CDN require network access and may behave differently from versions locked in your project.",
+      "Server-only Next.js APIs, environment variables, filesystem access, and backend services are not reproduced.",
+      "User code executes in a browser preview, so only run source you understand and trust.",
+      "The preview is for focused visual and interaction checks, not production builds, security review, or app-level tests."
     ],
     faqs: [
       {
-        question:
-          "Can the JSX Viewer render a component without an App export?",
+        question: "How do I open a JSX or TSX file online?",
         answer:
-          "Yes. It can render App, Preview, Component, the first PascalCase component, or a raw JSX fragment."
+          "Open the file in a text editor, paste its source into the JSX Viewer, and the preview will compile the detected component. You can download the edited source as App.tsx."
+      },
+      {
+        question: "Can the JSX Viewer render a component not named App?",
+        answer:
+          "Yes. Keep a default export or define a PascalCase component. If there is no default export, the viewer derives one from App, Preview, Component, or the first PascalCase component it finds."
       },
       {
         question: "Does the JSX Viewer support Tailwind CSS?",
         answer:
-          "Yes. Turn on the Tailwind CDN toggle to preview common Tailwind utility classes."
+          "Yes. The Tailwind CDN toggle is enabled by default and can be turned off when you want to test plain CSS or inline styles."
       },
       {
-        question: "Why does my imported component not render?",
+        question: "Can the JSX Viewer install npm dependencies?",
         answer:
-          "The viewer strips module imports for safety and portability. Paste a self-contained component instead."
+          "It detects non-React package imports and asks Sandpack to load them. Use the Dependencies panel to pin a version or add a package that cannot be detected from source."
+      },
+      {
+        question: "Why is my JSX preview blank?",
+        answer:
+          "Check inline compile errors first, then confirm the component returns visible JSX and does not require server-only APIs, missing context providers, environment variables, or unavailable assets."
+      },
+      {
+        question: "Is my JSX sent to a Folioify server?",
+        answer:
+          "No Folioify transformation API processes the component. The workspace runs in the browser, while imported packages and the optional Tailwind stylesheet are fetched over the network. Avoid sensitive source and only run code you trust."
       }
     ]
   },
@@ -1427,9 +1463,10 @@ title: Folioify Docs
     ]
   },
   "/tools/check-toml": {
-    metaTitle: "TOML Validator Online | Check TOML Syntax | Folioify",
+    metaTitle:
+      "TOML Validator Online | Syntax Checker with Error Line | Folioify",
     metaDescription:
-      "Validate TOML syntax online for pyproject.toml, Cargo config, and app settings with clear parse errors. Free and browser-based.",
+      "Validate TOML syntax for pyproject.toml, Cargo.toml, and app config. Get the parser error, line, column, and marked source context in your browser.",
     keywords: [
       "TOML syntax checker",
       "TOML validator",
@@ -1439,20 +1476,23 @@ title: Folioify Docs
       "TOML lint",
       "folioify"
     ],
+    lastModified: "2026-07-25",
     summary:
-      "Validate TOML files before they break package metadata, app configuration, CI jobs, or deployment settings.",
+      "Paste pyproject.toml, Cargo.toml, or application configuration and get a direct valid/invalid result. Invalid input includes the first parser error with a one-based line and column plus marked source context.",
     whatIs:
       "The TOML Validator is a browser-based syntax checker for TOML configuration files. It parses pasted TOML and reports whether tables, keys, arrays, strings, booleans, dates, and numbers are valid TOML syntax.",
     capabilities: [
       "Validate TOML tables, arrays, strings, numbers, and booleans.",
       "Catch duplicate keys and malformed table headers.",
       "Check pyproject.toml, Cargo config, app config, and infrastructure snippets.",
+      "Show the first parser error with its line, column, and nearby TOML source.",
       "Run validation locally in the browser without uploading config files."
     ],
     howItWorks: [
       "Paste TOML into the input editor.",
-      "The parser checks TOML syntax and reports the first invalid structure it finds.",
-      "Review the success message or fix the parse error before copying the config."
+      "The @iarna/toml parser checks the document and stops at the first syntax error.",
+      "A valid document returns an exact success message; an invalid document shows the parser message, line, column, and marked source.",
+      "Fix that location and validate again until the full document passes."
     ],
     useCases: [
       "Check pyproject.toml before publishing or committing Python package changes.",
@@ -1460,24 +1500,38 @@ title: Folioify Docs
       "Validate application config copied from documentation.",
       "Debug a deployment config that fails with a TOML parse error."
     ],
-    inputExample: `[package]
+    inputExample: `[project]
 name = "folioify"
-version = "1.0.0"
+version = "2.0.2"
+requires-python = ">=3.11"
+dependencies = ["httpx>=0.27", "pydantic>=2"]
 
-[features]
-preview = true`,
-    outputExample:
-      "Valid TOML, or a parse error that points to the invalid TOML syntax.",
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]`,
+    outputExample: "✓ Valid TOML syntax",
+    behaviorNotes: [
+      "Validation runs after editor input changes and reports only the first parser error.",
+      "Error locations use one-based line and column numbers and include a caret under the parser position.",
+      "A successful parse confirms TOML syntax only; it does not validate tool-specific keys or package rules.",
+      "The parser runs in the browser. Pasted TOML is not sent to a Folioify transformation API."
+    ],
+    relatedPaths: [
+      "/tools/toml-formatter",
+      "/tools/toml-to-json",
+      "/tools/toml-to-yaml"
+    ],
     options: [
       "Paste the complete table when debugging duplicate keys.",
       "Keep secrets out of examples; replace tokens with placeholder values.",
       "Use the TOML Formatter after validation when you also need consistent spacing."
     ],
     commonErrors: [
-      "Duplicate keys inside the same table.",
-      "Missing closing quotes in strings.",
-      "Incorrect table headers such as [package without a closing bracket.",
-      "Mixed array values where the target TOML parser expects consistent types."
+      'Unterminated string: name = "folioify is missing its closing quote.',
+      "Malformed table header: [project is missing its closing bracket.",
+      "Duplicate key: the same key is assigned twice in one table.",
+      "Invalid value: bare words other than true, false, dates, and numbers usually need quotes.",
+      "Invalid array or inline table: check commas, brackets, braces, and value types."
     ],
     limitations: [
       "This checks TOML syntax, not whether your app understands every key.",
@@ -1504,6 +1558,16 @@ preview = true`,
         question: "What does duplicate key mean in TOML?",
         answer:
           "A duplicate key means the same key is assigned more than once in the same TOML table."
+      },
+      {
+        question: "Does the validator show the TOML error line?",
+        answer:
+          "Yes. It reports the first parser error with a one-based line and column and marks the location in nearby source text."
+      },
+      {
+        question: "Does valid TOML mean my application config is correct?",
+        answer:
+          "No. Valid means the document follows TOML syntax. Your application, Cargo, Python build backend, or deployment platform must still validate supported keys and values."
       },
       {
         question: "Is my TOML uploaded to a server?",

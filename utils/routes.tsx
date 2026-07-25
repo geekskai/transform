@@ -1017,10 +1017,10 @@ export const categorizedRoutes = [
       {
         label: "JSX Viewer",
         path: "/tools/jsx-viewer",
-        packageName: "@babel/standalone",
-        packageUrl: "https://babeljs.io/docs/babel-standalone",
-        title: "Online JSX Viewer - Instant React Preview & Formatter",
-        desc: "The fastest online JSX viewer. Paste your React code to format, lint, and preview UI components instantly. No setup required. Supports Tailwind CSS.",
+        packageName: "@codesandbox/sandpack-react",
+        packageUrl: "https://www.npmjs.com/package/@codesandbox/sandpack-react",
+        title: "JSX Viewer Online | Open & Preview JSX/TSX Files | Folioify",
+        desc: "Open, edit, and preview JSX or TSX online. Run React components, detect npm imports, format code, inspect inline errors, and download App.tsx.",
         keywords: [
           "JSX viewer",
           "react playground online",
@@ -1031,7 +1031,7 @@ export const categorizedRoutes = [
           "JSX file viewer",
           "folioify"
         ],
-        lastModified: "2026-05-10"
+        lastModified: "2026-07-25"
       },
       {
         label: "XML to JSON",
@@ -1119,8 +1119,9 @@ export const categorizedRoutes = [
         path: "/tools/check-toml",
         packageUrl: "https://www.npmjs.com/package/@iarna/toml",
         packageName: "@iarna/toml",
-        title: "TOML Validator Online | Check TOML Syntax | Folioify",
-        desc: "Validate TOML syntax online for pyproject.toml, Cargo config, and app settings with clear parse errors. Free and browser-based.",
+        title:
+          "TOML Validator Online | Syntax Checker with Error Line | Folioify",
+        desc: "Validate TOML syntax for pyproject.toml, Cargo.toml, and app config. Get the parser error, line, column, and marked source context in your browser.",
         keywords: [
           "TOML syntax checker",
           "TOML validator",
@@ -1130,7 +1131,7 @@ export const categorizedRoutes = [
           "TOML lint",
           "folioify"
         ],
-        lastModified: "2026-07-04"
+        lastModified: "2026-07-25"
       },
       {
         label: "TOML Formatter",

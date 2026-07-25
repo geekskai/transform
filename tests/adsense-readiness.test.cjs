@@ -41,15 +41,18 @@ const { PRIVACY_CONTACT_EMAIL, PRIVACY_DISCLOSURES } = loadTypeScriptModule(
 const { getToolProcessingDetails } = loadTypeScriptModule(
   "../lib/tool-processing.ts"
 );
-const { getRouteLastModified } = loadTypeScriptModule(
-  "../lib/tool-page-content.ts"
-);
 const {
   CURATED_TOOL_PATHS,
   filterIndexableToolRoutes,
   isToolPageIndexable,
   shouldNoindexToolPage
 } = loadTypeScriptModule("../lib/tool-indexing.ts");
+const { getRouteLastModified, getToolPageContent } = loadTypeScriptModule(
+  "../lib/tool-page-content.ts"
+);
+const { validateTomlSource } = loadTypeScriptModule(
+  "../lib/toml-validation.ts"
+);
 
 test("privacy disclosures cover the site's current data practices", () => {
   assert.equal(PRIVACY_CONTACT_EMAIL, "geeks.kai@gmail.com");
@@ -108,4 +111,60 @@ test("only manually curated tool pages are eligible for indexing", () => {
     ]),
     [{ path: "/tools/svg-to-jsx" }]
   );
+});
+
+test("Phase 2 pages expose useful examples, behavior, links, and honest freshness", () => {
+  const jsxViewer = getToolPageContent("/tools/jsx-viewer");
+  const tomlChecker = getToolPageContent("/tools/check-toml");
+
+  assert.equal(jsxViewer.lastModified, "2026-07-25");
+  assert.match(jsxViewer.inputExample, /useState/);
+  assert.match(jsxViewer.outputExample, /Status: Ready/);
+  assert.match(jsxViewer.behaviorNotes.join(" "), /dependencies/i);
+  assert.deepEqual(jsxViewer.relatedPaths, [
+    "/tools/html-to-jsx",
+    "/tools/svg-to-jsx",
+    "/tools/markdown-to-jsx"
+  ]);
+
+  assert.equal(tomlChecker.lastModified, "2026-07-25");
+  assert.match(tomlChecker.inputExample, /requires-python/);
+  assert.equal(tomlChecker.outputExample, "✓ Valid TOML syntax");
+  assert.match(tomlChecker.behaviorNotes.join(" "), /line and column/i);
+  assert.deepEqual(tomlChecker.relatedPaths, [
+    "/tools/toml-formatter",
+    "/tools/toml-to-json",
+    "/tools/toml-to-yaml"
+  ]);
+
+  assert.equal(
+    getRouteLastModified("/tools/jsx-viewer", "2026-05-10"),
+    "2026-07-25"
+  );
+  assert.equal(
+    getRouteLastModified("/tools/json-to-typescript", "2026-02-01"),
+    "2026-02-01"
+  );
+});
+
+test("TOML validation reports a concise one-based error location and context", () => {
+  assert.equal(validateTomlSource(""), "");
+  assert.equal(
+    validateTomlSource('[project]\nname = "folioify"'),
+    "✓ Valid TOML syntax"
+  );
+
+  const invalidResult = validateTomlSource('[project\nname = "folioify"');
+
+  assert.match(invalidResult, /^✕ Invalid TOML syntax/);
+  assert.match(invalidResult, /Line 1, column 10/);
+  assert.match(
+    invalidResult,
+    /Unexpected character, expected whitespace, \. or \]/
+  );
+  assert.match(invalidResult, /\[project\n {9}\^/);
+  assert.doesNotMatch(invalidResult, /\bpos \d+/);
+
+  const tabbedInvalidResult = validateTomlSource("value =\t@");
+  assert.match(tabbedInvalidResult, /value =\t@\n {7}\t \^/);
 });
