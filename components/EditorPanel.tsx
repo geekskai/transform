@@ -274,7 +274,11 @@ EditorPanelProps) {
         )}
       </div>
 
-      <div className="flex flex-1 flex-col overflow-hidden" {...getRootProps()}>
+      <div
+        className="flex flex-1 flex-col overflow-hidden"
+        data-clarity-mask="true"
+        {...getRootProps()}
+      >
         {topNotifications &&
           topNotifications({
             isSettingsOpen: showSettingsDialogue,

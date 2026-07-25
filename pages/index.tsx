@@ -287,7 +287,7 @@ export default function HomePage() {
     {
       question: "Is my code safe?",
       answer:
-        "Absolutely. Folioify runs entirely in your browser. Your code and data never leave your device and are never sent to our servers."
+        "Processing depends on the tool. Many conversions run in your browser, while server-backed tools send input to Folioify for processing. Each tool identifies its processing mode; avoid entering secrets or sensitive personal data."
     },
     {
       question: "Do I need to create an account?",
@@ -332,8 +332,8 @@ export default function HomePage() {
               <strong>Pricing</strong>: 100% Free, no hidden fees
             </li>
             <li>
-              <strong>Data Handling</strong>: Client-side only, no server
-              uploads
+              <strong>Data Handling</strong>: Browser-based or server-backed,
+              disclosed on each tool
             </li>
             <li>
               <strong>Sign Up</strong>: No registration required
@@ -363,10 +363,9 @@ export default function HomePage() {
             Free Online Developer Tools (2026) ✨
           </h1>
           <p className="mx-auto max-w-6xl text-[15px] leading-relaxed text-gray-600 md:mb-8">
-            Secure, fast, and free developer utilities running entirely in your
-            browser.
+            Fast and free developer utilities with clear processing details.
             <br />
-            No servers, no uploads, just code.
+            No signup required—paste code and get results.
           </p>
 
           {/* TL;DR Section - using Premium Card */}
@@ -381,7 +380,7 @@ export default function HomePage() {
                 </div>
                 <div className="text-sm leading-relaxed text-gray-600">
                   <strong className="font-semibold text-brand-600">
-                    Client-Side Only
+                    Browser or Server
                   </strong>
                 </div>
               </div>
@@ -411,7 +410,7 @@ export default function HomePage() {
                 </div>
                 <div className="text-sm leading-relaxed text-gray-600">
                   <strong className="font-semibold text-brand-600">
-                    Data Stays Local
+                    Clear Data Handling
                   </strong>
                 </div>
               </div>
@@ -592,9 +591,9 @@ export default function HomePage() {
           </h2>
           <p className="mx-auto mb-8 max-w-6xl text-center text-base text-gray-600 md:mb-12">
             Folioify is a comprehensive toolkit designed to simplify modern web
-            development workflows. Unlike other converters that upload your code
-            to remote servers, we leverage WebAssembly to perform all
-            transformations <strong>locally on your device</strong>.
+            development workflows. Many transformations run locally in your
+            browser, while tools that need server-backed processing identify
+            that handling clearly before you use them.
           </p>
 
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
@@ -697,11 +696,12 @@ export default function HomePage() {
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
               <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
-                No Server Processing
+                No Cloud Storage
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
-                We do <strong>not</strong> upload, store, or process your code
-                on remote servers. Everything runs locally.
+                Server-backed tools process input to return a result, but
+                Folioify does <strong>not</strong> provide cloud file storage or
+                synced conversion history.
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
@@ -710,7 +710,7 @@ export default function HomePage() {
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
                 We do <strong>not</strong> offer user accounts, cloud storage,
-                or history sync. Your data stays on your device.
+                or history sync.
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">

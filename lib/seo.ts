@@ -13,6 +13,8 @@ import {
   INDEXING_CONTENT_LAST_MODIFIED,
   isPriorityIndexingToolPath
 } from "./tool-page-content";
+import { shouldNoindexToolPage } from "./tool-indexing";
+import { getToolProcessingDetails } from "./tool-processing";
 
 type Route = NonNullable<ReturnType<typeof activeRouteData>>;
 
@@ -32,7 +34,7 @@ export const SITE_CONFIG = {
 export const SEO = {
   title: SITE_CONFIG.name,
   description:
-    "Free online developer tools for converting SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more. Secure client-side execution with no signup.",
+    "Free online developer tools for converting SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more, with no signup required.",
   openGraph: {
     type: "website",
     locale: "en_IE",
@@ -94,7 +96,7 @@ const HOME_META: ToolMeta = {
   title:
     "Free Online Developer Tools (2026) | Converters, Formatters & Generators - Folioify",
   description:
-    "The ultimate collection of free online developer tools. Convert SVG to JSX, JSON to TypeScript, HTML to Pug, and more. Secure client-side execution, no data uploads.",
+    "Free online developer tools for SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more. No signup, with processing details shown for every tool.",
   canonical: SITE_CONFIG.baseUrl + "/",
   keywords: [
     "developer tools",
@@ -151,7 +153,7 @@ export function getToolMeta(pathname: string): ToolMeta | null {
         : `${categoryName} Developer Tools | Free Online Converters | ${SITE_CONFIG.name}`,
       description:
         pageContent?.description ||
-        `Browse free online ${categoryName} developer tools from Folioify. Convert, format, validate, and generate code locally in your browser with no signup.`,
+        `Browse free online ${categoryName} developer tools from Folioify. Convert, format, validate, and generate code with no signup; processing details are shown on each tool.`,
       canonical: `${baseUrl}/tools/${getCategorySlug(categoryName)}`,
       keywords: [
         `${categoryName} tools`,
@@ -210,7 +212,7 @@ export function getToolMeta(pathname: string): ToolMeta | null {
     searchTerm,
     path: route.path,
     kind: "tool",
-    noindex: route.noindex,
+    noindex: shouldNoindexToolPage(route.path, route.noindex),
     lastModified: isPriorityIndexingToolPath(route.path)
       ? INDEXING_CONTENT_LAST_MODIFIED
       : getRouteLastModified(route.path, route.lastModified),
@@ -271,6 +273,7 @@ export function buildSoftwareApplicationSchema(meta: ToolMeta): object {
 
 export function buildToolFAQSchema(meta: ToolMeta): object {
   const contentFaqs = getToolPageFAQs(meta.path);
+  const processing = getToolProcessingDetails(meta.path);
   if (contentFaqs?.length) {
     return buildFAQPageSchema(contentFaqs);
   }
@@ -282,9 +285,8 @@ export function buildToolFAQSchema(meta: ToolMeta): object {
         "Yes. This tool is completely free with no signup or payment required. You can use it as often as you need."
     },
     {
-      question: "Does my data leave the browser?",
-      answer:
-        "No. Processing happens locally in your browser. Your input is not uploaded or stored on our servers."
+      question: "How is my input processed?",
+      answer: processing.description
     },
     {
       question: "Is the output production-ready?",
@@ -333,7 +335,7 @@ export function buildOrganizationSchema(): object {
     url: baseUrl + "/",
     logo: `${baseUrl}/static/favicon.png`,
     description:
-      "Free online developer tools for converting SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more. Client-side execution with no signup.",
+      "Free online developer tools for converting SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more, with no signup required.",
     sameAs: [`https://twitter.com/${twitterHandle}`]
   };
 }

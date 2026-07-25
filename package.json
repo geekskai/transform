@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS=\"--openssl-legacy-provider\" next dev",
     "start": "NODE_OPTIONS=\"--openssl-legacy-provider\" next start",
+    "test": "node --test tests/*.test.cjs",
     "format": "prettier --write '**/*.ts' '**/*.tsx'",
     "build": "NODE_OPTIONS=\"--openssl-legacy-provider\" next build",
     "now-build": "NODE_OPTIONS=\"--openssl-legacy-provider\" next build",

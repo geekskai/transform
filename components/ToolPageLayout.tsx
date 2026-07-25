@@ -12,6 +12,7 @@ import {
   getToolPageContent,
   getRouteLastModified
 } from "../lib/tool-page-content";
+import { getToolProcessingDetails } from "../lib/tool-processing";
 
 // Icons for feature badges (inline SVG for performance)
 const LightningIcon = () => (
@@ -77,6 +78,7 @@ export default function ToolPageLayout({
   const searchTerm = route.searchTerm || route.label;
   const description = route.desc || "";
   const pageContent = getToolPageContent(route.path);
+  const processing = getToolProcessingDetails(route.path);
   const capabilities = pageContent?.capabilities || [
     "Convert inputs into clean, structured output.",
     "Preview results instantly before copying.",
@@ -103,9 +105,8 @@ export default function ToolPageLayout({
               "Yes. This tool is completely free with no signup or payment required. You can use it as often as you need."
           },
           {
-            question: "Does my data leave the browser?",
-            answer:
-              "No. Processing happens locally in your browser. Your input is not uploaded or stored on our servers."
+            question: "How is my input processed?",
+            answer: processing.description
           },
           {
             question: "What formats does it support?",
@@ -214,8 +215,8 @@ export default function ToolPageLayout({
               <span className="h-4 w-4 text-brand-500">
                 <ShieldIcon />
               </span>
-              <span className="font-semibold text-brand-700">Private</span>
-              <span>- local processing</span>
+              <span className="font-semibold text-brand-700">Processing</span>
+              <span>- {processing.badgeLabel.toLowerCase()}</span>
             </div>
             <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 sm:px-4 sm:py-2 sm:text-sm">
               <span className="h-4 w-4 text-brand-500">
@@ -254,11 +255,10 @@ export default function ToolPageLayout({
               {pageContent?.summary || (
                 <>
                   The <strong>{searchTerm}</strong> tool is a
-                  <strong> free, browser-based converter</strong> that runs
-                  locally in your device for privacy. It is designed for
+                  <strong> free online converter</strong> designed for
                   developers and creators who need{" "}
                   <strong>fast, accurate transformations</strong> without signup
-                  or upload.
+                  . {processing.description}
                 </>
               )}
             </p>
@@ -312,7 +312,7 @@ export default function ToolPageLayout({
                   Data Handling
                 </p>
                 <p className="mt-2 text-sm text-gray-600 sm:text-base">
-                  <strong>Client-side only</strong> — runs in your browser.
+                  <strong>{processing.dataHandlingLabel}</strong>
                 </p>
               </div>
               <div>
@@ -347,8 +347,7 @@ export default function ToolPageLayout({
                   <>
                     <strong>{searchTerm}</strong> is a focused online converter
                     designed to transform inputs into accurate outputs with
-                    minimal steps. It runs entirely in your browser, which means
-                    no file uploads and no server-side processing.
+                    minimal steps. {processing.description}
                   </>
                 )}
               </p>

@@ -7,6 +7,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { SITE_CONFIG } from "../../lib/seo";
 import { getToolPageContent } from "../../lib/tool-page-content";
+import { isToolPageIndexable } from "../../lib/tool-indexing";
 import { routes } from "@utils/routes";
 
 const BASE = (SITE_CONFIG.baseUrl || "").replace(/\/$/, "");
@@ -15,16 +16,16 @@ function buildLlmsTxt(): string {
   const lines: string[] = [
     `# ${SITE_CONFIG.name}`,
     "",
-    `> Free online developer tools for converting SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more. Client-side execution — no signup, no file uploads. By ${SITE_CONFIG.brand}.`,
+    `> Free online developer tools for converting SVG, JSON, TypeScript, HTML, GraphQL, YAML, and more. No signup; each tool identifies browser-based or server-backed processing. By ${SITE_CONFIG.brand}.`,
     "",
-    "This site provides in-browser tools to convert between developer formats. Each tool runs locally in your browser; input is not uploaded to servers.",
+    "This site provides developer tools that use browser or server-backed processing. Each tool page explains how its input is handled.",
     "",
     "## Tools",
     ""
   ];
 
   routes.forEach(r => {
-    if (!r.path || r.path === "/") return;
+    if (!r.path || r.path === "/" || !isToolPageIndexable(r.path)) return;
     const url = BASE + r.path;
     const name = r.searchTerm || r.label || r.path;
     const pageContent = getToolPageContent(r.path);
@@ -46,6 +47,9 @@ function buildLlmsTxt(): string {
     `- [Sitemap](${BASE}/sitemap.xml): List of all tool pages for indexing`
   );
   lines.push(`- [Home](${BASE}/): Landing page`);
+  lines.push(
+    `- [Privacy](${BASE}/privacy): Data handling and vendor disclosures`
+  );
 
   return lines.join("\n");
 }

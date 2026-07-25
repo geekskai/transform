@@ -10,6 +10,7 @@ const popularTools = [
 ];
 
 const resources = [
+  { label: "Privacy", href: "/privacy" },
   { label: "Sitemap", href: "/sitemap.xml" },
   { label: "LLMS", href: "/llms.txt" },
   { label: "Robots", href: "/robots.txt" },

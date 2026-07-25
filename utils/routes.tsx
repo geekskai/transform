@@ -102,7 +102,7 @@ export const categorizedRoutes = [
         packageName: "html2pug",
         packageUrl: "https://github.com/izolate/html2pug",
         title: "HTML to Pug Converter Online | Clean Pug Templates | Folioify",
-        desc: "Convert HTML to Pug online with readable indentation, nested template structure, and browser-based processing. Free, no signup.",
+        desc: "Convert HTML to Pug online with readable indentation and nested template structure. Free, no signup, with server-backed processing.",
         keywords: [
           "HTML to Pug converter",
           "HTML to Jade converter",
@@ -499,7 +499,7 @@ export const categorizedRoutes = [
         packageUrl:
           "https://github.com/openapi-contrib/json-schema-to-openapi-schema",
         title: "JSON Schema to OpenAPI Converter | Free Online | Folioify",
-        desc: "Convert JSON Schema to OpenAPI 3.x schema. Free, in-browser, no signup. By Folioify.",
+        desc: "Convert JSON Schema to OpenAPI 3.x schema. Free, no signup, with server-backed processing. By Folioify.",
         keywords: [
           "JSON Schema to OpenAPI",
           "OpenAPI",
@@ -872,7 +872,7 @@ export const categorizedRoutes = [
         packageName: "flowgen",
         packageUrl: "https://github.com/joarwilk/flowgen",
         title: "TypeScript to Flow Converter | Free Online Tool | Folioify",
-        desc: "Convert TypeScript to Flow type annotations. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert TypeScript to Flow type annotations. Free, no signup, with server-backed processing. By Folioify.",
         keywords: [
           "TypeScript to Flow",
           "TS to Flow",
@@ -886,7 +886,7 @@ export const categorizedRoutes = [
         label: "to TypeScript Declaration",
         path: "/tools/typescript-to-typescript-declaration",
         title: "TypeScript Declaration Generator | Free Online | Folioify",
-        desc: "Generate .d.ts declaration files from TypeScript. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate .d.ts declaration files from TypeScript. Free, no signup, with server-backed processing. By Folioify.",
         keywords: [
           "TypeScript declaration",
           "d.ts",
@@ -902,7 +902,7 @@ export const categorizedRoutes = [
         packageName: "ts-json-schema-generator",
         packageUrl: "https://github.com/vega/ts-json-schema-generator",
         title: "TypeScript to JSON Schema Converter | Free Online | Folioify",
-        desc: "Generate JSON Schema from TypeScript types. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate JSON Schema from TypeScript types. Free, no signup, with server-backed processing. By Folioify.",
         keywords: [
           "TypeScript to JSON Schema",
           "TS to JSON Schema",
@@ -916,7 +916,7 @@ export const categorizedRoutes = [
         label: "to plain JavaScript",
         path: "/tools/typescript-to-javascript",
         title: "TypeScript to JavaScript Compiler Online | TS to JS | Folioify",
-        desc: "Compile TypeScript to JavaScript online for quick previews, demos, and migration checks. Free browser-based TS to JS tool.",
+        desc: "Compile TypeScript to JavaScript online for quick previews, demos, and migration checks. Free, with server-backed processing.",
         keywords: [
           "TypeScript to JavaScript",
           "TS to JS compiler",
@@ -933,7 +933,7 @@ export const categorizedRoutes = [
         packageName: "ts-to-zod",
         packageUrl: "https://www.npmjs.com/package/ts-to-zod",
         title: "TypeScript to Zod Converter | Free Online Tool | Folioify",
-        desc: "Generate Zod schema from TypeScript types. Free, no signup, runs in browser. By Folioify.",
+        desc: "Generate Zod schema from TypeScript types. Free, no signup, with server-backed processing. By Folioify.",
         keywords: [
           "TypeScript to Zod",
           "TS to Zod",
@@ -953,7 +953,7 @@ export const categorizedRoutes = [
         label: "to TypeScript",
         path: "/tools/flow-to-typescript",
         title: "Flow to TypeScript Converter | Free Online Tool | Folioify",
-        desc: "Convert Flow to TypeScript. Free, no signup, runs in browser. By Folioify.",
+        desc: "Convert Flow to TypeScript. Free, no signup, with server-backed processing. By Folioify.",
         keywords: [
           "Flow to TypeScript",
           "Flow to TS",
@@ -968,7 +968,7 @@ export const categorizedRoutes = [
         path: "/tools/flow-to-typescript-declaration",
         title:
           "Flow to TypeScript Declaration Converter | Free Online | Folioify",
-        desc: "Generate TypeScript .d.ts from Flow. Free, in-browser, no signup. By Folioify.",
+        desc: "Generate TypeScript .d.ts from Flow. Free, no signup, with server-backed processing. By Folioify.",
         keywords: [
           "Flow to TypeScript declaration",
           "Flow d.ts",
@@ -982,7 +982,7 @@ export const categorizedRoutes = [
         label: "to plain JavaScript",
         path: "/tools/flow-to-javascript",
         title: "Flow to JavaScript Converter | Free Online | Folioify",
-        desc: "Strip Flow annotations to plain JavaScript. Free, no signup, runs in browser. By Folioify.",
+        desc: "Strip Flow annotations to plain JavaScript. Free, no signup, with server-backed processing. By Folioify.",
         keywords: [
           "Flow to JavaScript",
           "Flow to JS",

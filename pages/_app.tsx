@@ -9,6 +9,7 @@ import { getToolMeta, SITE_CONFIG } from "../lib/seo";
 import { Meta } from "@components/Meta";
 import { JsonLd } from "@components/JsonLd";
 import ClarityTracker from "@components/ClarityTracker";
+import { PRIVACY_META } from "../lib/site-transparency";
 
 export default function App(props) {
   const router = useRouter();
@@ -44,6 +45,7 @@ export default function App(props) {
     (router.asPath || router.pathname || "/").split(/[?#]/)[0] || "/";
   const toolMeta = getToolMeta(currentPath);
   const isNotFoundPage = router.pathname === "/404";
+  const isPrivacyPage = router.pathname === "/privacy";
 
   return (
     <>
@@ -52,6 +54,12 @@ export default function App(props) {
           title={`Page Not Found | ${SITE_CONFIG.name}`}
           description={`The page you requested could not be found. Browse ${SITE_CONFIG.name} developer tools or return to the homepage.`}
           noindex
+        />
+      ) : isPrivacyPage ? (
+        <Meta
+          title={PRIVACY_META.title}
+          description={PRIVACY_META.description}
+          canonical={PRIVACY_META.canonical}
         />
       ) : toolMeta ? (
         <Meta
@@ -68,7 +76,7 @@ export default function App(props) {
       ) : (
         <Meta
           title={SITE_CONFIG.name}
-          description="The ultimate collection of free online developer tools. Convert, format, validate, and generate code locally in your browser."
+          description="Free online developer tools for converting, formatting, validating, and generating code with clear browser or server processing details."
           canonical={`${SITE_CONFIG.baseUrl.replace(/\/$/, "")}/`}
         />
       )}

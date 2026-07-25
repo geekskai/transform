@@ -8,6 +8,8 @@ import {
   isPriorityIndexingToolPath
 } from "../../lib/tool-page-content";
 import { categorizedRoutes, routes } from "@utils/routes";
+import { PRIVACY_LAST_MODIFIED } from "../../lib/site-transparency";
+import { filterIndexableToolRoutes } from "../../lib/tool-indexing";
 
 const BASE = (SITE_CONFIG.baseUrl || "").replace(/\/$/, "");
 
@@ -57,6 +59,12 @@ function buildSitemapXml(): string {
       changefreq: "weekly",
       priority: "0.7"
     },
+    {
+      loc: BASE + "/privacy",
+      lastmod: PRIVACY_LAST_MODIFIED,
+      changefreq: "monthly",
+      priority: "0.5"
+    },
     ...categorizedRoutes.map(category => {
       const categoryTools = routes.filter(
         route => route.category === category.category
@@ -75,16 +83,14 @@ function buildSitemapXml(): string {
         priority: hasCategoryContent ? "0.85" : "0.7"
       };
     }),
-    ...routes
-      .filter(route => route.path && route.path !== "/")
-      .map(route => ({
-        loc: BASE + route.path,
-        lastmod: getRouteLastModified(route.path, route.lastModified),
-        changefreq: isPriorityIndexingToolPath(route.path)
-          ? ("daily" as const)
-          : ("weekly" as const),
-        priority: isPriorityIndexingToolPath(route.path) ? "0.9" : "0.8"
-      })),
+    ...filterIndexableToolRoutes(routes).map(route => ({
+      loc: BASE + route.path,
+      lastmod: getRouteLastModified(route.path, route.lastModified),
+      changefreq: isPriorityIndexingToolPath(route.path)
+        ? ("daily" as const)
+        : ("weekly" as const),
+      priority: isPriorityIndexingToolPath(route.path) ? "0.9" : "0.8"
+    })),
     ...posts.map(post => ({
       loc: `${BASE}/blog/${post.slug}`,
       lastmod: post.lastmod || post.date,

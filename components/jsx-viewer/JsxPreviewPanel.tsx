@@ -195,10 +195,7 @@ export default function JsxPreviewPanel({
     : "Rendering React preview...";
 
   return (
-    <div
-      className="relative h-[calc(100%-44px)] overflow-auto bg-white"
-      data-clarity-unmask="true"
-    >
+    <div className="relative h-[calc(100%-44px)] overflow-auto bg-white">
       {showLoadingOverlay ? (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/75 backdrop-blur-[1px]">
           <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-sm">
@@ -212,11 +209,7 @@ export default function JsxPreviewPanel({
           {error}
         </div>
       ) : null}
-      <div
-        ref={mountRef}
-        className="min-h-full p-4"
-        data-clarity-unmask="true"
-      />
+      <div ref={mountRef} className="min-h-full p-4" />
     </div>
   );
 }

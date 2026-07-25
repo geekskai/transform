@@ -1,3 +1,5 @@
+import { getToolProcessingDetails } from "./tool-processing";
+
 export type ToolFAQ = {
   question: string;
   answer: string;
@@ -194,9 +196,9 @@ const categoryContent: Record<string, CategoryPageContent> = {
           "No. They speed up conversion and preview work, but production HTML should still be tested in target browsers."
       },
       {
-        question: "Do HTML tools upload my markup?",
+        question: "How do HTML tools process my markup?",
         answer:
-          "No. Folioify is designed for client-side processing whenever possible."
+          "Processing depends on the tool. Browser-based tools keep transformation input in your browser; server-backed tools identify that input is sent to Folioify for conversion."
       }
     ]
   },
@@ -506,6 +508,7 @@ function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
   if (!path.startsWith("/tools/")) return undefined;
 
   const tool = parseToolName(path);
+  const processing = getToolProcessingDetails(path);
   const action =
     tool.kind === "checker"
       ? `validate ${tool.source} syntax`
@@ -520,8 +523,8 @@ function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
       : `${tool.target} output`;
 
   return {
-    metaTitle: `${tool.label} Online | Free Browser Tool | Folioify`,
-    metaDescription: `Use this free ${tool.label} online tool to ${action} in your browser with copy-ready output, no signup, and no file upload.`,
+    metaTitle: `${tool.label} Online | Free Developer Tool | Folioify`,
+    metaDescription: `Use this free ${tool.label} online tool to ${action} with copy-ready output, no signup, and clear processing details.`,
     keywords: [
       tool.label,
       `${tool.label} online`,
@@ -530,13 +533,13 @@ function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
       `${tool.target} generator`,
       "developer tool"
     ],
-    summary: `The ${tool.label} page is built for developers who need to ${action} quickly while keeping source snippets local in the browser.`,
-    whatIs: `${tool.label} is a focused browser-based utility that takes ${tool.source} input and produces ${output}. It is designed for quick debugging, migration, documentation, and implementation workflows.`,
+    summary: `The ${tool.label} page is built for developers who need to ${action} quickly. ${processing.description}`,
+    whatIs: `${tool.label} is a focused online utility that takes ${tool.source} input and produces ${output}. It is designed for quick debugging, migration, documentation, and implementation workflows. ${processing.description}`,
     capabilities: [
       `Process ${tool.source} input without creating a local project.`,
       `Produce ${output} that can be copied into code, docs, or tooling.`,
       "Keep conversion work fast with an editor-driven workflow.",
-      "Avoid account creation and server-side file uploads."
+      "Use the tool without creating an account."
     ],
     howItWorks: [
       `Paste representative ${tool.source} input into the editor.`,
@@ -583,9 +586,8 @@ function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
           "Yes. The tool is free to use with no signup, subscription, or usage limit."
       },
       {
-        question: `Does ${tool.label} upload my code?`,
-        answer:
-          "No. Folioify tools are designed to run in the browser whenever possible, so pasted snippets stay on your device."
+        question: `How does ${tool.label} process my input?`,
+        answer: processing.description
       },
       {
         question: `Can I use the ${tool.target} output in production?`,
@@ -1093,7 +1095,7 @@ type Product {
   "/tools/html-to-pug": {
     metaTitle: "HTML to Pug Converter Online | Clean Pug Templates | Folioify",
     metaDescription:
-      "Convert HTML to Pug online with readable indentation, nested template structure, and browser-based processing. Free, no signup.",
+      "Convert HTML to Pug online with readable indentation, nested template structure, and clearly disclosed server-backed processing. Free, no signup.",
     keywords: [
       "HTML to Pug converter",
       "HTML to Jade converter",
@@ -1105,12 +1107,12 @@ type Product {
     summary:
       "Convert HTML markup into clean Pug templates for Node, Express, static-site, and component prototyping workflows without installing a local converter.",
     whatIs:
-      "HTML to Pug is a browser-based template converter that transforms standard HTML into indentation-based Pug syntax. It is useful when migrating existing markup into Pug/Jade templates or cleaning copied HTML examples for server-rendered views.",
+      "HTML to Pug is an online template converter that sends submitted markup to Folioify for server-backed transformation into indentation-based Pug syntax. It is useful when migrating existing markup into Pug/Jade templates or cleaning copied HTML examples for server-rendered views.",
     capabilities: [
       "Convert nested HTML elements into indentation-based Pug syntax.",
       "Preserve text content, attributes, classes, and IDs in template-friendly form.",
       "Speed up migration from static HTML snippets to Pug or Jade-style templates.",
-      "Run conversion in the browser without creating an Express or Node project."
+      "Run conversion without creating an Express or Node project."
     ],
     howItWorks: [
       "Paste complete HTML markup into the input editor.",
@@ -1157,9 +1159,9 @@ type Product {
           "Yes. Full pages can be converted, but large documents should be reviewed for scripts, inline styles, and framework-specific attributes."
       },
       {
-        question: "Does HTML to Pug upload my template?",
+        question: "How does HTML to Pug process my template?",
         answer:
-          "No. The conversion is designed to run in the browser, so your pasted markup is not uploaded to Folioify servers."
+          "The submitted markup is sent to Folioify for server-backed conversion and returned as Pug output. Do not submit secrets or proprietary source code."
       },
       {
         question: "Will generated Pug work in Express?",
@@ -1254,7 +1256,7 @@ type Product {
   "/tools/typescript-to-javascript": {
     metaTitle: "TypeScript to JavaScript Compiler Online | TS to JS | Folioify",
     metaDescription:
-      "Compile TypeScript to JavaScript online for quick previews, demos, and migration checks. Free browser-based TS to JS tool.",
+      "Compile TypeScript to JavaScript online for quick previews, demos, and migration checks with clearly disclosed server-backed processing.",
     keywords: [
       "TypeScript to JavaScript",
       "TS to JS compiler",
@@ -1266,7 +1268,7 @@ type Product {
     summary:
       "Compile TypeScript snippets into plain JavaScript when you need to inspect emitted code, share examples, or test migration ideas without opening a local build pipeline.",
     whatIs:
-      "TypeScript to JavaScript is a browser-based transpiler that removes type syntax and emits JavaScript output from TypeScript input. It helps developers understand what a small TS example becomes after compilation.",
+      "TypeScript to JavaScript is an online transpiler that sends submitted snippets to Folioify for server-backed compilation, removes type syntax, and returns JavaScript output. It helps developers understand what a small TS example becomes after compilation.",
     capabilities: [
       "Compile TypeScript syntax into plain JavaScript output.",
       "Preview emitted code for functions, classes, interfaces, and type annotations.",

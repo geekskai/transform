@@ -430,6 +430,7 @@ export default function JsxEditorPanel({
         className={`relative flex flex-1 flex-col overflow-hidden ${
           isDragActive ? "ring-2 ring-inset ring-purple-400" : ""
         }`}
+        data-clarity-mask="true"
         {...getRootProps()}
       >
         <input {...getInputProps()} />
