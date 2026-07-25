@@ -629,6 +629,22 @@ export const categorizedRoutes = [
           "folioify"
         ],
         lastModified: "2026-02-01"
+      },
+      {
+        label: "to Zod Schema",
+        path: "/tools/js-object-to-zod",
+        packageUrl: "https://www.npmjs.com/package/json-to-zod",
+        packageName: "json-to-zod",
+        title: "JS Object to Zod Converter Online | Folioify",
+        desc: "Convert JavaScript object literals with unquoted keys or single quotes into copy-ready Zod schemas in your browser.",
+        keywords: [
+          "JS object to Zod",
+          "JavaScript object to Zod",
+          "object literal to Zod schema",
+          "Zod schema generator",
+          "folioify"
+        ],
+        lastModified: "2026-07-25"
       }
     ]
   },

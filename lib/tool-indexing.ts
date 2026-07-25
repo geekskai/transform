@@ -7,6 +7,7 @@ export const CURATED_TOOL_PATHS = [
   "/tools/html-to-pug",
   "/tools/js-object-to-json",
   "/tools/js-object-to-typescript",
+  "/tools/js-object-to-zod",
   "/tools/json-to-big-query",
   "/tools/json-to-flow",
   "/tools/json-to-go",

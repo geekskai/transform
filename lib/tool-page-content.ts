@@ -59,6 +59,7 @@ const PRIORITY_INDEXING_TOOL_PATHS = new Set([
   "/tools/flow-to-typescript",
   "/tools/js-object-to-json",
   "/tools/js-object-to-typescript",
+  "/tools/js-object-to-zod",
   "/tools/jsonld-to-expanded",
   "/tools/graphql-to-typescript",
   "/tools/graphql-to-typescript-mongodb",
@@ -85,6 +86,10 @@ export function getRouteLastModified(
   path: string,
   routeLastModified?: string
 ): string {
+  if (routeLastModified && routeLastModified > INDEXING_CONTENT_LAST_MODIFIED) {
+    return routeLastModified;
+  }
+
   if (
     getToolPageContentWithoutGenerated(path) ||
     isPriorityIndexingToolPath(path)
@@ -1639,6 +1644,87 @@ enabled = true`,
         question: "Can I use API response examples?",
         answer:
           "Yes. Paste representative response data and review the generated types."
+      }
+    ]
+  },
+  "/tools/js-object-to-zod": {
+    metaTitle: "JS Object to Zod Converter Online | Folioify",
+    metaDescription:
+      "Convert JavaScript object literals with unquoted keys, single quotes, arrays, and nested values into copy-ready Zod schemas.",
+    keywords: [
+      "JS object to Zod",
+      "JavaScript object to Zod",
+      "object literal to Zod schema",
+      "Zod schema generator"
+    ],
+    summary:
+      "Turn a JavaScript object literal into a named Zod schema without first rewriting it as strict JSON.",
+    whatIs:
+      "JS Object to Zod parses a JavaScript object literal, accepts only JSON-compatible literal values, and infers a Zod schema from the resulting data. Conversion runs in your browser without executing pasted code.",
+    capabilities: [
+      "Accept unquoted property names, single-quoted strings, and trailing commas.",
+      "Infer nested Zod objects, arrays, strings, numbers, and booleans.",
+      "Choose the exported root schema name.",
+      "Format generated TypeScript before copying."
+    ],
+    howItWorks: [
+      "Paste a JavaScript object literal into the editor.",
+      "Choose a root schema name in settings.",
+      "The tool rejects executable expressions and converts literal values into a formatted Zod schema."
+    ],
+    useCases: [
+      "Create runtime validators from configuration objects.",
+      "Draft Zod schemas from console or application state examples.",
+      "Move JavaScript fixture data into a validation-first TypeScript project.",
+      "Avoid the manual JavaScript object to JSON to Zod conversion chain."
+    ],
+    inputExample: `{
+  user: { id: 1, name: "Kai" },
+  active: true,
+  tags: ["a", "b"],
+}`,
+    outputExample: `import { z } from "zod";
+
+export const UserSchema = z.object({
+  user: z.object({ id: z.number(), name: z.string() }),
+  active: z.boolean(),
+  tags: z.array(z.string()),
+});`,
+    options: [
+      "Root Schema Name controls the exported Zod constant name.",
+      "Use a representative sample because inference only sees values present in the object."
+    ],
+    commonErrors: [
+      "Invalid JavaScript syntax prevents the object literal from being parsed.",
+      "Functions, calls, getters, spread syntax, and BigInt are rejected because they are not JSON-compatible literal data.",
+      "A root name that is not a valid JavaScript identifier produces invalid generated code."
+    ],
+    limitations: [
+      "Only object, array, string, number, boolean, and null literals are accepted.",
+      "Variables, undefined, NaN, Infinity, computed keys, methods, and executable expressions are rejected.",
+      "A single sample cannot prove which properties are optional.",
+      "Generated schemas still require review before production use."
+    ],
+    faqs: [
+      {
+        question: "Does this accept unquoted JavaScript object keys?",
+        answer:
+          "Yes. It accepts object-literal syntax such as { userId: 1 } as well as single-quoted strings and trailing commas."
+      },
+      {
+        question: "Can it infer optional properties?",
+        answer:
+          "No. One object sample only shows fields that are present. Add optional() manually where your real data permits missing fields."
+      },
+      {
+        question: "Does the converter execute pasted JavaScript?",
+        answer:
+          "No. It parses the input and accepts only JSON-compatible literal nodes. Function calls, assignments, getters, methods, and other executable expressions are rejected."
+      },
+      {
+        question: "Is my object sent to Folioify?",
+        answer:
+          "The transformation runs in your browser. Analytics and diagnostics may still receive interaction or technical data, so avoid sensitive content."
       }
     ]
   },
