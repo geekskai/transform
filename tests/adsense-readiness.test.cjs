@@ -40,7 +40,6 @@ const {
 test("privacy disclosures cover the site's current data practices", () => {
   assert.equal(PRIVACY_CONTACT_EMAIL, "geeks.kai@gmail.com");
   assert.match(PRIVACY_DISCLOSURES.analytics, /Microsoft Clarity/i);
-  assert.match(PRIVACY_DISCLOSURES.analytics, /Sentry/i);
   assert.match(PRIVACY_DISCLOSURES.serverProcessing, /server-backed/i);
   assert.match(PRIVACY_DISCLOSURES.serverProcessing, /temporary file/i);
   assert.match(PRIVACY_DISCLOSURES.serverProcessing, /error details/i);

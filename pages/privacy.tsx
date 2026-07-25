@@ -66,16 +66,6 @@ export default function PrivacyPage() {
               <li>
                 <a
                   className="font-semibold text-brand-700 underline"
-                  href="https://sentry.io/privacy/"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  Sentry privacy policy
-                </a>
-              </li>
-              <li>
-                <a
-                  className="font-semibold text-brand-700 underline"
                   href="https://vercel.com/legal/privacy-policy"
                   rel="noreferrer"
                   target="_blank"
