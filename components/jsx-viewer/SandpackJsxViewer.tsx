@@ -38,6 +38,7 @@ import { useData } from "@hooks/useData";
 import { JSX_SNIPPETS, SAMPLE_JSX } from "@/lib/jsx-viewer/preview";
 
 type Dependencies = Record<string, string>;
+type PreviewStatus = "starting" | "updating" | "ready" | "error";
 type SandpackAppActions = {
   updateAppCode: (source: string) => void;
   restart: () => void;
@@ -200,27 +201,86 @@ function SandpackBridge({
   sourceCode,
   initialCode,
   dependencyKey,
-  onCodeChange
+  onCodeChange,
+  onPreviewStatusChange
 }: {
   actionRef: React.MutableRefObject<SandpackAppActions | null>;
   sourceCode: string;
   initialCode: string;
   dependencyKey: string;
   onCodeChange: (code: string) => void;
+  onPreviewStatusChange: (status: PreviewStatus) => void;
 }) {
-  const { sandpack } = useSandpack();
+  const { listen, sandpack } = useSandpack();
   const activeCode = sandpack.files[APP_FILE]?.code || "";
   const sourceCodeRef = React.useRef(sourceCode);
   const lastSyncedCodeRef = React.useRef(sourceCode);
+  const clientReadyRef = React.useRef(false);
+  const pendingPreviewCodeRef = React.useRef<string | null>(null);
+  const dependencyKeyRef = React.useRef(dependencyKey);
+  const hasCompletedPreviewRef = React.useRef(false);
+
+  const enqueuePreviewCode = React.useCallback(
+    (nextCode: string) => {
+      if (clientReadyRef.current) {
+        clientReadyRef.current = false;
+        pendingPreviewCodeRef.current = null;
+        onPreviewStatusChange("updating");
+        sandpack.updateFile(APP_FILE, nextCode, true);
+        return;
+      }
+
+      pendingPreviewCodeRef.current = nextCode;
+      sandpack.updateFile(APP_FILE, nextCode, false);
+    },
+    [onPreviewStatusChange, sandpack]
+  );
+
+  React.useEffect(
+    () =>
+      listen(message => {
+        if (message.type === "start") {
+          clientReadyRef.current = false;
+          onPreviewStatusChange(
+            hasCompletedPreviewRef.current ? "updating" : "starting"
+          );
+          return;
+        }
+
+        if (message.type === "done") {
+          const pendingCode = pendingPreviewCodeRef.current;
+
+          if (pendingCode) {
+            pendingPreviewCodeRef.current = null;
+            clientReadyRef.current = false;
+            onPreviewStatusChange("updating");
+            sandpack.updateFile(APP_FILE, pendingCode, true);
+            return;
+          }
+
+          clientReadyRef.current = true;
+          hasCompletedPreviewRef.current = true;
+          onPreviewStatusChange(message.compilatonError ? "error" : "ready");
+        }
+      }),
+    [listen, onPreviewStatusChange, sandpack]
+  );
+
+  React.useEffect(() => {
+    if (sandpack.status === "timeout") {
+      clientReadyRef.current = false;
+      onPreviewStatusChange("error");
+    }
+  }, [onPreviewStatusChange, sandpack.status]);
 
   React.useEffect(() => {
     sourceCodeRef.current = sourceCode;
 
     if (sourceCode !== lastSyncedCodeRef.current) {
       lastSyncedCodeRef.current = sourceCode;
-      sandpack.updateFile(APP_FILE, sourceCode, true);
+      enqueuePreviewCode(sourceCode);
     }
-  }, [sandpack, sourceCode]);
+  }, [enqueuePreviewCode, sourceCode]);
 
   React.useEffect(() => {
     actionRef.current = {
@@ -229,9 +289,11 @@ function SandpackBridge({
         sourceCodeRef.current = nextCode;
         lastSyncedCodeRef.current = nextCode;
         onCodeChange(nextCode);
-        sandpack.updateFile(APP_FILE, nextCode, true);
+        enqueuePreviewCode(nextCode);
       },
       restart() {
+        clientReadyRef.current = false;
+        onPreviewStatusChange("updating");
         void sandpack.runSandpack();
       }
     };
@@ -239,7 +301,13 @@ function SandpackBridge({
     return () => {
       actionRef.current = null;
     };
-  }, [actionRef, onCodeChange, sandpack]);
+  }, [
+    actionRef,
+    onCodeChange,
+    onPreviewStatusChange,
+    enqueuePreviewCode,
+    sandpack
+  ]);
 
   React.useEffect(() => {
     if (!activeCode || activeCode === lastSyncedCodeRef.current) {
@@ -251,19 +319,26 @@ function SandpackBridge({
 
     if (wasSandboxReset) {
       lastSyncedCodeRef.current = sourceCodeRef.current;
-      sandpack.updateFile(APP_FILE, sourceCodeRef.current, true);
+      enqueuePreviewCode(sourceCodeRef.current);
       return;
     }
+
+    enqueuePreviewCode(activeCode);
 
     lastSyncedCodeRef.current = activeCode;
     sourceCodeRef.current = activeCode;
     onCodeChange(activeCode);
-  }, [activeCode, initialCode, onCodeChange, sandpack]);
+  }, [activeCode, enqueuePreviewCode, initialCode, onCodeChange]);
 
   React.useEffect(() => {
-    sandpack.updateFile(APP_FILE, sourceCodeRef.current, true);
+    if (dependencyKey === dependencyKeyRef.current) {
+      return;
+    }
+
+    dependencyKeyRef.current = dependencyKey;
     lastSyncedCodeRef.current = sourceCodeRef.current;
-  }, [dependencyKey, sandpack]);
+    enqueuePreviewCode(sourceCodeRef.current);
+  }, [dependencyKey, enqueuePreviewCode]);
 
   return null;
 }
@@ -310,6 +385,8 @@ export default function SandpackJsxViewer() {
     React.useState<Dependencies>({});
   const [packageName, setPackageName] = React.useState("");
   const [packageVersion, setPackageVersion] = React.useState("latest");
+  const [previewStatus, setPreviewStatus] =
+    React.useState<PreviewStatus>("starting");
   const sandpackActionsRef = React.useRef<SandpackAppActions | null>(null);
   const persistedCodeRef = React.useRef(code);
   const hasEditedCodeRef = React.useRef(false);
@@ -387,6 +464,10 @@ export default function SandpackJsxViewer() {
     hasEditedCodeRef.current = true;
     setCode(nextCode);
   }, []);
+  const handlePreviewStatusChange = React.useCallback(
+    (status: PreviewStatus) => setPreviewStatus(status),
+    []
+  );
 
   React.useEffect(() => {
     if (code === persistedCodeRef.current) {
@@ -425,21 +506,33 @@ export default function SandpackJsxViewer() {
     });
   }, []);
 
-  const applySnippet = React.useCallback((snippetCode: string) => {
-    sandpackActionsRef.current?.updateAppCode(snippetCode);
-  }, []);
+  const applySnippet = React.useCallback(
+    (snippetCode: string) => {
+      if (sandpackActionsRef.current) {
+        sandpackActionsRef.current.updateAppCode(snippetCode);
+        return;
+      }
+
+      handleCodeChange(buildAppFile(snippetCode));
+    },
+    [handleCodeChange]
+  );
 
   const formatCode = React.useCallback(async () => {
     try {
       const formatted = await formatJsxCode(code);
-      sandpackActionsRef.current?.updateAppCode(formatted);
+      if (sandpackActionsRef.current) {
+        sandpackActionsRef.current.updateAppCode(formatted);
+      } else {
+        handleCodeChange(buildAppFile(formatted));
+      }
       toast.success("Formatted with Prettier.");
     } catch (error) {
       toast.error(
         error instanceof Error ? error.message : "Unable to format JSX."
       );
     }
-  }, [code]);
+  }, [code, handleCodeChange]);
 
   const copyCode = React.useCallback(async () => {
     await copy(code);
@@ -455,6 +548,14 @@ export default function SandpackJsxViewer() {
     link.click();
     URL.revokeObjectURL(url);
   }, [code]);
+  const previewBusy =
+    previewStatus === "starting" || previewStatus === "updating";
+  const previewStatusLabel = {
+    starting: "Starting preview",
+    updating: "Updating preview",
+    ready: "Preview ready",
+    error: "Preview needs attention"
+  }[previewStatus];
 
   return (
     <section className="space-y-4">
@@ -462,7 +563,7 @@ export default function SandpackJsxViewer() {
         <div className="flex min-w-0 flex-wrap items-center gap-2">
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" disabled={previewBusy}>
                 <Package className="mr-1.5 h-4 w-4" />
                 Dependencies
                 <span className="ml-1 rounded-full bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600">
@@ -535,7 +636,7 @@ export default function SandpackJsxViewer() {
 
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" disabled={previewBusy}>
                 <ScissorsLineDashed className="mr-1.5 h-4 w-4" />
                 Snippets
               </Button>
@@ -563,7 +664,7 @@ export default function SandpackJsxViewer() {
 
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" disabled={previewBusy}>
                 <RefreshCw className="mr-1.5 h-4 w-4" />
                 Workspace
               </Button>
@@ -611,11 +712,26 @@ export default function SandpackJsxViewer() {
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
+          <div
+            role="status"
+            aria-live="polite"
+            className={`flex h-9 items-center gap-2 rounded-md border px-3 text-xs font-medium ${
+              previewStatus === "error"
+                ? "border-red-200 bg-red-50 text-red-700"
+                : "border-brand-200 bg-brand-50 text-brand-900"
+            }`}
+          >
+            {previewBusy ? (
+              <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden />
+            ) : null}
+            {previewStatusLabel}
+          </div>
           <div className="flex h-9 items-center gap-3 rounded-md border border-purple-200 bg-purple-50 px-3">
             <Switch
               id="tailwind-preview-toggle"
               checked={enableTailwindPreview}
               onCheckedChange={setEnableTailwindPreview}
+              disabled={previewBusy}
             />
             <Label
               htmlFor="tailwind-preview-toggle"
@@ -624,7 +740,12 @@ export default function SandpackJsxViewer() {
               Tailwind CDN
             </Label>
           </div>
-          <Button variant="outline" size="sm" onClick={formatCode}>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={formatCode}
+            disabled={previewBusy}
+          >
             <Wand2 className="mr-1.5 h-4 w-4" />
             Format
           </Button>
@@ -649,6 +770,7 @@ export default function SandpackJsxViewer() {
             initialCode={initialFilesRef.current[APP_FILE].code}
             dependencyKey={dependencyKey}
             onCodeChange={handleCodeChange}
+            onPreviewStatusChange={handlePreviewStatusChange}
           />
           <SandpackLayout className="min-h-[calc(100vh-260px)]">
             <SandpackCodeEditor

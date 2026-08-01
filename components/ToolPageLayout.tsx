@@ -169,7 +169,7 @@ export default function ToolPageLayout({
       >
         <Link
           href="/"
-          className="text-gray-600 no-underline hover:text-brand-600"
+          className="inline-flex min-h-11 items-center text-gray-700 no-underline hover:text-brand-800"
         >
           <span aria-hidden="true">🏠</span> Home
         </Link>
@@ -184,10 +184,7 @@ export default function ToolPageLayout({
           {searchTerm}
         </span>
       </nav>
-      <article
-        className="min-h-screen flex-col flex gap-1 md:gap-2 lg:gap-4"
-        role="main"
-      >
+      <article className="min-h-screen flex-col flex gap-1 md:gap-2 lg:gap-4">
         {/* Hero */}
         <header className="bg-gradient-to-b from-brand-50 to-gray-50 px-4 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-7xl text-center">
@@ -197,7 +194,7 @@ export default function ToolPageLayout({
             </span>
 
             <h1 className="mb-3 bg-gradient-to-r from-brand-700 via-brand-500 to-brand-700 bg-clip-text text-2xl font-bold leading-tight text-transparent sm:text-3xl md:mb-4 md:text-4xl lg:text-5xl">
-              {searchTerm} (2026) ✨
+              {searchTerm} ✨
             </h1>
 
             <p className="mx-auto mb-5 max-w-3xl text-sm leading-relaxed text-gray-600 sm:text-base md:mb-6 md:text-lg">
@@ -272,23 +269,23 @@ export default function ToolPageLayout({
 
         {(pageContent?.inputExample || pageContent?.outputExample) && (
           <section className="px-4 sm:px-6 lg:px-8">
-            <div className="mx-auto grid max-w-7xl gap-4 sm:gap-6 md:grid-cols-2">
+            <div className="mx-auto grid min-w-0 max-w-7xl gap-4 sm:gap-6 md:grid-cols-2">
               {pageContent.inputExample && (
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
+                <div className="min-w-0 rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
                   <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:text-xl">
                     Example Input
                   </h2>
-                  <pre className="overflow-auto rounded-xl bg-gray-950 p-4 text-xs leading-relaxed text-gray-100">
+                  <pre className="max-w-full overflow-auto rounded-xl bg-gray-950 p-4 text-xs leading-relaxed text-gray-100">
                     <code>{pageContent.inputExample}</code>
                   </pre>
                 </div>
               )}
               {pageContent.outputExample && (
-                <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
+                <div className="min-w-0 rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
                   <h2 className="mb-3 text-lg font-semibold text-gray-900 sm:text-xl">
                     Expected Output
                   </h2>
-                  <pre className="overflow-auto rounded-xl bg-gray-950 p-4 text-xs leading-relaxed text-gray-100">
+                  <pre className="max-w-full overflow-auto rounded-xl bg-gray-950 p-4 text-xs leading-relaxed text-gray-100">
                     <code>{pageContent.outputExample}</code>
                   </pre>
                 </div>

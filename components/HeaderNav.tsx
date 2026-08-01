@@ -158,6 +158,7 @@ function MegaMenuPane({
 
 export default function HeaderNav() {
   const router = useRouter();
+  const isHomePage = router.pathname === "/";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -176,7 +177,7 @@ export default function HeaderNav() {
       {/* Logo - Left */}
       <Link
         href="/"
-        className="flex items-center gap-2 rounded-xl px-2 py-1 text-gray-900 transition-all duration-300 hover:bg-brand-50 hover:text-brand-800 sm:py-1.5 md:gap-2.5 md:rounded-2xl md:px-3 md:py-2"
+        className="flex min-h-11 items-center gap-2 rounded-xl px-2 py-1 text-gray-900 transition-all duration-300 hover:bg-brand-50 hover:text-brand-800 sm:py-1.5 md:gap-2.5 md:rounded-2xl md:px-3 md:py-2"
       >
         <img
           src="/static/favicon.svg"
@@ -192,12 +193,16 @@ export default function HeaderNav() {
       </Link>
 
       {/* Spacer - Center */}
-      <div className="hidden md:block flex-1" />
+      <div className="hidden flex-1 md:block" />
 
-      <div className="flex w-full items-center justify-end gap-2">
+      <div
+        className={`flex items-center justify-end gap-2 ${
+          isHomePage ? "ml-auto w-auto" : "w-full md:w-auto"
+        }`}
+      >
         <Link
           href="/blog"
-          className="text-brand-800 text-xs font-semibold sm:text-sm md:text-base"
+          className="inline-flex min-h-11 items-center px-2 text-xs font-semibold text-brand-800 sm:text-sm md:text-base"
         >
           Blog
         </Link>
@@ -211,7 +216,7 @@ export default function HeaderNav() {
         <button
           ref={triggerRef}
           type="button"
-          className={`group relative overflow-hidden px-2.5 py-1.5 text-xs font-semibold transition-all duration-300 sm:px-3 sm:py-2 sm:text-sm md:px-4 md:py-2.5 md:text-base ${
+          className={`group relative min-h-11 overflow-hidden px-2.5 py-1.5 text-xs font-semibold transition-all duration-300 sm:px-3 sm:py-2 sm:text-sm md:px-4 md:py-2.5 md:text-base ${
             isMenuOpen
               ? "text-brand-800 shadow-lg shadow-brand-500/20"
               : "text-brand-800 hover:shadow-lg hover:shadow-brand-500/20"
@@ -245,7 +250,7 @@ export default function HeaderNav() {
           </span>
         </button>
 
-        <SearchBox />
+        {isHomePage ? null : <SearchBox />}
       </div>
     </nav>
   );

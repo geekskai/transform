@@ -3,7 +3,6 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { categorizedRoutes, routes } from "@utils/routes";
 import type { FAQItem } from "@components/FAQ";
-import { getCategorySlug } from "../lib/seo";
 
 // Icons for value propositions
 const FreeIcon = () => (
@@ -63,7 +62,7 @@ const categoryStyles: Record<
     border: "border-pink-200",
     hoverBorder: "hover:border-pink-400",
     shadow: "hover:shadow-pink-500/20",
-    text: "text-pink-600",
+    text: "text-pink-700",
     badge: "bg-pink-500",
     iconBg: "from-pink-100 to-pink-50"
   },
@@ -73,7 +72,7 @@ const categoryStyles: Record<
     border: "border-orange-200",
     hoverBorder: "hover:border-orange-400",
     shadow: "hover:shadow-orange-500/20",
-    text: "text-orange-600",
+    text: "text-orange-700",
     badge: "bg-orange-500",
     iconBg: "from-orange-100 to-orange-50"
   },
@@ -83,7 +82,7 @@ const categoryStyles: Record<
     border: "border-emerald-200",
     hoverBorder: "hover:border-emerald-400",
     shadow: "hover:shadow-emerald-500/20",
-    text: "text-emerald-600",
+    text: "text-emerald-700",
     badge: "bg-emerald-500",
     iconBg: "from-emerald-100 to-emerald-50"
   },
@@ -93,7 +92,7 @@ const categoryStyles: Record<
     border: "border-blue-200",
     hoverBorder: "hover:border-blue-400",
     shadow: "hover:shadow-blue-500/20",
-    text: "text-blue-600",
+    text: "text-blue-700",
     badge: "bg-blue-500",
     iconBg: "from-blue-100 to-blue-50"
   },
@@ -103,7 +102,7 @@ const categoryStyles: Record<
     border: "border-purple-200",
     hoverBorder: "hover:border-purple-400",
     shadow: "hover:shadow-purple-500/20",
-    text: "text-purple-600",
+    text: "text-purple-700",
     badge: "bg-purple-500",
     iconBg: "from-purple-100 to-purple-50"
   },
@@ -113,7 +112,7 @@ const categoryStyles: Record<
     border: "border-blue-200",
     hoverBorder: "hover:border-blue-400",
     shadow: "hover:shadow-blue-500/20",
-    text: "text-blue-600",
+    text: "text-blue-700",
     badge: "bg-blue-600",
     iconBg: "from-blue-100 to-blue-50"
   },
@@ -123,7 +122,7 @@ const categoryStyles: Record<
     border: "border-yellow-200",
     hoverBorder: "hover:border-yellow-400",
     shadow: "hover:shadow-yellow-500/20",
-    text: "text-yellow-600",
+    text: "text-amber-800",
     badge: "bg-yellow-500",
     iconBg: "from-yellow-100 to-yellow-50"
   },
@@ -133,7 +132,7 @@ const categoryStyles: Record<
     border: "border-slate-200",
     hoverBorder: "hover:border-slate-400",
     shadow: "hover:shadow-slate-500/20",
-    text: "text-slate-600",
+    text: "text-slate-700",
     badge: "bg-slate-500",
     iconBg: "from-slate-100 to-slate-50"
   }
@@ -142,13 +141,13 @@ const categoryStyles: Record<
 const getCategoryStyle = (category: string) => {
   return (
     categoryStyles[category] || {
-      gradient: "from-brand-500 to-brand-400",
+      gradient: "from-brand-800 to-brand-700",
       bgGradient: "from-brand-500/10 to-brand-400/5",
       border: "border-brand-200",
       hoverBorder: "hover:border-brand-400",
       shadow: "hover:shadow-brand-500/20",
-      text: "text-brand-600",
-      badge: "bg-brand-500",
+      text: "text-brand-800",
+      badge: "bg-brand-800",
       iconBg: "from-brand-100 to-brand-50"
     }
   );
@@ -325,8 +324,7 @@ export default function HomePage() {
     <>
       <article className="min-h-screen flex flex-col gap-4 md:gap-6 bg-brand-100">
         {/* GEO: Core Facts Chunk for AI Extraction */}
-        <section className="sr-only" aria-hidden="false">
-          <h2>Core Facts About Folioify</h2>
+        <aside className="sr-only" aria-label="Core facts about Folioify">
           <ul>
             <li>
               <strong>Pricing</strong>: 100% Free, no hidden fees
@@ -339,7 +337,7 @@ export default function HomePage() {
               <strong>Sign Up</strong>: No registration required
             </li>
             <li>
-              <strong>Coverage</strong>: {routes.length}+ developer tools across{" "}
+              <strong>Coverage</strong>: {routes.length} developer tools across{" "}
               {categorizedRoutes.length} categories
             </li>
             <li>
@@ -347,118 +345,55 @@ export default function HomePage() {
               engineers, designers
             </li>
             <li>
-              <strong>Technology</strong>: WebAssembly-powered transformations
+              <strong>Technology</strong>: Browser and server-backed processing
             </li>
           </ul>
-        </section>
+        </aside>
 
         {/* GEO Header Section */}
         <header className="bg-gradient-to-b from-brand-50 to-brand-100 px-4 pt-6 text-center md:px-6 md:pt-8 lg:px-8">
-          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-br from-brand-500 to-brand-400 px-4 py-1.5 text-[13px] font-semibold text-white shadow-lg shadow-brand-500/35 md:mb-6">
+          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-gradient-to-br from-brand-800 to-brand-700 px-4 py-1.5 text-[13px] font-semibold text-white shadow-lg shadow-brand-500/35 md:mb-6">
             <span className="h-4 w-4">✨</span>
-            Trusted by Developers Worldwide
+            Open-source tools · No signup
           </span>
 
-          <h1 className="mb-3 bg-gradient-to-br from-brand-600 via-brand-400 to-brand-500 bg-clip-text text-[32px] font-extrabold leading-tight text-transparent md:mb-4">
-            Free Online Developer Tools (2026) ✨
+          <h1 className="mb-3 bg-gradient-to-br from-brand-900 via-brand-700 to-brand-800 bg-clip-text text-[32px] font-extrabold leading-tight text-transparent md:mb-4">
+            Free Online Developer Tools ✨
           </h1>
-          <p className="mx-auto max-w-6xl text-[15px] leading-relaxed text-gray-600 md:mb-8">
+          <p className="mx-auto max-w-3xl text-[15px] leading-relaxed text-gray-600">
             Fast and free developer utilities with clear processing details.
             <br />
             No signup required—paste code and get results.
           </p>
 
-          {/* TL;DR Section - using Premium Card */}
-          <div className="mx-auto max-w-6xl rounded-xl border border-brand-200 bg-white p-4 shadow-sm shadow-brand-500/5 md:p-6">
-            <div className="mb-4 text-center text-base font-bold text-gray-900">
-              TL;DR: Why Folioify? ⚡
-            </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-6 lg:gap-8">
-              <div className="text-center">
-                <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
-                  Processing
-                </div>
-                <div className="text-sm leading-relaxed text-gray-600">
-                  <strong className="font-semibold text-brand-600">
-                    Browser or Server
-                  </strong>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
-                  Cost
-                </div>
-                <div className="text-sm leading-relaxed text-gray-600">
-                  <strong className="font-semibold text-brand-600">
-                    100% Free
-                  </strong>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
-                  Registration
-                </div>
-                <div className="text-sm leading-relaxed text-gray-600">
-                  <strong className="font-semibold text-brand-600">
-                    No Signup
-                  </strong>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
-                  Privacy
-                </div>
-                <div className="text-sm leading-relaxed text-gray-600">
-                  <strong className="font-semibold text-brand-600">
-                    Clear Data Handling
-                  </strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-
-        <nav
-          id="tool-categories"
-          aria-label="Tool category pages"
-          className="mx-auto flex max-w-7xl flex-wrap justify-center gap-2 text-sm"
-        >
-          {categorizedRoutes.map(category => (
-            <Link
-              key={category.category}
-              href={`/tools/${getCategorySlug(category.category)}`}
-              className="rounded-full border border-brand-200 bg-white px-3 py-1.5 font-semibold text-brand-700 no-underline transition-colors hover:border-brand-400 hover:bg-brand-50"
-            >
-              {category.category} tools
-            </Link>
-          ))}
-        </nav>
-
-        {/* Search and Filters */}
-        <div
-          className="mx-auto flex flex-col gap-4 md:gap-6 max-w-7xl px-4 md:px-6"
-          id="tools"
-        >
-          <div className="relative max-w-3xl mx-auto w-full">
+          <div className="relative mx-auto mt-6 w-full max-w-3xl text-left md:mt-8">
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="2"
               className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-500 md:left-4"
+              aria-hidden="true"
             >
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
             <input
-              type="text"
-              placeholder="Search 50+ developer tools..."
+              type="search"
+              aria-label="Search developer tools"
+              placeholder={`Search ${routes.length} developer tools...`}
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-gray-200 py-3 pl-10 pr-4 text-base transition-all duration-300 focus:border-brand-400 focus:outline-none focus:ring-4 focus:ring-brand-400/20 md:rounded-2xl md:py-4 md:pl-12 md:text-lg"
+              className="w-full rounded-xl border border-gray-200 bg-white py-3 pl-10 pr-4 text-base shadow-sm transition-all duration-300 focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-400/20 md:rounded-2xl md:py-4 md:pl-12 md:text-lg"
             />
           </div>
+        </header>
 
+        {/* Search and Filters */}
+        <div
+          className="mx-auto flex flex-col gap-4 md:gap-6 max-w-7xl px-4 md:px-6"
+          id="tools"
+        >
           <div className="flex flex-wrap justify-center gap-2">
             {categories.map(category => {
               const isSelected = activeCategory === category;
@@ -469,7 +404,7 @@ export default function HomePage() {
               return (
                 <button
                   key={category}
-                  className={`group relative overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 md:px-4 md:py-2 md:text-base ${
+                  className={`group relative min-h-11 overflow-hidden rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 hover:scale-105 md:px-4 md:py-2 md:text-base ${
                     isSelected
                       ? `bg-gradient-to-r ${style.gradient} text-white shadow-lg`
                       : "border border-gray-200 bg-white/80 text-gray-700 shadow-sm backdrop-blur-sm hover:border-gray-300 hover:bg-white hover:text-gray-900"
@@ -575,7 +510,7 @@ export default function HomePage() {
                     setActiveCategory("All");
                     setSearchQuery("");
                   }}
-                  className="mt-4 rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-600"
+                  className="mt-4 min-h-11 rounded-lg bg-brand-800 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-900"
                 >
                   Clear filters
                 </button>
@@ -583,6 +518,35 @@ export default function HomePage() {
             )}
           </section>
         </div>
+
+        <section
+          aria-labelledby="why-folioify"
+          className="mx-auto w-[calc(100%-2rem)] max-w-6xl rounded-xl border border-brand-200 bg-white p-4 shadow-sm shadow-brand-500/5 md:p-6"
+        >
+          <h2
+            id="why-folioify"
+            className="mb-4 text-center text-base font-bold text-gray-900"
+          >
+            Why Folioify? ⚡
+          </h2>
+          <dl className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+            {[
+              ["Processing", "Disclosed per tool"],
+              ["Cost", "100% free"],
+              ["Registration", "No signup"],
+              ["Data handling", "Browser or server"]
+            ].map(([term, detail]) => (
+              <div key={term} className="text-center">
+                <dt className="mb-1 text-xs font-medium uppercase tracking-wide text-gray-500">
+                  {term}
+                </dt>
+                <dd className="text-sm font-semibold text-brand-900">
+                  {detail}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
 
         {/* What Is & Features Section */}
         <section className="px-4 md:px-6">
@@ -598,10 +562,10 @@ export default function HomePage() {
 
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-600 md:mb-3">
+              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-800 md:mb-3">
                 <FreeIcon />
               </div>
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 Transform Code
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -610,10 +574,10 @@ export default function HomePage() {
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-600 md:mb-3">
+              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-800 md:mb-3">
                 <SpeedIcon />
               </div>
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 Generate Assets
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -622,10 +586,10 @@ export default function HomePage() {
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-600 md:mb-3">
+              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-800 md:mb-3">
                 <PrivacyIcon />
               </div>
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 Format Data
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -646,10 +610,10 @@ export default function HomePage() {
           </p>
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-600 md:mb-3">
+              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-800 md:mb-3">
                 <FreeIcon />
               </div>
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 Frontend Components
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -658,10 +622,10 @@ export default function HomePage() {
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-600 md:mb-3">
+              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-800 md:mb-3">
                 <SpeedIcon />
               </div>
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 Schema & Types
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -670,10 +634,10 @@ export default function HomePage() {
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-600 md:mb-3">
+              <div className="mx-auto mb-2.5 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-brand-100 to-brand-50 text-brand-800 md:mb-3">
                 <PrivacyIcon />
               </div>
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 Markup & Styles
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -695,7 +659,7 @@ export default function HomePage() {
           </p>
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-3 md:gap-5 lg:gap-6">
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 No Cloud Storage
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -705,7 +669,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 No Accounts or Storage
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -714,7 +678,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
-              <h3 className="mb-1.5 text-lg font-bold text-brand-600 md:mb-2">
+              <h3 className="mb-1.5 text-lg font-bold text-brand-800 md:mb-2">
                 No Proprietary Lock-in
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
@@ -732,7 +696,7 @@ export default function HomePage() {
           </h2>
           <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 lg:gap-10">
             <div className="text-center">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-400 text-xl font-bold text-white shadow-lg shadow-brand-500/35 md:mb-4">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-800 to-brand-700 text-xl font-bold text-white shadow-lg shadow-brand-500/35 md:mb-4">
                 1
               </div>
               <h4 className="mb-2 text-lg font-semibold text-gray-900 md:mb-3">
@@ -744,7 +708,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="text-center">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-400 text-xl font-bold text-white shadow-lg shadow-brand-500/35 md:mb-4">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-800 to-brand-700 text-xl font-bold text-white shadow-lg shadow-brand-500/35 md:mb-4">
                 2
               </div>
               <h4 className="mb-2 text-lg font-semibold text-gray-900 md:mb-3">
@@ -756,7 +720,7 @@ export default function HomePage() {
               </p>
             </div>
             <div className="text-center">
-              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-400 text-xl font-bold text-white shadow-lg shadow-brand-500/35 md:mb-4">
+              <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-brand-800 to-brand-700 text-xl font-bold text-white shadow-lg shadow-brand-500/35 md:mb-4">
                 3
               </div>
               <h4 className="mb-2 text-lg font-semibold text-gray-900 md:mb-3">
@@ -796,7 +760,7 @@ export default function HomePage() {
         <section className="mt-4 md:mt-6 bg-brand-50 px-4 py-12 sm:px-6 md:py-16 lg:px-8">
           <div className="mx-auto grid max-w-3xl grid-cols-1 gap-6 text-center md:grid-cols-3 md:gap-8">
             <div>
-              <span className="block text-3xl font-extrabold text-brand-600 md:text-4xl">
+              <span className="block text-3xl font-extrabold text-brand-800 md:text-4xl">
                 {routes.length}+
               </span>
               <span className="mt-1 text-sm text-gray-600 md:mt-2 md:text-base">
@@ -804,7 +768,7 @@ export default function HomePage() {
               </span>
             </div>
             <div>
-              <span className="block text-3xl font-extrabold text-brand-600 md:text-4xl">
+              <span className="block text-3xl font-extrabold text-brand-800 md:text-4xl">
                 {categorizedRoutes.length}
               </span>
               <span className="mt-1 text-sm text-gray-600 md:mt-2 md:text-base">
@@ -812,7 +776,7 @@ export default function HomePage() {
               </span>
             </div>
             <div>
-              <span className="block text-3xl font-extrabold text-brand-600 md:text-4xl">
+              <span className="block text-3xl font-extrabold text-brand-800 md:text-4xl">
                 0
               </span>
               <span className="mt-1 text-sm text-gray-600 md:mt-2 md:text-base">
