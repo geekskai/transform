@@ -19,3 +19,7 @@ _Avoid_: App file, sandbox source
 **Derived sandbox file**:
 The Sandpack entry file generated from user source so the sandbox can compile and render it. It may add runtime scaffolding but must not become the canonical user source.
 _Avoid_: User source, saved code
+
+**Preview update**:
+The lifecycle from a preview-affecting change until the corresponding sandbox either renders successfully or produces a compilation or runtime failure. A newer source, dependency, Tailwind, or restart change supersedes any unfinished update, and a previously rendered preview does not complete the latest update.
+_Avoid_: File update, loading cycle

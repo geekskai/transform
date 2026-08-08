@@ -43,11 +43,16 @@ type SandpackAppActions = {
   updateAppCode: (source: string) => void;
   restart: () => void;
 };
+type PendingPreview = {
+  code: string;
+  revision: number;
+};
 
 const APP_FILE = "/src/App.tsx";
 const MAIN_FILE = "/src/main.tsx";
 const STYLE_FILE = "/src/styles.css";
 const HTML_FILE = "/public/index.html";
+const PREVIEW_TIMEOUT_MS = 10_000;
 
 const SANDPACK_MAIN = `import * as React from "react";
 import { createRoot } from "react-dom/client";
@@ -200,14 +205,14 @@ function SandpackBridge({
   actionRef,
   sourceCode,
   initialCode,
-  dependencyKey,
+  previewKey,
   onCodeChange,
   onPreviewStatusChange
 }: {
   actionRef: React.MutableRefObject<SandpackAppActions | null>;
   sourceCode: string;
   initialCode: string;
-  dependencyKey: string;
+  previewKey: string;
   onCodeChange: (code: string) => void;
   onPreviewStatusChange: (status: PreviewStatus) => void;
 }) {
@@ -216,62 +221,155 @@ function SandpackBridge({
   const sourceCodeRef = React.useRef(sourceCode);
   const lastSyncedCodeRef = React.useRef(sourceCode);
   const clientReadyRef = React.useRef(false);
-  const pendingPreviewCodeRef = React.useRef<string | null>(null);
-  const dependencyKeyRef = React.useRef(dependencyKey);
+  const pendingPreviewRef = React.useRef<PendingPreview | null>(null);
+  const previewKeyRef = React.useRef(previewKey);
   const hasCompletedPreviewRef = React.useRef(false);
+  const latestRevisionRef = React.useRef(0);
+  const runningRevisionRef = React.useRef(0);
+  const failedRevisionRef = React.useRef<number | null>(null);
+  const timedOutRevisionRef = React.useRef<number | null>(null);
+  const previewTimeoutRef = React.useRef<number | null>(null);
+  const listenRef = React.useRef(listen);
+  const updateFileRef = React.useRef(sandpack.updateFile);
+  const runSandpackRef = React.useRef(sandpack.runSandpack);
 
-  const enqueuePreviewCode = React.useCallback(
-    (nextCode: string) => {
-      if (clientReadyRef.current) {
-        clientReadyRef.current = false;
-        pendingPreviewCodeRef.current = null;
-        onPreviewStatusChange("updating");
-        sandpack.updateFile(APP_FILE, nextCode, true);
-        return;
-      }
+  listenRef.current = listen;
+  updateFileRef.current = sandpack.updateFile;
+  runSandpackRef.current = sandpack.runSandpack;
 
-      pendingPreviewCodeRef.current = nextCode;
-      sandpack.updateFile(APP_FILE, nextCode, false);
-    },
-    [onPreviewStatusChange, sandpack]
-  );
+  const clearPreviewTimeout = React.useCallback(() => {
+    if (previewTimeoutRef.current !== null) {
+      window.clearTimeout(previewTimeoutRef.current);
+      previewTimeoutRef.current = null;
+    }
+  }, []);
 
-  React.useEffect(
-    () =>
-      listen(message => {
-        if (message.type === "start") {
-          clientReadyRef.current = false;
-          onPreviewStatusChange(
-            hasCompletedPreviewRef.current ? "updating" : "starting"
-          );
+  const schedulePreviewTimeout = React.useCallback(
+    (revision: number) => {
+      clearPreviewTimeout();
+      previewTimeoutRef.current = window.setTimeout(() => {
+        if (latestRevisionRef.current !== revision) {
           return;
         }
 
-        if (message.type === "done") {
-          const pendingCode = pendingPreviewCodeRef.current;
+        timedOutRevisionRef.current = revision;
+        onPreviewStatusChange("error");
+      }, PREVIEW_TIMEOUT_MS);
+    },
+    [clearPreviewTimeout, onPreviewStatusChange]
+  );
 
-          if (pendingCode) {
-            pendingPreviewCodeRef.current = null;
-            clientReadyRef.current = false;
-            onPreviewStatusChange("updating");
-            sandpack.updateFile(APP_FILE, pendingCode, true);
+  const beginPreviewUpdate = React.useCallback(
+    (revision: number) => {
+      schedulePreviewTimeout(revision);
+      onPreviewStatusChange("updating");
+    },
+    [onPreviewStatusChange, schedulePreviewTimeout]
+  );
+
+  const enqueuePreviewCode = React.useCallback(
+    (nextCode: string) => {
+      const revision = latestRevisionRef.current + 1;
+      latestRevisionRef.current = revision;
+      beginPreviewUpdate(revision);
+
+      if (clientReadyRef.current) {
+        pendingPreviewRef.current = null;
+        runningRevisionRef.current = revision;
+        updateFileRef.current(APP_FILE, nextCode, true);
+        return;
+      }
+
+      pendingPreviewRef.current = { code: nextCode, revision };
+      updateFileRef.current(APP_FILE, nextCode, false);
+    },
+    [beginPreviewUpdate]
+  );
+
+  React.useEffect(() => {
+    return listenRef.current(message => {
+      if (message.type === "start") {
+        clientReadyRef.current = false;
+        const runningRevision = runningRevisionRef.current;
+        const latestRevision = latestRevisionRef.current;
+
+        if (
+          !hasCompletedPreviewRef.current &&
+          runningRevision === latestRevision &&
+          timedOutRevisionRef.current !== latestRevision
+        ) {
+          schedulePreviewTimeout(runningRevision);
+          onPreviewStatusChange("starting");
+        }
+        return;
+      }
+
+      if (
+        message.type === "action" &&
+        (message.action === "show-error" ||
+          (message.action === "notification" &&
+            message.notificationType === "error"))
+      ) {
+        const runningRevision = runningRevisionRef.current;
+
+        if (runningRevision === latestRevisionRef.current) {
+          failedRevisionRef.current = runningRevision;
+          clearPreviewTimeout();
+          onPreviewStatusChange("error");
+        }
+        return;
+      }
+
+      if (message.type === "done") {
+        const completedRevision = runningRevisionRef.current;
+        const pendingPreview = pendingPreviewRef.current;
+
+        clientReadyRef.current = true;
+
+        if (pendingPreview) {
+          pendingPreviewRef.current = null;
+
+          if (timedOutRevisionRef.current === pendingPreview.revision) {
             return;
           }
 
-          clientReadyRef.current = true;
-          hasCompletedPreviewRef.current = true;
-          onPreviewStatusChange(message.compilatonError ? "error" : "ready");
+          runningRevisionRef.current = pendingPreview.revision;
+          updateFileRef.current(APP_FILE, pendingPreview.code, true);
+          return;
         }
-      }),
-    [listen, onPreviewStatusChange, sandpack]
+
+        if (completedRevision !== latestRevisionRef.current) {
+          return;
+        }
+
+        clearPreviewTimeout();
+        hasCompletedPreviewRef.current = true;
+        onPreviewStatusChange(
+          message.compilatonError ||
+            failedRevisionRef.current === completedRevision ||
+            timedOutRevisionRef.current === completedRevision
+            ? "error"
+            : "ready"
+        );
+      }
+    });
+  }, [clearPreviewTimeout, onPreviewStatusChange, schedulePreviewTimeout]);
+
+  React.useEffect(
+    () => () => {
+      clearPreviewTimeout();
+    },
+    [clearPreviewTimeout]
   );
 
   React.useEffect(() => {
     if (sandpack.status === "timeout") {
       clientReadyRef.current = false;
+      timedOutRevisionRef.current = latestRevisionRef.current;
+      clearPreviewTimeout();
       onPreviewStatusChange("error");
     }
-  }, [onPreviewStatusChange, sandpack.status]);
+  }, [clearPreviewTimeout, onPreviewStatusChange, sandpack.status]);
 
   React.useEffect(() => {
     sourceCodeRef.current = sourceCode;
@@ -292,9 +390,13 @@ function SandpackBridge({
         enqueuePreviewCode(nextCode);
       },
       restart() {
+        const revision = latestRevisionRef.current + 1;
+        latestRevisionRef.current = revision;
+        runningRevisionRef.current = revision;
         clientReadyRef.current = false;
-        onPreviewStatusChange("updating");
-        void sandpack.runSandpack();
+        pendingPreviewRef.current = null;
+        beginPreviewUpdate(revision);
+        void runSandpackRef.current();
       }
     };
 
@@ -303,10 +405,10 @@ function SandpackBridge({
     };
   }, [
     actionRef,
+    beginPreviewUpdate,
     onCodeChange,
     onPreviewStatusChange,
-    enqueuePreviewCode,
-    sandpack
+    enqueuePreviewCode
   ]);
 
   React.useEffect(() => {
@@ -331,14 +433,14 @@ function SandpackBridge({
   }, [activeCode, enqueuePreviewCode, initialCode, onCodeChange]);
 
   React.useEffect(() => {
-    if (dependencyKey === dependencyKeyRef.current) {
+    if (previewKey === previewKeyRef.current) {
       return;
     }
 
-    dependencyKeyRef.current = dependencyKey;
+    previewKeyRef.current = previewKey;
     lastSyncedCodeRef.current = sourceCodeRef.current;
     enqueuePreviewCode(sourceCodeRef.current);
-  }, [dependencyKey, enqueuePreviewCode]);
+  }, [enqueuePreviewCode, previewKey]);
 
   return null;
 }
@@ -438,6 +540,10 @@ export default function SandpackJsxViewer() {
   const dependencyKey = React.useMemo(
     () => JSON.stringify(dependencyEntries(effectiveDependencies)),
     [effectiveDependencies]
+  );
+  const previewKey = React.useMemo(
+    () => JSON.stringify([dependencyKey, enableTailwindPreview]),
+    [dependencyKey, enableTailwindPreview]
   );
   const sandpackSetup = React.useMemo(
     () => ({
@@ -563,7 +669,7 @@ export default function SandpackJsxViewer() {
         <div className="flex min-w-0 flex-wrap items-center gap-2">
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm" disabled={previewBusy}>
+              <Button variant="outline" size="sm">
                 <Package className="mr-1.5 h-4 w-4" />
                 Dependencies
                 <span className="ml-1 rounded-full bg-slate-100 px-1.5 py-0.5 text-[11px] text-slate-600">
@@ -636,7 +742,7 @@ export default function SandpackJsxViewer() {
 
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm" disabled={previewBusy}>
+              <Button variant="outline" size="sm">
                 <ScissorsLineDashed className="mr-1.5 h-4 w-4" />
                 Snippets
               </Button>
@@ -664,7 +770,7 @@ export default function SandpackJsxViewer() {
 
           <Popover>
             <PopoverTrigger asChild>
-              <Button variant="outline" size="sm" disabled={previewBusy}>
+              <Button variant="outline" size="sm">
                 <RefreshCw className="mr-1.5 h-4 w-4" />
                 Workspace
               </Button>
@@ -731,7 +837,6 @@ export default function SandpackJsxViewer() {
               id="tailwind-preview-toggle"
               checked={enableTailwindPreview}
               onCheckedChange={setEnableTailwindPreview}
-              disabled={previewBusy}
             />
             <Label
               htmlFor="tailwind-preview-toggle"
@@ -740,12 +845,7 @@ export default function SandpackJsxViewer() {
               Tailwind CDN
             </Label>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={formatCode}
-            disabled={previewBusy}
-          >
+          <Button variant="outline" size="sm" onClick={formatCode}>
             <Wand2 className="mr-1.5 h-4 w-4" />
             Format
           </Button>
@@ -768,7 +868,7 @@ export default function SandpackJsxViewer() {
             actionRef={sandpackActionsRef}
             sourceCode={canonicalSourceCode}
             initialCode={initialFilesRef.current[APP_FILE].code}
-            dependencyKey={dependencyKey}
+            previewKey={previewKey}
             onCodeChange={handleCodeChange}
             onPreviewStatusChange={handlePreviewStatusChange}
           />
