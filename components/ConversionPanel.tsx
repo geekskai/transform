@@ -1,12 +1,13 @@
 import EditorPanel, { EditorPanelProps } from "@components/EditorPanel";
 import * as React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Language, useData } from "@hooks/useData";
 import { useRouter } from "next/router";
 import { activeRouteData } from "@utils/routes";
 import { getWorker } from "@utils/workerWrapper";
 import PrettierWorker from "@workers/prettier.worker";
 import { Loader2, TriangleAlert } from "lucide-react";
+import { trackProductEvent } from "../lib/product-analytics";
 
 let prettierWorker: ReturnType<typeof getWorker> | undefined;
 
@@ -42,196 +43,223 @@ export interface ConversionPanelProps {
   settings?: any;
 }
 
-const ConversionPanel: React.FunctionComponent<ConversionPanelProps> = function({
-  splitEditorProps,
-  editorProps,
-  resultEditorProps,
-  transformer,
-  splitLanguage,
-  splitTitle,
-  editorLanguage,
-  editorTitle,
-  resultLanguage,
-  resultTitle,
-  editorSettingsElement,
-  settings,
-  editorDefaultValue,
-  splitEditorDefaultValue,
-  resultSettingsElement
-}) {
-  const [value, setValue] = useData(editorLanguage);
-  const [splitValue, setSplitValue] = useData(splitLanguage);
-  const [result, setResult] = useState("");
-  const [message, setMessage] = useState("");
-  const [showUpdateSpinner, setShowUpdateSpinner] = useState(false);
+const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
+  function ({
+    splitEditorProps,
+    editorProps,
+    resultEditorProps,
+    transformer,
+    splitLanguage,
+    splitTitle,
+    editorLanguage,
+    editorTitle,
+    resultLanguage,
+    resultTitle,
+    editorSettingsElement,
+    settings,
+    editorDefaultValue,
+    splitEditorDefaultValue,
+    resultSettingsElement
+  }) {
+    const [value, setValue] = useData(editorLanguage);
+    const [splitValue, setSplitValue] = useData(splitLanguage);
+    const [result, setResult] = useState("");
+    const [message, setMessage] = useState("");
+    const [showUpdateSpinner, setShowUpdateSpinner] = useState(false);
+    const userActivatedRef = useRef(false);
+    const completionTrackedRef = useRef(false);
+    const failureTrackedRef = useRef(false);
 
-  const router = useRouter();
-  const route = activeRouteData(router.pathname);
+    const router = useRouter();
+    const route = activeRouteData(router.pathname);
 
-  let packageDetails;
+    let packageDetails;
 
-  if (route) {
-    const { packageUrl, packageName } = route;
+    if (route) {
+      const { packageUrl, packageName } = route;
 
-    packageDetails =
-      packageName && packageUrl
-        ? {
-            name: packageName,
-            url: packageUrl
-          }
-        : undefined;
-  }
-
-  useEffect(() => {
-    if (editorDefaultValue && (value === undefined || value === "")) {
-      setValue(editorDefaultValue);
+      packageDetails =
+        packageName && packageUrl
+          ? {
+              name: packageName,
+              url: packageUrl
+            }
+          : undefined;
     }
-  }, [editorDefaultValue, value, setValue]);
 
-  useEffect(() => {
-    if (
-      splitEditorDefaultValue &&
-      splitLanguage &&
-      (splitValue === undefined || splitValue === "")
-    ) {
-      setSplitValue(splitEditorDefaultValue);
-    }
-  }, [splitEditorDefaultValue, splitLanguage, splitValue, setSplitValue]);
-
-  useEffect(() => {
-    let cancelled = false;
-    const TIMEOUT_MS = 25_000;
-
-    async function runTransform() {
-      setShowUpdateSpinner(true);
-      setMessage("");
-      try {
-        prettierWorker = prettierWorker || getWorker(PrettierWorker);
-
-        const rawResult = await Promise.race([
-          transformer({
-            value,
-            splitEditorValue: splitTitle ? splitValue : undefined
-          }),
-          new Promise<never>((_, reject) =>
-            setTimeout(
-              () =>
-                reject(
-                  new Error(
-                    "Conversion timed out. Try a smaller input or check the browser console."
-                  )
-                ),
-              TIMEOUT_MS
-            )
-          )
-        ]);
-
-        if (cancelled) return;
-
-        const prettyResultRaw = await Promise.race([
-          prettierWorker.send({
-            value:
-              typeof rawResult === "string"
-                ? rawResult
-                : String(rawResult ?? ""),
-            language: resultLanguage
-          }),
-          new Promise<never>((_, reject) =>
-            setTimeout(
-              () => reject(new Error("Formatting timed out.")),
-              TIMEOUT_MS
-            )
-          )
-        ]);
-
-        if (cancelled) return;
-
-        let prettyResult =
-          typeof prettyResultRaw === "string"
-            ? prettyResultRaw
-            : String(prettyResultRaw ?? "");
-        if (prettyResult.startsWith(";<")) {
-          prettyResult = prettyResult.slice(1);
-        }
-        setResult(prettyResult);
-        setMessage("");
-      } catch (e) {
-        if (!cancelled) {
-          console.error(e);
-          setMessage(e?.message ?? String(e));
-        }
-      } finally {
-        if (!cancelled) setShowUpdateSpinner(false);
+    useEffect(() => {
+      if (editorDefaultValue && (value === undefined || value === "")) {
+        setValue(editorDefaultValue);
       }
-    }
+    }, [editorDefaultValue, value, setValue]);
 
-    runTransform();
-    return () => {
-      cancelled = true;
-    };
-  }, [splitValue, value, splitTitle, settings]);
+    useEffect(() => {
+      if (
+        splitEditorDefaultValue &&
+        splitLanguage &&
+        (splitValue === undefined || splitValue === "")
+      ) {
+        setSplitValue(splitEditorDefaultValue);
+      }
+    }, [splitEditorDefaultValue, splitLanguage, splitValue, setSplitValue]);
 
-  return (
-    <>
-      <div className="flex flex-1 flex-row overflow-hidden min-h-[600px]">
-        <div className="flex flex-1 flex-col overflow-hidden border-r">
-          <EditorPanel
-            language={getEditorLanguage(editorLanguage)}
-            onChange={setValue}
-            hasLoad
-            defaultValue={value}
-            id={1}
-            hasCopy={false}
-            title={editorTitle}
-            settingElement={editorSettingsElement}
-            hasClear
-            {...editorProps}
-          />
+    useEffect(() => {
+      let cancelled = false;
+      const TIMEOUT_MS = 25_000;
 
-          {splitTitle && splitLanguage && (
-            <div className="flex flex-1 border-t">
-              <EditorPanel
-                title={splitTitle}
-                defaultValue={splitValue}
-                language={getEditorLanguage(splitLanguage)}
-                id={2}
-                hasCopy={false}
-                onChange={setSplitValue}
-                hasLoad
-                hasClear
-                {...splitEditorProps}
-              />
-            </div>
-          )}
+      async function runTransform() {
+        setShowUpdateSpinner(true);
+        setMessage("");
+        try {
+          prettierWorker = prettierWorker || getWorker(PrettierWorker);
+
+          const rawResult = await Promise.race([
+            transformer({
+              value,
+              splitEditorValue: splitTitle ? splitValue : undefined
+            }),
+            new Promise<never>((_, reject) =>
+              setTimeout(
+                () =>
+                  reject(
+                    new Error(
+                      "Conversion timed out. Try a smaller input or check the browser console."
+                    )
+                  ),
+                TIMEOUT_MS
+              )
+            )
+          ]);
+
+          if (cancelled) return;
+
+          const prettyResultRaw = await Promise.race([
+            prettierWorker.send({
+              value:
+                typeof rawResult === "string"
+                  ? rawResult
+                  : String(rawResult ?? ""),
+              language: resultLanguage
+            }),
+            new Promise<never>((_, reject) =>
+              setTimeout(
+                () => reject(new Error("Formatting timed out.")),
+                TIMEOUT_MS
+              )
+            )
+          ]);
+
+          if (cancelled) return;
+
+          let prettyResult =
+            typeof prettyResultRaw === "string"
+              ? prettyResultRaw
+              : String(prettyResultRaw ?? "");
+          if (prettyResult.startsWith(";<")) {
+            prettyResult = prettyResult.slice(1);
+          }
+          setResult(prettyResult);
+          setMessage("");
+          if (userActivatedRef.current && !completionTrackedRef.current) {
+            trackProductEvent("tool_conversion_completed");
+            completionTrackedRef.current = true;
+          }
+        } catch (e) {
+          if (!cancelled) {
+            console.error(e);
+            setMessage(e?.message ?? String(e));
+            if (userActivatedRef.current && !failureTrackedRef.current) {
+              trackProductEvent("tool_conversion_failed");
+              failureTrackedRef.current = true;
+            }
+          }
+        } finally {
+          if (!cancelled) setShowUpdateSpinner(false);
+        }
+      }
+
+      runTransform();
+      return () => {
+        cancelled = true;
+      };
+    }, [splitValue, value, splitTitle, settings]);
+
+    return (
+      <>
+        <div className="flex flex-1 flex-row overflow-hidden min-h-[600px]">
+          <div className="flex flex-1 flex-col overflow-hidden border-r">
+            <EditorPanel
+              language={getEditorLanguage(editorLanguage)}
+              onChange={nextValue => {
+                if (!userActivatedRef.current) {
+                  userActivatedRef.current = true;
+                  trackProductEvent("tool_conversion_started");
+                }
+                setValue(nextValue);
+              }}
+              hasLoad
+              defaultValue={value}
+              id={1}
+              hasCopy={false}
+              title={editorTitle}
+              settingElement={editorSettingsElement}
+              hasClear
+              analyticsRole="input"
+              {...editorProps}
+            />
+
+            {splitTitle && splitLanguage && (
+              <div className="flex flex-1 border-t">
+                <EditorPanel
+                  title={splitTitle}
+                  defaultValue={splitValue}
+                  language={getEditorLanguage(splitLanguage)}
+                  id={2}
+                  hasCopy={false}
+                  onChange={nextValue => {
+                    if (!userActivatedRef.current) {
+                      userActivatedRef.current = true;
+                      trackProductEvent("tool_conversion_started");
+                    }
+                    setSplitValue(nextValue);
+                  }}
+                  hasLoad
+                  hasClear
+                  analyticsRole="input"
+                  {...splitEditorProps}
+                />
+              </div>
+            )}
+          </div>
+          <div className="relative flex flex-1">
+            {showUpdateSpinner && (
+              <div className="absolute top-[50px] right-[30px] z-[9] inline-flex rounded-2xl border border-[#7AF5D3] bg-gradient-to-br from-[#FFFFFF] to-[#E8FDF7] p-2.5 shadow-md">
+                <Loader2 className="h-8 w-8 animate-spin text-[#16F2B3]" />
+              </div>
+            )}
+            <EditorPanel
+              title={resultTitle}
+              defaultValue={result}
+              language={getEditorLanguage(resultLanguage)}
+              id={3}
+              editable={false}
+              hasPrettier={false}
+              settingElement={resultSettingsElement}
+              packageDetails={packageDetails}
+              analyticsRole="result"
+              {...resultEditorProps}
+            />
+          </div>
         </div>
-        <div className="relative flex flex-1">
-          {showUpdateSpinner && (
-            <div className="absolute top-[50px] right-[30px] z-[9] inline-flex rounded-2xl border border-[#7AF5D3] bg-gradient-to-br from-[#FFFFFF] to-[#E8FDF7] p-2.5 shadow-md">
-              <Loader2 className="h-8 w-8 animate-spin text-[#16F2B3]" />
-            </div>
-          )}
-          <EditorPanel
-            title={resultTitle}
-            defaultValue={result}
-            language={getEditorLanguage(resultLanguage)}
-            id={3}
-            editable={false}
-            hasPrettier={false}
-            settingElement={resultSettingsElement}
-            packageDetails={packageDetails}
-            {...resultEditorProps}
-          />
-        </div>
-      </div>
 
-      {message && (
-        <div className="absolute max-w-7xl mx-auto -bottom-[178px] left-5 right-5 z-[3] rounded-xl bg-red-100 px-6 py-4 text-red-900 flex items-center gap-2">
-          <TriangleAlert className="h-5 w-5 text-red-900" />
-          <span className="font-medium">{message}</span>
-        </div>
-      )}
-    </>
-  );
-};
+        {message && (
+          <div className="absolute max-w-7xl mx-auto -bottom-[178px] left-5 right-5 z-[3] rounded-xl bg-red-100 px-6 py-4 text-red-900 flex items-center gap-2">
+            <TriangleAlert className="h-5 w-5 text-red-900" />
+            <span className="font-medium">{message}</span>
+          </div>
+        )}
+      </>
+    );
+  };
 
 export default React.memo(ConversionPanel);

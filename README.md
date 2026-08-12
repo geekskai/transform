@@ -1,6 +1,6 @@
 # Transform
 
-A polyglot web converter — JSON, TypeScript, GraphQL, HTML, SVG, YAML, and more. All tools run in the browser; no data is sent to servers.
+A polyglot web converter — JSON, TypeScript, GraphQL, HTML, SVG, YAML, and more. Tools use browser-based or server-backed processing, with the mode disclosed on each tool page.
 
 - **Live site:** [https://folioify.com/](https://folioify.com/)
 - **Repository:** [https://github.com/geekskai/transform](https://github.com/geekskai/transform)

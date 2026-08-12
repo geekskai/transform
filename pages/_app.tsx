@@ -9,7 +9,8 @@ import { getToolMeta, SITE_CONFIG } from "../lib/seo";
 import { Meta } from "@components/Meta";
 import { JsonLd } from "@components/JsonLd";
 import ClarityTracker from "@components/ClarityTracker";
-import { PRIVACY_META } from "../lib/site-transparency";
+import PrivacyPreferences from "@components/PrivacyPreferences";
+import { ABOUT_META, PRIVACY_META } from "../lib/site-transparency";
 
 export default function App(props) {
   const router = useRouter();
@@ -46,6 +47,7 @@ export default function App(props) {
   const toolMeta = getToolMeta(currentPath);
   const isNotFoundPage = router.pathname === "/404";
   const isPrivacyPage = router.pathname === "/privacy";
+  const isAboutPage = router.pathname === "/about";
 
   return (
     <>
@@ -60,6 +62,12 @@ export default function App(props) {
           title={PRIVACY_META.title}
           description={PRIVACY_META.description}
           canonical={PRIVACY_META.canonical}
+        />
+      ) : isAboutPage ? (
+        <Meta
+          title={ABOUT_META.title}
+          description={ABOUT_META.description}
+          canonical={ABOUT_META.canonical}
         />
       ) : toolMeta ? (
         <Meta
@@ -82,6 +90,7 @@ export default function App(props) {
       )}
       <JsonLd pathname={currentPath} />
       <ClarityTracker />
+      <PrivacyPreferences />
 
       <div className="app-root light">
         <header

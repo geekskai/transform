@@ -60,6 +60,12 @@ function buildSitemapXml(): string {
       priority: "0.7"
     },
     {
+      loc: BASE + "/about",
+      lastmod: "2026-08-12",
+      changefreq: "monthly",
+      priority: "0.6"
+    },
+    {
       loc: BASE + "/privacy",
       lastmod: PRIVACY_LAST_MODIFIED,
       changefreq: "monthly",

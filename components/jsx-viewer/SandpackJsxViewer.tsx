@@ -36,6 +36,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useData } from "@hooks/useData";
 import { JSX_SNIPPETS, SAMPLE_JSX } from "@/lib/jsx-viewer/preview";
+import { trackProductEvent } from "@/lib/product-analytics";
 
 type Dependencies = Record<string, string>;
 type PreviewStatus = "starting" | "updating" | "ready" | "error";
@@ -492,6 +493,9 @@ export default function SandpackJsxViewer() {
   const sandpackActionsRef = React.useRef<SandpackAppActions | null>(null);
   const persistedCodeRef = React.useRef(code);
   const hasEditedCodeRef = React.useRef(false);
+  const activationTrackedRef = React.useRef(false);
+  const completionTrackedRef = React.useRef(false);
+  const failureTrackedRef = React.useRef(false);
   const initialFilesRef = React.useRef({
     [APP_FILE]: {
       code: buildAppFile(storedCode || SAMPLE_JSX),
@@ -568,10 +572,25 @@ export default function SandpackJsxViewer() {
 
   const handleCodeChange = React.useCallback((nextCode: string) => {
     hasEditedCodeRef.current = true;
+    if (!activationTrackedRef.current) {
+      activationTrackedRef.current = true;
+      trackProductEvent("tool_conversion_started");
+    }
     setCode(nextCode);
   }, []);
   const handlePreviewStatusChange = React.useCallback(
-    (status: PreviewStatus) => setPreviewStatus(status),
+    (status: PreviewStatus) => {
+      setPreviewStatus(status);
+      if (!hasEditedCodeRef.current) return;
+      if (status === "ready" && !completionTrackedRef.current) {
+        completionTrackedRef.current = true;
+        trackProductEvent("tool_conversion_completed");
+      }
+      if (status === "error" && !failureTrackedRef.current) {
+        failureTrackedRef.current = true;
+        trackProductEvent("tool_conversion_failed");
+      }
+    },
     []
   );
 

@@ -48,6 +48,9 @@ function buildLlmsTxt(): string {
   );
   lines.push(`- [Home](${BASE}/): Landing page`);
   lines.push(
+    `- [About](${BASE}/about): Ownership, maintenance, and open-source attribution`
+  );
+  lines.push(
     `- [Privacy](${BASE}/privacy): Data handling and vendor disclosures`
   );
 

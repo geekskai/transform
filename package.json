@@ -12,6 +12,8 @@
     "build": "NODE_OPTIONS=\"--openssl-legacy-provider\" next build",
     "now-build": "NODE_OPTIONS=\"--openssl-legacy-provider\" next build",
     "indexnow": "node ./scripts/submit-indexnow.mjs",
+    "benchmark:json": "node ./scripts/benchmark-json-workflows.mjs",
+    "audit:sitemap": "node ./scripts/audit-sitemap.mjs",
     "postinstall": "patch-package",
     "build:analyze": "ANALYZE=true yarn build"
   },

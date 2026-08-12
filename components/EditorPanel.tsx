@@ -4,6 +4,7 @@ import copy from "clipboard-copy";
 import { useDropzone } from "react-dropzone";
 import { Settings, Upload, Trash, Copy, FileUp } from "lucide-react";
 import { toast } from "sonner";
+import { trackProductEvent } from "../lib/product-analytics";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,6 +43,7 @@ export interface EditorPanelProps {
     name: string;
     url: string;
   };
+  analyticsRole?: "input" | "result";
 }
 
 const Monaco = dynamic(() => import("../components/Monaco"), {
@@ -59,7 +61,8 @@ export default function EditorPanel({
   topNotifications,
   language,
   defaultValue,
-  onChange
+  onChange,
+  analyticsRole
 }: // packageDetails
 EditorPanelProps) {
   const [showSettingsDialogue, setSettingsDialog] = useState(false);
@@ -121,10 +124,13 @@ EditorPanelProps) {
       reader.onload = () => {
         setValue(reader.result as string);
         if (onChange) onChange(reader.result as string);
+        if (analyticsRole === "input") {
+          trackProductEvent("tool_file_loaded");
+        }
         close();
       };
     },
-    [onChange]
+    [analyticsRole, onChange]
   );
 
   const { getRootProps } = useDropzone({
@@ -136,8 +142,11 @@ EditorPanelProps) {
 
   const copyValue = useCallback(() => {
     copy(value);
+    if (analyticsRole === "result") {
+      trackProductEvent("tool_result_copied");
+    }
     toast.success("Copied to clipboard.");
-  }, [value]);
+  }, [analyticsRole, value]);
 
   const fetchFile = useCallback(
     (close: () => void) => {
@@ -150,12 +159,15 @@ EditorPanelProps) {
           setFetchingUrl("");
           close();
           if (onChange) onChange(value);
+          if (analyticsRole === "input") {
+            trackProductEvent("tool_file_loaded");
+          }
         } catch (error) {
           toast.error("Failed to fetch URL");
         }
       })();
     },
-    [fetchingUrl, onChange]
+    [analyticsRole, fetchingUrl, onChange]
   );
 
   // whenever defaultValue changes, change the value of the editor.

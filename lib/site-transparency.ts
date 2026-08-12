@@ -1,7 +1,14 @@
 export const PRIVACY_CONTACT_EMAIL = "geeks.kai@gmail.com";
 
-export const PRIVACY_LAST_UPDATED = "July 25, 2026";
-export const PRIVACY_LAST_MODIFIED = "2026-07-25";
+export const PRIVACY_LAST_UPDATED = "August 12, 2026";
+export const PRIVACY_LAST_MODIFIED = "2026-08-12";
+
+export const ABOUT_META = {
+  title: "About Folioify | Ownership, Mission & Open Source Credits",
+  description:
+    "Learn who operates Folioify, how its developer tools are maintained, and how the project credits its transform.tools open-source upstream.",
+  canonical: "https://folioify.com/about"
+} as const;
 
 export const PRIVACY_META = {
   title: "Privacy Policy | Folioify",
@@ -18,12 +25,12 @@ export const PRIVACY_DISCLOSURES = {
   browserStorage:
     "Folioify may use local storage or session storage in your browser to remember tool settings, theme preferences, or recent editor state. You can clear this data through your browser settings.",
   analytics:
-    "Folioify uses Microsoft Clarity for usage analytics and session replay. This service may receive device, browser, network, and interaction data. Editor and input content is intended to be masked in replay data, but you should not submit sensitive content.",
+    "Folioify uses Microsoft Clarity for usage analytics and session replay. This service may receive device, browser, network, and interaction data. Editor and input content is intended to be masked in replay data, but you should not submit sensitive content. Advertising storage is denied. Analytics storage is denied by default unless you explicitly allow analytics cookies; limited cookieless measurement may still occur when analytics storage is denied.",
   cookies:
-    "Folioify and its analytics or advertising providers may use cookies and similar technologies to operate the site, understand usage, prevent abuse, and support advertising. Browser controls can be used to block or delete cookies.",
+    "Folioify asks whether Microsoft Clarity may use analytics cookies and saves that choice in browser storage. You can reopen Privacy settings in the footer or clear cookies and browser storage through your browser settings.",
   advertising:
-    "Folioify may use Google AdSense to display advertising. When ads are enabled, Google and its partners may place or read cookies, use web beacons or IP addresses, and process visit information to serve, measure, and personalize ads where permitted.",
+    "Folioify has a Google AdSense publisher account identifier but does not currently load the AdSense advertising script on this site. Before advertising is enabled, Folioify will implement the consent controls required for the regions and ad modes it serves and update this policy where necessary.",
   vendors:
-    "Third-party services currently used by Folioify include Microsoft Clarity, Vercel for hosting and server-backed transformations, and Google AdSense when advertising is enabled. Each provider processes data under its own terms and privacy policy.",
+    "Third-party services currently used by Folioify include Microsoft Clarity for analytics and Vercel for hosting and server-backed transformations. Google AdSense is a prospective advertising provider but its ad script is not currently loaded on Folioify. Each provider processes data under its own terms and privacy policy.",
   owner: `Folioify is operated by GeeksKai. Privacy questions or requests can be sent to ${PRIVACY_CONTACT_EMAIL}.`
 } as const;

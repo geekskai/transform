@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { SITE_CONFIG } from "../lib/seo";
+import { OPEN_PRIVACY_PREFERENCES_EVENT } from "../lib/privacy-preferences";
 
 const popularTools = [
   { label: "SVG to JSX", href: "/tools/svg-to-jsx" },
@@ -10,6 +11,7 @@ const popularTools = [
 ];
 
 const resources = [
+  { label: "About", href: "/about" },
   { label: "Privacy", href: "/privacy" },
   { label: "Sitemap", href: "/sitemap.xml" },
   { label: "LLMS", href: "/llms.txt" },
@@ -19,8 +21,7 @@ const resources = [
 
 const socials = [
   { label: "GitHub", href: "https://github.com/geekskai" },
-  { label: "Twitter", href: "https://twitter.com/geekskai" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/" }
+  { label: "Twitter", href: "https://twitter.com/geekskai" }
 ];
 
 export default function SiteFooter() {
@@ -47,7 +48,7 @@ export default function SiteFooter() {
               Built for clean conversions and reliable results.
             </p>
             <p className="mt-3 inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
-              100% Free Forever ✅
+              Free core tools ✅
             </p>
           </div>
 
@@ -100,6 +101,19 @@ export default function SiteFooter() {
                   </a>
                 </li>
               ))}
+              <li>
+                <button
+                  type="button"
+                  className="transition-colors hover:text-brand-700"
+                  onClick={() =>
+                    window.dispatchEvent(
+                      new Event(OPEN_PRIVACY_PREFERENCES_EVENT)
+                    )
+                  }
+                >
+                  Privacy settings
+                </button>
+              </li>
             </ul>
           </div>
 
