@@ -24,7 +24,6 @@
     "@babel/plugin-transform-flow-strip-types": "^7.16.0",
     "@babel/plugin-transform-typescript": "^7.16.1",
     "@babel/standalone": "^7.14.7",
-    "@clerk/nextjs": "6.39.6",
     "@codesandbox/sandpack-react": "^2.20.0",
     "@graphql-codegen/core": "^1.17.10",
     "@graphql-codegen/flow": "^1.19.3",

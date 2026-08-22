@@ -4,10 +4,11 @@
  * 通过 next.config.js rewrites: /llms.txt -> /api/llms
  */
 
-import { NextApiRequest, NextApiResponse } from "next";
+import type { NextApiRequest, NextApiResponse } from "next";
 import { SITE_CONFIG } from "../../lib/seo";
 import { getToolPageContent } from "../../lib/tool-page-content";
 import { isToolPageIndexable } from "../../lib/tool-indexing";
+import { truncateAtWord } from "../../lib/text";
 import { routes } from "@utils/routes";
 
 const BASE = (SITE_CONFIG.baseUrl || "").replace(/\/$/, "");
@@ -29,14 +30,15 @@ function buildLlmsTxt(): string {
     const url = BASE + r.path;
     const name = r.searchTerm || r.label || r.path;
     const pageContent = getToolPageContent(r.path);
-    const note = (
-      pageContent?.metaDescription ||
-      pageContent?.summary ||
-      r.desc ||
-      ""
-    )
-      .replace(/\n/g, " ")
-      .slice(0, 140);
+    const note = truncateAtWord(
+      (
+        pageContent?.metaDescription ||
+        pageContent?.summary ||
+        r.desc ||
+        ""
+      ).replace(/\n/g, " "),
+      140
+    );
     lines.push(`- [${name}](${url})${note ? `: ${note}` : ""}`);
   });
 

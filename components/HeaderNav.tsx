@@ -127,8 +127,6 @@ function MegaMenuPane({
                   <Link
                     href={route.path}
                     prefetch={false}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="mega-menu-link block rounded-lg px-2 py-1.5 text-xs text-gray-600 transition-all duration-300 hover:bg-brand-50 hover:text-gray-900 md:rounded-xl md:px-3 md:py-2 md:text-sm"
                     onClick={onLinkClick}
                   >

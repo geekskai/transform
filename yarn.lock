@@ -496,55 +496,6 @@
     "@babel/helper-string-parser" "^7.27.1"
     "@babel/helper-validator-identifier" "^7.28.5"
 
-"@clerk/backend@^2.33.6":
-  version "2.33.6"
-  resolved "https://registry.npmmirror.com/@clerk/backend/-/backend-2.33.6.tgz#8b7bd38ff42122c7b716304a551b0ec665c14ca1"
-  integrity sha512-5foMmTHEQFt4mDv7AN0RDwUHZhGcg/JYe5hnl9SU/LFS8ZHY29Z2HDtIBmzKgjRfOJTMKj1AM81LgK2UFsGm9Q==
-  dependencies:
-    "@clerk/shared" "^3.47.8"
-    "@clerk/types" "^4.101.26"
-    standardwebhooks "^1.0.0"
-    tslib "2.8.1"
-
-"@clerk/clerk-react@^5.61.9":
-  version "5.61.9"
-  resolved "https://registry.npmmirror.com/@clerk/clerk-react/-/clerk-react-5.61.9.tgz#e9b2f409f7a129624822d68bcba6b9e1b72bfdd5"
-  integrity sha512-PRIodE1QVem/eV3wrjicJJiJ2pkGiZfI6t1vekE/+04cIHciXyvUezQ/468gGPl31xd7BiCNO3uKNM14TXEKZQ==
-  dependencies:
-    "@clerk/shared" "^3.47.8"
-    tslib "2.8.1"
-
-"@clerk/nextjs@6.39.6":
-  version "6.39.6"
-  resolved "https://registry.npmmirror.com/@clerk/nextjs/-/nextjs-6.39.6.tgz#b0c88ed4f028819bf7c717f88f22f94d886ca9f3"
-  integrity sha512-bfB1mt1kFdlV2khNdJPP4Zynrz6XfXjqiJogEHWpeK0ch46uWX7lNN9wrstkokDMHTmvpVkDZPAKkncdK3vZ6w==
-  dependencies:
-    "@clerk/backend" "^2.33.6"
-    "@clerk/clerk-react" "^5.61.9"
-    "@clerk/shared" "^3.47.8"
-    "@clerk/types" "^4.101.26"
-    server-only "0.0.1"
-    tslib "2.8.1"
-
-"@clerk/shared@^3.47.8":
-  version "3.47.8"
-  resolved "https://registry.npmmirror.com/@clerk/shared/-/shared-3.47.8.tgz#b9177f28af96324f71893b8baed4e0fb3efaba83"
-  integrity sha512-cPURU1it/Eal4uXO9SOcHzw9sfE6Opi21W8EJUg+Ri80Q6JKtK8qBmyOpIyqgf09EanexhTzS4xrmYlvn2p7Iw==
-  dependencies:
-    csstype "3.1.3"
-    dequal "2.0.3"
-    glob-to-regexp "0.4.1"
-    js-cookie "3.0.7"
-    std-env "^3.9.0"
-    swr "2.3.4"
-
-"@clerk/types@^4.101.26":
-  version "4.101.26"
-  resolved "https://registry.npmmirror.com/@clerk/types/-/types-4.101.26.tgz#4a22cd21c907bcaaebdf8c7b470dc52336236e56"
-  integrity sha512-tUeiElAZoXu9Dxom9t6IjkEfsfP7aWSVf5x5mCoHnSr2w+wV4EtEwoLl9vexT5LL0di4qidROSfcrOnorzczIQ==
-  dependencies:
-    "@clerk/shared" "^3.47.8"
-
 "@codemirror/autocomplete@^6.0.0", "@codemirror/autocomplete@^6.4.0":
   version "6.20.3"
   resolved "https://registry.npmmirror.com/@codemirror/autocomplete/-/autocomplete-6.20.3.tgz#696b740312c6a962e14567b49a3661b5924bc5ae"

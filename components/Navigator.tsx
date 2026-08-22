@@ -38,7 +38,6 @@ export default function Navigator() {
                       key={a.label}
                       href={a.path}
                       prefetch={false}
-                      target="_blank"
                       className={`app-nav-item ${
                         isActive ? "app-nav-item--active" : ""
                       }`}
