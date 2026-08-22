@@ -1,8 +1,48 @@
-# JSX Viewer Context
+# Folioify Context
 
-This context defines how source imports and the dependency panel relate in the JSX viewer.
+This context defines Folioify's product language and how source imports and the dependency panel relate in the JSX viewer.
 
 ## Language
+
+### Product and growth
+
+**Free Tool**:
+A focused developer utility that delivers a complete useful result without payment and introduces users to Folioify.
+_Avoid_: Lead magnet, free tier
+
+**Workbench**:
+A cohesive product experience that combines related developer tasks around the same input and workflow.
+_Avoid_: Tool collection, tool directory
+
+**Paid Workflow**:
+Capabilities users pay for because they add scale, continuity, or automation beyond a Free Tool's complete result.
+_Avoid_: Paid tool, locked basic feature
+
+**Product Revenue**:
+Revenue earned when users pay for a Paid Workflow. It is Folioify's primary revenue objective.
+_Avoid_: Ad revenue, monetization
+
+**Ad-supported Revenue**:
+Supplementary revenue from advertising on mature, original content. It is not Folioify's primary growth objective.
+_Avoid_: Primary revenue, core business model
+
+**JSON Workbench**:
+Folioify's primary Workbench for understanding, repairing, comparing, querying, and transforming real JSON data in one continuous experience.
+_Avoid_: JSON tool collection, API monitoring
+
+**Workbench Session**:
+The locally held input, output, selected operation, and navigation state for one user's continuous Workbench experience.
+_Avoid_: Project, cloud workspace
+
+**Transformation Pipeline**:
+An ordered, reusable sequence of JSON operations that produces a final result from one input.
+_Avoid_: Converter chain, automation script
+
+**Local History**:
+Workbench Sessions retained on the user's device and controlled by that user, without becoming cloud data.
+_Avoid_: Account history, cloud history
+
+### JSX viewer
 
 **Code dependency**:
 A package referenced by the user's JSX/TSX source through an external module import or require. It remains protected while the source still references it.
