@@ -41,6 +41,7 @@ export interface ConversionPanelProps {
   editorSettingsElement?: EditorPanelProps["settingElement"];
   resultSettingsElement?: EditorPanelProps["settingElement"];
   settings?: any;
+  responsiveStack?: boolean;
 }
 
 const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
@@ -59,7 +60,8 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
     settings,
     editorDefaultValue,
     splitEditorDefaultValue,
-    resultSettingsElement
+    resultSettingsElement,
+    responsiveStack = false
   }) {
     const [value, setValue] = useData(editorLanguage);
     const [splitValue, setSplitValue] = useData(splitLanguage);
@@ -186,8 +188,18 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
 
     return (
       <>
-        <div className="flex flex-1 flex-row overflow-hidden min-h-[600px]">
-          <div className="flex flex-1 flex-col overflow-hidden border-r">
+        <div
+          className={`flex min-h-[600px] flex-1 overflow-hidden ${
+            responsiveStack ? "flex-col lg:flex-row" : "flex-row"
+          }`}
+        >
+          <div
+            className={`flex flex-1 flex-col overflow-hidden ${
+              responsiveStack
+                ? "min-h-[300px] border-b lg:border-b-0 lg:border-r"
+                : "border-r"
+            }`}
+          >
             <EditorPanel
               language={getEditorLanguage(editorLanguage)}
               onChange={nextValue => {
@@ -231,7 +243,11 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
               </div>
             )}
           </div>
-          <div className="relative flex flex-1">
+          <div
+            className={`relative flex flex-1 ${
+              responsiveStack ? "min-h-[300px]" : ""
+            }`}
+          >
             {showUpdateSpinner && (
               <div className="absolute top-[50px] right-[30px] z-[9] inline-flex rounded-2xl border border-[#7AF5D3] bg-gradient-to-br from-[#FFFFFF] to-[#E8FDF7] p-2.5 shadow-md">
                 <Loader2 className="h-8 w-8 animate-spin text-[#16F2B3]" />
@@ -253,9 +269,12 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
         </div>
 
         {message && (
-          <div className="absolute max-w-7xl mx-auto -bottom-[178px] left-5 right-5 z-[3] rounded-xl bg-red-100 px-6 py-4 text-red-900 flex items-center gap-2">
+          <div
+            className="mt-3 flex items-start gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900"
+            role="alert"
+          >
             <TriangleAlert className="h-5 w-5 text-red-900" />
-            <span className="font-medium">{message}</span>
+            <span>{message}</span>
           </div>
         )}
       </>

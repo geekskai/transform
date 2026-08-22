@@ -1,17 +1,11 @@
 import ConversionPanel from "@components/ConversionPanel";
+import { convertXmlToCompactJson } from "@/lib/xml-tools";
 import { useCallback } from "react";
 import * as React from "react";
-import { xml2json } from "xml-js";
 
 export default function XmlToJson() {
   const transformer = useCallback(async ({ value }) => {
-    return JSON.stringify(
-      JSON.parse(
-        xml2json(value, {
-          compact: true
-        })
-      )
-    );
+    return convertXmlToCompactJson(value);
   }, []);
 
   return (
@@ -21,6 +15,10 @@ export default function XmlToJson() {
       editorLanguage="xml"
       resultTitle="JSON"
       resultLanguage={"json"}
+      responsiveStack
+      editorProps={{
+        acceptFiles: ".xml,text/xml,application/xml"
+      }}
     />
   );
 }

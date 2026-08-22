@@ -202,6 +202,20 @@ export const xml = `<note>
 </note>
 `;
 
+export const xslt = `<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:output method="html" omit-xml-declaration="yes" />
+  <xsl:template match="/">
+    <main style="font-family: system-ui; padding: 24px;">
+      <h1><xsl:value-of select="note/heading" /></h1>
+      <p><strong>To:</strong> <xsl:value-of select="note/to" /></p>
+      <p><strong>From:</strong> <xsl:value-of select="note/from" /></p>
+      <p><xsl:value-of select="note/body" /></p>
+    </main>
+  </xsl:template>
+</xsl:stylesheet>
+`;
+
 export const markdown = `Heading
 =======
 ## Sub-heading

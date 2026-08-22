@@ -12,6 +12,7 @@ export type ProductEventName = (typeof PRODUCT_EVENTS)[number];
 
 function getToolFamily(pathname: string): string {
   const slug = pathname.replace(/^\/tools\//, "");
+  if (slug.includes("xml")) return "xml";
   if (slug.includes("json") || slug === "js-object-to-zod") return "json";
   if (slug.includes("jsx") || slug.includes("react")) return "jsx";
   if (slug.includes("toml")) return "toml";

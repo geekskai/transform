@@ -50,3 +50,4 @@ declare const IN_BROWSER: boolean;
 declare const IS_DEV: boolean;
 
 declare module "@khanacademy/flow-to-ts";
+declare module "xslt-polyfill";

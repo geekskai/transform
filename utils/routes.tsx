@@ -1034,20 +1034,35 @@ export const categorizedRoutes = [
         lastModified: "2026-07-25"
       },
       {
+        label: "XML to HTML",
+        path: "/tools/xml-to-html",
+        title: "XML to HTML Converter with XSLT 1.0 | Folioify",
+        desc: "Transform XML into HTML with a browser-based XSLT 1.0 runner, copy-ready source, and an isolated preview. Free, no signup.",
+        keywords: [
+          "XML to HTML",
+          "XML to HTML converter",
+          "XSLT 1.0 online",
+          "XSLT transformer",
+          "convert XML to HTML"
+        ],
+        lastModified: "2026-08-22"
+      },
+      {
         label: "XML to JSON",
         path: "/tools/xml-to-json",
         packageName: "xml-js",
         packageUrl: "https://github.com/nashwaan/xml-js",
-        title: "XML to JSON Converter | Free Online Tool | Folioify",
-        desc: "Convert XML to JSON. Free, no signup, runs in browser. By Folioify.",
+        title: "XML to JSON Converter with Attributes | Folioify",
+        desc: "Convert XML to JSON in your browser while preserving attributes, repeated elements, CDATA, declarations, and namespace prefixes.",
         keywords: [
           "XML to JSON",
-          "XML converter",
-          "XML parser",
-          "online converter",
-          "folioify"
+          "XML to JSON converter",
+          "convert XML to JSON",
+          "XML attributes to JSON",
+          "XML parser online",
+          "XML CDATA to JSON"
         ],
-        lastModified: "2026-02-01"
+        lastModified: "2026-08-22"
       },
       {
         label: "YAML to JSON",

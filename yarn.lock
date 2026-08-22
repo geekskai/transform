@@ -11942,6 +11942,11 @@ xml-name-validator@^1.0.0:
   resolved "https://registry.npmmirror.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
   integrity sha512-58Im/U0mlVBLM38NdZjHyhuMtCqa61469k2YP/AaPbvCoV9aQGUpbJBj1QRm2ytRiVQBD/fsw7L2bJGDVQswBA==
 
+xslt-polyfill@1.0.24:
+  version "1.0.24"
+  resolved "https://registry.npmmirror.com/xslt-polyfill/-/xslt-polyfill-1.0.24.tgz#89d311627f9e94c544b73de85d4f62ce5485b447"
+  integrity sha512-CUAlGsr1NyDBlR2UnyhPA8N5x7KgakADkQzz8t7ZSk6N0LXKMtqoqEAm92pLsVgN2Tc+NEkNfRtLilR7qNdMjA==
+
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
   resolved "https://registry.npmmirror.com/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"

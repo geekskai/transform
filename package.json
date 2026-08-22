@@ -124,6 +124,7 @@
     "ts-to-zod": "^1.11.0",
     "typescript": "5.1.6",
     "xml-js": "^1.6.11",
+    "xslt-polyfill": "1.0.24",
     "yaml": "^1.10.2"
   },
   "devDependencies": {

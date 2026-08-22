@@ -22,6 +22,8 @@ export type ToolPageContent = {
   options?: string[];
   commonErrors?: string[];
   limitations?: string[];
+  workspaceInstruction?: string;
+  dataSourceNote?: string;
   faqs: ToolFAQ[];
 };
 
@@ -591,6 +593,205 @@ function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
 }
 
 export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
+  "/tools/xml-to-html": {
+    metaTitle: "XML to HTML Converter with XSLT 1.0 | Folioify",
+    metaDescription:
+      "Transform XML into HTML with an XSLT 1.0 stylesheet. Review copy-ready source and an isolated preview in your browser.",
+    keywords: [
+      "XML to HTML",
+      "XML to HTML converter",
+      "XSLT transformer online",
+      "XSLT 1.0 tester",
+      "convert XML to HTML"
+    ],
+    lastModified: "2026-08-22",
+    summary:
+      "Apply a self-contained XSLT 1.0 stylesheet to an XML document, then inspect the generated HTML source and a network-isolated preview without sending the transformation input to a Folioify conversion API.",
+    whatIs:
+      "XML to HTML is a browser-based XSLT 1.0 workspace for turning structured XML data into HTML reports, tables, lists, or documents. Unlike automatic XML flattening, the XSLT stylesheet explicitly defines which nodes become HTML and how they are presented.",
+    capabilities: [
+      "Transform XML with a self-contained XSLT 1.0 stylesheet.",
+      "Load XML and XSLT from pasted text, local files, or browser-accessible URLs.",
+      "Copy serialized HTML output for use in an application or document.",
+      "Inspect the result in a sandboxed preview that blocks scripts and external resources."
+    ],
+    howItWorks: [
+      "Paste or load the source XML document.",
+      "Provide an XSLT 1.0 stylesheet with templates that emit HTML.",
+      "Select Run transformation to parse both inputs and apply the stylesheet.",
+      "Review the generated source, then switch to Preview for a safely isolated visual check."
+    ],
+    useCases: [
+      "Turn XML API responses into readable HTML diagnostics.",
+      "Prototype XSLT reports before adding them to an integration service.",
+      "Render catalog, feed, or legacy system data as tables and lists.",
+      "Test a browser-compatible XSLT 1.0 stylesheet with representative XML."
+    ],
+    inputExample: `<note>
+  <to>Tove</to>
+  <from>Jani</from>
+  <heading>Reminder</heading>
+  <body>Don't forget me this weekend!</body>
+</note>
+
+<!-- Apply an XSLT 1.0 template that emits HTML elements. -->`,
+    outputExample: `<main>
+  <h1>Reminder</h1>
+  <p><strong>To:</strong> Tove</p>
+  <p><strong>From:</strong> Jani</p>
+  <p>Don't forget me this weekend!</p>
+</main>`,
+    behaviorNotes: [
+      "The transformation runs only after Run transformation is selected.",
+      "XML and XSLT drafts use separate session-storage keys.",
+      "The preview has no script, same-origin, form, navigation, or external-network permission.",
+      "XML input is limited to 2 MB and XSLT input to 256 KB."
+    ],
+    relatedPaths: ["/tools/xml-to-json", "/tools/html-viewer"],
+    options: [
+      'Use xsl:output method="html" when the intended result is an HTML document.',
+      "Keep the stylesheet self-contained; paste templates and variables directly into one document.",
+      "Use the Source view as the canonical output and Preview only as an isolated visual check."
+    ],
+    commonErrors: [
+      "Malformed XML or XSLT that cannot be parsed as a well-formed document.",
+      "A stylesheet that declares XSLT 2.0 or 3.0 features unsupported by the browser engine.",
+      "Use of DOCTYPE, xsl:include, xsl:import, or document(), which this local-only workspace rejects.",
+      "A stylesheet whose template selectors do not match the supplied XML or its namespaces."
+    ],
+    limitations: [
+      "The workspace supports browser-based XSLT 1.0, not XSLT 2.0 or 3.0.",
+      "External stylesheets, external entities, and document() lookups are intentionally disabled.",
+      "The isolated preview cannot run scripts, submit forms, or load remote fonts, styles, images, or media.",
+      "Browser XSLT engines can differ from server processors, so production stylesheets should also be tested in their target runtime."
+    ],
+    workspaceInstruction:
+      "Provide both inputs, then select Run transformation to generate HTML source and an isolated preview.",
+    dataSourceNote:
+      "It uses a browser XSLT 1.0 engine, loading a local WebAssembly fallback when the native API is unavailable; no Folioify conversion endpoint receives the XML or XSLT.",
+    faqs: [
+      {
+        question: "Does XML to HTML require an XSLT stylesheet?",
+        answer:
+          "Yes. XML contains data and structure but does not define one universal HTML presentation. The XSLT stylesheet provides the explicit transformation rules."
+      },
+      {
+        question: "Does this support XSLT 2.0 or 3.0?",
+        answer:
+          "No. This first version uses a browser-based XSLT 1.0 processor. Use a dedicated Saxon runtime when a stylesheet requires newer XSLT features."
+      },
+      {
+        question: "Can the generated HTML run JavaScript?",
+        answer:
+          "No. The source remains copyable, but Folioify's preview disables scripts and external network resources so transformed content cannot execute as a trusted page."
+      },
+      {
+        question: "Is my XML uploaded for conversion?",
+        answer:
+          "No Folioify transformation API receives the XML or XSLT. The page still uses normal site analytics and hosting infrastructure, so avoid sensitive input as described in the privacy notice."
+      }
+    ]
+  },
+  "/tools/xml-to-json": {
+    metaTitle: "XML to JSON Converter with Attributes | Folioify",
+    metaDescription:
+      "Convert XML to compact JSON while preserving attributes, repeated elements, CDATA, declarations, and namespace prefixes in your browser.",
+    keywords: [
+      "XML to JSON",
+      "XML to JSON converter",
+      "convert XML to JSON",
+      "XML attributes to JSON",
+      "XML CDATA to JSON"
+    ],
+    lastModified: "2026-08-22",
+    summary:
+      "Convert XML into deterministic compact JSON while keeping attributes, text, CDATA, declarations, namespace prefixes, and repeated sibling elements visible in the output.",
+    whatIs:
+      "XML to JSON converts a well-formed XML document into the compact object mapping used by the xml-js library. It is designed for developers adapting XML API responses, feeds, configuration, or integration samples for JSON-based workflows.",
+    capabilities: [
+      "Preserve XML attributes under _attributes.",
+      "Represent text and CDATA under _text and _cdata.",
+      "Group repeated sibling elements into JSON arrays.",
+      "Keep XML declarations, comments, and namespace-qualified names visible."
+    ],
+    howItWorks: [
+      "Paste XML, choose a local file, or fetch a browser-accessible XML URL.",
+      "The parser checks that the document is well-formed and applies the compact mapping.",
+      "Review the formatted JSON and copy it into an API, migration, or debugging workflow."
+    ],
+    useCases: [
+      "Inspect a SOAP, RSS, Atom, or legacy API response as JSON.",
+      "Prepare representative XML data for a JavaScript integration test.",
+      "Review how attributes, CDATA, and repeated nodes map into objects and arrays.",
+      "Convert a small XML payload before adapting it to an application-specific schema."
+    ],
+    inputExample: `<catalog xmlns:media="urn:media">
+  <item id="1">Alpha</item>
+  <item id="2"><![CDATA[Beta < Gamma]]></item>
+  <media:title>Namespaced</media:title>
+</catalog>`,
+    outputExample: `{
+  "catalog": {
+    "_attributes": { "xmlns:media": "urn:media" },
+    "item": [
+      { "_attributes": { "id": "1" }, "_text": "Alpha" },
+      { "_attributes": { "id": "2" }, "_cdata": "Beta < Gamma" }
+    ],
+    "media:title": { "_text": "Namespaced" }
+  }
+}`,
+    behaviorNotes: [
+      "Conversion updates automatically when the XML source changes.",
+      "Parser errors identify the first available one-based line and column.",
+      "The mapping intentionally remains compatible with the existing compact xml-js output.",
+      "XML input is limited to 2 MB to reduce the risk of freezing the browser tab."
+    ],
+    relatedPaths: ["/tools/xml-to-html", "/tools/json-to-typescript"],
+    options: [
+      "Use _attributes for XML attributes and _text for element text.",
+      "Expect repeated sibling element names to become arrays.",
+      "Review mixed-content documents manually because XML node order cannot always be expressed naturally as application JSON."
+    ],
+    commonErrors: [
+      "Mismatched, unclosed, or incorrectly nested XML tags.",
+      "Unescaped ampersands or less-than characters inside text values.",
+      "Multiple root elements or malformed declarations.",
+      "Input larger than the 2 MB browser-processing limit."
+    ],
+    limitations: [
+      "The compact mapping is deterministic but is not a lossless XML round trip for every mixed-content document.",
+      "Text split around child elements can appear as a _text array rather than one string.",
+      "The converter does not validate the document against an XSD schema.",
+      "Large integration payloads should be processed with a streaming or command-line parser."
+    ],
+    faqs: [
+      {
+        question: "How are XML attributes represented in JSON?",
+        answer:
+          "Attributes are grouped in an _attributes object on the corresponding element. This keeps them distinct from child elements."
+      },
+      {
+        question: "What happens to repeated XML elements?",
+        answer:
+          "Repeated siblings with the same element name become a JSON array in the compact mapping."
+      },
+      {
+        question: "Does XML to JSON preserve CDATA?",
+        answer:
+          "Yes. CDATA content is represented under _cdata so it remains distinguishable from ordinary text."
+      },
+      {
+        question: "Does this validate XML against XSD?",
+        answer:
+          "No. The parser checks whether the XML is well-formed. Schema-valid XML requires a separate XSD validator."
+      },
+      {
+        question: "Is the XML sent to Folioify for conversion?",
+        answer:
+          "No Folioify transformation API receives this input. The page still uses normal site analytics and hosting infrastructure, so follow the privacy notice for sensitive data."
+      }
+    ]
+  },
   "/tools/svg-to-jsx": {
     metaTitle: "SVG to JSX Converter | Free React Component Tool | Folioify",
     metaDescription:

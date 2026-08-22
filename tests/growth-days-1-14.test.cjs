@@ -64,11 +64,11 @@ test("Clarity defaults to denied storage and offers an explicit choice", () => {
   assert.match(preferences, /Allow analytics cookies/);
 });
 
-test("growth scope freezes the current 70 tool routes", () => {
+test("growth scope freezes the current 71 tool routes", () => {
   const routes = read("utils/routes.tsx");
   const toolRouteCount = (routes.match(/path: "\/tools\//g) || []).length;
 
-  assert.equal(toolRouteCount, 70);
+  assert.equal(toolRouteCount, 71);
 });
 
 test("Days 1-14 JSON benchmark and sitemap audit artifacts exist", () => {

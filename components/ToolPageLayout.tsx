@@ -240,7 +240,8 @@ export default function ToolPageLayout({
               {searchTerm} Tool 🧰
             </h2>
             <p className="mb-3 text-sm text-gray-600 sm:mb-4 sm:text-base">
-              Paste your input below and the output will update automatically.
+              {pageContent?.workspaceInstruction ||
+                "Paste your input below and the output will update automatically."}
             </p>
             <div className="rounded-xl border border-gray-100 bg-gray-50 p-4">
               {children}
@@ -511,7 +512,9 @@ export default function ToolPageLayout({
             <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
               This tool is provided for educational and productivity purposes.
               Output accuracy depends on input quality.{" "}
-              {route.packageName && route.packageUrl ? (
+              {pageContent?.dataSourceNote ? (
+                pageContent.dataSourceNote
+              ) : route.packageName && route.packageUrl ? (
                 <>
                   It uses{" "}
                   <a

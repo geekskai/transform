@@ -17,7 +17,9 @@ export const CURATED_TOOL_PATHS = [
   "/tools/svg-to-jsx",
   "/tools/svg-to-react-native",
   "/tools/toml-formatter",
-  "/tools/typescript-to-javascript"
+  "/tools/typescript-to-javascript",
+  "/tools/xml-to-html",
+  "/tools/xml-to-json"
 ] as const;
 
 const CURATED_TOOL_PATH_SET = new Set<string>(CURATED_TOOL_PATHS);

@@ -116,6 +116,8 @@ test("only manually curated tool pages are eligible for indexing", () => {
 test("Phase 2 pages expose useful examples, behavior, links, and honest freshness", () => {
   const jsxViewer = getToolPageContent("/tools/jsx-viewer");
   const tomlChecker = getToolPageContent("/tools/check-toml");
+  const xmlToHtml = getToolPageContent("/tools/xml-to-html");
+  const xmlToJson = getToolPageContent("/tools/xml-to-json");
 
   assert.equal(jsxViewer.lastModified, "2026-07-25");
   assert.match(jsxViewer.inputExample, /useState/);
@@ -135,6 +137,26 @@ test("Phase 2 pages expose useful examples, behavior, links, and honest freshnes
     "/tools/toml-formatter",
     "/tools/toml-to-json",
     "/tools/toml-to-yaml"
+  ]);
+
+  assert.equal(xmlToHtml.lastModified, "2026-08-22");
+  assert.match(xmlToHtml.inputExample, /<note>/);
+  assert.match(xmlToHtml.outputExample, /<main>/);
+  assert.match(xmlToHtml.workspaceInstruction, /Run transformation/);
+  assert.match(xmlToHtml.dataSourceNote, /browser XSLT 1\.0 engine/);
+  assert.match(xmlToHtml.dataSourceNote, /WebAssembly fallback/);
+  assert.deepEqual(xmlToHtml.relatedPaths, [
+    "/tools/xml-to-json",
+    "/tools/html-viewer"
+  ]);
+
+  assert.equal(xmlToJson.lastModified, "2026-08-22");
+  assert.match(xmlToJson.inputExample, /CDATA/);
+  assert.match(xmlToJson.outputExample, /_attributes/);
+  assert.match(xmlToJson.behaviorNotes.join(" "), /compact xml-js/i);
+  assert.deepEqual(xmlToJson.relatedPaths, [
+    "/tools/xml-to-html",
+    "/tools/json-to-typescript"
   ]);
 
   assert.equal(
