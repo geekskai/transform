@@ -119,7 +119,7 @@ test("Phase 2 pages expose useful examples, behavior, links, and honest freshnes
   const xmlToHtml = getToolPageContent("/tools/xml-to-html");
   const xmlToJson = getToolPageContent("/tools/xml-to-json");
 
-  assert.equal(jsxViewer.lastModified, "2026-07-25");
+  assert.equal(jsxViewer.lastModified, "2026-09-14");
   assert.match(jsxViewer.inputExample, /useState/);
   assert.match(jsxViewer.outputExample, /Status: Ready/);
   assert.match(jsxViewer.behaviorNotes.join(" "), /dependencies/i);
@@ -161,7 +161,7 @@ test("Phase 2 pages expose useful examples, behavior, links, and honest freshnes
 
   assert.equal(
     getRouteLastModified("/tools/jsx-viewer", "2026-05-10"),
-    "2026-07-25"
+    "2026-09-14"
   );
   assert.equal(
     getRouteLastModified("/tools/json-to-typescript", "2026-02-01"),

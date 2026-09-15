@@ -1009,7 +1009,7 @@ export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
   "/tools/jsx-viewer": {
     metaTitle: "JSX Viewer Online | Open & Preview JSX/TSX Files | Folioify",
     metaDescription:
-      "Open, edit, and preview JSX or TSX online. Run React components, detect npm imports, format code, inspect inline errors, and download App.tsx.",
+      "Open, edit, and preview JSX or TSX online. Run React components, detect npm imports, format code, inspect clear errors, and download App.tsx.",
     keywords: [
       "JSX viewer online",
       "JSX file viewer",
@@ -1021,21 +1021,21 @@ export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
       "live React playground",
       "folioify"
     ],
-    lastModified: "2026-07-25",
+    lastModified: "2026-09-14",
     summary:
       "Open a JSX or TSX component, edit the source, and inspect the rendered React result in one browser workspace. Use it to reproduce a UI example, check an imported component, or diagnose a compile error before creating a local project.",
     whatIs:
-      "The JSX Viewer is a browser-based React and TypeScript workspace powered by Sandpack. It normalizes pasted JSX/TSX into an editable App.tsx, creates the hidden entry files needed for preview, detects package imports, and renders the component without sending it to a Folioify transformation API.",
+      "The JSX Viewer is a browser-based React and TypeScript workspace powered by Sandpack. It keeps pasted JSX/TSX as the editable user source, derives a hidden App.tsx for preview, detects package imports, and renders the component without sending it to a Folioify transformation API.",
     capabilities: [
-      "Preview JSX fragments and components that default-export App or define a PascalCase component.",
-      "Edit JSX or TSX with line numbers and inline compile diagnostics.",
+      "Preview bare JSX, any existing default export, or a detected top-level PascalCase component.",
+      "Edit JSX or TSX with line numbers and clear source or preview diagnostics.",
       "Detect non-React npm imports and add an exact package version manually when needed.",
-      "Format with Prettier, copy the active App.tsx, or download it.",
+      "Format with Prettier, copy the editable source, or download it as App.tsx.",
       "Load Tailwind from its CDN when utility-class styling is required."
     ],
     howItWorks: [
       "Paste a self-contained JSX/TSX component or choose a starter snippet.",
-      "The viewer normalizes that text into App.tsx and detects imported npm packages after a short debounce.",
+      "The viewer keeps that text as user source, derives a hidden App.tsx, and detects imported npm packages after a short debounce.",
       "Sandpack compiles the derived React workspace in the browser and updates the preview.",
       "Use inline errors to correct the source, then copy or download the component."
     ],
@@ -1066,7 +1066,7 @@ export default function StatusCard() {
     behaviorNotes: [
       "A bare JSX fragment is wrapped in an App component; an existing default export is kept.",
       "React and ReactDOM come from the workspace template. Other dependencies are detected from package imports and use the latest version unless you add a manual version.",
-      "The active App.tsx is saved in browser storage, including any React import or default-export scaffolding added by the viewer. Hidden main, style, and HTML files provide the rest of the preview workspace.",
+      "The editor source is saved in browser storage without generated imports or exports. A separate hidden App.tsx contains only the scaffolding needed for preview.",
       "The preview recompiles after a short delay; restarting the workspace resets component state without clearing the editor."
     ],
     relatedPaths: [
@@ -1082,7 +1082,7 @@ export default function StatusCard() {
       "Format: run Prettier with the Babel TypeScript parser."
     ],
     commonErrors: [
-      "No default export: define a PascalCase component such as App or StatusCard so the viewer can derive an export.",
+      "No previewable component: add a default export or define a top-level PascalCase function, React component class, or component variable such as App or StatusCard.",
       "Unexpected token: check unclosed tags, missing braces, malformed TypeScript props, or code pasted outside the component.",
       "Module not found: wait for dependency detection or add the package and version from the Dependencies panel.",
       "Blank preview: inspect inline errors and the preview console; code can compile but still return null or throw at runtime.",
@@ -1104,7 +1104,7 @@ export default function StatusCard() {
       {
         question: "Can the JSX Viewer render a component not named App?",
         answer:
-          "Yes. Keep a default export or define a PascalCase component. If there is no default export, the viewer derives one from App, Preview, Component, or the first PascalCase component it finds."
+          "Yes. An existing default export is kept. Otherwise, the viewer parses actual top-level declarations, prefers App, Preview, or Component when present, and then uses the first previewable PascalCase component. Comments and strings are not treated as declarations."
       },
       {
         question: "Does the JSX Viewer support Tailwind CSS?",

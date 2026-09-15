@@ -4,6 +4,7 @@ import {
   SandpackLayout,
   SandpackPreview,
   SandpackProvider,
+  type SandpackPreviewRef,
   useSandpack
 } from "@codesandbox/sandpack-react";
 import copy from "clipboard-copy";
@@ -36,24 +37,25 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { useData } from "@hooks/useData";
 import { JSX_SNIPPETS, SAMPLE_JSX } from "@/lib/jsx-viewer/preview";
+import { preparePreviewSource } from "@/lib/jsx-viewer/source-preparation";
+import {
+  classifySourceChange,
+  type PreviewStatus
+} from "@/lib/jsx-viewer/workspace-coordinator";
 import { trackProductEvent } from "@/lib/product-analytics";
 
 type Dependencies = Record<string, string>;
-type PreviewStatus = "starting" | "updating" | "ready" | "error";
 type SandpackAppActions = {
   updateAppCode: (source: string) => void;
   restart: () => void;
 };
-type PendingPreview = {
-  code: string;
-  revision: number;
-};
 
+const USER_SOURCE_FILE = "/src/UserSource.tsx";
 const APP_FILE = "/src/App.tsx";
 const MAIN_FILE = "/src/main.tsx";
 const STYLE_FILE = "/src/styles.css";
 const HTML_FILE = "/public/index.html";
-const PREVIEW_TIMEOUT_MS = 10_000;
+const PREVIEW_TIMEOUT_MS = 20_000;
 
 const SANDPACK_MAIN = `import * as React from "react";
 import { createRoot } from "react-dom/client";
@@ -113,45 +115,6 @@ function getDetectedDependencies(source: string): Dependencies {
   return dependencies;
 }
 
-function hasReactImport(source: string) {
-  return /from\s+["']react["']|import\s+React|import\s+\*\s+as\s+React/.test(
-    source
-  );
-}
-
-function hasDefaultExport(source: string) {
-  return /\bexport\s+default\b/.test(source);
-}
-
-function getPreviewCandidate(source: string) {
-  const match = source.match(/\b(?:const|function|class)\s+([A-Z]\w*)\b/);
-  return ["App", "Preview", "Component", match?.[1]].find(Boolean) || "App";
-}
-
-function normalizeUserSource(source: string) {
-  const trimmed = source.trim();
-  if (!trimmed) return SAMPLE_JSX;
-
-  return /^\s*</.test(trimmed) ? `const App = () => (${trimmed});` : source;
-}
-
-function buildAppFile(source: string) {
-  const normalized = normalizeUserSource(source);
-  const parts: string[] = [];
-
-  if (!hasReactImport(normalized)) {
-    parts.push(`import * as React from "react";`);
-  }
-
-  parts.push(normalized);
-
-  if (!hasDefaultExport(normalized)) {
-    parts.push(`\nexport default ${getPreviewCandidate(normalized)};`);
-  }
-
-  return parts.join("\n");
-}
-
 async function formatJsxCode(source: string) {
   return prettier.format(source, {
     parser: "babel-ts",
@@ -205,103 +168,111 @@ function useStableDependencies(dependencies: Dependencies) {
 function SandpackBridge({
   actionRef,
   sourceCode,
-  initialCode,
-  previewKey,
   onCodeChange,
-  onPreviewStatusChange
+  onRestartPreview
 }: {
   actionRef: React.MutableRefObject<SandpackAppActions | null>;
   sourceCode: string;
-  initialCode: string;
-  previewKey: string;
   onCodeChange: (code: string) => void;
-  onPreviewStatusChange: (status: PreviewStatus) => void;
+  onRestartPreview: () => void;
+}) {
+  const { sandpack } = useSandpack();
+  const activeSourceCode = sandpack.files[USER_SOURCE_FILE]?.code || "";
+  const lastObservedSourceRef = React.useRef(sourceCode);
+  const pendingProgrammaticSourceRef = React.useRef<string | null>(null);
+  const updateFileRef = React.useRef(sandpack.updateFile);
+
+  updateFileRef.current = sandpack.updateFile;
+
+  React.useEffect(() => {
+    if (
+      sourceCode !== activeSourceCode &&
+      sourceCode !== lastObservedSourceRef.current
+    ) {
+      pendingProgrammaticSourceRef.current = sourceCode;
+      updateFileRef.current(USER_SOURCE_FILE, sourceCode, false);
+    }
+  }, [activeSourceCode, sourceCode]);
+
+  React.useEffect(() => {
+    actionRef.current = {
+      updateAppCode(source: string) {
+        pendingProgrammaticSourceRef.current = source;
+        updateFileRef.current(USER_SOURCE_FILE, source, false);
+        onCodeChange(source);
+      },
+      restart() {
+        onRestartPreview();
+      }
+    };
+
+    return () => {
+      actionRef.current = null;
+    };
+  }, [actionRef, onCodeChange, onRestartPreview]);
+
+  React.useEffect(() => {
+    const change = classifySourceChange({
+      activeSource: activeSourceCode,
+      lastObservedSource: lastObservedSourceRef.current,
+      pendingProgrammaticSource: pendingProgrammaticSourceRef.current
+    });
+
+    if (change === "unchanged" || change === "await-programmatic") {
+      return;
+    }
+
+    lastObservedSourceRef.current = activeSourceCode;
+    if (change === "programmatic-applied") {
+      pendingProgrammaticSourceRef.current = null;
+      return;
+    }
+
+    onCodeChange(activeSourceCode);
+  }, [activeSourceCode, onCodeChange]);
+
+  return null;
+}
+
+function PreviewStatusBridge({
+  clientId,
+  revision,
+  sourceError,
+  onStatusChange
+}: {
+  clientId: string | null;
+  revision: string;
+  sourceError: boolean;
+  onStatusChange: (revision: string, status: PreviewStatus) => void;
 }) {
   const { listen, sandpack } = useSandpack();
-  const activeCode = sandpack.files[APP_FILE]?.code || "";
-  const sourceCodeRef = React.useRef(sourceCode);
-  const lastSyncedCodeRef = React.useRef(sourceCode);
-  const clientReadyRef = React.useRef(false);
-  const pendingPreviewRef = React.useRef<PendingPreview | null>(null);
-  const previewKeyRef = React.useRef(previewKey);
-  const hasCompletedPreviewRef = React.useRef(false);
-  const latestRevisionRef = React.useRef(0);
-  const runningRevisionRef = React.useRef(0);
-  const failedRevisionRef = React.useRef<number | null>(null);
-  const timedOutRevisionRef = React.useRef<number | null>(null);
-  const previewTimeoutRef = React.useRef<number | null>(null);
+  const timeoutRef = React.useRef<number | null>(null);
   const listenRef = React.useRef(listen);
-  const updateFileRef = React.useRef(sandpack.updateFile);
-  const runSandpackRef = React.useRef(sandpack.runSandpack);
-
   listenRef.current = listen;
-  updateFileRef.current = sandpack.updateFile;
-  runSandpackRef.current = sandpack.runSandpack;
 
-  const clearPreviewTimeout = React.useCallback(() => {
-    if (previewTimeoutRef.current !== null) {
-      window.clearTimeout(previewTimeoutRef.current);
-      previewTimeoutRef.current = null;
+  const clearTimeout = React.useCallback(() => {
+    if (timeoutRef.current !== null) {
+      window.clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
     }
   }, []);
 
-  const schedulePreviewTimeout = React.useCallback(
-    (revision: number) => {
-      clearPreviewTimeout();
-      previewTimeoutRef.current = window.setTimeout(() => {
-        if (latestRevisionRef.current !== revision) {
-          return;
-        }
-
-        timedOutRevisionRef.current = revision;
-        onPreviewStatusChange("error");
-      }, PREVIEW_TIMEOUT_MS);
-    },
-    [clearPreviewTimeout, onPreviewStatusChange]
-  );
-
-  const beginPreviewUpdate = React.useCallback(
-    (revision: number) => {
-      schedulePreviewTimeout(revision);
-      onPreviewStatusChange("updating");
-    },
-    [onPreviewStatusChange, schedulePreviewTimeout]
-  );
-
-  const enqueuePreviewCode = React.useCallback(
-    (nextCode: string) => {
-      const revision = latestRevisionRef.current + 1;
-      latestRevisionRef.current = revision;
-      beginPreviewUpdate(revision);
-
-      if (clientReadyRef.current) {
-        pendingPreviewRef.current = null;
-        runningRevisionRef.current = revision;
-        updateFileRef.current(APP_FILE, nextCode, true);
-        return;
-      }
-
-      pendingPreviewRef.current = { code: nextCode, revision };
-      updateFileRef.current(APP_FILE, nextCode, false);
-    },
-    [beginPreviewUpdate]
-  );
+  const scheduleTimeout = React.useCallback(() => {
+    clearTimeout();
+    timeoutRef.current = window.setTimeout(() => {
+      onStatusChange(revision, "error");
+    }, PREVIEW_TIMEOUT_MS);
+  }, [clearTimeout, onStatusChange, revision]);
 
   React.useEffect(() => {
-    return listenRef.current(message => {
-      if (message.type === "start") {
-        clientReadyRef.current = false;
-        const runningRevision = runningRevisionRef.current;
-        const latestRevision = latestRevisionRef.current;
+    if (!clientId) return;
 
-        if (
-          !hasCompletedPreviewRef.current &&
-          runningRevision === latestRevision &&
-          timedOutRevisionRef.current !== latestRevision
-        ) {
-          schedulePreviewTimeout(runningRevision);
-          onPreviewStatusChange("starting");
-        }
+    onStatusChange(revision, sourceError ? "error" : "starting");
+    scheduleTimeout();
+    const unsubscribe = listenRef.current(message => {
+      if (message.type === "start") {
+        onStatusChange(revision, sourceError ? "error" : "starting");
+        scheduleTimeout();
         return;
       }
 
@@ -311,139 +282,91 @@ function SandpackBridge({
           (message.action === "notification" &&
             message.notificationType === "error"))
       ) {
-        const runningRevision = runningRevisionRef.current;
-
-        if (runningRevision === latestRevisionRef.current) {
-          failedRevisionRef.current = runningRevision;
-          clearPreviewTimeout();
-          onPreviewStatusChange("error");
-        }
+        clearTimeout();
+        onStatusChange(revision, "error");
         return;
       }
 
       if (message.type === "done") {
-        const completedRevision = runningRevisionRef.current;
-        const pendingPreview = pendingPreviewRef.current;
-
-        clientReadyRef.current = true;
-
-        if (pendingPreview) {
-          pendingPreviewRef.current = null;
-
-          if (timedOutRevisionRef.current === pendingPreview.revision) {
-            return;
-          }
-
-          runningRevisionRef.current = pendingPreview.revision;
-          updateFileRef.current(APP_FILE, pendingPreview.code, true);
-          return;
-        }
-
-        if (completedRevision !== latestRevisionRef.current) {
-          return;
-        }
-
-        clearPreviewTimeout();
-        hasCompletedPreviewRef.current = true;
-        onPreviewStatusChange(
-          message.compilatonError ||
-            failedRevisionRef.current === completedRevision ||
-            timedOutRevisionRef.current === completedRevision
-            ? "error"
-            : "ready"
+        clearTimeout();
+        onStatusChange(
+          revision,
+          sourceError || message.compilatonError ? "error" : "ready"
         );
       }
-    });
-  }, [clearPreviewTimeout, onPreviewStatusChange, schedulePreviewTimeout]);
-
-  React.useEffect(
-    () => () => {
-      clearPreviewTimeout();
-    },
-    [clearPreviewTimeout]
-  );
-
-  React.useEffect(() => {
-    if (sandpack.status === "timeout") {
-      clientReadyRef.current = false;
-      timedOutRevisionRef.current = latestRevisionRef.current;
-      clearPreviewTimeout();
-      onPreviewStatusChange("error");
-    }
-  }, [clearPreviewTimeout, onPreviewStatusChange, sandpack.status]);
-
-  React.useEffect(() => {
-    sourceCodeRef.current = sourceCode;
-
-    if (sourceCode !== lastSyncedCodeRef.current) {
-      lastSyncedCodeRef.current = sourceCode;
-      enqueuePreviewCode(sourceCode);
-    }
-  }, [enqueuePreviewCode, sourceCode]);
-
-  React.useEffect(() => {
-    actionRef.current = {
-      updateAppCode(source: string) {
-        const nextCode = buildAppFile(source);
-        sourceCodeRef.current = nextCode;
-        lastSyncedCodeRef.current = nextCode;
-        onCodeChange(nextCode);
-        enqueuePreviewCode(nextCode);
-      },
-      restart() {
-        const revision = latestRevisionRef.current + 1;
-        latestRevisionRef.current = revision;
-        runningRevisionRef.current = revision;
-        clientReadyRef.current = false;
-        pendingPreviewRef.current = null;
-        beginPreviewUpdate(revision);
-        void runSandpackRef.current();
-      }
-    };
+    }, clientId);
 
     return () => {
-      actionRef.current = null;
+      clearTimeout();
+      unsubscribe();
     };
   }, [
-    actionRef,
-    beginPreviewUpdate,
-    onCodeChange,
-    onPreviewStatusChange,
-    enqueuePreviewCode
+    clearTimeout,
+    clientId,
+    onStatusChange,
+    revision,
+    scheduleTimeout,
+    sourceError
   ]);
 
   React.useEffect(() => {
-    if (!activeCode || activeCode === lastSyncedCodeRef.current) {
-      return;
+    if (sandpack.status === "timeout" || sandpack.error) {
+      clearTimeout();
+      onStatusChange(revision, "error");
     }
-
-    const wasSandboxReset =
-      activeCode === initialCode && sourceCodeRef.current !== initialCode;
-
-    if (wasSandboxReset) {
-      lastSyncedCodeRef.current = sourceCodeRef.current;
-      enqueuePreviewCode(sourceCodeRef.current);
-      return;
-    }
-
-    enqueuePreviewCode(activeCode);
-
-    lastSyncedCodeRef.current = activeCode;
-    sourceCodeRef.current = activeCode;
-    onCodeChange(activeCode);
-  }, [activeCode, enqueuePreviewCode, initialCode, onCodeChange]);
-
-  React.useEffect(() => {
-    if (previewKey === previewKeyRef.current) {
-      return;
-    }
-
-    previewKeyRef.current = previewKey;
-    lastSyncedCodeRef.current = sourceCodeRef.current;
-    enqueuePreviewCode(sourceCodeRef.current);
-  }, [enqueuePreviewCode, previewKey]);
+  }, [clearTimeout, onStatusChange, revision, sandpack.error, sandpack.status]);
 
   return null;
+}
+
+function PreviewWorkspace({
+  files,
+  setup,
+  options,
+  revision,
+  sourceError,
+  onStatusChange
+}: {
+  files: Record<string, { code: string; hidden?: boolean }>;
+  setup: { entry: string; dependencies: Dependencies };
+  options: {
+    externalResources: string[];
+    initMode: "user-visible";
+  };
+  revision: string;
+  sourceError: boolean;
+  onStatusChange: (revision: string, status: PreviewStatus) => void;
+}) {
+  const [clientId, setClientId] = React.useState<string | null>(null);
+  const handlePreviewRef = React.useCallback(
+    (preview: SandpackPreviewRef | null) => {
+      setClientId(preview?.clientId || null);
+    },
+    []
+  );
+
+  return (
+    <SandpackProvider
+      template="react-ts"
+      files={files}
+      customSetup={setup}
+      options={options}
+      theme="light"
+    >
+      <PreviewStatusBridge
+        clientId={clientId}
+        revision={revision}
+        sourceError={sourceError}
+        onStatusChange={onStatusChange}
+      />
+      <SandpackPreview
+        ref={handlePreviewRef}
+        showNavigator
+        showRefreshButton
+        style={{ minHeight: "calc(100vh - 260px)", height: 820 }}
+      />
+    </SandpackProvider>
+  );
 }
 
 function DependencyBadge({
@@ -481,7 +404,10 @@ function DependencyBadge({
 
 export default function SandpackJsxViewer() {
   const [storedCode, setStoredCode, storageHydrated] = useData("jsx");
-  const [code, setCode] = React.useState(storedCode || SAMPLE_JSX);
+  const initialSourceRef = React.useRef(
+    typeof storedCode === "string" ? storedCode : SAMPLE_JSX
+  );
+  const [code, setCode] = React.useState(initialSourceRef.current);
   const [enableTailwindPreview, setEnableTailwindPreview] =
     React.useState(true);
   const [manualDependencies, setManualDependencies] =
@@ -490,48 +416,37 @@ export default function SandpackJsxViewer() {
   const [packageVersion, setPackageVersion] = React.useState("latest");
   const [previewStatus, setPreviewStatus] =
     React.useState<PreviewStatus>("starting");
+  const [previewRestartGeneration, setPreviewRestartGeneration] =
+    React.useState(0);
   const sandpackActionsRef = React.useRef<SandpackAppActions | null>(null);
   const persistedCodeRef = React.useRef(code);
   const hasEditedCodeRef = React.useRef(false);
   const activationTrackedRef = React.useRef(false);
   const completionTrackedRef = React.useRef(false);
   const failureTrackedRef = React.useRef(false);
-  const initialFilesRef = React.useRef({
-    [APP_FILE]: {
-      code: buildAppFile(storedCode || SAMPLE_JSX),
+  const editorFilesRef = React.useRef({
+    [USER_SOURCE_FILE]: {
+      code: initialSourceRef.current,
       active: true
-    },
-    [MAIN_FILE]: {
-      code: SANDPACK_MAIN,
-      hidden: true
-    },
-    [STYLE_FILE]: {
-      code: SANDPACK_STYLES,
-      hidden: true
-    },
-    [HTML_FILE]: {
-      code: SANDPACK_HTML,
-      hidden: true
     }
   });
 
   React.useEffect(() => {
-    if (storageHydrated && !storedCode?.trim()) {
-      setStoredCode(SAMPLE_JSX);
-    }
-  }, [setStoredCode, storageHydrated, storedCode]);
-
-  React.useEffect(() => {
     if (storageHydrated && !hasEditedCodeRef.current) {
-      setCode(storedCode || SAMPLE_JSX);
+      setCode(typeof storedCode === "string" ? storedCode : SAMPLE_JSX);
     }
   }, [storageHydrated, storedCode]);
 
   const debouncedCode = useDebouncedValue(code, 400);
-  const canonicalSourceCode = React.useMemo(
-    () => buildAppFile(code || SAMPLE_JSX),
+  const sourcePreparation = React.useMemo(
+    () => preparePreviewSource(code),
     [code]
   );
+  const previewPreparation = React.useMemo(
+    () => preparePreviewSource(debouncedCode),
+    [debouncedCode]
+  );
+  editorFilesRef.current[USER_SOURCE_FILE].code = code;
   const autoDependencies = React.useMemo(
     () => getDetectedDependencies(debouncedCode),
     [debouncedCode]
@@ -549,6 +464,18 @@ export default function SandpackJsxViewer() {
     () => JSON.stringify([dependencyKey, enableTailwindPreview]),
     [dependencyKey, enableTailwindPreview]
   );
+  const previewRevision = React.useMemo(
+    () =>
+      JSON.stringify([
+        previewKey,
+        previewRestartGeneration,
+        previewPreparation.code,
+        previewPreparation.error
+      ]),
+    [previewKey, previewPreparation, previewRestartGeneration]
+  );
+  const currentPreviewRevisionRef = React.useRef(previewRevision);
+  currentPreviewRevisionRef.current = previewRevision;
   const sandpackSetup = React.useMemo(
     () => ({
       entry: MAIN_FILE,
@@ -556,18 +483,44 @@ export default function SandpackJsxViewer() {
     }),
     [effectiveDependencies]
   );
-  const sandpackOptions = React.useMemo(
+  const editorOptions = React.useMemo(
     () => ({
-      activeFile: APP_FILE,
-      visibleFiles: [APP_FILE],
+      activeFile: USER_SOURCE_FILE,
+      visibleFiles: [USER_SOURCE_FILE],
+      initMode: "immediate" as const,
+      autorun: false
+    }),
+    []
+  );
+  const previewOptions = React.useMemo(
+    () => ({
       externalResources: enableTailwindPreview
         ? ["https://cdn.tailwindcss.com"]
         : [],
-      initMode: "user-visible" as const,
-      recompileMode: "delayed" as const,
-      recompileDelay: 300
+      initMode: "user-visible" as const
     }),
     [enableTailwindPreview]
+  );
+  const previewFiles = React.useMemo(
+    () => ({
+      [APP_FILE]: {
+        code: previewPreparation.code,
+        hidden: true
+      },
+      [MAIN_FILE]: {
+        code: SANDPACK_MAIN,
+        hidden: true
+      },
+      [STYLE_FILE]: {
+        code: SANDPACK_STYLES,
+        hidden: true
+      },
+      [HTML_FILE]: {
+        code: SANDPACK_HTML,
+        hidden: true
+      }
+    }),
+    [previewPreparation.code]
   );
 
   const handleCodeChange = React.useCallback((nextCode: string) => {
@@ -579,7 +532,8 @@ export default function SandpackJsxViewer() {
     setCode(nextCode);
   }, []);
   const handlePreviewStatusChange = React.useCallback(
-    (status: PreviewStatus) => {
+    (revision: string, status: PreviewStatus) => {
+      if (revision !== currentPreviewRevisionRef.current) return;
       setPreviewStatus(status);
       if (!hasEditedCodeRef.current) return;
       if (status === "ready" && !completionTrackedRef.current) {
@@ -593,6 +547,17 @@ export default function SandpackJsxViewer() {
     },
     []
   );
+  const handleRestartPreview = React.useCallback(() => {
+    setPreviewRestartGeneration(generation => generation + 1);
+  }, []);
+
+  React.useEffect(() => {
+    if (sourcePreparation.error) {
+      setPreviewStatus("error");
+    } else if (code !== debouncedCode) {
+      setPreviewStatus("updating");
+    }
+  }, [code, debouncedCode, sourcePreparation.error]);
 
   React.useEffect(() => {
     if (code === persistedCodeRef.current) {
@@ -638,7 +603,7 @@ export default function SandpackJsxViewer() {
         return;
       }
 
-      handleCodeChange(buildAppFile(snippetCode));
+      handleCodeChange(snippetCode);
     },
     [handleCodeChange]
   );
@@ -649,7 +614,7 @@ export default function SandpackJsxViewer() {
       if (sandpackActionsRef.current) {
         sandpackActionsRef.current.updateAppCode(formatted);
       } else {
-        handleCodeChange(buildAppFile(formatted));
+        handleCodeChange(formatted);
       }
       toast.success("Formatted with Prettier.");
     } catch (error) {
@@ -875,34 +840,47 @@ export default function SandpackJsxViewer() {
         </div>
       </div>
 
+      {sourcePreparation.error ? (
+        <div
+          role="alert"
+          className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+        >
+          <span className="font-semibold">Preview unavailable:</span>{" "}
+          {sourcePreparation.error}
+        </div>
+      ) : null}
+
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         <SandpackProvider
           template="react-ts"
-          files={initialFilesRef.current}
-          customSetup={sandpackSetup}
-          options={sandpackOptions}
+          files={editorFilesRef.current}
+          options={editorOptions}
           theme="light"
         >
           <SandpackBridge
             actionRef={sandpackActionsRef}
-            sourceCode={canonicalSourceCode}
-            initialCode={initialFilesRef.current[APP_FILE].code}
-            previewKey={previewKey}
+            sourceCode={code}
             onCodeChange={handleCodeChange}
-            onPreviewStatusChange={handlePreviewStatusChange}
+            onRestartPreview={handleRestartPreview}
           />
           <SandpackLayout className="min-h-[calc(100vh-260px)]">
             <SandpackCodeEditor
+              key={USER_SOURCE_FILE}
               showTabs
               showLineNumbers
               showInlineErrors
               wrapContent
+              showRunButton={false}
               style={{ minHeight: "calc(100vh - 260px)", height: 820 }}
             />
-            <SandpackPreview
-              showNavigator
-              showRefreshButton
-              style={{ minHeight: "calc(100vh - 260px)", height: 820 }}
+            <PreviewWorkspace
+              key={previewRevision}
+              files={previewFiles}
+              setup={sandpackSetup}
+              options={previewOptions}
+              revision={previewRevision}
+              sourceError={Boolean(previewPreparation.error)}
+              onStatusChange={handlePreviewStatusChange}
             />
           </SandpackLayout>
         </SandpackProvider>

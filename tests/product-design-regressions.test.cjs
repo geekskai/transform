@@ -17,14 +17,18 @@ test("tool examples contain long code without widening the mobile page", () => {
   assert.equal((source.match(/max-w-full overflow-auto/g) || []).length, 2);
 });
 
-test("JSX preview queues the latest source revision until Sandpack is ready", () => {
+test("JSX preview isolates derived revisions without remounting the editor", () => {
   const source = readSource("components/jsx-viewer/SandpackJsxViewer.tsx");
 
-  assert.match(source, /pendingPreviewRef/);
-  assert.match(source, /updateFileRef\.current\(APP_FILE, nextCode, false\)/);
+  assert.match(source, /files=\{editorFilesRef\.current\}/);
+  assert.match(source, /<PreviewWorkspace/);
+  assert.match(source, /key=\{previewRevision\}/);
+  assert.match(source, /revision !== currentPreviewRevisionRef\.current/);
+  assert.match(source, /showRunButton=\{false\}/);
   assert.match(
     source,
-    /updateFileRef\.current\(APP_FILE, pendingPreview\.code, true\)/
+    /editorFilesRef\.current\[USER_SOURCE_FILE\]\.code = code/
   );
+  assert.doesNotMatch(source, /activeSourceCode === initialSourceCode/);
   assert.match(source, /role="status"/);
 });
