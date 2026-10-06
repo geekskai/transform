@@ -31,4 +31,7 @@ test("JSX preview isolates derived revisions without remounting the editor", () 
   );
   assert.doesNotMatch(source, /activeSourceCode === initialSourceCode/);
   assert.match(source, /role="status"/);
+  assert.match(source, /Open file/);
+  assert.match(source, /tool_file_loaded/);
+  assert.match(source, /Files stay in your browser/);
 });

@@ -14,6 +14,7 @@ import prettierPluginEstree from "prettier/plugins/estree";
 import {
   Copy,
   Download,
+  FileUp,
   Package,
   Loader2,
   PackagePlus,
@@ -24,6 +25,7 @@ import {
   Wand2,
   X
 } from "lucide-react";
+import { useDropzone } from "react-dropzone";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -56,6 +58,7 @@ const MAIN_FILE = "/src/main.tsx";
 const STYLE_FILE = "/src/styles.css";
 const HTML_FILE = "/public/index.html";
 const PREVIEW_TIMEOUT_MS = 20_000;
+const MAX_SOURCE_FILE_BYTES = 5 * 1024 * 1024;
 
 const SANDPACK_MAIN = `import * as React from "react";
 import { createRoot } from "react-dom/client";
@@ -531,6 +534,47 @@ export default function SandpackJsxViewer() {
     }
     setCode(nextCode);
   }, []);
+  const handleFiles = React.useCallback(
+    (files: File[]) => {
+      const file = files[0];
+      if (!file) return;
+
+      if (file.size > MAX_SOURCE_FILE_BYTES) {
+        toast.error("Choose a JSX or TSX file smaller than 5 MB.");
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onerror = () => toast.error("Unable to read that source file.");
+      reader.onload = () => {
+        const source = typeof reader.result === "string" ? reader.result : "";
+        if (!source) {
+          toast.error("That source file is empty.");
+          return;
+        }
+
+        handleCodeChange(source);
+        trackProductEvent("tool_file_loaded");
+        toast.success(`Loaded ${file.name}`);
+      };
+      reader.readAsText(file, "utf-8");
+    },
+    [handleCodeChange]
+  );
+  const {
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    open: openFilePicker
+  } = useDropzone({
+    onDrop: handleFiles,
+    noClick: true,
+    noKeyboard: true,
+    multiple: false,
+    accept: [".jsx", ".tsx", ".js", ".ts"],
+    onDropRejected: () =>
+      toast.error("Only .jsx, .tsx, .js, and .ts files are supported.")
+  });
   const handlePreviewStatusChange = React.useCallback(
     (revision: string, status: PreviewStatus) => {
       if (revision !== currentPreviewRevisionRef.current) return;
@@ -724,6 +768,11 @@ export default function SandpackJsxViewer() {
             </PopoverContent>
           </Popover>
 
+          <Button variant="outline" size="sm" onClick={openFilePicker}>
+            <FileUp className="mr-1.5 h-4 w-4" />
+            Open file
+          </Button>
+
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline" size="sm">
@@ -849,6 +898,23 @@ export default function SandpackJsxViewer() {
           {sourcePreparation.error}
         </div>
       ) : null}
+
+      <div
+        {...getRootProps({
+          className: `flex min-h-12 items-center justify-center rounded-lg border border-dashed px-4 py-3 text-center text-sm transition ${
+            isDragActive
+              ? "border-brand-500 bg-brand-50 text-brand-800"
+              : "border-slate-300 bg-slate-50 text-slate-600"
+          }`
+        })}
+      >
+        <input {...getInputProps()} />
+        <p>
+          {isDragActive
+            ? "Drop the JSX or TSX file to open it."
+            : "Open a .jsx or .tsx file locally, or drag it here. Files stay in your browser."}
+        </p>
+      </div>
 
       <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         <SandpackProvider

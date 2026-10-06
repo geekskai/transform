@@ -1027,6 +1027,7 @@ export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
     whatIs:
       "The JSX Viewer is a browser-based React and TypeScript workspace powered by Sandpack. It keeps pasted JSX/TSX as the editable user source, derives a hidden App.tsx for preview, detects package imports, and renders the component without sending it to a Folioify transformation API.",
     capabilities: [
+      "Open local .jsx, .tsx, .js, or .ts files up to 5 MB without uploading source to Folioify.",
       "Preview bare JSX, any existing default export, or a detected top-level PascalCase component.",
       "Edit JSX or TSX with line numbers and clear source or preview diagnostics.",
       "Detect non-React npm imports and add an exact package version manually when needed.",
@@ -1034,7 +1035,7 @@ export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
       "Load Tailwind from its CDN when utility-class styling is required."
     ],
     howItWorks: [
-      "Paste a self-contained JSX/TSX component or choose a starter snippet.",
+      "Open a local .jsx/.tsx file or paste a self-contained JSX/TSX component.",
       "The viewer keeps that text as user source, derives a hidden App.tsx, and detects imported npm packages after a short debounce.",
       "Sandpack compiles the derived React workspace in the browser and updates the preview.",
       "Use inline errors to correct the source, then copy or download the component."
@@ -1046,6 +1047,8 @@ export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {
       "Preview a Tailwind component before moving it into an application.",
       "Isolate a package import or compile error from a larger codebase."
     ],
+    workspaceInstruction:
+      "Open a local .jsx or .tsx file, drag it into the workspace, or paste a component to inspect its source and run a browser preview.",
     inputExample: `import { useState } from "react";
 
 export default function StatusCard() {
@@ -1099,7 +1102,7 @@ export default function StatusCard() {
       {
         question: "How do I open a JSX or TSX file online?",
         answer:
-          "Open the file in a text editor, paste its source into the JSX Viewer, and the preview will compile the detected component. You can download the edited source as App.tsx."
+          "Choose Open file or drag a .jsx, .tsx, .js, or .ts file into the workspace. The source is read in your browser, then the detected component is compiled for preview. You can download the edited source as App.tsx."
       },
       {
         question: "Can the JSX Viewer render a component not named App?",

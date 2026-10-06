@@ -123,6 +123,8 @@ test("Phase 2 pages expose useful examples, behavior, links, and honest freshnes
   assert.match(jsxViewer.inputExample, /useState/);
   assert.match(jsxViewer.outputExample, /Status: Ready/);
   assert.match(jsxViewer.behaviorNotes.join(" "), /dependencies/i);
+  assert.match(jsxViewer.capabilities.join(" "), /Open local \.jsx/);
+  assert.match(jsxViewer.workspaceInstruction, /drag it into the workspace/i);
   assert.deepEqual(jsxViewer.relatedPaths, [
     "/tools/html-to-jsx",
     "/tools/svg-to-jsx",
