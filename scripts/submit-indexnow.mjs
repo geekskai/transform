@@ -180,16 +180,13 @@ async function main() {
           resp || ""
         );
         success = true;
-        break; // break out of endpoint loop on success
+        break;
       } catch (e) {
         lastErr = e;
         console.log(`x [${n}/${batches.length}] 失败 ${ep}: ${e.message}`);
       }
     }
-
-    if (!success) {
-      throw lastErr;
-    }
+    if (!success) throw lastErr;
   }
   console.log("完成");
 }
