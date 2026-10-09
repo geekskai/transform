@@ -42,7 +42,6 @@ const { getToolProcessingDetails } = loadTypeScriptModule(
   "../lib/tool-processing.ts"
 );
 const {
-  CURATED_TOOL_PATHS,
   filterIndexableToolRoutes,
   isToolPageIndexable,
   shouldNoindexToolPage
@@ -85,31 +84,23 @@ test("new curated pages keep a newer route publication date", () => {
   );
 });
 
-test("only manually curated tool pages are eligible for indexing", () => {
-  const contentSource = fs.readFileSync(
-    path.resolve(__dirname, "../lib/tool-page-content.ts"),
-    "utf8"
-  );
-  const handAuthoredPaths = Array.from(
-    contentSource.matchAll(/^  "(\/tools\/[^"]+)": \{/gm),
-    match => match[1]
-  ).sort();
-
-  assert.deepEqual([...CURATED_TOOL_PATHS].sort(), handAuthoredPaths);
-  assert.equal(CURATED_TOOL_PATHS.every(isToolPageIndexable), true);
+test("working tool pages are indexable unless explicitly excluded", () => {
   assert.equal(isToolPageIndexable("/tools/svg-to-jsx"), true);
   assert.equal(isToolPageIndexable("/tools/js-object-to-zod"), true);
-  assert.equal(isToolPageIndexable("/tools/json-to-yaml"), false);
+  assert.equal(isToolPageIndexable("/tools/json-to-yaml"), true);
+  assert.equal(isToolPageIndexable("/about"), false);
+  assert.equal(isToolPageIndexable("/tools/json-to-yaml", true), false);
   assert.equal(shouldNoindexToolPage("/tools/svg-to-jsx"), false);
   assert.equal(shouldNoindexToolPage("/tools/svg-to-jsx", true), true);
-  assert.equal(shouldNoindexToolPage("/tools/json-to-yaml"), true);
+  assert.equal(shouldNoindexToolPage("/tools/json-to-yaml"), false);
   assert.deepEqual(
     filterIndexableToolRoutes([
       { path: "/" },
       { path: "/tools/svg-to-jsx" },
-      { path: "/tools/json-to-yaml" }
+      { path: "/tools/json-to-yaml" },
+      { path: "/tools/internal-preview", noindex: true }
     ]),
-    [{ path: "/tools/svg-to-jsx" }]
+    [{ path: "/tools/svg-to-jsx" }, { path: "/tools/json-to-yaml" }]
   );
 });
 
