@@ -1,4 +1,4 @@
-import { getToolProcessingDetails } from "./tool-processing";
+import { buildProfiledToolContent } from "./generated-tool-content";
 
 export type ToolFAQ = {
   question: string;
@@ -89,18 +89,12 @@ export function getRouteLastModified(
   path: string,
   routeLastModified?: string
 ): string {
-  const pageContent = getToolPageContentWithoutGenerated(path);
+  const pageContent = getToolPageContent(path);
 
   if (pageContent?.lastModified) return pageContent.lastModified;
   if (routeLastModified) return routeLastModified;
 
   return INDEXING_CONTENT_LAST_MODIFIED;
-}
-
-function getToolPageContentWithoutGenerated(
-  path: string
-): ToolPageContent | undefined {
-  return TOOL_PAGE_CONTENT[path];
 }
 
 export function isPriorityIndexingToolPath(path: string): boolean {
@@ -111,12 +105,14 @@ const tokenLabels: Record<string, string> = {
   api: "API",
   big: "Big",
   bson: "BSON",
+  cadence: "Cadence",
   css: "CSS",
   flow: "Flow",
   fragment: "Fragment",
   graphql: "GraphQL",
   html: "HTML",
   introspection: "Introspection",
+  io: "io",
   java: "Java",
   javascript: "JavaScript",
   js: "JS",
@@ -125,14 +121,22 @@ const tokenLabels: Record<string, string> = {
   jsx: "JSX",
   kotlin: "Kotlin",
   markdown: "Markdown",
+  mysql: "MySQL",
   mobx: "MobX",
   mongodb: "MongoDB",
   mongoose: "Mongoose",
+  nquads: "N-Quads",
   object: "Object",
+  openapi: "OpenAPI",
+  proptypes: "PropTypes",
+  pug: "Pug",
+  react: "React",
   resolvers: "Resolvers",
+  rust: "Rust",
   sarcastic: "Sarcastic",
   schema: "Schema",
   tailwind: "Tailwind",
+  ts: "ts",
   template: "Template",
   toml: "TOML",
   typescript: "TypeScript",
@@ -502,94 +506,7 @@ function buildGeneratedToolContent(path: string): ToolPageContent | undefined {
   if (!path.startsWith("/tools/")) return undefined;
 
   const tool = parseToolName(path);
-  const processing = getToolProcessingDetails(path);
-  const action =
-    tool.kind === "checker"
-      ? `validate ${tool.source} syntax`
-      : tool.kind === "viewer"
-      ? `preview ${tool.source} snippets`
-      : `convert ${tool.source} into ${tool.target}`;
-  const output =
-    tool.kind === "checker"
-      ? "clear validation status and parse errors"
-      : tool.kind === "viewer"
-      ? `${tool.source} rendered preview`
-      : `${tool.target} output`;
-
-  return {
-    metaTitle: `${tool.label} Online | Free Developer Tool | Folioify`,
-    metaDescription: `Use this free ${tool.label} online tool to ${action} with copy-ready output, no signup, and clear processing details.`,
-    keywords: [
-      tool.label,
-      `${tool.label} online`,
-      `free ${tool.label}`,
-      `${tool.source} tool`,
-      `${tool.target} generator`,
-      "developer tool"
-    ],
-    summary: `The ${tool.label} page is built for developers who need to ${action} quickly. ${processing.description}`,
-    whatIs: `${tool.label} is a focused online utility that takes ${tool.source} input and produces ${output}. It is designed for quick debugging, migration, documentation, and implementation workflows. ${processing.description}`,
-    capabilities: [
-      `Process ${tool.source} input without creating a local project.`,
-      `Produce ${output} that can be copied into code, docs, or tooling.`,
-      "Keep conversion work fast with an editor-driven workflow.",
-      "Use the tool without creating an account."
-    ],
-    howItWorks: [
-      `Paste representative ${tool.source} input into the editor.`,
-      "The tool parses the input and applies the matching transformation.",
-      `Review the generated ${output} and copy it into your workflow.`
-    ],
-    useCases: [
-      `Debug ${tool.source} snippets before adding them to a project.`,
-      `Prepare ${tool.target} examples for documentation or code review.`,
-      "Move copied examples into a cleaner developer-ready format.",
-      "Compare generated output before choosing a manual implementation."
-    ],
-    inputExample:
-      tool.kind === "checker"
-        ? `[package]\nname = "folioify"\nversion = "1.0.0"`
-        : tool.kind === "viewer"
-        ? `<div class="preview">Hello Folioify</div>`
-        : `${tool.source} input goes here`,
-    outputExample:
-      tool.kind === "checker"
-        ? "Valid TOML, or a parser error that points to the invalid syntax."
-        : tool.kind === "viewer"
-        ? `A browser-rendered ${tool.source} preview.`
-        : `Copy-ready ${tool.target} output.`,
-    options: [
-      "Input quality: use complete, representative snippets for better output.",
-      "Manual review: check generated names, optional fields, and edge cases before production use.",
-      "Copy workflow: copy only the final output after reviewing parser errors."
-    ],
-    commonErrors: [
-      `Invalid ${tool.source} syntax can prevent conversion.`,
-      "Incomplete examples can lead to overly narrow generated output.",
-      "Project-specific rules may require manual cleanup after generation."
-    ],
-    limitations: [
-      "Generated output is a practical starting point, not a full project migration.",
-      "Runtime behavior and business rules are not inferred from snippets.",
-      "Large inputs can take longer because processing happens in the browser."
-    ],
-    faqs: [
-      {
-        question: `Is ${tool.label} free?`,
-        answer:
-          "Yes. The tool is free to use with no signup, subscription, or usage limit."
-      },
-      {
-        question: `How does ${tool.label} process my input?`,
-        answer: processing.description
-      },
-      {
-        question: `Can I use the ${tool.target} output in production?`,
-        answer:
-          "Use the output as a strong starting point, then review it with your project compiler, tests, or validator before shipping."
-      }
-    ]
-  };
+  return buildProfiledToolContent(path, tool);
 }
 
 export const TOOL_PAGE_CONTENT: Record<string, ToolPageContent> = {

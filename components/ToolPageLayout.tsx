@@ -81,7 +81,7 @@ export default function ToolPageLayout({
   const processing = getToolProcessingDetails(route.path);
   const capabilities = pageContent?.capabilities || [
     "Convert inputs into clean, structured output.",
-    "Preview results instantly before copying.",
+    "Preview and review results before copying.",
     "Export outputs in a developer-friendly format."
   ];
   const howItWorks = pageContent?.howItWorks || [
@@ -124,9 +124,9 @@ export default function ToolPageLayout({
               "Once the page is loaded, many conversions work without an active connection, depending on the tool."
           },
           {
-            question: "Are there usage limits?",
+            question: "Are there technical limits?",
             answer:
-              "No usage limits are enforced. The tool is available for unlimited conversions."
+              "Large or complex inputs may be limited by browser memory, processing time, or the server-backed converter used by this page."
           },
           {
             question: "Is this an official tool?",
@@ -136,7 +136,7 @@ export default function ToolPageLayout({
           {
             question: "How often is the tool updated?",
             answer:
-              "We maintain tools on a regular cadence. See the last updated date below for freshness."
+              "The reviewed date below records the latest documented content or behavior change for this page."
           }
         ];
   // const lastModified = route.lastModified;
@@ -210,8 +210,8 @@ export default function ToolPageLayout({
               <span className="h-4 w-4 text-brand-500">
                 <LightningIcon />
               </span>
-              <span className="font-semibold text-brand-700">Fast</span>
-              <span>- convert in seconds</span>
+              <span className="font-semibold text-brand-700">Interactive</span>
+              <span>- review output before copying</span>
             </div>
             <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs text-gray-600 sm:px-4 sm:py-2 sm:text-sm">
               <span className="h-4 w-4 text-brand-500">
@@ -225,7 +225,7 @@ export default function ToolPageLayout({
                 <CheckIcon />
               </span>
               <span className="font-semibold text-brand-700">No Signup</span>
-              <span>- free forever</span>
+              <span>- use without an account</span>
             </div>
           </div>
         </section>
@@ -260,8 +260,8 @@ export default function ToolPageLayout({
                   The <strong>{searchTerm}</strong> tool is a
                   <strong> free online converter</strong> designed for
                   developers and creators who need{" "}
-                  <strong>fast, accurate transformations</strong> without signup
-                  . {processing.description}
+                  <strong> reviewable transformations</strong> without signup.{" "}
+                  {processing.description}
                 </>
               )}
             </p>
@@ -338,7 +338,7 @@ export default function ToolPageLayout({
                   Output
                 </p>
                 <p className="mt-2 text-sm text-gray-600 sm:text-base">
-                  <strong>Instant conversion</strong> with clean results.
+                  <strong>Generated result</strong> for review and copying.
                 </p>
               </div>
               <div>
@@ -449,12 +449,12 @@ export default function ToolPageLayout({
           <div className="mx-auto grid max-w-7xl gap-4 sm:gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
               <h2 className="mb-2 text-lg font-semibold text-gray-900 sm:mb-3 sm:text-xl">
-                Free vs Paid 💸
+                Access &amp; Practical Limits 💸
               </h2>
               <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
-                This tool is <strong>100% free</strong> with no usage limits or
-                account required. You can use it for quick conversions without
-                subscriptions or payments.
+                This tool is currently available without payment or an account.
+                Browser memory, input size, and server-backed processing may
+                still impose practical limits.
               </p>
             </div>
             <div className="rounded-2xl border border-gray-200 bg-white p-4 sm:p-6">
@@ -463,8 +463,8 @@ export default function ToolPageLayout({
               </h2>
               <p className="text-sm leading-relaxed text-gray-600 sm:text-base">
                 Folioify provides this as a <strong>third-party utility</strong>
-                . It does not replace official tools, but offers a fast,
-                accessible alternative for everyday workflows.
+                . It does not replace official tools, but provides a reviewable
+                interface for everyday workflows.
               </p>
             </div>
           </div>
@@ -539,9 +539,9 @@ export default function ToolPageLayout({
           <section className="px-4 sm:px-6 lg:px-8">
             <div className="mx-auto max-w-7xl rounded-2xl border border-gray-200 bg-white p-4 text-sm text-gray-600 sm:p-6 sm:text-base">
               <p>
-                <strong>Last updated:</strong> {formattedLastModified}. This
-                page is maintained regularly so tool details, examples, and FAQs
-                stay current for developers and AI search systems.
+                <strong>Content reviewed:</strong> {formattedLastModified}. The
+                date reflects the latest documented content or behavior change
+                for this page.
               </p>
             </div>
           </section>

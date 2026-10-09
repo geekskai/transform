@@ -1,8 +1,6 @@
 import ConversionPanel from "@components/ConversionPanel";
 import * as React from "react";
 import { useCallback } from "react";
-import prettier from "prettier/standalone";
-import prettierPluginToml from "prettier-plugin-toml";
 
 const SAMPLE_TOML = `# Sample TOML (Prettier keeps comments)
 [server]
@@ -20,6 +18,11 @@ export default function TomlFormatter() {
     if (!value || !value.trim()) return "";
 
     try {
+      const [{ default: prettier }, { default: prettierPluginToml }] =
+        await Promise.all([
+          import("prettier/standalone"),
+          import("prettier-plugin-toml")
+        ]);
       return await prettier.format(value, {
         parser: "toml",
         plugins: [prettierPluginToml],
@@ -37,8 +40,8 @@ export default function TomlFormatter() {
     <section className="space-y-6">
       <div className="flex flex-col gap-2 text-sm text-gray-600 sm:flex-row sm:items-center sm:justify-between">
         <p>
-          Format TOML configs instantly with <strong>Prettier</strong>. Everything
-          runs <strong>locally in your browser</strong> for privacy.
+          Format TOML configs as you edit with <strong>Prettier</strong>.
+          Everything runs <strong>locally in your browser</strong>.
         </p>
         <div className="flex items-center gap-2 text-xs text-gray-500">
           <span className="rounded-full border border-blue-200 bg-blue-50 px-2 py-1">
@@ -54,6 +57,7 @@ export default function TomlFormatter() {
         editorDefaultValue={SAMPLE_TOML}
         resultTitle="Formatted TOML"
         resultLanguage="toml"
+        deferTransformUntilUserInput
         editorProps={{
           acceptFiles: ".toml"
         }}

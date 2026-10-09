@@ -27,7 +27,7 @@ const EMAIL_PRESETS = {
 const DEFAULT_HTML = `<div style="padding: 24px; font-family: Inter, Arial, sans-serif;">
   <h1 style="margin-bottom: 12px;">HTML Viewer</h1>
   <p style="margin-bottom: 12px;">
-    Paste your HTML and preview instantly with device presets.
+    Paste your HTML and preview it with device presets.
   </p>
   <button style="padding: 8px 12px; border: none; border-radius: 8px; background: #0ea5e9; color: white;">
     Preview Button
@@ -309,7 +309,7 @@ export default function HtmlViewer() {
     <section className="space-y-5">
       <div className="space-y-2 text-sm text-gray-600">
         <p>
-          Render and debug <strong>HTML</strong> instantly with sandboxed
+          Render and debug <strong>HTML</strong> interactively with sandboxed
           preview, device presets, and formatting controls.
         </p>
         <p className="text-xs text-gray-500">

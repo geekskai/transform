@@ -42,6 +42,7 @@ export interface ConversionPanelProps {
   resultSettingsElement?: EditorPanelProps["settingElement"];
   settings?: any;
   responsiveStack?: boolean;
+  deferTransformUntilUserInput?: boolean;
 }
 
 const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
@@ -61,7 +62,8 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
     editorDefaultValue,
     splitEditorDefaultValue,
     resultSettingsElement,
-    responsiveStack = false
+    responsiveStack = false,
+    deferTransformUntilUserInput = false
   }) {
     const [value, setValue] = useData(editorLanguage);
     const [splitValue, setSplitValue] = useData(splitLanguage);
@@ -106,6 +108,11 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
     }, [splitEditorDefaultValue, splitLanguage, splitValue, setSplitValue]);
 
     useEffect(() => {
+      if (deferTransformUntilUserInput && !userActivatedRef.current) {
+        setShowUpdateSpinner(false);
+        return;
+      }
+
       let cancelled = false;
       const TIMEOUT_MS = 25_000;
 
@@ -184,7 +191,7 @@ const ConversionPanel: React.FunctionComponent<ConversionPanelProps> =
       return () => {
         cancelled = true;
       };
-    }, [splitValue, value, splitTitle, settings]);
+    }, [deferTransformUntilUserInput, splitValue, value, splitTitle, settings]);
 
     return (
       <>

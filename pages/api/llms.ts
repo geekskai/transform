@@ -26,8 +26,7 @@ function buildLlmsTxt(): string {
   ];
 
   routes.forEach(r => {
-    if (!r.path || r.path === "/" || !isToolPageIndexable(r.path, r.noindex))
-      return;
+    if (!r.path || r.path === "/" || !isToolPageIndexable(r.path)) return;
     const url = BASE + r.path;
     const name = r.searchTerm || r.label || r.path;
     const pageContent = getToolPageContent(r.path);

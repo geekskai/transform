@@ -18,7 +18,7 @@ export default function CheckToml() {
     <section className="space-y-6">
       <div className="flex flex-col gap-2 text-sm text-gray-600 sm:flex-row sm:items-center sm:justify-between">
         <p>
-          Check TOML files instantly. Everything runs{" "}
+          Check TOML files as you edit. Everything runs{" "}
           <strong>locally in your browser</strong> for privacy.
         </p>
         <div className="flex items-center gap-2 text-xs text-gray-500">

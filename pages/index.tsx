@@ -281,7 +281,7 @@ export default function HomePage() {
     {
       question: "Are these tools really free?",
       answer:
-        "Yes, all tools on Folioify are 100% free to use. There are no hidden fees, subscriptions, or limits on usage."
+        "The tools are currently available without payment or registration. Practical browser, input-size, or server-processing limits may apply."
     },
     {
       question: "Is my code safe?",
@@ -327,7 +327,7 @@ export default function HomePage() {
         <aside className="sr-only" aria-label="Core facts about Folioify">
           <ul>
             <li>
-              <strong>Pricing</strong>: 100% Free, no hidden fees
+              <strong>Access</strong>: No payment or registration required
             </li>
             <li>
               <strong>Data Handling</strong>: Browser-based or server-backed,
@@ -532,7 +532,7 @@ export default function HomePage() {
           <dl className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
             {[
               ["Processing", "Disclosed per tool"],
-              ["Cost", "100% free"],
+              ["Cost", "No payment required"],
               ["Registration", "No signup"],
               ["Data handling", "Browser or server"]
             ].map(([term, detail]) => (
@@ -570,7 +570,7 @@ export default function HomePage() {
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
                 Convert SVGs to React, JSON to TypeScript, HTML to Pug, and more
-                with pixel-perfect accuracy.
+                with output you can review before use.
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
@@ -582,7 +582,7 @@ export default function HomePage() {
               </h3>
               <p className="text-sm leading-relaxed text-gray-600">
                 Create consistent data structures, schema definitions, and
-                boilerplate code instantly.
+                boilerplate code from representative inputs.
               </p>
             </div>
             <div className="relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-4 text-center transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-xl hover:shadow-brand-500/10 md:p-5 lg:p-6">
@@ -727,8 +727,8 @@ export default function HomePage() {
                 Get Result
               </h4>
               <p className="text-sm leading-relaxed text-gray-600">
-                Copy the transformed code from the output panel. It updates
-                instantly.
+                Copy the transformed code from the output panel after reviewing
+                the result.
               </p>
             </div>
           </div>

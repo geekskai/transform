@@ -39,7 +39,7 @@ export const JSX_SNIPPETS = [
     description: "Paste markup only",
     code: `<div className="space-y-3 p-6">
   <h1 className="text-2xl font-bold">Hello JSX</h1>
-  <p className="text-slate-600">Edit this fragment and preview instantly.</p>
+  <p className="text-slate-600">Edit this fragment and preview it as you work.</p>
   <button className="rounded-lg bg-blue-600 px-4 py-2 text-white">
     Click me
   </button>

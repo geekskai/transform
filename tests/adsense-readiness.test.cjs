@@ -41,11 +41,8 @@ const { PRIVACY_CONTACT_EMAIL, PRIVACY_DISCLOSURES } = loadTypeScriptModule(
 const { getToolProcessingDetails } = loadTypeScriptModule(
   "../lib/tool-processing.ts"
 );
-const {
-  filterIndexableToolRoutes,
-  isToolPageIndexable,
-  shouldNoindexToolPage
-} = loadTypeScriptModule("../lib/tool-indexing.ts");
+const { INDEXABLE_TOOL_PATHS, filterIndexableToolRoutes, isToolPageIndexable } =
+  loadTypeScriptModule("../lib/tool-indexing.ts");
 const { getRouteLastModified, getToolPageContent } = loadTypeScriptModule(
   "../lib/tool-page-content.ts"
 );
@@ -84,24 +81,118 @@ test("new curated pages keep a newer route publication date", () => {
   );
 });
 
-test("working tool pages are indexable unless explicitly excluded", () => {
+test("quality-reviewed tool pages use one explicit index inventory", () => {
   assert.equal(isToolPageIndexable("/tools/svg-to-jsx"), true);
   assert.equal(isToolPageIndexable("/tools/js-object-to-zod"), true);
   assert.equal(isToolPageIndexable("/tools/json-to-yaml"), true);
   assert.equal(isToolPageIndexable("/about"), false);
-  assert.equal(isToolPageIndexable("/tools/json-to-yaml", true), false);
-  assert.equal(shouldNoindexToolPage("/tools/svg-to-jsx"), false);
-  assert.equal(shouldNoindexToolPage("/tools/svg-to-jsx", true), true);
-  assert.equal(shouldNoindexToolPage("/tools/json-to-yaml"), false);
+  assert.equal(isToolPageIndexable("/tools/internal-preview"), false);
+  assert.equal(INDEXABLE_TOOL_PATHS.length, 71);
+  assert.equal(new Set(INDEXABLE_TOOL_PATHS).size, 71);
   assert.deepEqual(
     filterIndexableToolRoutes([
       { path: "/" },
       { path: "/tools/svg-to-jsx" },
       { path: "/tools/json-to-yaml" },
-      { path: "/tools/internal-preview", noindex: true }
+      { path: "/tools/internal-preview" }
     ]),
     [{ path: "/tools/svg-to-jsx" }, { path: "/tools/json-to-yaml" }]
   );
+});
+
+test("all current tool routes have useful, non-placeholder SEO content", () => {
+  const routeSource = fs.readFileSync(
+    path.resolve(__dirname, "../utils/routes.tsx"),
+    "utf8"
+  );
+  const routePaths = Array.from(
+    routeSource.matchAll(/path: "(\/tools\/[^"]+)"/g),
+    match => match[1]
+  );
+
+  assert.deepEqual([...INDEXABLE_TOOL_PATHS].sort(), [...routePaths].sort());
+
+  const contentFingerprints = new Set();
+  for (const routePath of routePaths) {
+    const content = getToolPageContent(routePath);
+    assert.ok(content, `${routePath} must have page content`);
+    assert.ok(
+      content.inputExample?.trim(),
+      `${routePath} needs an input example`
+    );
+    assert.ok(
+      content.outputExample?.trim(),
+      `${routePath} needs an output example`
+    );
+    assert.ok(content.commonErrors?.length >= 2, `${routePath} needs errors`);
+    assert.ok(content.limitations?.length >= 2, `${routePath} needs limits`);
+    assert.ok(content.useCases.length >= 3, `${routePath} needs use cases`);
+
+    const renderedContent = JSON.stringify(content);
+    assert.doesNotMatch(renderedContent, /input goes here/i);
+    assert.doesNotMatch(renderedContent, /move copied examples/i);
+    assert.doesNotMatch(
+      renderedContent,
+      /no usage limit|unlimited conversion/i
+    );
+    assert.doesNotMatch(renderedContent, /utility for (render|convert)/i);
+    assert.doesNotMatch(renderedContent, /review the result for (test|check)/i);
+    contentFingerprints.add(renderedContent);
+  }
+
+  assert.equal(contentFingerprints.size, routePaths.length);
+});
+
+test("server-backed page content never claims transformation happens in browser", () => {
+  const serverPaths = [
+    "/tools/flow-to-javascript",
+    "/tools/flow-to-typescript",
+    "/tools/flow-to-typescript-declaration",
+    "/tools/html-to-pug",
+    "/tools/json-schema-to-openapi-schema",
+    "/tools/typescript-to-flow",
+    "/tools/typescript-to-javascript",
+    "/tools/typescript-to-json-schema",
+    "/tools/typescript-to-typescript-declaration",
+    "/tools/typescript-to-zod"
+  ];
+
+  for (const routePath of serverPaths) {
+    const content = JSON.stringify(getToolPageContent(routePath));
+    assert.doesNotMatch(
+      content,
+      /transformation (runs|happens) in your browser/i
+    );
+    assert.equal(getToolProcessingDetails(routePath).mode, "server");
+  }
+});
+
+test("heavy converters are loaded only after user interaction", () => {
+  const conversionPanel = fs.readFileSync(
+    path.resolve(__dirname, "../components/ConversionPanel.tsx"),
+    "utf8"
+  );
+  const toml = fs.readFileSync(
+    path.resolve(__dirname, "../pages/tools/toml-formatter.tsx"),
+    "utf8"
+  );
+  const cadence = fs.readFileSync(
+    path.resolve(__dirname, "../pages/tools/cadence-to-go.tsx"),
+    "utf8"
+  );
+  const flow = fs.readFileSync(
+    path.resolve(__dirname, "../pages/tools/json-to-flow.tsx"),
+    "utf8"
+  );
+
+  assert.match(conversionPanel, /deferTransformUntilUserInput/);
+  assert.match(toml, /import\("prettier\/standalone"\)/);
+  assert.match(toml, /import\("prettier-plugin-toml"\)/);
+  assert.doesNotMatch(toml, /^import .*prettier/m);
+  assert.match(cadence, /import\("@lemonneko\/easi-gen"\)/);
+  assert.doesNotMatch(cadence, /^import .*@lemonneko\/easi-gen/m);
+  assert.match(flow, /import\("json-ts"\)/);
+  assert.doesNotMatch(flow, /^import .*json-ts/m);
 });
 
 test("Phase 2 pages expose useful examples, behavior, links, and honest freshness", () => {

@@ -77,7 +77,6 @@ export default function App(props) {
           keywords={toolMeta.keywords}
           ogImage={toolMeta.ogImage}
           ogType={toolMeta.ogType}
-          noindex={toolMeta.noindex}
           lastModified={toolMeta.lastModified}
           datePublished={toolMeta.datePublished}
         />

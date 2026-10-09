@@ -292,7 +292,7 @@ export default function MarkdownToJsx() {
     <section className="space-y-5">
       <div className="space-y-2 text-sm text-gray-600">
         <p>
-          Convert <strong>Markdown to JSX</strong> instantly with optional
+          Convert <strong>Markdown to JSX</strong> interactively with optional
           component mapping and frontmatter extraction.
         </p>
         <p className="text-xs text-gray-500">

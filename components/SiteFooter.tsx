@@ -44,8 +44,8 @@ export default function SiteFooter() {
               </span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-gray-600">
-              Empowering developers with fast, free, and privacy-first tools.
-              Built for clean conversions and reliable results.
+              Developer tools with browser-based or server-backed processing
+              disclosed on each page. No registration required.
             </p>
             <p className="mt-3 inline-flex items-center rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">
               Free core tools ✅
@@ -151,9 +151,7 @@ export default function SiteFooter() {
             © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights
             reserved.
           </span>
-          <span className="inline-flex items-center gap-2">
-            Status: All systems operational 🟢
-          </span>
+          <span>Processing mode is disclosed on each tool page.</span>
         </div>
       </div>
     </footer>

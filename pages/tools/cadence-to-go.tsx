@@ -1,7 +1,6 @@
 import ConversionPanel from "@components/ConversionPanel";
 import * as React from "react";
-import { useCallback, useState } from "react";
-import { newEasiGen } from "@lemonneko/easi-gen";
+import { useCallback, useRef, useState } from "react";
 import { EditorPanelProps } from "@components/EditorPanel";
 import Form, { InputType } from "@components/Form";
 
@@ -10,15 +9,21 @@ interface Settings {
 }
 
 export default function CadenceToGo() {
-  let generator: (source: string, ignoreContractGeneration: boolean) => string;
+  const generatorRef =
+    useRef<(source: string, ignoreContractGeneration: boolean) => string>();
   const [settings, setSettings] = useState<Settings>({
     generateContractCode: false
   });
-  React.useEffect(console.log, [settings]);
   const transformer = useCallback(
     async ({ value }) => {
-      if (!generator) generator = await newEasiGen();
-      const generated = generator(value, !settings.generateContractCode);
+      if (!generatorRef.current) {
+        const { newEasiGen } = await import("@lemonneko/easi-gen");
+        generatorRef.current = await newEasiGen();
+      }
+      const generated = generatorRef.current(
+        value,
+        !settings.generateContractCode
+      );
       return generated;
     },
     [settings]
@@ -43,7 +48,7 @@ export default function CadenceToGo() {
         />
       );
     },
-    []
+    [settings]
   );
 
   return (
@@ -56,6 +61,7 @@ export default function CadenceToGo() {
       resultLanguage={"go"}
       settings={settings}
       resultSettingsElement={outputSettingsElement}
+      deferTransformUntilUserInput
     />
   );
 }

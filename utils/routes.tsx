@@ -18,8 +18,6 @@ export interface RouteSEO {
   ogImage?: string;
   /** 覆盖 og:type；未设则 "website" */
   ogType?: "website" | "article";
-  /** 设为 true 时输出 meta robots noindex,nofollow */
-  noindex?: boolean;
   /** GEO §10 新鲜度：ISO 8601，用于 meta last-modified、JSON-LD dateModified */
   lastModified?: string;
   /** GEO §10：ISO 8601，用于 JSON-LD datePublished、article:published_time */
@@ -1227,7 +1225,6 @@ export interface Route {
   keywords?: string[];
   ogImage?: string;
   ogType?: "website" | "article";
-  noindex?: boolean;
   lastModified?: string;
   datePublished?: string;
 }

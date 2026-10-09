@@ -1,7 +1,6 @@
 import ConversionPanel from "@components/ConversionPanel";
 import * as React from "react";
 import { useCallback } from "react";
-import { json2ts } from "json-ts";
 import { useSettings } from "@hooks/useSettings";
 import Form, { InputType } from "@components/Form";
 import { EditorPanelProps } from "@components/EditorPanel";
@@ -54,6 +53,7 @@ export default function JsonToFlow() {
 
   const transformer = useCallback(
     async ({ value }) => {
+      const { json2ts } = await import("json-ts");
       return json2ts(value, { flow: true, ...settings });
     },
     [settings]
@@ -68,6 +68,7 @@ export default function JsonToFlow() {
       resultLanguage={"typescript"}
       resultSettingsElement={getSettingsElement}
       settings={settings}
+      deferTransformUntilUserInput
     />
   );
 }

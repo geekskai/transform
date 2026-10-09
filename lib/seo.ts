@@ -12,7 +12,6 @@ import {
   getRouteLastModified,
   INDEXING_CONTENT_LAST_MODIFIED
 } from "./tool-page-content";
-import { shouldNoindexToolPage } from "./tool-indexing";
 import { getToolProcessingDetails } from "./tool-processing";
 
 type Route = NonNullable<ReturnType<typeof activeRouteData>>;
@@ -68,7 +67,6 @@ export interface ToolMeta {
   searchTerm: string;
   path: string;
   kind: "home" | "tool" | "category";
-  noindex?: boolean;
   lastModified?: string;
   datePublished?: string;
 }
@@ -211,7 +209,6 @@ export function getToolMeta(pathname: string): ToolMeta | null {
     searchTerm,
     path: route.path,
     kind: "tool",
-    noindex: shouldNoindexToolPage(route.path, route.noindex),
     lastModified: getRouteLastModified(route.path, route.lastModified),
     datePublished: route.datePublished
   };
@@ -279,7 +276,7 @@ export function buildToolFAQSchema(meta: ToolMeta): object {
     {
       question: `Is ${meta.searchTerm} free to use?`,
       answer:
-        "Yes. This tool is completely free with no signup or payment required. You can use it as often as you need."
+        "This tool is currently available without signup or payment. Practical browser, input-size, or server-processing limits may apply."
     },
     {
       question: "How is my input processed?",
